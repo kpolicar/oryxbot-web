@@ -10,8 +10,8 @@
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # Redirect www
-    RewriteCond %{HTTP_HOST} ^www.inkybot.me$ [NC]
-    RewriteRule ^(.*)$ https://inkybot.me/$1 [R=301,L]
+    RewriteCond %{HTTP_HOST} ^www.oryxbot.me$ [NC]
+    RewriteRule ^(.*)$ https://oryxbot.me/$1 [R=301,L]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d

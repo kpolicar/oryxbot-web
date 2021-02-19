@@ -20,7 +20,7 @@
 </p>
 <p class="text-gray-200 text-sm mt-5">
     @section('payment_email')
-        <a href="mailto:payment@inkybot.me" class="font-bold">payment@inkybot.me</a>
+        <a href="mailto:payment@oryxbot.me" class="font-bold">payment@oryxbot.me</a>
     @endsection
     {!! __('payment.success_unexpected', ['link' => View::getSection('payment_email')]) !!}
 </p>

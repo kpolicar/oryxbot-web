@@ -4,7 +4,7 @@ return [
     'menu' => 'Menu',
     'home' => 'Home',
     'installation' => 'Installation',
-    'release_notes' => 'Release Notes',
+    'whats_new' => 'What\'s new',
     'language' => 'Language',
     'language_english' => 'English',
     'language_french' => 'French',
@@ -14,7 +14,6 @@ return [
     'signout' => 'Sign out',
     'purchase' => 'Purchase',
     'download' => 'Download',
-    'forum' => 'Forum',
     'month' => 'month',
     'translated_credits' => 'translated by :name',
 ];

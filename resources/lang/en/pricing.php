@@ -2,7 +2,7 @@
 
 return [
     'heading' => 'Pricing',
-    'description' => 'Inkybot pricing follows a typical monthly subscription based model.',
+    'description' => 'Oryxbot pricing follows a typical monthly subscription based model.',
     'description_no_recurring_payments' => 'We do not support recurring payments, the customer must repurchase subscription manually each month.',
     'description_thank_you' => 'Thank you for your support.',
 

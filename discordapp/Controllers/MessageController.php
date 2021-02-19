@@ -47,15 +47,15 @@ class MessageController
     private function replyWithInfo(Message $message) {
         $message->reply(
             "Greetings!\n".
-            "To connect Discord with your Inkybot account, you should execute the command: `!login email`\n".
-            "Replace *email* with the email address you have associated with your Inkybot account.\n".
+            "To connect Discord with your Oryxbot account, you should execute the command: `!login email`\n".
+            "Replace *email* with the email address you have associated with your Oryxbot account.\n".
             "Once you connect your account, you will be granted the appropriate role.\n".
             "Happy botting!"
         );
     }
 
     public function login(Message $message, $email) {
-        $endpoint = "https://inkybot.me/api/v1/discord/login";
+        $endpoint = "https://oryxbot.me/api/v1/discord/login";
         $request = (new PendingRequest)->acceptJson();
         $response = new Response($request->post($endpoint, [
             'email' => $email,
@@ -73,7 +73,7 @@ class MessageController
             }
         }
         if ($response->ok()) {
-            $message->reply("You have successfully linked Discord with your Inkybot account.");
+            $message->reply("You have successfully linked Discord with your Oryxbot account.");
         }
     }
 }

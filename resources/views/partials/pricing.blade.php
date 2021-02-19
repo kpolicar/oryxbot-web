@@ -1,13 +1,13 @@
 <div class="anchor" id="pricing"></div>
-<section class="bg-gray-100 py-8 pb-12">
+<section class="bg-gray-900 py-8 pb-12">
 
-    <div class="container mx-auto px-2 pt-4 pb-2 text-gray-800">
+    <div class="container mx-auto px-2 pt-4 pb-2 text-gray-200">
 
-        <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">{{ __('pricing.heading') }}</h2>
+        <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center">{{ __('pricing.heading') }}</h2>
         <div class="w-full mb-4">
             <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
-        <p class="w-full my-2 text-xl leading-tight text-center text-gray-800">
+        <p class="w-full my-2 text-xl leading-tight text-center">
             {{ __('pricing.description') }}<br>
             {{ __('pricing.description_no_recurring_payments') }}<br>
             {{ __('pricing.description_thank_you') }}
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col w-5/6 lg:w-1/3 xl:w-1/4 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10">
+            <div class="flex flex-col w-5/6 lg:w-1/3 xl:w-1/4 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10 text-gray-800">
                 <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                     <div class="w-full p-8 text-3xl font-bold text-center">{{ __('pricing.package_subscription') }}</div>
                     <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <p class="w-full my-2 leading-tight text-center text-gray-800">* {{ __('pricing.package_feature_in_development') }}</p>
+    <p class="w-full my-2 leading-tight text-center text-gray-200">* {{ __('pricing.package_feature_in_development') }}</p>
 
 
 </section>

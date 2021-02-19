@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'main' => 'Dofus Maging Bot',
+    'main' => 'Albion Online Bot',
     'invite' => 'Invitation',
     'verify' => 'Verify Email',
     'subscribe' => 'Subscribe',

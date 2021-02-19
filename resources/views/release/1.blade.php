@@ -10,7 +10,7 @@
         <h1 class="mb-0 text-5xl font-bold leading-tight">Release notes</h1>
         <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">1st November 2020</h2>
         <p class="leading-normal text-lg mb-2">
-            Welcome to the first release of Inkybot! We did it!
+            Welcome to the first release of Oryxbot! We did it!
         </p>
         <p class="leading-normal text-lg mb-2">
             Below you will find important information regarding this version of the bot client.
@@ -109,9 +109,9 @@
 
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-700 uppercase">
-                    1. Open Inkybot and Login
+                    1. Open Oryxbot and Login
                 </h3>
-                <p class="text-base">You will need to login to your Inkybot account to gain access to the Dofus client. From there on
+                <p class="text-base">You will need to login to your Oryxbot account to gain access to the Dofus client. From there on
                     you can login to your Dofus account as you would normally.</p>
             </div>
 

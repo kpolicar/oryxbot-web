@@ -36,7 +36,7 @@ class ClientStatisticsController extends Controller
             'image'=> 'required|image|max:1000',
         ]);
         $image = Image::make($request->file('image'))->encode('jpg');
-        $image->insert(asset('images/inkybot_watermark.png'), 'bottom-right');
+        $image->insert(asset('images/oryxbot_watermark.png'), 'bottom-right');
         $image->insert(asset('images/smithmagus_parachment_watermark.png'), 'top-right', 8, 39);
 
         $fileName = Str::random(40).'.jpg';

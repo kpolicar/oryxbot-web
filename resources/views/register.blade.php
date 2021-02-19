@@ -4,7 +4,7 @@
 
 @if (request('ref'))
     @section('og:title')
-        <meta property="og:title" content="Inkybot {{ __('titles.invite') }} - {{ __('titles.main') }}" />
+        <meta property="og:title" content="Oryxbot {{ __('titles.invite') }} - {{ __('titles.main') }}" />
     @endsection
 
     @section('og:description')

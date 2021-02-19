@@ -4,10 +4,10 @@
     </div>
     <img src="{{ asset('item_before.png') }}"
          class="w-1/2 inline-block shadow-lg rounded my-4"
-         alt="Your item before using Inkybot" />
+         alt="Your item before using Oryxbot" />
     <img src="{{ asset('item_after.png') }}"
          class="w-1/2 inline-block shadow-lg rounded my-4"
-         alt="Your item after using Inkybot" />
+         alt="Your item after using Oryxbot" />
     <div class="w-full text-center xl:-mt-48 mt-0">
         <img src="{{ asset('item_config.gif') }}"
              class="m-auto shadow-lg rounded-t rounded-b-xl my-4"

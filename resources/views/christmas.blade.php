@@ -9,7 +9,7 @@
 
             <h2 class="uppercase tracking-loose w-full">It's Christmas time!</h2>
             <div class="flex justify-center lg:justify-between">
-                <h1 class="my-4 text-3xl font-bold leading-tight">Claim your Inkybot gift!</h1>
+                <h1 class="my-4 text-3xl font-bold leading-tight">Claim your Oryxbot gift!</h1>
             </div>
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto bg-white opacity-25 my-0 py-0 rounded-t"></div>
@@ -31,7 +31,7 @@
                         </figure>
 
                         <p class="mt-4">
-                            Don't waste your time maging during Christmas. Let Inkybot take a load off and have some fun.
+                            Don't waste your time maging during Christmas. Let Oryxbot take a load off and have some fun.
                         </p>
 
                         <label class="inline-flex mt-8">

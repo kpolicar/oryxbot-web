@@ -7,7 +7,7 @@
     @if(in_array('1920x1080', $restrictions))
     <h3 class="text-black text-xl font-bold"><i class="fas fa-vector-square text-3xl mr-3"></i> 1920x1080</h3>
     <p class="text-black my-3">
-        You can use this version of Inkybot in 1920x1080 resolution maximized window mode.<br>
+        You can use this version of Oryxbot in 1920x1080 resolution maximized window mode.<br>
         <small class="text-sm italic">
             If you have a screen with <strong>lower</strong> resolution, you will not be able to run the bot.<br>
             If your screen has a <strong>higher</strong> resolution, refer to
@@ -31,21 +31,21 @@
     <h2 class="text-black text-xl font-bold"><i class="fas fa-mouse-pointer text-3xl mr-3"></i> Run in background</h2>
     <p class="text-black my-3">
         You must not hover your mouse over the Dofus client while maging.<br>
-        You can have other windows over Inkybot, however Inkybot must not be minimized.<br>
+        You can have other windows over Oryxbot, however Oryxbot must not be minimized.<br>
     </p>
     @endif
 
     @if(in_array('minimized', $restrictions))
     <h2 class="text-black text-xl font-bold"><i class="fas fa-window-maximize text-3xl mr-3"></i> Do not minimize</h2>
     <p class="text-black my-3">
-        You can run Inkybot under other applications, however it must not be minimized.
+        You can run Oryxbot under other applications, however it must not be minimized.
     </p>
     @endif
 
     @if(in_array('stable_connection', $restrictions))
     <h2 class="text-black text-xl font-bold"><i class="fas fa-wifi text-3xl mr-3"></i> Stable internet connection</h2>
     <p class="text-black my-3">
-        You should use Inkybot with a stable internet connection to avoid unexpected issues.
+        You should use Oryxbot with a stable internet connection to avoid unexpected issues.
     </p>
     @endif
 </div>

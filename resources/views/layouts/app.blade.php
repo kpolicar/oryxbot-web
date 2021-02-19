@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>
-        @hasSection('title')@yield('title') - @endif{{ 'Inkybot - ' . __('titles.main') }}
+        @hasSection('title')@yield('title') - @endif{{ 'Oryxbot - ' . __('titles.main') }}
     </title>
 
     <meta name="description" content="{{ __('meta.main_description') }}">
-    <meta name="keywords" content="Dofus, Bot, Maging, Mage, Magus, Profession, Items, Cheat, Hack, Stats, Game, Automate, Program">
-    <meta name="author" content="Inkybot">
+    <meta name="keywords" content="Albion, Online, Bot, Maging, Mage, Magus, Profession, Items, Cheat, Hack, Stats, Game, Automate, Program">
+    <meta name="author" content="Oryxbot">
 
 
     @section('og:title')
-        <meta property="og:title" content="@hasSection('title')@yield('title') - @endif{{ 'Inkybot - ' . __('titles.main') }}" />
+        <meta property="og:title" content="@hasSection('title')@yield('title') - @endif{{ 'Oryxbot - ' . __('titles.main') }}" />
     @show
     @section('og:description')
         <meta name="og:description" content="{{ __('meta.main_description') }}" />
@@ -24,7 +24,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="{{ LaravelLocalization::getCurrentLocale() }}" />
     <meta property="og:url" content="/" />
-    <meta property="og:site_name" content="Inkybot" />
+    <meta property="og:site_name" content="Oryxbot" />
     <meta property="og:image" content="{{ asset('logo_white_on_black.jpg') }}" />
 
     @section('link:alternate')

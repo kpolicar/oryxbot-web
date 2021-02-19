@@ -49,7 +49,7 @@
 
         <p class="text-gray-400 text-sm mt-4">
             @section('support_email')
-                <a href="mailto:support@inkybot.me" class="font-bold">support@inkybot.me</a>
+                <a href="mailto:support@oryxbot.me" class="font-bold">support@oryxbot.me</a>
             @endsection
             {!! __('forms.verify_instructions_unexpected', ['link' => View::getSection('support_email')]) !!}
         </p>

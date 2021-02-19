@@ -26,7 +26,7 @@ html {
 }
 
 .gradient {
-    background: linear-gradient(90deg, #15181d 0%, #5b5b5b 100%);
+    background: linear-gradient(90deg, #aea480 0%, #D3C8A8 100%);
 }
 
 .bg-gray-200 {
@@ -44,14 +44,21 @@ html {
     }
 }
 
+.bg-gray-900 {
+    background: #25282d;
+}
+.text-gray-900 {
+    color: #25282d;
+}
+
 
 #gradient-canvas {
     width:100%;
     height:100%;
-    --gradient-color-1: #15181d;
-    --gradient-color-2: #29292d;
-    --gradient-color-3: #28292d;
-    --gradient-color-4: #606060;
+    --gradient-color-1: #9B937C;
+    --gradient-color-2: #C1B79A;
+    --gradient-color-3: #D3C8A8;
+    --gradient-color-4: #E8DCBA;
     position: absolute;
     filter: blur(5px);
 }

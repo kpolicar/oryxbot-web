@@ -322,7 +322,7 @@ class Gradient {
                 rotation: 0,
                 playing: true
             },
-            document.querySelectorAll("canvas").length < 1 ? console.log("DID NOT LOAD HERO INKYBOT CANVAS") : (
+            document.querySelectorAll("canvas").length < 1 ? console.log("DID NOT LOAD HERO ORYXBOT CANVAS") : (
 
                 this.minigl = new MiniGl(this.el, null, null, !0),
                     requestAnimationFrame(() => {

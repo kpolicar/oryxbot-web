@@ -19,7 +19,7 @@
         @endif
 
         <p class="leading-normal text-lg mb-2">
-            @yield('welcome', 'Welcome to this release of Inkybot!')
+            @yield('welcome', 'Welcome to this release of Oryxbot!')
             <small class="text-sm font-bold">({{ Str::before($version['name'], '.') }}.*)</small>
         </p>
         <p class="leading-normal text-lg mb-2">
