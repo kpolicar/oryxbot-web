@@ -8,15 +8,15 @@
             {{ __('features.heading') }}
         </h2>
         <div class="w-full mb-4">
-            <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+            <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
         </div>
 
         <div class="-mx-3 flex flex-wrap">
-            <x-feature-card icon="expand">
+            <x-feature-card icon="box-open">
                 <x-slot name="title">
-                    {{ __('features.ocr') }}
+                    {{ __('features.external') }}
                 </x-slot>
-                {{ __('features.ocr_details') }}
+                {{ __('features.external_details') }}
             </x-feature-card>
 
             <x-feature-card icon="mouse-pointer">
@@ -33,11 +33,11 @@
                 {{ __('features.updates_details') }}
             </x-feature-card>
 
-            <x-feature-card icon="comments">
+            <x-feature-card icon="coins">
                 <x-slot name="title">
-                    {{ __('features.community') }}
+                    {{ __('features.profitable') }}
                 </x-slot>
-                {{ __('features.community_details') }}
+                {{ __('features.profitable_details') }}
             </x-feature-card>
 
             <x-feature-card icon="code">
@@ -47,11 +47,11 @@
                 {{ __('features.scriptless_details') }}
             </x-feature-card>
 
-            <x-feature-card icon="bell">
+            <x-feature-card icon="route">
                 <x-slot name="title">
-                    {{ __('features.notifications') }}
+                    {{ __('features.customizable') }}
                 </x-slot>
-                {{ __('features.notifications_details') }}
+                {{ __('features.customizable_details') }}
             </x-feature-card>
 
         </div>

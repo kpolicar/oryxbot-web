@@ -5,16 +5,19 @@
 @section('hero')
     <x-main-hero>
 
-        <h2 class="uppercase tracking-loose w-full">
-            {{ __('install.subheader') }}
-        </h2>
+        <div class="flex flex-col-reverse">
+            <div class="flex flex-col lg:flex-row justify-between">
+                <h1 class="mb-0 text-5xl font-bold leading-tight">
+                    {{ __('install.header') }}
+                </h1>
+                <i class="fas fa-cloud-download-alt text-5xl p-2"></i>
+            </div>
 
-        <div class="flex flex-col lg:flex-row justify-between">
-            <h1 class="mb-0 text-5xl font-bold leading-tight">
-                {{ __('install.header') }}
-            </h1>
-            <i class="fas fa-cloud-download-alt text-5xl p-2"></i>
+            <h2 class="uppercase tracking-loose w-full">
+                {{ __('install.subheader') }}
+            </h2>
         </div>
+
         <div class="w-full mb-4">
             <div class="h-1 mx-auto bg-white opacity-25 my-0 py-0 rounded-t"></div>
         </div>
@@ -47,7 +50,7 @@
                 {{ __('install.steps') }}
             </h2>
             <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
             </div>
 
             <div class="anchor" id="download"></div>

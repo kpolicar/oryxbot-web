@@ -39,7 +39,7 @@
                 {{ __('profile.details') }}
             </h2>
             <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
             </div>
             <div id='section2' class="p-8 mt-6 lg:mt-0 rounded border shadow-sm bg-white">
                 <form action="{{ route('user-profile-information.update') }}#details" method="POST">
@@ -57,7 +57,7 @@
                                    id="name" name="name" type="text" value="{{ Auth::user()->name }}">
 
                             @error('name', 'updateProfileInformation')
-                            <p class="text-red-500 text-sm italic">{{ $message }}</p>
+                            <p class="text-red-700 text-sm italic">{{ $message }}</p>
                             @enderror
 
                             <p class="py-2 text-sm text-gray-600">
@@ -77,7 +77,7 @@
                                    id="email" name="email" type="email" value="{{ Auth::user()->email }}">
 
                             @error('email', 'updateProfileInformation')
-                            <p class="text-red-500 text-sm italic">{{ $message }}</p>
+                            <p class="text-red-700 text-sm italic">{{ $message }}</p>
                             @enderror
 
                             <p class="py-2 text-sm text-gray-600">
@@ -95,11 +95,11 @@
                             </label>
                         </div>
                         <div class="md:w-3/5">
-                            <input class="@error('password', 'updateProfileInformation') border-red-500 @enderror form-input rounded block w-full focus:bg-white bg-gray-200 p-2 text-gray-700 focus:text-gray-800"
+                            <input class="@error('password', 'updateProfileInformation') border-red-700 @enderror form-input rounded block w-full focus:bg-white bg-gray-200 p-2 text-gray-700 focus:text-gray-800"
                                    id="password" name="password" type="password" value="" placeholder="******">
 
                             @error('password', 'updateProfileInformation')
-                            <p class="text-red-500 text-sm italic">{{ $message }}</p>
+                            <p class="text-red-700 text-sm italic">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -111,11 +111,11 @@
                             </label>
                         </div>
                         <div class="md:w-3/5">
-                            <input class="@error('current_password', 'updateProfileInformation') border-red-500 @enderror form-input block w-full focus:bg-white bg-gray-200 p-2 text-gray-700 focus:text-gray-800"
+                            <input class="@error('current_password', 'updateProfileInformation') border-red-700 @enderror form-input block w-full focus:bg-white bg-gray-200 p-2 text-gray-700 focus:text-gray-800"
                                    id="current_password" name="current_password" type="password" placeholder="******">
 
                             @error('current_password', 'updateProfileInformation')
-                            <p class="text-red-500 text-sm italic">{{ $message }}</p>
+                            <p class="text-red-700 text-sm italic">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                             </div>
 
                             @error('discord_notifications', 'updateProfileInformation')
-                            <p class="text-red-500 text-sm italic">{{ $message }}</p>
+                            <p class="text-red-700 text-sm italic">{{ $message }}</p>
                             @enderror
 
                             <p class="py-1 text-sm text-gray-600">
@@ -179,7 +179,7 @@
 
 
                             @error('discord_notifications', 'updateProfileInformation')
-                            <p class="text-red-500 text-sm italic">{{ $message }}</p>
+                            <p class="text-red-700 text-sm italic">{{ $message }}</p>
                             @enderror
 
                             <p class="py-1 text-sm text-gray-600">
@@ -241,7 +241,7 @@
         <div class="container max-w-5xl mx-auto m-8">
             <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Discord</h2>
             <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
             </div>
 
             <div class="flex flex-wrap flex-col-reverse sm:flex-row">

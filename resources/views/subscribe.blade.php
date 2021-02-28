@@ -36,7 +36,7 @@
                 </div>
                 <div class="flex justify-between text-xl">
                     <p class="font-bold">{{ __('forms.basket_price') }}</p>
-                    <p class="text-lg">@money(price()/100)</p>
+                    <p class="text-lg">@money(config('app.price')/100)</p>
                 </div>
 
 
@@ -64,12 +64,12 @@
                 </div>
 
                 <div class="error" role="alert">
-                    <p class="text-red-500 text italic message"></p>
+                    <p class="text-red-700 text italic message"></p>
                 </div>
 
                 <button class="mx-auto lg:mx-0 hover:underline font-bold rounded mt-2 py-4 px-8 shadow-lg cursor-pointer uppercase btn-color-secondary w-full"
                         type="submit">
-                    {{ __('forms.subscribe_form_submit', ['price' => (price()/100).'€']) }}
+                    {{ __('forms.subscribe_form_submit', ['price' => (config('app.price')/100).'€']) }}
                 </button>
 
 

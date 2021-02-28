@@ -15,8 +15,8 @@ class ClientVersion
         $this->versions = new Collection([
             1 => [
                 'number' => 1,
-                'code' => 'v0.1beta',
-                'name' => 'v0.1 Beta',
+                'code' => 'v1.0',
+                'name' => 'v1.0',
             ],
         ]);
     }

@@ -4,7 +4,7 @@
         {{ __('presentation.header') }}
     </h2>
     <div class="w-full mb-4">
-        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+        <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
     </div>
     <p class="w-full my-2 text-xl leading-tight text-center text-gray-800">
         {{ __('presentation.description') }}<br>

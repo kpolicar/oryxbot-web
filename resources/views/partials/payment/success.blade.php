@@ -13,7 +13,7 @@
 </div>
 <div class="flex justify-between my-4 text-xl">
     <p class="font-bold">{{ __('forms.basket_paid') }}</p>
-    <p class="text-lg">@money(price()/100)</p>
+    <p class="text-lg">@money(config('app.price')/100)</p>
 </div>
 <p class="text-gray-400 text-base mt-16">
     {{ __('payment.success_description') }}

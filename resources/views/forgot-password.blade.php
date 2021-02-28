@@ -5,10 +5,13 @@
 
 @section('content')
     <x-main-hero>
-        <h2 class="uppercase tracking-loose w-full">{{ __('forms.forgot_subheader') }}</h2>
-        <div class="flex justify-center lg:justify-between">
-            <h1 class="my-4 text-3xl font-bold leading-tight">{{ __('forms.forgot_header') }}</h1>
-            <i class="fas fa-user-lock text-4xl p-3"></i>
+        <div class="flex flex-col-reverse">
+            <div class="flex justify-center lg:justify-between">
+                <h1 class="my-4 text-3xl font-bold leading-tight">{{ __('forms.forgot_header') }}</h1>
+                <i class="fas fa-user-lock text-4xl p-3"></i>
+            </div>
+
+            <h2 class="uppercase tracking-loose w-full">{{ __('forms.forgot_subheader') }}</h2>
         </div>
 
         <div class="w-full mb-4">
@@ -24,10 +27,10 @@
                             {{ __('forms.email') }}
                         </label>
 
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('email') border-red-500 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('email') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                id="email" name="email" type="email" placeholder="{{ __('forms.email_example') }}">
                         @error('email')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        <p class="text-red-700 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>

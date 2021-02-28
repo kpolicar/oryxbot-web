@@ -8,8 +8,10 @@
 
 @section('hero')
     <x-main-hero>
-        <h2 class="uppercase tracking-loose w-full">{{ __('messages.category') }}</h2>
-        <h1 class="my-4 text-5xl font-bold leading-tight">{!! __('messages.heading') !!}</h1>
+        <div class="flex flex-col-reverse">
+            <h1 class="my-4 text-5xl font-bold leading-tight">{!! __('messages.heading') !!}</h1>
+            <h2 class="uppercase tracking-loose w-full">{{ __('messages.category') }}</h2>
+        </div>
         <p class="leading-normal text-2xl mb-8">{{ __('messages.subheading') }}</p>
         <a href="{{ asset($download_asset) }}"
            download

@@ -28261,8 +28261,8 @@ readers do not read off random characters that represent icons */
   display: block;
 }
 
-html {
-  background: white;
+html, body {
+  background: #25282d;
 }
 
 .btn-color-secondary {

@@ -5,10 +5,13 @@
 
 @section('content')
     <x-main-hero>
-        <h2 class="uppercase tracking-loose w-full">{{ __('forms.recover_subheader') }}</h2>
-        <div class="flex justify-center lg:justify-between">
-            <h1 class="my-4 text-3xl font-bold leading-tight">{{ __('forms.recover_header') }}</h1>
-            <i class="fas fa-user-lock text-4xl p-3"></i>
+        <div class="flex flex-col-reverse">
+            <div class="flex justify-center lg:justify-between">
+                <h1 class="my-4 text-3xl font-bold leading-tight">{{ __('forms.recover_header') }}</h1>
+                <i class="fas fa-user-lock text-4xl p-3"></i>
+            </div>
+
+            <h2 class="uppercase tracking-loose w-full">{{ __('forms.recover_subheader') }}</h2>
         </div>
 
         <div class="w-full mb-4">
@@ -25,10 +28,10 @@
                     <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="password">
                         {{ __('forms.form_password') }}
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('password') border-red-500 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('password') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                            id="password" name="password" type="password" placeholder="******">
                     @error('password')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    <p class="text-red-700 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
@@ -37,10 +40,10 @@
                     <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="password_confirmation">
                         {{ __('forms.form_password_confirm') }}
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('password_confirmation') border-red-500 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('password_confirmation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                            id="password_confirmation" name="password_confirmation" type="password" placeholder="******">
                     @error('password_confirmation')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    <p class="text-red-700 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
             </div>

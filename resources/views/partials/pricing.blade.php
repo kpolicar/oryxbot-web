@@ -5,11 +5,10 @@
 
         <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center">{{ __('pricing.heading') }}</h2>
         <div class="w-full mb-4">
-            <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+            <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
         </div>
         <p class="w-full my-2 text-xl leading-tight text-center">
             {{ __('pricing.description') }}<br>
-            {{ __('pricing.description_no_recurring_payments') }}<br>
             {{ __('pricing.description_thank_you') }}
         </p>
 
@@ -21,8 +20,8 @@
                         {{ __('pricing.package_free') }}
                     </div>
                     <ul class="w-full text-center text-sm">
-                        <li class="border-b py-4">{{ __('pricing.package_feature_usage_30') }}</li>
-                        <li class="border-b py-4">{{ __('pricing.package_feature_maging_basic') }}</li>
+                        <li class="border-b py-4">{{ __('pricing.package_free_duration') }}</li>
+                        <li class="border-b py-4">{{ __('pricing.package_feature_routes_default') }}</li>
                     </ul>
                 </div>
                 <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
@@ -43,16 +42,15 @@
                     <div class="w-full p-8 text-3xl font-bold text-center">{{ __('pricing.package_subscription') }}</div>
                     <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
                     <ul class="w-full text-center text-sm">
-                        <li class="border-b py-4">{{ __('pricing.package_feature_usage_unlimited') }}</li>
-                        <li class="border-b py-4">{{ __('pricing.package_feature_maging_sink') }}</li>
-                        <li class="border-b py-4">{{ __('pricing.package_feature_exo') }}</li>
-                        <li class="border-b py-4">{{ __('pricing.package_feature_overmaging') }}</li>
-                        <li class="border-b py-4"><span class="line-through">{{ __('pricing.package_feature_leveling') }}</span>*</li>
+                        <li class="border-b py-4">{{ __('pricing.package_subscription_duration') }}</li>
+                        <li class="border-b py-4">{{ __('pricing.package_feature_routes_default') }}</li>
+                        <li class="border-b py-4">{{ __('pricing.package_feature_notifications') }}</li>
+                        <li class="border-b py-4"><span class="line-through">{{ __('pricing.package_feature_routes_custom') }}</span>*</li>
                     </ul>
                 </div>
                 <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
                     <div class="w-full pt-6 text-3xl font-bold text-center leading-none mb-2">
-                        €{{ price()/100 }} <small class="text-sm">/ {{ __('common.month') }}</small>
+                        €{{ config('app.price')/100 }} <small class="text-sm">/ {{ __('common.month') }}</small>
                     </div>
                     <div class="flex items-center justify-center">
                         @auth
