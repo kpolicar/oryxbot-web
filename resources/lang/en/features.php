@@ -10,7 +10,7 @@ return [
     'human_like_details' => 'Simulating mouse and keyboard strokes with smooth, human-like movements makes the bot\'s behavior indistinguishable from human players.',
 
     'updates' => 'Regular updates',
-    'updates_details' => 'Oryxbot is actively maintained and improved. We play Albion too; we are committed to make Oryxbot the best it can be - for you and for us!',
+    'updates_details' => 'Oryxbot is actively maintained and improved. We play Albion too, thus we are committed to make Oryxbot the best it can be - for you and for us!',
 
     'profitable' => 'Profitable',
     'profitable_details' => 'Stop going through the grind that is Albion Online. Your time is worth more. Let Oryxbot make your fortune while you do the fun stuff.',

@@ -12,6 +12,7 @@ return [
     'login' => 'Login',
     'signup' => 'Sign up',
     'signout' => 'Sign out',
+    'activate' => 'Activate',
     'purchase' => 'Purchase',
     'download' => 'Download',
     'month' => 'month',

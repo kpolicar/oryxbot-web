@@ -29,11 +29,18 @@
                         €0
                     </div>
                     <div class="flex items-center justify-center">
-                        <a href="{{ asset($download_asset) }}"
-                           download
-                            class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
-                            {{ __('common.download') }}
-                        </a>
+                        @guest
+                            <a href="{{ route('register') }}"
+                                class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
+                                {{ __('common.signup') }}
+                            </a>
+                        @endguest
+                        @auth
+                            <a href="{{ route('subscribe') }}"
+                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
+                                {{ __('common.activate') }}
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </div>
