@@ -192,39 +192,6 @@
 
                     <hr class="bg-gray-300 my-8">
 
-                    <div class="md:flex mb-6">
-                        <div class="md:w-1/5">
-                            <label class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
-                                {{ __('profile.activity') }}
-                            </label>
-                        </div>
-                        <div class="md:w-3/5">
-                            <ul class="text-gray-800">
-                                @forelse(Arr::only($maging->exo_attempts ?? [], ['ap', 'mp', 'range']) as $rune => $attempts)
-                                    <li class="w-1/2 flex flex-wrap items-center py-2 pt-0">
-                                        <div class="w-1/5 mr-2">
-                                            <img src="{{ asset('images/icons/'.$rune.'.png') }}" alt=""
-                                                 class="rounded object-contain h-10"
-                                                 title="{{ __("runes.{$rune}") }}"
-                                                 style="background: no-repeat center center url('{{ asset('images/icons/rune_bg.jpg') }}'); background-size: contain">
-                                        </div>
-                                        <span class="4/5">
-                                            {{ __('profile.exo_attempts', ['number' => $attempts]) }}
-                                            @if(array_key_exists($rune, $maging->exo_successes ?? []))
-                                                <b class="mx-1">//</b>
-                                                <strong>
-                                                    {{ __('profile.exo_successes', ['number' => $maging->exo_successes[$rune]]) }}
-                                                </strong>
-                                            @endif
-                                        </span>
-                                    </li>
-                                @empty
-                                    {{ __('profile.activity_none') }}
-                                @endforelse
-                            </ul>
-                        </div>
-                    </div>
-
                     <div class="md:flex md:items-center">
                         <div class="md:w-2/3">
                             <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mb-6 mt-2 py-4 px-8 shadow-lg">

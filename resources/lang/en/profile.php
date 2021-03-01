@@ -17,9 +17,5 @@ return [
     'community_bugs' => 'Report bugs to earn rewards!',
     'community_action' => 'Join now',
 
-    'activity' => 'Today\'s activity',
     'notifications' => 'Notifications',
-    'exo_attempts' => ':number attempts',
-    'exo_successes' => ':number success',
-    'activity_none' => 'No activity',
 ];
