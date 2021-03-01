@@ -15,8 +15,6 @@ return [
 
     'name' => env('APP_NAME', 'Oryxbot'),
 
-    'price' => 1500,
-
     /*
     |--------------------------------------------------------------------------
     | Application Environment

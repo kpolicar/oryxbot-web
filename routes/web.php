@@ -65,7 +65,13 @@ Route::group(
         return view("release.$view", ['version' => $versionDetails]);
     })->name('release');
 
-        require_once 'fortify.php';
+    Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
+        ->name('create-checkout-session');
+
+    Route::get('/billing-portal', [StripeController::class, 'billing'])
+        ->name('billing');
+
+    require_once 'fortify.php';
 });
 
 Route::post(

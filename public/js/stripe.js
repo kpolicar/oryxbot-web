@@ -1023,198 +1023,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
   'use strict';
 
-  var stripe, registerElements, elements, elementStyles, elementClasses, cardNumber, cardExpiry, cardCvc;
+  var stripe;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          registerElements = function _registerElements(elements) {
-            var paymentForm = document.querySelector("#payment-form");
-            var form = paymentForm.querySelector('form');
-            var error = form.querySelector('.error');
-            var errorMessage = error.querySelector('.message');
+          _context.next = 2;
+          return Object(_stripe_stripe_js__WEBPACK_IMPORTED_MODULE_1__["loadStripe"])("pk_test_51IN2FxJ8YxsR5CgakWwLcAFB7JiLJzSJ180T2W8WwsS0iul9yHSVYYh0VJuUZ6dF8VABmISlajFTiDV54iiP548P00zPvyXsBM");
 
-            function enableInputs() {
-              Array.prototype.forEach.call(form.querySelectorAll("input[type='text'], input[type='email'], input[type='tel']"), function (input) {
-                input.removeAttribute('disabled');
-              });
-            }
-
-            function disableInputs() {
-              Array.prototype.forEach.call(form.querySelectorAll("input[type='text'], input[type='email'], input[type='tel']"), function (input) {
-                input.setAttribute('disabled', 'true');
-              });
-            }
-
-            function triggerBrowserValidation() {
-              // The only way to trigger HTML5 form validation UI is to fake a user submit
-              // event.
-              var submit = document.createElement('input');
-              submit.type = 'submit';
-              submit.style.display = 'none';
-              form.appendChild(submit);
-              submit.click();
-              submit.remove();
-            } // Listen for errors from each Element, and show error messages in the UI.
-
-
-            var savedErrors = {};
-            elements.forEach(function (element, idx) {
-              element.on('change', function (event) {
-                if (event.error) {
-                  error.classList.add('visible');
-                  savedErrors[idx] = event.error.message;
-                  errorMessage.innerText = event.error.message;
-                } else {
-                  savedErrors[idx] = null; // Loop over the saved errors and find the first one, if any.
-
-                  var nextError = Object.keys(savedErrors).sort().reduce(function (maybeFoundError, key) {
-                    return maybeFoundError || savedErrors[key];
-                  }, null);
-
-                  if (nextError) {
-                    // Now that they've fixed the current error, show another one.
-                    errorMessage.innerText = nextError;
-                  } else {
-                    // The user fixed the last error; no more errors.
-                    error.classList.remove('visible');
-                  }
-                }
-              });
-            }); // Listen on the form's 'submit' handler...
-
-            form.addEventListener('submit', function (e) {
-              e.preventDefault();
-              if (_.find(savedErrors, function (error) {
-                return error !== null;
-              })) return; // Trigger HTML5 validation UI on the form if any of the inputs fail
-              // validation.
-
-              var plainInputsValid = true;
-              Array.prototype.forEach.call(form.querySelectorAll('input'), function (input) {
-                if (input.checkValidity && !input.checkValidity()) {
-                  plainInputsValid = false;
-                  return;
-                }
-              });
-
-              if (!plainInputsValid) {
-                triggerBrowserValidation();
-                return;
-              } // Show a loading screen...
-
-
-              paymentForm.classList.add('submitting'); // Disable all inputs.
-
-              disableInputs(); // Gather additional customer data we may have collected in our form.
-
-              var name = form.querySelector('#name');
-              var email = form.querySelector('#email');
-              var paymentResponse = paymentForm.querySelector('#payment-response');
-              var additionalData = {
-                billing_details: {
-                  name: name ? name.value : undefined,
-                  email: email ? email.value : undefined
-                }
-              };
-
-              var handleError = function handleError(error) {
-                paymentForm.classList.remove('submitting');
-                enableInputs();
-              };
-
-              var handleErrorWithMessage = function handleErrorWithMessage(response) {
-                handleError();
-                error.classList.add('visible');
-                errorMessage.innerHTML = response.error.message;
-              };
-
-              stripe.createPaymentMethod('card', elements[0], additionalData).then(function (result) {
-                console.log("stripe result: ", result);
-
-                if (result.paymentMethod) {
-                  axios.post(paymentForm.getAttribute('data-handler') + '/' + result.paymentMethod.id).then(function (result) {
-                    if (result.data.redirect) {
-                      window.location.href = result.data.redirect;
-                    } else {
-                      paymentForm.classList.remove('submitting');
-                      paymentForm.classList.add('submitted');
-                      paymentResponse.innerHTML = result.data;
-                    }
-                  })["catch"](function (error) {
-                    return console.log("server error: ", error);
-                  });
-                } else {
-                  handleError();
-                }
-              })["catch"](handleErrorWithMessage);
-            });
-          };
-
-          _context.next = 3;
-          return Object(_stripe_stripe_js__WEBPACK_IMPORTED_MODULE_1__["loadStripe"])("pk_live_51HcdZLDl3uJ5ENdanSSWrnyoB4bJY46uP2GjjQq6t3oGCxCet2rTaOStwZShZA0AzattUS6pQuT5RS26DQ1ANTUq000TMwAlpy");
-
-        case 3:
+        case 2:
           stripe = _context.sent;
-          elements = stripe.elements({
-            fonts: [{
-              cssSrc: 'https://fonts.googleapis.com/css?family=Quicksand'
-            }],
-            // Stripe's examples are localized to specific languages, but if
-            // you wish to have Elements automatically detect your user's locale,
-            // use `locale: 'auto'` instead.
-            locale: 'auto'
+          Array.prototype.forEach.call(document.querySelectorAll("[data-checkout]"), function (input) {
+            input.addEventListener("click", function () {
+              axios.post(input.getAttribute('data-checkout')).then(function (response) {
+                return stripe.redirectToCheckout({
+                  sessionId: response.data.id
+                });
+              }).then(function (result) {
+                if (result.error) {
+                  alert(result.error.message);
+                }
+              })["catch"](function (error) {
+                console.error("Error:", error);
+              });
+            });
           });
-          elementStyles = {
-            base: {
-              color: '#4A5568',
-              fontWeight: 400,
-              fontFamily: 'Source Sans Pro", sans-serif',
-              fontSize: '16px',
-              fontSmoothing: 'antialiased',
-              iconColor: '#4A5568',
-              ':focus': {
-                color: '#4A5568'
-              },
-              '::placeholder': {
-                color: '#A3B0C2'
-              },
-              ':focus::placeholder': {
-                color: '#A0AEC0'
-              }
-            },
-            invalid: {
-              iconColor: '#9d2020',
-              color: '#9d2020',
-              '::placeholder': {
-                color: '#be5252'
-              }
-            }
-          };
-          elementClasses = {
-            focus: 'focus',
-            empty: 'empty',
-            invalid: 'invalid'
-          };
-          cardNumber = elements.create('cardNumber', {
-            showIcon: true,
-            style: elementStyles,
-            classes: elementClasses
-          });
-          cardNumber.mount('#card-number');
-          cardExpiry = elements.create('cardExpiry', {
-            style: elementStyles,
-            classes: elementClasses
-          });
-          cardExpiry.mount('#card-expiry');
-          cardCvc = elements.create('cardCvc', {
-            style: elementStyles,
-            classes: elementClasses
-          });
-          cardCvc.mount('#card-cvc');
-          registerElements([cardNumber, cardExpiry, cardCvc]);
 
-        case 14:
+        case 4:
         case "end":
           return _context.stop();
       }

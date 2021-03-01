@@ -10,27 +10,22 @@ use Stripe\Exception\InvalidRequestException;
 
 class StripeController extends Controller
 {
-    public function subscribe(Request $request, $paymentId) {
-        $user = $request->user();
-        if (!$user->hasStripeId())
-            $user->createAsStripeCustomer();
+    public function __construct() {
+        $this->middleware(['auth', 'verified']);
+        $this->middleware('customer');
+    }
 
-        try {
-            $price = config('app.price');
-            throw_unless(is_int($price), ConfigMissingException::class);
+    public function billing(Request $request) {
+        return $request->user()->redirectToBillingPortal(route('profile'));
+    }
 
-            $user->charge($price, $paymentId);
-        } catch (IncompletePayment $exception) {
-            return [
-                "redirect" => route(
-                    'cashier.payment',
-                    [$exception->payment->id, 'redirect' => route('profile')],
-                )
-            ];
-        } catch (CardException $exception) {
-            return response()->view('partials.payment.card-error', compact('exception'));
-        }
-
-        return response()->view('partials.payment.success');
+    public function checkoutSession(Request $request) {
+        return $request->user()
+            ->allowPromotionCodes()
+            ->checkout('price_1IQ9yGJ8YxsR5CgaKelmN7d3', [
+            'mode' => 'subscription',
+            'success_url' => route('profile', ['checkout' => true]),
+            'cancel_url' => route('profile', ['checkout' => false]),
+        ])->asStripeCheckoutSession();
     }
 }

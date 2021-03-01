@@ -68,7 +68,9 @@
 
 @include('partials.notification-download')
 
-<script src="{{ mix('js/app.js') }}"></script>
+@section('scripts')
+    <script src="{{ mix('js/app.js') }}"></script>
+@show
 @include('partials.analytics')
 </body>
 

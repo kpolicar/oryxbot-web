@@ -22,13 +22,7 @@
             </p>
 
 
-            <a href="{{ route('subscribe') }}" class="mx-auto cursor-pointer lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded my-6 py-4 px-8 shadow-lg">
-                @subscribed
-                    {{ __('profile.subscribed_extend') }}
-                @else
-                    {{ __('profile.subscribed_purchase') }}
-                @endsubscribed
-            </a>
+            <x-billing-button class="mx-auto cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg" />
         </div>
     </x-main-hero>
 @endsection
@@ -279,4 +273,10 @@
     @if (isset($message) && $message)
         @include('partials.notification')
     @endif
+@endsection
+
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/stripe.js') }}"></script>
 @endsection
