@@ -3,9 +3,7 @@
 use App\ClientVersion;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\WebhookController;
-use App\Models\Maging;
 use Illuminate\Http\Request;
-use App\Http\Controllers\PaypalController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -41,10 +39,9 @@ Route::group(
                 $message = __('forms.quick_verify_success');
             }
         }
-        $maging = Maging::todaysForUser($request->user());
 
         return view('profile')
-            ->with(compact('message', 'action', 'maging'));
+            ->with(compact('message', 'action'));
     })->middleware('auth')->name('profile');
 
     Route::post('/pay/subscribe/{paymentId}', [StripeController::class, 'subscribe'])

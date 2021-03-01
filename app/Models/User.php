@@ -41,11 +41,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'subscribed_to' => 'datetime',
-    ];
-
-    protected $appends = [
-        'is_subscribed', 'is_free_trial', 'free_trial_available',
     ];
 
     protected static function boot()
@@ -65,50 +60,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(User::class, 'referred_by', 'id');
     }
 
-    public function free_trial() {
-        return $this->hasOne(FreeTrial::class);
-    }
-
-    public function publishes() {
-        return $this->hasMany(MagePublish::class);
-    }
-
-    public function maging() {
-        return $this->hasMany(Maging::class);
-    }
-
     protected function GenerateReferralCode() {
         do {
             $this->referral_code = $referralCode = \Str::random(10);
         } while (static::FindByReferral($referralCode)->exists);
-    }
-
-    public function GetIsSubscribedAttribute() {
-        return $this->freshTimestamp()->isBefore($this->subscribed_to);
-    }
-
-    public function GetIsFreeTrialAttribute() {
-        if ($this->is_subscribed)
-            return false;
-        $trial = optional($this->free_trial);
-        return $trial->exists && !$trial->expired;
-    }
-
-    public function GetFreeTrialAvailableAttribute() {
-        $trial = optional($this->free_trial);
-        return !$trial->exists || !$trial->expired;
-    }
-
-    public function ExtendedSubscriptionDate() {
-        $extendedDate = $this->subscribed_to ?? $this->freshTimestamp();
-        $extendedDate = $extendedDate->maximum($this->freshTimestamp());
-        return $extendedDate->addMonth();
-    }
-
-    public function ExtendedSubscriptionDateForReferral() {
-        $extendedDate = $this->subscribed_to ?? $this->freshTimestamp();
-        $extendedDate = $extendedDate->maximum($this->freshTimestamp());
-        return $extendedDate->addDays(config('app.referrer_reward_days'));
     }
 
     public static function FindByReferral($code) {

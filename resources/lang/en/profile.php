@@ -9,8 +9,7 @@ return [
     'details' => 'Details',
 
     'referral' => 'Referral link',
-    'referral_details' => 'each referred user that purchases subscription will grant you :reward extra days of subscription',
-    'referral_details_early' => 'early referral bonus',
+    'referral_details' => 'the referral system is a work in progress and does not grant any rewards just yet',
 
     'community' => 'Join the community!',
     'community_engage' => 'Your voice matters. Join our discord to stay up to date with the newest features and bugfixes.',

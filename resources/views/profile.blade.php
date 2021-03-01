@@ -6,10 +6,13 @@
 @section('hero')
     <x-main-hero invert>
         <div class="py-20">
-            <p class="uppercase tracking-loose w-full">
-                {{ __('messages.category') }}
-            </p>
-            <h1 class="my-4 text-5xl font-bold leading-tight">{{ Auth::user()->name }}</h1>
+            <div class="flex flex-col-reverse">
+                <h1 class="my-4 text-5xl font-bold leading-tight">{{ Auth::user()->name }}</h1>
+
+                <h2 class="uppercase tracking-loose w-full">
+                    {{ __('messages.category') }}
+                </h2>
+            </div>
             <p class="leading-normal text-2xl mb-8">
                 @subscribed
                     {{ __('profile.subscribed_duration', ['date' => Auth::user()->subscribed_to->format('d/m/Y H:i')]) }}
@@ -33,9 +36,9 @@
 @section('content')
     <div id="details" class="anchor"></div>
 
-    <section class="bg-white border-b py-8">
+    <section class="bg-gray-900 py-8">
         <div class="container max-w-5xl mx-auto m-8">
-            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-100">
                 {{ __('profile.details') }}
             </h2>
             <div class="w-full mb-4">
@@ -53,7 +56,7 @@
                             </label>
                         </div>
                         <div class="md:w-3/5">
-                            <input class="form-input block w-full focus:bg-white bg-gray-200 rounded p-2 text-gray-700 focus:text-gray-800"
+                            <input class="appearance-none block w-full bg-white text-gray-700 border @error('name', 'updateProfileInformation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                    id="name" name="name" type="text" value="{{ Auth::user()->name }}">
 
                             @error('name', 'updateProfileInformation')
@@ -73,7 +76,7 @@
                             </label>
                         </div>
                         <div class="md:w-3/5">
-                            <input class="form-input block w-full focus:bg-white bg-gray-200 rounded p-2 text-gray-700 focus:text-gray-800"
+                            <input class="appearance-none block w-full bg-white text-gray-700 border @error('email', 'updateProfileInformation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                    id="email" name="email" type="email" value="{{ Auth::user()->email }}">
 
                             @error('email', 'updateProfileInformation')
@@ -95,7 +98,7 @@
                             </label>
                         </div>
                         <div class="md:w-3/5">
-                            <input class="@error('password', 'updateProfileInformation') border-red-700 @enderror form-input rounded block w-full focus:bg-white bg-gray-200 p-2 text-gray-700 focus:text-gray-800"
+                            <input class="appearance-none block w-full bg-white text-gray-700 border @error('password', 'updateProfileInformation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                    id="password" name="password" type="password" value="" placeholder="******">
 
                             @error('password', 'updateProfileInformation')
@@ -111,7 +114,7 @@
                             </label>
                         </div>
                         <div class="md:w-3/5">
-                            <input class="@error('current_password', 'updateProfileInformation') border-red-700 @enderror form-input block w-full focus:bg-white bg-gray-200 p-2 text-gray-700 focus:text-gray-800"
+                            <input class="appearance-none block w-full bg-white text-gray-700 border @error('current_password', 'updateProfileInformation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                    id="current_password" name="current_password" type="password" placeholder="******">
 
                             @error('current_password', 'updateProfileInformation')
@@ -131,8 +134,7 @@
                         <div class="md:w-3/5">
                             <p class="text-gray-800">{{ route('register', ['ref' => request()->user()->referral_code]) }}</p>
                             <p class="py-2 text-sm text-gray-600">
-                                {!! __('profile.referral_details', ['reward' => '<strike class="text-gray-500">2</strike> <strong>5*</strong>']) !!}<br>
-                                *{{ __('profile.referral_details_early') }}
+                                {!! __('profile.referral_details') !!}<br>
                             </p>
                         </div>
                     </div>
@@ -147,7 +149,7 @@
                         </div>
                         <div class="md:w-3/5">
                             <div class="flex items-center">
-                                <input class="focus:bg-white bg-gray-200 rounded p-2 text-gray-700 focus:text-gray-800"
+                                <input class="focus:bg-white bg-gray-100  rounded p-2 text-gray-700 focus:text-gray-800"
                                        id="optin_discord_notifications"
                                        name="optin_discord_notifications"
                                        type="checkbox"
@@ -166,7 +168,7 @@
                             </p>
 
                             <div class="flex items-center mt-2">
-                                <input class="focus:bg-white bg-gray-200 rounded p-2 text-gray-700 focus:text-gray-800"
+                                <input class="focus:bg-white bg-gray-100  rounded p-2 text-gray-700 focus:text-gray-800"
                                        id="optin_web_notifications"
                                        name="optin_web_notifications"
                                        onchange="if (this.checked) { OneSignal.showNativePrompt() }"
@@ -237,7 +239,7 @@
 
     </section>
 
-    <section class="bg-gray-100 border-b py-8">
+    <section class="bg-gray-100 border-t-4 border-b-4 border-gray-500 py-8">
         <div class="container max-w-5xl mx-auto m-8">
             <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Discord</h2>
             <div class="w-full mb-4">
