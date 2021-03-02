@@ -17,5 +17,6 @@ return [
     'manage' => 'Manage',
     'download' => 'Download',
     'month' => 'month',
+    'discount_promo' => ':amount discount with promo code <strong>:code</strong>',
     'translated_credits' => 'translated by :name',
 ];

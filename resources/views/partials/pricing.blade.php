@@ -64,14 +64,19 @@
                     </div>
                     <div class="flex items-center justify-center">
                         @auth
-                            <x-billing-button class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg" />
+                            <x-billing-button class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ config('pricing.trade_mission_bot.promo') ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg" />
                         @else
                             <a href="{{ route('register') }}"
-                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
+                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ config('pricing.trade_mission_bot.promo') ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg">
                                 {{ __('common.signup') }}
                             </a>
                         @endauth
                     </div>
+                    @if ($promocode = config('pricing.trade_mission_bot.promo'))
+                    <p class="flex items-end justify-center text-gray-600 h-6 text-xs">
+                        <span>€{!! __('common.discount_promo', ['amount' => 5, 'code' => $promocode]) !!}</span>
+                    </p>
+                    @endif
                 </div>
             </div>
 
