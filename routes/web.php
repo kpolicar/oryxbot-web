@@ -3,6 +3,10 @@
 use App\ClientVersion;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\WebhookController;
+use App\Http\Middleware\HasNeverSubscribed;
+use App\Http\Middleware\HasntUsedFreeTrial;
+use App\Http\Middleware\NotSubscribed;
+use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -61,18 +65,16 @@ Route::group(
     })->name('release');
 
     Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
+        ->middleware(NotSubscribed::class)
         ->name('create-checkout-session');
 
     Route::post('/create-checkout-session-trial', [StripeController::class, 'checkoutSessionWithFreeTrial'])
+        ->middleware([NotSubscribed::class, HasNeverSubscribed::class])
         ->name('create-checkout-session-trial');
 
     Route::get('/billing-portal', [StripeController::class, 'billing'])
+        ->middleware(Subscribed::class)
         ->name('billing');
 
     require_once 'fortify.php';
 });
-
-Route::post(
-    'stripe/webhook',
-    [WebhookController::class, 'handleWebhook']
-);

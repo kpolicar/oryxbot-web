@@ -22,7 +22,7 @@ class StripeController extends Controller
     public function checkoutSession(Request $request) {
         return $request->user()
             ->allowPromotionCodes()
-            ->checkout('price_1IQ9yGJ8YxsR5CgaKelmN7d3', [
+            ->checkout(config('pricing.trade_mission_bot.stripe_id'), [
             'mode' => 'subscription',
             'success_url' => route('profile', ['checkout' => true]),
             'cancel_url' => route('profile', ['checkout' => false]),
@@ -32,7 +32,7 @@ class StripeController extends Controller
     public function checkoutSessionWithFreeTrial(Request $request) {
         return $request->user()
             ->allowPromotionCodes()
-            ->checkout('price_1IQ9yGJ8YxsR5CgaKelmN7d3', [
+            ->checkout(config('pricing.trade_mission_bot.stripe_id'), [
             'mode' => 'subscription',
             'subscription_data' => [
                 'trial_period_days' => config('pricing.trade_mission_bot.trial_period_days')

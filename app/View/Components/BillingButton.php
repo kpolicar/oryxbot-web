@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class BillingButton extends Component
 {
+    public $trial = false;
     public $class = "";
     public $stripeKey = "";
 
@@ -15,9 +16,10 @@ class BillingButton extends Component
      *
      * @return void
      */
-    public function __construct($class="")
+    public function __construct($class="", $trial=false)
     {
         $this->class = $class;
+        $this->trial = $trial;
         $this->stripeKey = config('cashier.key');
     }
 

@@ -36,10 +36,7 @@
                             </a>
                         @endguest
                         @auth
-                            <button data-checkout="{{ route('create-checkout-session-trial') }}"
-                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg">
-                                {{ __('common.activate') }}
-                            </button>
+                            <x-billing-button trial class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
                         @endauth
                     </div>
                     <a href="{{ route('free-trial') }}" class="flex items-end justify-center text-gray-600 h-6 text-xs hover:underline">
@@ -62,19 +59,23 @@
                     <div class="w-full pt-6 text-3xl font-bold text-center leading-none mb-2">
                         €{{ config('pricing.trade_mission_bot.price')/100 }} <small class="text-sm">/ {{ __('common.month') }}</small>
                     </div>
+
+                    @php($promoCode = config('pricing.trade_mission_bot.promo'))
+                    @php($shouldDisplayPromo = $promoCode && !Auth::user()->subscribedToTradeMissionBot())
+
                     <div class="flex items-center justify-center">
                         @auth
-                            <x-billing-button class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ config('pricing.trade_mission_bot.promo') ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg" />
+                            <x-billing-button class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ $shouldDisplayPromo ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg" />
                         @else
                             <a href="{{ route('register') }}"
-                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ config('pricing.trade_mission_bot.promo') ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg">
+                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ $shouldDisplayPromo ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg">
                                 {{ __('common.signup') }}
                             </a>
                         @endauth
                     </div>
-                    @if ($promocode = config('pricing.trade_mission_bot.promo'))
+                    @if ($shouldDisplayPromo)
                     <p class="flex items-end justify-center text-gray-600 h-6 text-xs">
-                        <span>€{!! __('common.discount_promo', ['amount' => 5, 'code' => $promocode]) !!}</span>
+                        <span>€{!! __('common.discount_promo', ['amount' => 5, 'code' => $promoCode]) !!}</span>
                     </p>
                     @endif
                 </div>

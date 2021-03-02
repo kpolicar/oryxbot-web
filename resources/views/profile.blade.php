@@ -14,20 +14,22 @@
                 </h2>
             </div>
             <p class="leading-normal text-2xl mb-8">
-                @subscribed
-                    {{ __('profile.subscribed_duration', ['date' => Auth::user()->subscribed_to->format('d/m/Y H:i')]) }}
+                @if (Auth::user()->subscribedToTradeMissionBot() && Auth::user()->subscription()->onGracePeriod())
+                    {!! __('profile.subscribed_trial', ['timestamp' => Auth::user()->subscription()->trial_ends_at->diffForHumans()])  !!}
+                @elseif(Auth::user()->subscribedToTradeMissionBot())
+                    {{ __('profile.subscribed_true') }}
                 @else
                     {{ __('profile.subscribed_false') }}
-                @endsubscribed
+                @endif
             </p>
 
 
             <x-billing-button class="mx-auto cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
-                @subscribed
+                @if (Auth::user()->subscribedToTradeMissionBot())
                     {{ __('profile.subscribed_manage') }}
                 @else
                     {{ __('profile.subscribed_purchase') }}
-                @endsubscribed
+                @endif
             </x-billing-button>
         </div>
     </x-main-hero>

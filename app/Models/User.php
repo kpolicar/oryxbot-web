@@ -69,4 +69,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function FindByReferral($code) {
         return optional(static::firstWhere('referral_code', $code));
     }
+
+    public function subscribedToTradeMissionBot()
+    {
+        return $this->subscribedToPlan(config('pricing.trade_mission_bot.stripe_id'));
+    }
 }

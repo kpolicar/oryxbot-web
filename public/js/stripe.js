@@ -1044,7 +1044,7 @@ _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MOD
                   alert(result.error.message);
                 }
               })["catch"](function (error) {
-                console.error("Error:", error);
+                console.error(error);
               });
             });
           });

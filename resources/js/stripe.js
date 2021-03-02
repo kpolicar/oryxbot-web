@@ -20,7 +20,7 @@ import {loadStripe} from '@stripe/stripe-js';
                         }
                     })
                     .catch(function (error) {
-                        console.error("Error:", error);
+                        console.error(error);
                     });
             })
         }
