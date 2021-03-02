@@ -28,4 +28,17 @@ class StripeController extends Controller
             'cancel_url' => route('profile', ['checkout' => false]),
         ])->asStripeCheckoutSession();
     }
+
+    public function checkoutSessionWithFreeTrial(Request $request) {
+        return $request->user()
+            ->allowPromotionCodes()
+            ->checkout('price_1IQ9yGJ8YxsR5CgaKelmN7d3', [
+            'mode' => 'subscription',
+            'subscription_data' => [
+                'trial_period_days' => config('pricing.trade_mission_bot.trial_period_days')
+            ],
+            'success_url' => route('profile', ['checkout' => true]),
+            'cancel_url' => route('profile', ['checkout' => false]),
+        ])->asStripeCheckoutSession();
+    }
 }

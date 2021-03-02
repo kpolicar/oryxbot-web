@@ -275,8 +275,3 @@
     @endif
 @endsection
 
-
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/stripe.js') }}"></script>
-@endsection

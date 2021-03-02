@@ -68,6 +68,9 @@ Route::group(
     Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
         ->name('create-checkout-session');
 
+    Route::post('/create-checkout-session-trial', [StripeController::class, 'checkoutSessionWithFreeTrial'])
+        ->name('create-checkout-session-trial');
+
     Route::get('/billing-portal', [StripeController::class, 'billing'])
         ->name('billing');
 

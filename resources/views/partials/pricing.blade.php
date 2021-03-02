@@ -36,10 +36,10 @@
                             </a>
                         @endguest
                         @auth
-                            <a href="{{ route('subscribe') }}"
+                            <button data-checkout="{{ route('create-checkout-session-trial') }}"
                                class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
                                 {{ __('common.activate') }}
-                            </a>
+                            </button>
                         @endauth
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
                     <div class="w-full pt-6 text-3xl font-bold text-center leading-none mb-2">
-                        €{{ config('app.price')/100 }} <small class="text-sm">/ {{ __('common.month') }}</small>
+                        €{{ config('pricing.trade_mission_bot.price')/100 }} <small class="text-sm">/ {{ __('common.month') }}</small>
                     </div>
                     <div class="flex items-center justify-center">
                         @auth

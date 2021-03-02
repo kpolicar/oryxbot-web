@@ -70,6 +70,9 @@
 
 @section('scripts')
     <script src="{{ mix('js/app.js') }}"></script>
+    @auth
+        <script src="{{ mix('js/stripe.js') }}"></script>
+    @endauth
 @show
 @include('partials.analytics')
 </body>
