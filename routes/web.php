@@ -44,17 +44,12 @@ Route::group(
             ->with(compact('message', 'action'));
     })->middleware('auth')->name('profile');
 
-    Route::post('/pay/subscribe/{paymentId}', [StripeController::class, 'subscribe'])
-        ->middleware(['auth', 'verified'])
-        ->name('pay');
+    Route::view(LaravelLocalization::transRoute('routes.free-trial'), 'free-trial')
+        ->name('free-trial')
+        ->middleware('verified');
 
-        Route::get(LaravelLocalization::transRoute('routes.subscribe'), function (Request $request) {
-            return view('subscribe');
-        })->name('subscribe')->middleware('verified');
-
-        Route::get(LaravelLocalization::transRoute('routes.install'), function (Request $request) {
-            return view('install');
-        })->name('install');
+    Route::view(LaravelLocalization::transRoute('routes.install'), 'install')
+        ->name('install');
 
     Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
         $versionDetails = $version == "latest" ?

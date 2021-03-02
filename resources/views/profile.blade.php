@@ -22,7 +22,13 @@
             </p>
 
 
-            <x-billing-button class="mx-auto cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg" />
+            <x-billing-button class="mx-auto cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
+                @subscribed
+                    {{ __('profile.subscribed_manage') }}
+                @else
+                    {{ __('profile.subscribed_purchase') }}
+                @endsubscribed
+            </x-billing-button>
         </div>
     </x-main-hero>
 @endsection

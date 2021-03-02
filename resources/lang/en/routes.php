@@ -3,7 +3,7 @@
 return [
 
     'profile' => 'profile',
-    'subscribe' => 'subscribe',
+    'free-trial' => 'free-trial',
     'install' => 'install',
     'login' => 'login',
     'logout' => 'logout',

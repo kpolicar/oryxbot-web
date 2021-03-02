@@ -1,0 +1,44 @@
+@extends('layouts.hero')
+
+@section('title', __('titles.free-trial'))
+
+@section('content')
+    <x-main-hero>
+        <div class="flex flex-col-reverse">
+            <div class="flex flex-col lg:flex-row justify-between">
+                <h1 class="mb-0 text-5xl font-bold leading-tight">
+                    {{ __('install.header') }}
+                </h1>
+                <i class="fas fa-cloud-download-alt text-5xl p-2"></i>
+            </div>
+
+            <h2 class="uppercase tracking-loose w-full">
+                {{ __('install.subheader') }}
+            </h2>
+        </div>
+
+        <div class="w-full mb-4">
+            <div class="h-1 mx-auto bg-white opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+
+        <p class="leading-normal text-lg mb-2">
+            {{ __('install.engage') }}
+        </p>
+        <p class="leading-normal text-lg mb-2">
+            {{ __('install.refer_release_notes') }}
+            <a class="font-bold text-gray-500" href="{{ route('release', ['version' => 'latest']) }}">{{ __('install.refer_release_notes_link') }}</a>.
+        </p>
+
+        <button data-checkout="{{ route('create-checkout-session-trial') }}"
+                class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg">
+            {{ __('common.activate') }}
+        </button>
+    </x-main-hero>
+@endsection
+
+@section('scripts')
+    @parent
+    @auth
+        <script src="{{ mix('js/stripe.js') }}"></script>
+    @endauth
+@endsection

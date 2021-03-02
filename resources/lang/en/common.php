@@ -14,6 +14,7 @@ return [
     'signout' => 'Sign out',
     'activate' => 'Activate',
     'purchase' => 'Purchase',
+    'manage' => 'Manage',
     'download' => 'Download',
     'month' => 'month',
     'translated_credits' => 'translated by :name',

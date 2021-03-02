@@ -37,11 +37,14 @@
                         @endguest
                         @auth
                             <button data-checkout="{{ route('create-checkout-session-trial') }}"
-                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
+                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg">
                                 {{ __('common.activate') }}
                             </button>
                         @endauth
                     </div>
+                    <a href="{{ route('free-trial') }}" class="flex items-end justify-center text-gray-600 h-6 text-xs hover:underline">
+                        Read more
+                    </a>
                 </div>
             </div>
             <div class="flex flex-col w-5/6 lg:w-1/3 xl:w-1/4 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10 text-gray-800">
@@ -61,10 +64,7 @@
                     </div>
                     <div class="flex items-center justify-center">
                         @auth
-                            <a href="{{ route('subscribe') }}"
-                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
-                                {{ __('common.purchase') }}
-                            </a>
+                            <x-billing-button class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg" />
                         @else
                             <a href="{{ route('register') }}"
                                class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">

@@ -4,7 +4,7 @@ return [
     'main' => 'Albion Online Bot',
     'invite' => 'Invitation',
     'verify' => 'Verify Email',
-    'subscribe' => 'Subscribe',
+    'free-trial' => 'Free Trial',
     'recover' => 'Reset password',
     'register' => 'Register',
     'profile' => 'Profile',
