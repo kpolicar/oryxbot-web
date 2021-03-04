@@ -4,6 +4,9 @@
 
 @import "fontawesome";
 @import "stripe";
+@import "swal";
+
+@import '~sweetalert2/src/sweetalert2';
 
 @layer utilities {
     @variants hover, focus {

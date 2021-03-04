@@ -28,16 +28,27 @@
                 @endif
             </p>
 
-
-            <x-billing-button class="mx-auto cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
+            <x-billing-button class="inline-block cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
                 @if ($user->subscribedToTradeMissionBot())
                     {{ __('profile.subscribed_manage') }}
                 @else
                     {{ __('profile.subscribed_purchase') }}
                 @endif
             </x-billing-button>
+            @if ($user->onTrial())
+                <button
+                    data-request-end-trial
+                    data-request-url="{{ route('trial-cancel') }}"
+                    class="cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
+                    {{ __('profile.free_trial_end_begin_subscription') }}
+                </button>
+            @endif
         </div>
     </x-main-hero>
+@endsection
+
+@section('body')
+    @include('partials.end-free-trial')
 @endsection
 
 @section('content')

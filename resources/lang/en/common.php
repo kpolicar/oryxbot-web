@@ -18,6 +18,7 @@ return [
     'manage' => 'Manage',
     'download' => 'Download',
     'month' => 'month',
+    'cancel' => 'Cancel',
     'free_trial_ineligible' => 'You are not eligible for a free trial',
     'free_trial_notverified' => 'You must verify your email address before beginning a free trial',
     'discount_promo' => ':amount discount with promo code <strong>:code</strong>',

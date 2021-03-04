@@ -19,6 +19,10 @@ class StripeController extends Controller
         return $request->user()->redirectToBillingPortal(route('profile'));
     }
 
+    public function cancelTrial(Request $request) {
+        $request->user()->subscription()->endTrial();
+    }
+
     public function checkoutSession(Request $request) {
         return $request->user()
             ->allowPromotionCodes()

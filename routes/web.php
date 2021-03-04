@@ -1,11 +1,13 @@
 <?php
 
 use App\ClientVersion;
+use App\Http\Controllers\CashierWebhookController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\WebhookController;
 use App\Http\Middleware\HasNeverSubscribed;
 use App\Http\Middleware\HasntUsedFreeTrial;
 use App\Http\Middleware\NotSubscribed;
+use App\Http\Middleware\OnFreeTrial;
 use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -72,9 +74,18 @@ Route::group(
         ->middleware([NotSubscribed::class, HasNeverSubscribed::class])
         ->name('create-checkout-session-trial');
 
+    Route::post('/trial-cancel', [StripeController::class, 'cancelTrial'])
+        ->middleware([Subscribed::class, OnFreeTrial::class])
+        ->name('trial-cancel');
+
     Route::get('/billing-portal', [StripeController::class, 'billing'])
         ->middleware(Subscribed::class)
         ->name('billing');
 
     require_once 'fortify.php';
 });
+
+Route::post(
+    config('cashier.path').'/webhook',
+    [CashierWebhookController::class, 'handleWebhook']
+);
