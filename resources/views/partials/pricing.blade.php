@@ -31,7 +31,7 @@
                     <div class="flex items-center justify-center">
                         @guest
                             <a href="{{ route('register') }}"
-                                class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded my-6 py-4 px-8 shadow-lg">
+                                class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg">
                                 {{ __('common.signup') }}
                             </a>
                         @endguest
@@ -61,7 +61,7 @@
                     </div>
 
                     @php($promoCode = config('pricing.trade_mission_bot.promo'))
-                    @php($shouldDisplayPromo = $promoCode && !Auth::user()->subscribedToTradeMissionBot())
+                    @php($shouldDisplayPromo = $promoCode && !($user = Auth::user()) || !$user->subscribedToTradeMissionBot())
 
                     <div class="flex items-center justify-center">
                         @auth

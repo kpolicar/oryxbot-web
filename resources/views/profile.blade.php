@@ -266,7 +266,7 @@
                         <p class="text-gray-600">
                             {{ __('profile.community_bugs') }}
                         </p>
-                        <a href="https://discord.gg/ueutfe8" target="_blank" class="inline-block hover:underline gradient text-white font-bold rounded mt-3 py-4 px-8 shadow-lg">
+                        <a href="https://discord.gg/X5e9gyKre5" target="_blank" class="inline-block hover:underline gradient text-white font-bold rounded mt-3 py-4 px-8 shadow-lg">
                             {{ __('profile.community_action') }}
                         </a>
                     </div>
