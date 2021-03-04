@@ -2,21 +2,26 @@
 
 @section('title', __('titles.profile'))
 
+@php($user = Auth::user())
 
 @section('hero')
     <x-main-hero invert>
         <div class="py-20">
             <div class="flex flex-col-reverse">
-                <h1 class="my-4 text-5xl font-bold leading-tight">{{ Auth::user()->name }}</h1>
+                <h1 class="my-4 text-5xl font-bold leading-tight">{{ $user->name }}</h1>
 
                 <h2 class="uppercase tracking-loose w-full">
                     {{ __('messages.category') }}
                 </h2>
             </div>
             <p class="leading-normal text-2xl mb-8">
-                @if (Auth::user()->subscribedToTradeMissionBot() && Auth::user()->subscription()->onGracePeriod())
-                    {!! __('profile.subscribed_trial', ['timestamp' => Auth::user()->subscription()->trial_ends_at->diffForHumans()])  !!}
-                @elseif(Auth::user()->subscribedToTradeMissionBot())
+                @if ($user->subscribedToTradeMissionBot() && ($user->subscription()->onGracePeriod() || $user->onTrial()))
+                    @if($user->onTrial())
+                        {!! __('profile.subscribed_trial', ['timestamp' => $user->subscription()->trial_ends_at->diffForHumans()])  !!}
+                    @else
+                        {!! __('profile.subscribed_until', ['timestamp' => $user->subscription()->ends_at->diffForHumans()])  !!}
+                    @endif
+                @elseif($user->subscribedToTradeMissionBot())
                     {{ __('profile.subscribed_true') }}
                 @else
                     {{ __('profile.subscribed_false') }}
@@ -25,7 +30,7 @@
 
 
             <x-billing-button class="mx-auto cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
-                @if (Auth::user()->subscribedToTradeMissionBot())
+                @if ($user->subscribedToTradeMissionBot())
                     {{ __('profile.subscribed_manage') }}
                 @else
                     {{ __('profile.subscribed_purchase') }}
@@ -59,7 +64,7 @@
                         </div>
                         <div class="md:w-3/5">
                             <input class="appearance-none block w-full bg-white text-gray-700 border @error('name', 'updateProfileInformation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                   id="name" name="name" type="text" value="{{ Auth::user()->name }}">
+                                   id="name" name="name" type="text" value="{{ $user->name }}">
 
                             @error('name', 'updateProfileInformation')
                             <p class="text-red-700 text-sm italic">{{ $message }}</p>
@@ -79,7 +84,7 @@
                         </div>
                         <div class="md:w-3/5">
                             <input class="appearance-none block w-full bg-white text-gray-700 border @error('email', 'updateProfileInformation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                   id="email" name="email" type="email" value="{{ Auth::user()->email }}">
+                                   id="email" name="email" type="email" value="{{ $user->email }}">
 
                             @error('email', 'updateProfileInformation')
                             <p class="text-red-700 text-sm italic">{{ $message }}</p>
@@ -155,7 +160,7 @@
                                        id="optin_discord_notifications"
                                        name="optin_discord_notifications"
                                        type="checkbox"
-                                       @if (Auth::user()->optin_discord_notifications) checked @endif>
+                                       @if ($user->optin_discord_notifications) checked @endif>
                                 <label class="text-gray-800 ml-2 text-sm" for="optin_discord_notifications">
                                     {{ __('forms.update_form_discord_notifications') }}
                                 </label>
@@ -175,7 +180,7 @@
                                        name="optin_web_notifications"
                                        onchange="if (this.checked) { OneSignal.showNativePrompt() }"
                                        type="checkbox"
-                                       @if (Auth::user()->optin_web_notifications) checked @endif>
+                                       @if ($user->optin_web_notifications) checked @endif>
                                 <label class="text-gray-800 ml-2 text-sm" for="optin_web_notifications">
                                     {{ __('forms.update_form_web_notifications') }}
                                 </label>

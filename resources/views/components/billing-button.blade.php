@@ -5,6 +5,7 @@
         </a>
     @elseif($trial)
         @php($freeTrialNotPossible = Auth::user()->subscriptions()->exists() || !Auth::user()->hasVerifiedEmail())
+
         @php($class = $freeTrialNotPossible ? "cursor-not-allowed hover:no-underline ".$class : $class)
         <button @if($class != "")class="{{ $class }}"@endif data-checkout="{{ route('create-checkout-session-trial') }}"
                 @if($freeTrialNotPossible) disabled title="{{ !Auth::user()->hasVerifiedEmail() ? __('common.free_trial_notverified') : __('common.free_trial_ineligible') }}" @endif>
