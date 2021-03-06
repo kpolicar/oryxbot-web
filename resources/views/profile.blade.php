@@ -28,12 +28,13 @@
                 @endif
             </p>
 
-            <x-billing-button class="inline-block cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
+            <x-billing-button class="inline-block cursor-pointer lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg group">
                 @if ($user->subscribedToTradeMissionBot())
                     {{ __('profile.subscribed_manage') }}
                 @else
                     {{ __('profile.subscribed_purchase') }}
                 @endif
+                <i class="fas fa-angle-right text-lg ml-2 -mr-2 transform group-hover:translate-x-2 group-hover:translate-x-2 duration-100"></i>
             </x-billing-button>
             @if ($user->onTrial())
                 <button

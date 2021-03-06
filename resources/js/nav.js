@@ -1,6 +1,5 @@
 var scrollpos = window.scrollY;
 var header = document.getElementById("header");
-var languageSelector = document.getElementById("language-selector-dropdown-content");
 var navcontent = document.getElementById("nav-content");
 var navaction = document.getElementById("navAction");
 var brandname = document.getElementById("brandname");
@@ -40,7 +39,6 @@ document.addEventListener('scroll', function() {
 
 var navMenuMain = document.getElementById("header");
 var navMenuDiv = document.getElementById("nav-content");
-var languageSelectorDiv = document.getElementById("language-selector-dropdown-content");
 var navMenu = document.getElementById("nav-toggle");
 
 document.onclick = check;
@@ -59,7 +57,6 @@ function check(e){
             if (!checkParent(target, navMenuMain)) {
                 // click both outside link and outside menu, hide menu
                 navMenuDiv.classList.add("hidden");
-                languageSelectorDiv.classList.add("hidden");
             }
         }
     }

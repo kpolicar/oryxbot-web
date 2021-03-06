@@ -49,9 +49,11 @@
                     @enderror
                 </div>
             </div>
-            <button class="mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 shadow-lg"
+
+            <button class="mx-auto lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 shadow-lg group"
                     type="submit">
                 {{ __('forms.login_form_submit') }}
+                <i class="fas fa-angle-right text-lg ml-2 -mr-2 transform group-hover:translate-x-2 group-hover:translate-x-2 duration-100"></i>
             </button>
         </form>
 

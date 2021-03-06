@@ -8,7 +8,7 @@ return [
     'package_free' => 'Free trial',
     'package_subscription' => 'Subscription',
     'package_subscription_duration' => '30 days',
-    'package_free_duration' => '1 day',
+    'package_free_duration' => '3 days',
     'package_feature_notifications' => 'Notifications',
     'package_feature_routes_default' => 'Default routes',
     'package_feature_routes_custom' => 'Custom routes',
