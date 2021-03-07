@@ -3,7 +3,7 @@
         {{ $slot != '' ? $slot : __('common.manage') }}
     </a>
 @elseif($trial)
-    @php($freeTrialNotPossible = Auth::user()->subscriptions()->exists() || !Auth::user()->hasVerifiedEmail())
+    @php($freeTrialNotPossible = !Auth::user()->eligibleForFreeTrial())
 
     @php($class = $freeTrialNotPossible ? "cursor-not-allowed hover:no-underline ".$class : $class)
     <button @if($class != "")class="{{ $class }}"@endif data-checkout="{{ route('create-checkout-session-trial') }}"

@@ -7,13 +7,13 @@
         <div class="flex flex-col-reverse">
             <div class="flex flex-col lg:flex-row justify-between">
                 <h1 class="mb-0 text-5xl font-bold leading-tight">
-                    {{ __('install.header') }}
+                    Free trial
                 </h1>
                 <i class="fas fa-cloud-download-alt text-5xl p-2"></i>
             </div>
 
             <h2 class="uppercase tracking-loose w-full">
-                {{ __('install.subheader') }}
+                Get to know Oryxbot
             </h2>
         </div>
 
@@ -29,10 +29,11 @@
             <a class="font-bold text-gray-500" href="{{ route('release', ['version' => 'latest']) }}">{{ __('install.refer_release_notes_link') }}</a>.
         </p>
 
-        <button data-checkout="{{ route('create-checkout-session-trial') }}"
-                class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg">
-            {{ __('common.activate') }}
-        </button>
+        <x-billing-button trial class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg group">
+            {{  __('common.activate') }}
+
+            <i class="fas fa-angle-right text-lg ml-2 -mr-2 @if(Auth::user()->eligibleForFreeTrial()) transform group-hover:translate-x-2 duration-100 @endif"></i>
+        </x-billing-button>
     </x-main-hero>
 @endsection
 

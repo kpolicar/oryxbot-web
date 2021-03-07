@@ -74,4 +74,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->subscribedToPlan(config('pricing.trade_mission_bot.stripe_id'));
     }
+
+    public function eligibleForFreeTrial()
+    {
+        return $this->hasVerifiedEmail() && !$this->subscriptions()->exists();
+    }
 }

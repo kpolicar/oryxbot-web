@@ -34,7 +34,7 @@
                 @else
                     {{ __('profile.subscribed_purchase') }}
                 @endif
-                <i class="fas fa-angle-right text-lg ml-2 -mr-2 transform group-hover:translate-x-2 group-hover:translate-x-2 duration-100"></i>
+                <i class="fas fa-angle-right text-lg ml-2 -mr-2 transform group-hover:translate-x-2 duration-100"></i>
             </x-billing-button>
             @if ($user->onTrial())
                 <button
