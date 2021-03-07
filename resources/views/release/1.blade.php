@@ -26,20 +26,20 @@
 @section('content')
 
 
-    <section class="bg-white py-8 border-b">
+    <section class="bg-gray-900 py-8 border-b">
 
 
         <div class="container mx-auto flex flex-col lg:flex-row pt-4 pb-12">
 
             <div class="mx-auto flex flex-col w-full lg:w-3/5 p-6">
 
-                <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-800">What's new</h2>
+                <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-200">What's new</h2>
                 <div class="w-full mb-4">
                     <div class="h-1 gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
                 </div>
 
-                <ul class="text-black">
-                    <li class="p-3 pl-0 flex">
+                <ul class="text-gray-800 bg-gray-300 p-6 px-4 -mx-2 rounded-lg">
+                    <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3"></i>
                         <span class="pt-1"><strong>Simple maging AI</strong> mages until the desired stats are achieved.
                             The stats will never go over the defined limits and the appropriate rune (SM, PA, RA) for the current
@@ -47,52 +47,52 @@
                             <a href="#ai" class="text-gray-600">Read more</a>
                         </span>
                     </li>
-                    <li class="p-3 pl-0 flex">
+                    <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3"></i>
                         <span class="pt-1"><strong>Stats configurator</strong> allows you to specify what stats you want on your item</span>
                     </li>
-                    <li class="p-3 pl-0 flex">
+                    <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3"></i>
                         <span class="pt-1"><strong>Error detection</strong> will stop the mage if an unexpected stat landed (this may happen
                         if you run out of runes or due to poor internet connection)</span>
                     </li>
-                    <li class="p-3 pl-0 flex">
+                    <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3"></i>
                         <span class="pt-1"><strong>Error notifications</strong> will notify you when something went wrong - this will
                         happen often as this version is not very stable</span>
                     </li>
                 </ul>
 
-                <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-800 mt-10">Upcoming</h2>
+                <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-200 mt-10">Upcoming</h2>
                 <div class="w-full mb-4">
                     <div class="h-1 gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
                 </div>
 
-                <ul class="text-black">
-                    <li class="p-3 pl-0 flex">
+                <ul class="text-gray-800 bg-gray-300 p-6 px-4 -mx-2 rounded-lg">
+                    <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3"></i>
                         <span class="pt-1">Support usage of the bot in <strong>any resolution</strong></span>
                     </li>
-                    <li class="p-3 pl-0 flex">
+                    <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3"></i>
                         <span class="pt-1">Allow the bot to run when the window is in <strong>minimized mode</strong></span>
                     </li>
-                    <li class="p-3 pl-0 flex">
+                    <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3"></i>
                         <span class="pt-1">Fix <strong>user input interference</strong> with the bot's input</span>
                     </li>
-                    <li class="p-3 pl-0 flex">
+                    <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3"></i>
                         <span class="pt-1"><strong>Detailed logs</strong> for errors, warnings and simply maging information</span>
                     </li>
-                    <li class="p-3 pl-0 flex">
+                    <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3"></i>
                         <span class="pt-1"><strong>French translation</strong> to allow running Dofus in English & French</span>
                     </li>
                 </ul>
 
             </div>
-            <x-limitations :restrictions="['1920x1080', 'administrator', 'in_background', 'stable_connection']" />
+            <x-limitations :restrictions="['in_foreground', 'stable_connection']" />
         </div>
 
     </section>
@@ -100,9 +100,9 @@
     <div class="anchor" id="usage"></div>
     <section class="bg-gray-100 py-8 pb-12">
 
-        <div class="container mx-auto px-2 pt-4 pb-2 text-gray-800">
+        <div class="container mx-auto px-2 pt-4 pb-2 text-gray-200">
 
-            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">How to use</h2>
+            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-200">How to use</h2>
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
             </div>
@@ -147,9 +147,5 @@
         </div>
 
     </section>
-
-    @include('release.content.basic_ai')
-
-    @include('release.content.notes')
 
 @endsection
