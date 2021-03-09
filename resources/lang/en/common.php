@@ -21,6 +21,6 @@ return [
     'cancel' => 'Cancel',
     'free_trial_ineligible' => 'You are not eligible for a free trial',
     'free_trial_notverified' => 'You must verify your email address before beginning a free trial',
-    'discount_promo' => ':amount discount with promo code <strong>:code</strong>',
+    'discount_promo' => 'using promo code <strong>:code</strong>',
     'translated_credits' => 'translated by :name',
 ];

@@ -34,6 +34,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'card_last_four',
     ];
 
+    protected $appends = [
+        'is_subscribed',
+        'on_free_trial',
+    ];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -78,5 +83,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function eligibleForFreeTrial()
     {
         return $this->hasVerifiedEmail() && !$this->subscriptions()->exists();
+    }
+
+    public function getIsSubscribedAttribute()
+    {
+        return $this->subscribed();
+    }
+
+    public function getOnFreeTrialAttribute()
+    {
+        return $this->onTrial();
     }
 }

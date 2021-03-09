@@ -55,13 +55,23 @@
                         <li class="border-b py-4"><span class="line-through">{{ __('pricing.package_feature_notifications') }}</span>*</li>
                     </ul>
                 </div>
+                @php($promoCode = config('pricing.trade_mission_bot.promo'))
+                @php($shouldDisplayPromo = $promoCode && !($user = Auth::user()) || !$user->subscribedToTradeMissionBot())
                 <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                    <div class="w-full pt-6 text-3xl font-bold text-center leading-none mb-2">
-                        €{{ config('pricing.trade_mission_bot.price')/100 }} <small class="text-sm">/ {{ __('common.month') }}</small>
+                    <div class="w-full pt-2 text-3xl font-bold text-center leading-none mb-2">
+                        <div class="line-through text-xl text-red-800">
+                            €15
+                        </div>
+                        <div class="mb-2 text-4xl">
+                            €5
+                        </div>
+                        <div class="text-sm">first {{ __('common.month') }}</div>
+                        @if ($shouldDisplayPromo)
+                            <p class="flex items-end justify-center text-gray-600 text-xs mt-1">
+                                <span>{!! __('common.discount_promo', ['amount' => 10, 'code' => $promoCode]) !!}</span>
+                            </p>
+                        @endif
                     </div>
-
-                    @php($promoCode = config('pricing.trade_mission_bot.promo'))
-                    @php($shouldDisplayPromo = $promoCode && !($user = Auth::user()) || !$user->subscribedToTradeMissionBot())
 
                     <div class="flex items-center justify-center">
                         @auth
@@ -73,11 +83,9 @@
                             </a>
                         @endauth
                     </div>
-                    @if ($shouldDisplayPromo)
-                    <p class="flex items-end justify-center text-gray-600 h-6 text-xs">
-                        <span>€{!! __('common.discount_promo', ['amount' => 5, 'code' => $promoCode]) !!}</span>
+                    <p class="text-xs text-gray-600 text-center italic mt-2 h-6">
+                        After your first month you will be billed at the standard rate <strong>€{{ config('pricing.trade_mission_bot.price')/100 }} per month</strong>
                     </p>
-                    @endif
                 </div>
             </div>
 
