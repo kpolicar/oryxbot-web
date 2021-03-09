@@ -12,7 +12,9 @@ branches:
   only:
     - prod
 script:
-  - ssh -i ./deploykey root@oryxbot.com cd /var/www/html && git pull origin prod
+  - vendor/bin/phpunit
+after_script:
+  - ssh -i ./deploykey root@oryxbot.com "cd /var/www/html && git pull origin prod --rebase"
 before_install:
   - openssl aes-256-cbc -K $encrypted_37426564817b_key -iv $encrypted_37426564817b_iv
     -in deploykey.enc -out ./deploykey -d
