@@ -25,7 +25,7 @@
     <meta property="og:locale" content="{{ LaravelLocalization::getCurrentLocale() }}" />
     <meta property="og:url" content="/" />
     <meta property="og:site_name" content="Oryxbot" />
-    <meta property="og:image" content="{{ asset('logo_white_on_black.jpg') }}" />
+    <meta property="og:image" content="{{ asset('oryx_colored.png') }}" />
 
     @section('link:alternate')
         <link rel="alternate"
