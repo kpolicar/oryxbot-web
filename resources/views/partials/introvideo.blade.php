@@ -12,8 +12,8 @@
     </p>
 
     <video title="{{ __('presentation.video_alt') }}"
-           poster="{{ asset('images/poster_inkybot_intro.png') }}"
-           class="mx-auto mt-8 my-6 mb-3 rounded"
+           poster="{{ asset('images/poster_oryxbot_intro.png') }}"
+           class="mx-auto mt-8 my-6 mb-3 rounded bg-gray-900 shadow-lg"
            height="1920"
            width="1080"
            preload="metadata"
@@ -21,9 +21,6 @@
            loop
            controlslist="nodownload"
            disablePictureInPicture>
-        <source src="{{ asset('videos/inkybot_intro.mp4') }}" type="video/mp4" />
+        <source src="{{ asset('videos/oryxbot_intro.mp4') }}" type="video/mp4" />
     </video>
-    <p class="text-xs text-gray-600 text-center">
-        {!! __('presentation.note') !!}
-    </p>
 </section>

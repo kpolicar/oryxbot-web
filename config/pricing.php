@@ -3,7 +3,7 @@
 return [
 
     'trade_mission_bot' => [
-        'stripe_id' => 'price_1IQcpaJ8YxsR5CgadQPFG9KS',
+        'stripe_id' => env('STRIPE_PRICE_ID'),
         'price' => 1500,
         'discount_price' => 1000,
         'trial_period_days' => 3,
