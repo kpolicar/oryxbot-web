@@ -55,7 +55,7 @@ class MessageController
     }
 
     public function login(Message $message, $email) {
-        $endpoint = "https://oryxbot.me/api/v1/discord/login";
+        $endpoint = "https://oryxbot.com/api/v1/discord/login";
         $request = (new PendingRequest)->acceptJson();
         $response = new Response($request->post($endpoint, [
             'email' => $email,
