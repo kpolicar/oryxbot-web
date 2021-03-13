@@ -31,22 +31,21 @@
         </p>
         <a href="{{ asset($download_asset) }}"
            download
-           class="inline-block mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded my-6 py-4 px-8 shadow-lg">
+           class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
             {{ __('common.download') }}
         </a>
 
     </x-main-hero>
 @endsection
 
-@section('engage_comingfrom', '#ffffff')
 @section('content')
 
     <div class="anchor" id="usage"></div>
-    <section class="bg-white py-8 pb-12">
+    <section class="bg-gray-900 py-8 pb-12">
 
-        <div class="container mx-auto px-2 pt-4 pb-2 text-gray-800">
+        <div class="container mx-auto px-2 pt-4 pb-2 text-gray-500 lg:px-32 px-10">
 
-            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-200 text-center">
                 {{ __('install.steps') }}
             </h2>
             <div class="w-full mb-4">
@@ -55,7 +54,7 @@
 
             <div class="anchor" id="download"></div>
             <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-700 uppercase">
+                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     1. {{ __('install.step_download') }}
                 </h3>
 
@@ -70,7 +69,7 @@
 
             <div class="anchor" id="antivirus"></div>
             <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-700 uppercase">
+                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     1A. {{ __('install.step_download_antivirus') }}
                 </h3>
 
@@ -80,18 +79,17 @@
                 </p>
                 <p class="text-base">
                     @section('antivirus_avast_link')
-                        <a class="font-bold text-gray-800" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
+                        <a class="font-bold text-gray-300" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
                            {{  __('install.step_download_antivirus_avast_link') }}
                         </a>
                     @endsection
                     {!! __('install.step_download_antivirus_avast', ['link' => View::getSection('antivirus_avast_link')]) !!}
-                    {{ __('install.step_download_antivirus_avast_link') }}
                 </p>
             </div>
 
             <div class="anchor" id="dependency"></div>
             <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-700 uppercase">
+                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     1B. {{ __('install.step_download_dependency') }}
                 </h3>
 
@@ -103,12 +101,12 @@
                 </p>
                 <p class="text-base">
                     @section('download_official')
-                    <a class="font-bold text-gray-800" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
+                    <a class="font-bold text-gray-300" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
                         {{ __('install.step_download_dependency_download_link_official') }}
                     </a>
                     @endsection
                     @section('download_direct')
-                    <a class="font-bold text-gray-800" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
+                    <a class="font-bold text-gray-300" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
                         {{ __('install.step_download_dependency_download_link_direct') }}
                     </a>
                     @endsection
@@ -124,12 +122,12 @@
 
             <div class="anchor" id="extract"></div>
             <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-700 uppercase">
+                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     2. {{ __('install.step_extract') }}
                 </h3>
 
                 <p class="text-base">
-                    {!! __('install.step_extract_description', ['password' => $download_password]) !!}
+                    {!! __('install.step_extract_description', ['password' => '<strong class="text-gray-300">"'.$download_password.'"</strong>']) !!}
                 </p>
             </div>
 
@@ -139,7 +137,7 @@
 
             <div class="anchor" id="run"></div>
             <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-700 uppercase">
+                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     3. {{ __('install.step_run') }}
                 </h3>
 
@@ -152,37 +150,9 @@
                  class="my-4"
                  alt="{{ __('install.step_run_img_alt') }}" />
 
-            <div class="anchor" id="path"></div>
-            <div class="flex flex-col lg:flex-row mt-10">
-                <div class="px-4 lg:px-0 lg:w-1/3 mr-4">
-                    <h3 class="w-full text-xl font-bold leading-tight text-gray-700 uppercase">
-                        4. {{ __('install.step_path') }}
-                    </h3>
-                    <p class="text-base">
-                        {{ __('install.step_path_folder_default') }}
-                    </p>
-                    <p class="text-sm text-gray-500">
-                        %APPDATA%\..\Local\Ankama\zaap\dofus\dofus.exe
-                    </p>
-                    <p class="text-base">
-                        {{ __('install.step_path_folder_launcher') }}
-                    </p>
-
-                    <img src="{{ asset('images/installation/selectpath.png') }}"
-                         class="my-4"
-                         alt="">
-                </div>
-
-                <div class="lg:w-2/3 ml-4">
-                    <img src="{{ asset('images/installation/savelocation.png') }}"
-                         class="mb-4"
-                         alt="">
-                </div>
-            </div>
-
             <div class="px-4 lg:px-0">
-                <h3 class=" w-full text-xl font-bold leading-tight text-gray-700 uppercase">
-                    5. {{ __('install.step_finish') }}
+                <h3 class=" w-full text-xl font-bold leading-tight text-gray-300 uppercase">
+                    4. {{ __('install.step_finish') }}
                 </h3>
 
                 <p class="text-base">
@@ -197,7 +167,7 @@
             <p class="text-xl">
                 <i class="fas fa-caret-right"></i>
                 @section('usage')
-                <a class="font-bold text-gray-800" href="{{ route('release', ['version' => 'latest']) }}#usage">
+                <a class="font-bold text-gray-300" href="{{ route('release', ['version' => 'latest']) }}">
                     {{ __('install.step_finish_continue_link') }}
                 </a>
                 @endsection

@@ -15,7 +15,7 @@ return [
     'step_download_antivirus' => 'Add antivirus exception (if necessary)',
     'step_download_antivirus_description' => 'Some antivirus software might detect Inkyvirus as a threat and delete the executable file (oryxbot.exe). If this happens you can rest assured, it is a false positive.',
     'step_download_antivirus_description_malware' => 'We do not have any malware in our service. Make sure you download Oryxbot through our official website and you will be all clear.',
-    'step_download_antivirus_avast' => 'If you use <i>Avast Free Antivirus</i>, you can check out :link which describes how you can exclude Oryxbot from antivirus scans.',
+    'step_download_antivirus_avast' => 'If you use <i class="text-gray-300">Avast Free Antivirus</i>, you can check out :link which describes how you can exclude Oryxbot from antivirus scans.',
     'step_download_antivirus_avast_link' => 'this article',
     'step_download_dependency' => 'Install Microsoft Visual C++ 2015-2019 Redistributable (If necessary)',
     'step_download_dependency_target' => 'This step is required if you do not already have the necessary dependency installed on your machine.',
@@ -27,16 +27,12 @@ return [
     'step_download_img_alt' => 'Your installation folder',
 
     'step_extract' => 'Extract',
-    'step_extract_description' => 'Extract the contents of the zipped folder into any folder of your choice. The password for the archive is <strong>":password"</strong>.',
+    'step_extract_description' => 'Extract the contents of the zipped folder into any folder of your choice. The password for the archive is :password.',
     'step_extract_img_alt' => 'Extracting the downloaded zip file',
 
     'step_run' => 'Run application',
     'step_run_description' => 'Run the Oryxbot executable file as an administrator.',
     'step_run_img_alt' => 'Run oryxbot.exe as an administrator',
-
-    'step_path' => 'Select the path to your Dofus folder (if necessary)',
-    'step_path_folder_default' => 'The default installation folder for Dofus is:',
-    'step_path_folder_launcher' => 'You can find your Dofus install folder in the Ankama Launcher settings.',
 
     'step_finish' => 'Congratulations!',
     'step_finish_description' => 'You are now ready to begin your botting career! Log in with your Oryxbot account and continue as you would normally.',

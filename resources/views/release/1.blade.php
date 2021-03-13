@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'v1.0 - Release Notes')
+@section('title', 'v0.1 - Release Notes')
 
 
 @section('hero')
     <x-main-hero>
 
-        <h2 class="tracking-loose text-xl w-full font">v1.0</h2>
+        <h2 class="tracking-loose text-xl w-full font">v0.1 <span class="uppercase">Beta</span></h2>
         <h1 class="mb-0 text-5xl font-bold leading-tight">Release notes</h1>
-        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">1st April 2021</h2>
+        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">13th March 2021</h2>
         <p class="leading-normal text-lg mb-2">
             Welcome to the first release of Oryxbot! We did it!
         </p>
@@ -17,7 +17,7 @@
             Read the release notes carefully so you know what to watch out for.
         </p>
         <p class="leading-normal text-lg mb-8">
-            Bear in mind this is an early release. <br> Much is yet to be added & improved.
+            Bear in mind this is an early release, therefore it may be unstable and rather restrictive.
         </p>
 
     </x-main-hero>
@@ -116,7 +116,7 @@
                 </ul>
 
             </div>
-            <x-limitations :restrictions="['in_foreground', 'stable_connection']" />
+            <x-limitations :restrictions="['in_foreground', 'full_screen', 'lymhurst_only',  'needs_assistance']" />
         </div>
 
     </section>

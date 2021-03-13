@@ -47,19 +47,18 @@
 
 <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
 
-
 <aside id="development-notification" class="text-white pr-6 py-4 border-0 rounded-lg bg-black fixed bottom-0 left-0 right-0 top-0 mx-2 md:mx-auto m-auto text-center w-auto z-30" style="opacity: 0.85; height: fit-content; width: fit-content">
     <span class="inline-block align-middle mx-5 mr-8 font-bold flex items-center">
         <i class="fas fa-wrench mr-3 mx-1 text-3xl"></i>
         <span class="mx-2">This project is <strong class="underline">under construction</strong>. Purchases of subscriptions will be carried over to when the bot will be up and running.</span>
-  </span>
+        </span>
     <button id="development-notification-close" data-hide="#download-notification" class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
         <span>×</span>
     </button>
 </aside>
 <script>
     document.getElementById("development-notification-close")
-        .addEventListener("click", () => document.getElementById("development-notification").classList.add("hidden"))
+    .addEventListener("click", () => document.getElementById("development-notification").classList.add("hidden"))
 </script>
 
 @section('body')

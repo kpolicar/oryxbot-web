@@ -22,10 +22,28 @@
     </p>
     @endif
 
-    @if(in_array('stable_connection', $restrictions))
-    <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-wifi text-3xl mr-3 text-gray-200"></i> Stable internet connection</h2>
+    @if(in_array('full_screen', $restrictions))
+        <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-expand text-3xl mr-3 text-gray-200"></i> Fullscreen</h2>
+        <p class="text-gray-500 my-3">
+            Your Albion Online client must be running in full-screen mode for Oryxbot to work.
+            Oryxbot retrieves your screen resolution and calculates where it needs to click
+            based on that.
+        </p>
+    @endif
+
+    @if(in_array('lymhurst_only', $restrictions))
+    <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-lock text-3xl mr-3 text-gray-200"></i> Limited to Lymhurst</h2>
     <p class="text-gray-500 my-3">
-        You should use Oryxbot with a stable internet connection to avoid unexpected issues.
+        Oryxbot is only configured to run the Lymhurst trade mission in this version.
+        Other cities and custom routes will be made available soon.
+    </p>
+    @endif
+
+    @if(in_array('needs_assistance', $restrictions))
+    <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-wheelchair text-3xl mr-3 text-gray-200"></i> In need of assistance</h2>
+    <p class="text-gray-500 my-3">
+        This is an early release, so the bot might need your help sometimes. The character might get stuck or
+        it can have trouble interacting with the quest NPCs.
     </p>
     @endif
 </div>
