@@ -58,7 +58,7 @@
                     1. {{ __('install.step_download') }}
                 </h3>
 
-                <p class="text-base">
+                <p class="text-base text-justify">
                     {{ __('install.step_download_description') }}
                 </p>
             </div>
@@ -73,11 +73,11 @@
                     1A. {{ __('install.step_download_antivirus') }}
                 </h3>
 
-                <p class="text-base mb-2">
+                <p class="text-base mb-2 text-justify">
                     {{ __('install.step_download_antivirus_description') }}<br>
                     {{ __('install.step_download_antivirus_description_malware') }}
                 </p>
-                <p class="text-base">
+                <p class="text-base text-justify">
                     @section('antivirus_avast_link')
                         <a class="font-bold text-gray-300" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
                            {{  __('install.step_download_antivirus_avast_link') }}
@@ -93,13 +93,13 @@
                     1B. {{ __('install.step_download_dependency') }}
                 </h3>
 
-                <p class="text-base mb-2">
+                <p class="text-base mb-2 text-justify">
                     {{ __('install.step_download_dependency_target') }}
                 </p>
-                <p class="text-base mb-2">
+                <p class="text-base mb-2 text-justify">
                     {{ __('install.step_download_dependency_target_detailed') }}
                 </p>
-                <p class="text-base">
+                <p class="text-base text-justify">
                     @section('download_official')
                     <a class="font-bold text-gray-300" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
                         {{ __('install.step_download_dependency_download_link_official') }}
@@ -126,7 +126,7 @@
                     2. {{ __('install.step_extract') }}
                 </h3>
 
-                <p class="text-base">
+                <p class="text-base text-justify">
                     {!! __('install.step_extract_description', ['password' => '<strong class="text-gray-300">"'.$download_password.'"</strong>']) !!}
                 </p>
             </div>
@@ -146,7 +146,7 @@
                     3. {{ __('install.step_run') }}
                 </h3>
 
-                <p class="text-base">
+                <p class="text-base text-justify">
                     {{ __('install.step_run_description') }}
                 </p>
             </div>
@@ -160,7 +160,7 @@
                     4. {{ __('install.step_finish') }}
                 </h3>
 
-                <p class="text-base">
+                <p class="text-base text-justify">
                     {{ __('install.step_finish_description') }}
                 </p>
             </div>
