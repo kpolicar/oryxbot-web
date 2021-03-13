@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-    <meta property="og:video" content="{{ asset('videos/oryxbot_intro.mp4') }}" />
+    <meta property="og:video" content="{{  Storage::url('videos/oryxbot_intro.mp4') }}" />
     <meta property="og:video:width" content="1920">
     <meta property="og:video:height" content="1080">
 @show

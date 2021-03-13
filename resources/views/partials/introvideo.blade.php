@@ -21,6 +21,6 @@
            loop
            controlslist="nodownload"
            disablePictureInPicture>
-        <source src="{{ asset('videos/oryxbot_intro.mp4') }}" type="video/mp4" />
+        <source src="{{ Storage::url('videos/oryxbot_intro.mp4') }}" type="video/mp4" />
     </video>
 </section>
