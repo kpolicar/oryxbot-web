@@ -27,7 +27,7 @@
         </p>
         <p class="leading-normal text-lg mb-2">
             {{ __('install.refer_release_notes') }}
-            <a class="font-bold text-gray-500" href="{{ route('release', ['version' => 'latest']) }}">{{ __('install.refer_release_notes_link') }}</a>.
+            <a class="font-bold text-gray-800" href="{{ route('release', ['version' => 'latest']) }}">{{ __('install.refer_release_notes_link') }}</a>.
         </p>
         <a href="{{ asset($download_asset) }}"
            download
@@ -63,8 +63,8 @@
                 </p>
             </div>
 
-            <img src="{{ asset('images/installation/downloadfolder.png') }}"
-                 class="my-4"
+            <img src="{{ asset('images/install/install.png') }}"
+                 class="my-4 object-contain"
                  alt="{{ __('install.step_download_img_alt') }}">
 
             <div class="anchor" id="antivirus"></div>
@@ -131,9 +131,14 @@
                 </p>
             </div>
 
-            <img src="{{ asset('images/installation/extracthere.png') }}"
-                 class="my-4"
-                 alt="{{ __('install.step_extract_img_alt') }}" />
+            <div class="flex items-middle justify-center flex-wrap">
+                <img src="{{ asset('images/install/extract.png') }}"
+                     class="xl:w-3/4 w-full my-4 object-contain pr-1"
+                     alt="{{ __('install.step_extract_img_alt') }}" />
+                <img src="{{ asset('images/install/password.png') }}"
+                     class="xl:w-1/4 w-full my-4 object-contain pl-1 h-64 xl:h-auto"
+                     alt="{{ __('install.step_extract_img_alt') }}" />
+            </div>
 
             <div class="anchor" id="run"></div>
             <div class="px-4 lg:px-0">
@@ -146,8 +151,8 @@
                 </p>
             </div>
 
-            <img src="{{ asset('images/installation/runasadmin.png') }}"
-                 class="my-4"
+            <img src="{{ asset('images/install/run_as_admin.png') }}"
+                 class="my-4 xl:w-2/3 w-full object-contain"
                  alt="{{ __('install.step_run_img_alt') }}" />
 
             <div class="px-4 lg:px-0">
@@ -160,8 +165,8 @@
                 </p>
             </div>
 
-            <img src="{{ asset('images/installation/logindialogue.png') }}"
-                 class="my-4"
+            <img src="{{ asset('images/install/login.png') }}"
+                 class="my-4 md:w-1/2 w-full object-contain"
                  alt="{{ __('install.step_finish_img_alt') }}" />
 
             <p class="text-xl">

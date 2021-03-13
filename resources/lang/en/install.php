@@ -5,7 +5,7 @@ return [
     'subheader' => 'Get up and running',
     'header' => 'Installation',
     'engage' => 'Welcome to the installation instructions for Oryxbot.',
-    'refer_release_notes' => 'If you\'ve already installed Oryxbot and are encountering issues during maging, please refer to the',
+    'refer_release_notes' => 'If you\'ve already installed Oryxbot and are encountering issues while botting, please refer to the',
     'refer_release_notes_link' => 'Release Notes',
 
     'steps' => 'Installation Steps',
