@@ -13,7 +13,7 @@ return [
     'step_download' => 'Download',
     'step_download_description' => 'Download the latest version of Oryxbot and place the downloaded file in a memorable location.',
     'step_download_antivirus' => 'Add antivirus exception (if necessary)',
-    'step_download_antivirus_description' => 'Some antivirus software might detect Inkyvirus as a threat and delete the executable file (oryxbot.exe). If this happens you can rest assured, it is a false positive.',
+    'step_download_antivirus_description' => 'Some antivirus software might detect Oryxbot as a threat and delete the executable file (oryxbot.exe). If this happens you can rest assured, it is a false positive.',
     'step_download_antivirus_description_malware' => 'We do not have any malware in our service. Make sure you download Oryxbot through our official website and you will be all clear.',
     'step_download_antivirus_avast' => 'If you use <i class="text-gray-300">Avast Free Antivirus</i>, you can check out :link which describes how you can exclude Oryxbot from antivirus scans.',
     'step_download_antivirus_avast_link' => 'this article',
