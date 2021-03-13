@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'main' => 'Albion Online Bot',
+    'main' => 'Albion Online Trade Mission Bot',
     'invite' => 'Invitation',
     'verify' => 'Verify Email',
     'free-trial' => 'Free Trial',

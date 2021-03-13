@@ -38,11 +38,6 @@ return [
     'subscribe_recurring' => 'We do not support recurring payments - you will have to renew your subscription manually each month.',
     'subscribe_info_saved' => 'Your payment information is not saved.',
 
-    'basket_item' => 'Item:',
-    'basket_option' => ':option month subscription',
-    'basket_price' => 'Price:',
-    'basket_paid' => 'Amount paid:',
-
     'register_subheader' => 'Create a new account',
     'register_header' => 'Sign-up',
     'register_form_submit' => 'Register',

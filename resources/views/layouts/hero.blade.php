@@ -11,7 +11,7 @@
     </title>
 
     <meta name="description" content="{{ __('meta.main_description') }}">
-    <meta name="keywords" content="Albion, Online, Bot, Maging, Mage, Magus, Profession, Items, Cheat, Hack, Stats, Game, Automate, Program">
+    <meta name="keywords" content="Albion, Online, Bot, Trade, Mission, Silver, Run, Route, Cheat, Hack, External, Game, Automate, Program">
     <meta name="author" content="Oryxbot">
 
     @section('og:title')
