@@ -41,25 +41,34 @@
                 <ul class="text-gray-500 p-6 px-4 -mx-2 rounded-lg">
                     <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1"><strong class="text-gray-300">Simple maging AI</strong> mages until the desired stats are achieved.
-                            The stats will never go over the defined limits and the appropriate rune (SM, PA, RA) for the current
-                            stat value will be used.<br>
-                            <a href="#ai" class="text-gray-600">Read more</a>
+                        <span class="pt-1"><strong class="text-gray-300">Default</strong> trade route mission on road in <strong class="text-gray-300">Lymhurst</strong>
                         </span>
                     </li>
                     <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1"><strong class="text-gray-300">Stats configurator</strong> allows you to specify what stats you want on your item</span>
+                        <span class="pt-1"><strong class="text-gray-300">Repeatable</strong> trade mission runs
+                            - <strong class="text-gray-300">banks reward</strong> items and
+                            <strong class="text-gray-300">unbanks required token</strong> items
+                        </span>
                     </li>
                     <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1"><strong class="text-gray-300">Error detection</strong> will stop the mage if an unexpected stat landed (this may happen
-                        if you run out of runes or due to poor internet connection)</span>
+                        <span class="pt-1">Basic behavior for
+                            <strong class="text-gray-300">avoiding character from getting stuck</strong>
+                            between obstacles
+                        </span>
                     </li>
                     <li class="py-3 flex">
                         <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1"><strong class="text-gray-300">Error notifications</strong> will notify you when something went wrong - this will
-                        happen often as this version is not very stable</span>
+                        <span class="pt-1">Works at <strong class="text-gray-300">any screen resolution</strong> with the
+                            game in full-screen mode
+                        </span>
+                    </li>
+                    <li class="py-3 flex">
+                        <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
+                        <span class="pt-1">Works with <strong class="text-gray-300">FPS freezing</strong>,
+                            although the bot will often stop moving while the screen is frozen
+                        </span>
                     </li>
                 </ul>
 
@@ -71,23 +80,38 @@
                 <ul class="text-gray-500 p-6 px-4 -mx-2 rounded-lg">
                     <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1">Support usage of the bot in <strong class="text-gray-300">any resolution</strong></span>
+                        <span class="pt-1">
+                            Add <strong class="text-gray-300">default routes</strong> for other Albion cities
+                        </span>
                     </li>
                     <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1">Allow the bot to run when the window is in <strong class="text-gray-300">minimized mode</strong></span>
+                        <span class="pt-1">
+                            Record and run <strong class="text-gray-300">custom routes</strong>
+                        </span>
                     </li>
                     <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1">Fix <strong class="text-gray-300">user input interference</strong> with the bot's input</span>
+                        <span class="pt-1">Improve behavior for
+                            <strong class="text-gray-300">avoiding character from getting stuck</strong>
+                            between obstacles
+                        </span>
                     </li>
                     <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1"><strong class="text-gray-300">Detailed logs</strong> for errors, warnings and simply maging information</span>
+                        <span class="pt-1">Improve <strong class="text-gray-300">NPC interactions</strong></span>
                     </li>
                     <li class="py-3 flex">
                         <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                        <span class="pt-1"><strong class="text-gray-300">French translation</strong> to allow running Dofus in English & French</span>
+                        <span class="pt-1">
+                            Improve the <strong class="text-gray-300">running</strong> algorithm,
+                            <strong class="text-gray-300">reduce twitchy</strong> behavior,
+                            improve dealing with the game's <strong class="text-gray-300">FPS freezing</strong>
+                        </span>
+                    </li>
+                    <li class="py-3 flex">
+                        <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
+                        <span class="pt-1">Restart the bot <strong class="text-gray-300">on character death</strong></span>
                     </li>
                 </ul>
 
