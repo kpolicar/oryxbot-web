@@ -68,10 +68,10 @@
             </div>
 
             <div class="flex flex-wrap justify-between my-4">
-                <img src="{{ asset('images/usage/bank.png') }}"
+                <img src="{{ asset('images/usage/bank.webp') }}"
                      class="object-contain md:w-1/3 w-full"
                      alt="{{ __('install.step_download_img_alt') }}">
-                <img src="{{ asset('images/usage/inventory.png') }}"
+                <img src="{{ asset('images/usage/inventory.webp') }}"
                      class="object-contain md:w-1/2 w-full"
                      alt="{{ __('install.step_download_img_alt') }}">
             </div>
@@ -88,10 +88,10 @@
                 </p>
 
                 <div class="flex flex-wrap justify-center my-4">
-                    <img src="{{ asset('images/usage/faction_on.png') }}"
+                    <img src="{{ asset('images/usage/faction_on.webp') }}"
                          class="object-contain w-1/2 md:w-1/4 mb-3"
                          alt="{{ __('install.step_download_img_alt') }}">
-                    <img src="{{ asset('images/usage/starting_position.png') }}"
+                    <img src="{{ asset('images/usage/starting_position.webp') }}"
                          class="object-contain w-full border border-gray-700"
                          alt="{{ __('install.step_download_img_alt') }}">
                 </div>
