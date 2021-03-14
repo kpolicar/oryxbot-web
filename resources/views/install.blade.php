@@ -79,7 +79,7 @@
                 </p>
                 <p class="text-base text-justify">
                     @section('antivirus_avast_link')
-                        <a class="font-bold text-gray-300" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
+                        <a class="font-bold text-gray-300 hover:underline" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
                            {{  __('install.step_download_antivirus_avast_link') }}
                         </a>
                     @endsection
@@ -101,12 +101,12 @@
                 </p>
                 <p class="text-base text-justify">
                     @section('download_official')
-                    <a class="font-bold text-gray-300" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
+                    <a class="font-bold text-gray-300 hover:underline" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
                         {{ __('install.step_download_dependency_download_link_official') }}
                     </a>
                     @endsection
                     @section('download_direct')
-                    <a class="font-bold text-gray-300" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
+                    <a class="font-bold text-gray-300 hover:underline" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
                         {{ __('install.step_download_dependency_download_link_direct') }}
                     </a>
                     @endsection
@@ -172,7 +172,7 @@
             <p class="text-xl">
                 <i class="fas fa-caret-right"></i>
                 @section('usage')
-                <a class="font-bold text-gray-300" href="{{ route('usage') }}">
+                <a class="font-bold text-gray-300 hover:underline" href="{{ route('usage') }}">
                     {{ __('install.step_finish_continue_link') }}
                 </a>
                 @endsection
