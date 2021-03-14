@@ -56,6 +56,9 @@ Route::group(
     Route::view(LaravelLocalization::transRoute('routes.install'), 'install')
         ->name('install');
 
+    Route::view(LaravelLocalization::transRoute('routes.usage'), 'usage')
+        ->name('usage');
+
     Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
         $versionDetails = $version == "latest" ?
             $versions->latest() :

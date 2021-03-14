@@ -9,6 +9,7 @@ return [
     'register' => 'Register',
     'profile' => 'Profile',
     'login' => 'Login',
+    'usage' => 'How to use',
     'installation' => 'Installation',
     'forgot' => 'Forgot Password',
 ];

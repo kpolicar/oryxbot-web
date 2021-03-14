@@ -5,6 +5,7 @@ return [
     'profile' => 'profile',
     'free-trial' => 'free-trial',
     'install' => 'install',
+    'usage' => 'guide',
     'login' => 'login',
     'logout' => 'logout',
     'register' => 'register',

@@ -4,6 +4,7 @@ return [
     'menu' => 'Menu',
     'home' => 'Home',
     'installation' => 'Installation',
+    'usage' => 'Usage',
     'whats_new' => 'What\'s new',
     'language' => 'Language',
     'language_english' => 'English',

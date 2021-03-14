@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('titles.installation'))
+@section('title', __('titles.usage'))
 
 @section('hero')
     <x-main-hero>
@@ -8,13 +8,13 @@
         <div class="flex flex-col-reverse">
             <div class="flex flex-col lg:flex-row justify-between">
                 <h1 class="mb-0 text-5xl font-bold leading-tight">
-                    {{ __('install.header') }}
+                    How to use
                 </h1>
-                <i class="fas fa-cloud-download-alt text-5xl p-2"></i>
+                <i class="fas fa-compass text-5xl p-2"></i>
             </div>
 
             <h2 class="uppercase tracking-loose w-full">
-                {{ __('install.subheader') }}
+                What's it all about
             </h2>
         </div>
 
@@ -23,11 +23,12 @@
         </div>
 
         <p class="leading-normal text-lg mb-2">
-            {{ __('install.engage') }}
+            Welcome to the usage guide for the latest version of Oryxbot.
+            This guide is updated regularly to keep up with updates.
         </p>
         <p class="leading-normal text-lg mb-2">
-            {{ __('install.refer_usage') }}
-            <a class="font-bold text-gray-800" href="{{ route('usage') }}">{{ __('install.refer_usage_link') }}</a>.
+            If you have not yet installed Oryxbot and are encountering issues, please refer to the
+            <a class="font-bold text-gray-800" href="{{ route('install') }}">Installation instructions</a>.
         </p>
         <a href="{{ asset($download_asset) }}"
            download
@@ -80,7 +81,7 @@
                 <p class="text-base text-justify">
                     @section('antivirus_avast_link')
                         <a class="font-bold text-gray-300" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
-                           {{  __('install.step_download_antivirus_avast_link') }}
+                            {{  __('install.step_download_antivirus_avast_link') }}
                         </a>
                     @endsection
                     {!! __('install.step_download_antivirus_avast', ['link' => View::getSection('antivirus_avast_link')]) !!}
@@ -101,14 +102,14 @@
                 </p>
                 <p class="text-base text-justify">
                     @section('download_official')
-                    <a class="font-bold text-gray-300" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
-                        {{ __('install.step_download_dependency_download_link_official') }}
-                    </a>
+                        <a class="font-bold text-gray-300" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
+                            {{ __('install.step_download_dependency_download_link_official') }}
+                        </a>
                     @endsection
                     @section('download_direct')
-                    <a class="font-bold text-gray-300" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
-                        {{ __('install.step_download_dependency_download_link_direct') }}
-                    </a>
+                        <a class="font-bold text-gray-300" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
+                            {{ __('install.step_download_dependency_download_link_direct') }}
+                        </a>
                     @endsection
 
                     {!! __('install.step_download_dependency_download', [
@@ -172,9 +173,9 @@
             <p class="text-xl">
                 <i class="fas fa-caret-right"></i>
                 @section('usage')
-                <a class="font-bold text-gray-300" href="{{ route('usage') }}">
-                    {{ __('install.step_finish_continue_link') }}
-                </a>
+                    <a class="font-bold text-gray-300" href="{{ route('release', ['version' => 'latest']) }}">
+                        {{ __('install.step_finish_continue_link') }}
+                    </a>
                 @endsection
                 {!! __('install.step_finish_continue', ['link' => View::getSection('usage')]) !!}
             </p>
