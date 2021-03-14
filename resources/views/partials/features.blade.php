@@ -47,7 +47,7 @@
                 {{ __('features.scriptless_details') }}
             </x-feature-card>
 
-            <x-feature-card icon="route">
+            <x-feature-card icon="route" :tags="['in-development']">
                 <x-slot name="title">
                     {{ __('features.customizable') }}
                 </x-slot>

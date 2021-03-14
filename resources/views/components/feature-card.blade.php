@@ -10,10 +10,10 @@
         </p>
     </div>
     @if ($tags)
-        <div class="flex-none mt-auto bg-gray-200 rounded-b-xl rounded-t-none overflow-hidden shadow p-6">
+        <div class="flex-none mt-auto bg-gray-200 rounded-b-xl rounded-t-none overflow-hidden shadow px-6 py-3">
             <div class="flex items-center justify-start">
                 @foreach ($tags as $tag)
-                    <span class="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">{{ $tag }}</span>
+                    <span class="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2">{{ $tag }}</span>
                 @endforeach
             </div>
         </div>

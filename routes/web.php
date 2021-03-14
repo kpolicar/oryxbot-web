@@ -51,8 +51,7 @@ Route::group(
     })->middleware('auth')->name('profile');
 
     Route::view(LaravelLocalization::transRoute('routes.free-trial'), 'free-trial')
-        ->name('free-trial')
-        ->middleware('verified');
+        ->name('free-trial');
 
     Route::view(LaravelLocalization::transRoute('routes.install'), 'install')
         ->name('install');

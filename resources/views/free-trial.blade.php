@@ -9,7 +9,7 @@
                 <h1 class="mb-0 text-5xl font-bold leading-tight">
                     Free trial
                 </h1>
-                <i class="fas fa-cloud-download-alt text-5xl p-2"></i>
+                <i class="fas fa-hand-holding-heart text-5xl p-2"></i>
             </div>
 
             <h2 class="uppercase tracking-loose w-full">
@@ -22,18 +22,34 @@
         </div>
 
         <p class="leading-normal text-lg mb-2">
-            {{ __('install.engage') }}
+            So you would like to try Oryxbot, but you're not willing to commit just yet?
         </p>
         <p class="leading-normal text-lg mb-2">
-            {{ __('install.refer_release_notes') }}
-            <a class="font-bold text-gray-500" href="{{ route('release', ['version' => 'latest']) }}">{{ __('install.refer_release_notes_link') }}</a>.
+            You're in luck! Oryxbot offers a <strong>3 days free trial</strong>. The free version is limited to
+            default routes on roads. If you want to record and run your own custom routes, you will need
+            to purchase the full version of Oryxbot.
+        </p>
+        <p class="leading-normal text-lg mb-2">
+            After the free trial expires your billing cycle will begin and you will be charged on the card you
+            have provided.
+            You can cancel your subscription at any time on your profile page.
         </p>
 
-        <x-billing-button trial class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg group">
-            {{  __('common.activate') }}
-
-            <i class="fas fa-angle-right text-lg ml-2 -mr-2 @if(Auth::user()->eligibleForFreeTrial()) transform group-hover:translate-x-2 duration-100 @endif"></i>
-        </x-billing-button>
+        @auth
+            <x-billing-button trial class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg group">
+                @if (!Auth::user()->eligibleForFreeTrial())
+                    {{ __('common.manage') }}
+                @else
+                    {{  __('common.activate') }}
+                    <i class="fas fa-angle-right text-lg ml-2 -mr-2 @if(Auth::user()->eligibleForFreeTrial()) transform group-hover:translate-x-2 duration-100 @endif"></i>
+                @endif
+            </x-billing-button>
+        @else
+            <a href="{{ route('register') }}"
+               class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg">
+                {{ __('common.signup') }}
+            </a>
+        @endauth
     </x-main-hero>
 @endsection
 
