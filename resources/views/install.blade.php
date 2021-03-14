@@ -27,7 +27,7 @@
         </p>
         <p class="leading-normal text-lg mb-2">
             {{ __('install.refer_usage') }}
-            <a class="font-bold text-gray-800" href="{{ route('usage') }}">{{ __('install.refer_usage_link') }}</a>.
+            <a class="font-bold text-gray-800 hover:underline" href="{{ route('usage') }}">{{ __('install.refer_usage_link') }}</a>.
         </p>
         <a href="{{ asset($download_asset) }}"
            download
@@ -41,7 +41,7 @@
 @section('content')
 
     <div class="anchor" id="usage"></div>
-    <section class="bg-gray-900 py-8 pb-12">
+    <section class="bg-gray-900 py-8 pb-20">
 
         <div class="container mx-auto px-2 pt-4 pb-2 text-gray-500 lg:px-32 px-10">
 
@@ -165,9 +165,15 @@
                 </p>
             </div>
 
-            <img src="{{ asset('images/install/login.png') }}"
-                 class="my-4 md:w-1/2 w-full object-contain"
-                 alt="{{ __('install.step_finish_img_alt') }}" />
+            <div class="flex flex-wrap items-bottom justify-between">
+                <img src="{{ asset('images/install/login.png') }}"
+                     class="my-4 md:w-1/2 w-full object-contain"
+                     alt="{{ __('install.step_finish_img_alt') }}" />
+
+                <img src="{{ asset('images/install/system_tray.png') }}"
+                     class="my-4 md:w-1/2 w-full object-contain"
+                     alt="{{ __('install.step_finish_img_alt') }}" />
+            </div>
 
             <p class="text-xl">
                 <i class="fas fa-caret-right"></i>

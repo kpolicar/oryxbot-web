@@ -35,7 +35,7 @@ return [
     'step_run_img_alt' => 'Run oryxbot.exe as an administrator',
 
     'step_finish' => 'Congratulations!',
-    'step_finish_description' => 'You are now ready to begin your botting career! Log in with your Oryxbot account and continue as you would normally.',
+    'step_finish_description' => 'You are now ready to begin your botting career! After you log in with your account, Oryxbot will minimize to the Windows tray. You may need to find it in the hidden icons.',
     'step_finish_continue' => 'Now comes the fun part. Learn :link the latest version of Oryxbot.',
     'step_finish_continue_link' => 'How to use',
     'step_finish_img_alt' => 'Login to your Oryxbot account',

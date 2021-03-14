@@ -28,7 +28,7 @@
         </p>
         <p class="leading-normal text-lg mb-2">
             If you have not yet installed Oryxbot and are encountering issues, please refer to the
-            <a class="font-bold text-gray-800" href="{{ route('install') }}">Installation instructions</a>.
+            <a class="font-bold text-gray-800 hover:underline" href="{{ route('install') }}">Installation instructions</a>.
         </p>
         <a href="{{ asset($download_asset) }}"
            download
@@ -42,12 +42,12 @@
 @section('content')
 
     <div class="anchor" id="usage"></div>
-    <section class="bg-gray-900 py-8 pb-12">
+    <section class="bg-gray-900 py-8 pb-20">
 
         <div class="container mx-auto px-2 pt-4 pb-2 text-gray-500 lg:px-32 px-10">
 
             <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-200 text-center">
-                {{ __('install.steps') }}
+                Instructions
             </h2>
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
@@ -56,129 +56,142 @@
             <div class="anchor" id="download"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    1. {{ __('install.step_download') }}
+                    1. Setup your bank appropriately
                 </h3>
 
                 <p class="text-base text-justify">
-                    {{ __('install.step_download_description') }}
+                    Oryxbot tries to remain as stealthy as possible.
+                    For this reason, it expects you you have your bank set up a certain way.
+                    Improvements will be made in the future to reduce setup requirements -
+                    but for now, this step is necessary.
                 </p>
             </div>
 
-            <img src="{{ asset('images/install/install.png') }}"
-                 class="my-4 object-contain"
-                 alt="{{ __('install.step_download_img_alt') }}">
-
-            <div class="anchor" id="antivirus"></div>
-            <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    1A. {{ __('install.step_download_antivirus') }}
-                </h3>
-
-                <p class="text-base mb-2 text-justify">
-                    {{ __('install.step_download_antivirus_description') }}<br>
-                    {{ __('install.step_download_antivirus_description_malware') }}
-                </p>
-                <p class="text-base text-justify">
-                    @section('antivirus_avast_link')
-                        <a class="font-bold text-gray-300" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
-                            {{  __('install.step_download_antivirus_avast_link') }}
-                        </a>
-                    @endsection
-                    {!! __('install.step_download_antivirus_avast', ['link' => View::getSection('antivirus_avast_link')]) !!}
-                </p>
+            <div class="flex flex-wrap justify-between my-4">
+                <img src="{{ asset('images/usage/bank.png') }}"
+                     class="object-contain md:w-1/3 w-full"
+                     alt="{{ __('install.step_download_img_alt') }}">
+                <img src="{{ asset('images/usage/inventory.png') }}"
+                     class="object-contain md:w-1/2 w-full"
+                     alt="{{ __('install.step_download_img_alt') }}">
             </div>
 
             <div class="anchor" id="dependency"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    1B. {{ __('install.step_download_dependency') }}
+                    2. Get into position
                 </h3>
 
-                <p class="text-base mb-2 text-justify">
-                    {{ __('install.step_download_dependency_target') }}
-                </p>
-                <p class="text-base mb-2 text-justify">
-                    {{ __('install.step_download_dependency_target_detailed') }}
-                </p>
                 <p class="text-base text-justify">
-                    @section('download_official')
-                        <a class="font-bold text-gray-300" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
-                            {{ __('install.step_download_dependency_download_link_official') }}
-                        </a>
-                    @endsection
-                    @section('download_direct')
-                        <a class="font-bold text-gray-300" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
-                            {{ __('install.step_download_dependency_download_link_direct') }}
-                        </a>
-                    @endsection
+                    Make your way to the Lymhurst faction NPC and turn on faction mode.
+                    Make sure you have enough carrying weight to accept the quest.
+                </p>
 
-                    {!! __('install.step_download_dependency_download', [
-                        'link_official' => View::getSection('download_official'),
-                        'link_direct' => View::getSection('download_direct')
-                    ]) !!} <br>
+                <div class="flex flex-wrap justify-center my-4">
+                    <img src="{{ asset('images/usage/faction_on.png') }}"
+                         class="object-contain w-1/2 md:w-1/4 mb-3"
+                         alt="{{ __('install.step_download_img_alt') }}">
+                    <img src="{{ asset('images/usage/starting_position.png') }}"
+                         class="object-contain w-full border border-gray-700"
+                         alt="{{ __('install.step_download_img_alt') }}">
+                </div>
+            </div>
 
-                    {{ __('install.step_download_dependency_download_32bit') }}
+            <div class="anchor" id="extract"></div>
+            <div class="px-4 lg:px-0">
+                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
+                    3. Learn the hotkeys
+                </h3>
+
+                <p class="text-base text-justify">
+                    Before you run the trade mission, you should be familiar with the hotkeys Oryxbot utilizes.<br>
+                    Remember, Oryxbot takes full control
+                    of your keyboard and mouse. You will have trouble stopping the bot if you don't know the proper hotkey.
+                    If you do forget, there is always the option of <strong class="text-gray-300">ctrl+alt+delete</strong>
+                    to <strong class="text-gray-300">end the task</strong> using <strong class="text-gray-300">Windows Task Manager</strong>.
+                </p>
+
+                <ul class="list-reset px-8">
+                    <li class="my-6">
+                        <span class="bg-gray-300 text-gray-700 shadow-keyboard-key p-2 px-5 rounded">
+                            F1
+                        </span>
+                        <span class="ml-4">
+                            Record custom route
+                        </span>
+                    </li>
+                    <li class="my-6">
+                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
+                            F2
+                        </span>
+                        <span class="ml-4">
+                            Start/Stop bot
+                        </span>
+                    </li>
+                    <li class="my-6">
+                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
+                            F3
+                        </span>
+                        <span class="ml-4">
+                            Open/Close context menu
+                        </span>
+                    </li>
+                    <li class="my-6">
+                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-10 rounded">
+                            Space
+                        </span>
+                        <span class="ml-4">
+                            Pause/Resume bot
+                        </span>
+                    </li>
+                </ul>
+
+                <p class="text-base text-justify">
+                    The hotkeys are also visible on the context menu should you forget them.
+                    So if you just remember the hotkey to Open the context menu, you should be fine.
+                </p>
+                <p class="text-base text-justify mt-2">
+                    The <strong class="text-gray-300">pause</strong> function might be useful if you would like to take re-take control of the game without
+                    having the bot lose it's progress. If you <strong class="text-gray-300">stop</strong> the bot mid-journey, it's state will reset. For this
+                    reason, you probably don't want to stop the bot while on your journey, since you may have to end up walking
+                    the rest of the route yourself.
                 </p>
             </div>
 
             <div class="anchor" id="extract"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    2. {{ __('install.step_extract') }}
+                    4. Begin
                 </h3>
 
                 <p class="text-base text-justify">
-                    {!! __('install.step_extract_description', ['password' => '<strong class="text-gray-300">"'.$download_password.'"</strong>']) !!}
+                    You are now ready to start botting. The steps the bot will take are as follows (in order):
                 </p>
-            </div>
-
-            <div class="flex items-middle justify-center flex-wrap">
-                <img src="{{ asset('images/install/extract.png') }}"
-                     class="xl:w-3/4 w-full my-4 object-contain pr-1"
-                     alt="{{ __('install.step_extract_img_alt') }}" />
-                <img src="{{ asset('images/install/password.png') }}"
-                     class="xl:w-1/4 w-full my-4 object-contain pl-1 h-64 xl:h-auto"
-                     alt="{{ __('install.step_extract_img_alt') }}" />
-            </div>
-
-            <div class="anchor" id="run"></div>
-            <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    3. {{ __('install.step_run') }}
-                </h3>
+                <ol class="list-decimal px-10 py-2 pb-4">
+                    <li class="my-2">
+                        Run to <strong class="text-gray-300">bank</strong> to unbank the required items for the quest & bank any reward items from your inventory
+                    </li>
+                    <li class="my-2">
+                        Run back to <strong class="text-gray-300">quest NPC</strong> and accept the first trade mission quest
+                    </li>
+                    <li class="my-2">
+                        Run the <strong class="text-gray-300">trade mission</strong> route
+                    </li>
+                    <li class="my-2">
+                        Once the character has arrived, <strong class="text-gray-300">progress</strong> the quest and run back
+                    </li>
+                    <li class="my-2">
+                        <strong class="text-gray-300">Repeat</strong> the process
+                    </li>
+                </ol>
 
                 <p class="text-base text-justify">
-                    {{ __('install.step_run_description') }}
+                    Should your character die along the way, the bot will stop working. Unfortunately, character
+                    death is not yet handled on our part, but will definitely be implemented in future updates.
+                    The upcoming "Loadouts" will help quite a lot in this regard - so that the bot will be
+                    able to reequip the character with the necessary equipment and restart the quest.
                 </p>
             </div>
-
-            <img src="{{ asset('images/install/run_as_admin.png') }}"
-                 class="my-4 xl:w-2/3 w-full object-contain"
-                 alt="{{ __('install.step_run_img_alt') }}" />
-
-            <div class="px-4 lg:px-0">
-                <h3 class=" w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    4. {{ __('install.step_finish') }}
-                </h3>
-
-                <p class="text-base text-justify">
-                    {{ __('install.step_finish_description') }}
-                </p>
-            </div>
-
-            <img src="{{ asset('images/install/login.png') }}"
-                 class="my-4 md:w-1/2 w-full object-contain"
-                 alt="{{ __('install.step_finish_img_alt') }}" />
-
-            <p class="text-xl">
-                <i class="fas fa-caret-right"></i>
-                @section('usage')
-                    <a class="font-bold text-gray-300" href="{{ route('release', ['version' => 'latest']) }}">
-                        {{ __('install.step_finish_continue_link') }}
-                    </a>
-                @endsection
-                {!! __('install.step_finish_continue', ['link' => View::getSection('usage')]) !!}
-            </p>
 
         </div>
 
