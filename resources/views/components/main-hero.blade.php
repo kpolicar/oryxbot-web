@@ -1,4 +1,4 @@
-<div class="pt-24 relative" style="background: url('{{ asset('hero.png') }}') @if($invert) left @else right @endif bottom no-repeat; background-size: contain;">
+<div class="pt-24 relative" style="background: url('{{ asset('hero.webp') }}') @if($invert) left @else right @endif bottom no-repeat; background-size: contain;">
     <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div class="z-10 flex @if($invert) justify-end md:text-right @else justify-start md:text-left @endif items-start text-center lg:py-24 pb-40 pt-5 w-full text-gray-900">
 

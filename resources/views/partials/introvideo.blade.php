@@ -12,7 +12,7 @@
     </p>
 
     <video title="{{ __('presentation.video_alt') }}"
-           poster="{{ asset('images/oryxbot_intro_poster.png') }}"
+           poster="{{ asset('images/oryxbot_intro_poster.webp') }}"
            class="mx-auto mt-8 my-6 mb-3 rounded bg-gray-900 shadow-lg"
            height="1920"
            width="1080"
