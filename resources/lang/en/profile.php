@@ -8,7 +8,7 @@ return [
     'subscribed_manage' => 'Manage subscription',
     'subscribed_purchase' => 'Purchase subscription',
 
-    'free_trial_end_begin_subscription' => 'End free trial',
+    'free_trial_end_begin_subscription' => 'End trial & Begin subscription',
     'free_trial_end_begin_subscription_warning_title' => 'End free trial?',
     'free_trial_end_begin_subscription_warning' => 'Are you sure you want to end your free trial?<br>This will automatically begin your billing period.',
     'free_trial_end_begin_subscription_confirm' => 'Begin subscription',

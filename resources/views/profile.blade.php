@@ -28,7 +28,7 @@
                 @endif
             </p>
 
-            <x-billing-button class="inline-block cursor-pointer lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg group">
+            <x-billing-button class="inline-block cursor-pointer lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded mt-6 mb-2 py-4 px-8 shadow-lg group">
                 @if ($user->subscribedToTradeMissionBot())
                     {{ __('profile.subscribed_manage') }}
                 @else
@@ -40,8 +40,9 @@
                 <button
                     data-request-end-trial
                     data-request-url="{{ route('trial-cancel') }}"
-                    class="cursor-pointer lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
+                    class="cursor-pointer lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 shadow-lg group">
                     {{ __('profile.free_trial_end_begin_subscription') }}
+                    <i class="fas fa-angle-right text-lg ml-2 -mr-2 transform group-hover:translate-x-2 duration-100"></i>
                 </button>
             @endif
         </div>
