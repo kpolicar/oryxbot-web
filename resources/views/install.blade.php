@@ -149,7 +149,7 @@
                 <p class="text-base text-justify">
                     Run the <strong class="text-gray-300">setup.npcap-1.00.exe</strong> file to install Oryxbot's dependency. This program
                     allows Oryxbot to monitor your network's traffic and is therefore needed to listen in on the
-                    Albion client's messaging with their server. You need only go once through this setup - you do not need to repeat the
+                    Albion client's messaging with their server. You need only go through this setup once - you do not need to repeat the
                     process when updating to newer Oryxbot versions.
                 </p>
             </div>
