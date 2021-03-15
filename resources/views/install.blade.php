@@ -63,7 +63,7 @@
                 </p>
             </div>
 
-            <img src="{{ asset('images/install/install.png') }}"
+            <img src="{{ asset('images/install/install.webp') }}"
                  class="my-4 object-contain"
                  alt="{{ __('install.step_download_img_alt') }}">
 
@@ -132,10 +132,10 @@
             </div>
 
             <div class="flex items-middle justify-center flex-wrap">
-                <img src="{{ asset('images/install/extract.png') }}"
+                <img src="{{ asset('images/install/extract.webp') }}"
                      class="xl:w-3/4 w-full my-4 object-contain pr-1"
                      alt="{{ __('install.step_extract_img_alt') }}" />
-                <img src="{{ asset('images/install/password.png') }}"
+                <img src="{{ asset('images/install/password.webp') }}"
                      class="xl:w-1/4 w-full my-4 object-contain pl-1 h-64 xl:h-auto"
                      alt="{{ __('install.step_extract_img_alt') }}" />
             </div>
@@ -143,7 +143,25 @@
             <div class="anchor" id="run"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    3. {{ __('install.step_run') }}
+                    3. Install dependencies
+                </h3>
+
+                <p class="text-base text-justify">
+                    Run the <strong class="text-gray-300">setup.npcap-1.00.exe</strong> file to install Oryxbot's dependency. This program
+                    allows Oryxbot to monitor your network's traffic and is therefore needed to listen in on the
+                    Albion client's messaging with their server. You need only go once through this setup - you do not need to repeat the
+                    process when updating to newer Oryxbot versions.
+                </p>
+            </div>
+
+            <img src="{{ asset('images/install/run_setup.webp') }}"
+                 class="my-4 xl:w-2/3 w-full object-contain"
+                 alt="{{ __('install.step_run_img_alt') }}" />
+
+            <div class="anchor" id="run"></div>
+            <div class="px-4 lg:px-0">
+                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
+                    4. {{ __('install.step_run') }}
                 </h3>
 
                 <p class="text-base text-justify">
@@ -151,13 +169,13 @@
                 </p>
             </div>
 
-            <img src="{{ asset('images/install/run_as_admin.png') }}"
+            <img src="{{ asset('images/install/run_as_admin.webp') }}"
                  class="my-4 xl:w-2/3 w-full object-contain"
                  alt="{{ __('install.step_run_img_alt') }}" />
 
             <div class="px-4 lg:px-0">
                 <h3 class=" w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    4. {{ __('install.step_finish') }}
+                    5. {{ __('install.step_finish') }}
                 </h3>
 
                 <p class="text-base text-justify">
@@ -166,11 +184,11 @@
             </div>
 
             <div class="flex flex-wrap items-bottom justify-between">
-                <img src="{{ asset('images/install/login.png') }}"
+                <img src="{{ asset('images/install/login.webp') }}"
                      class="my-4 md:w-1/2 w-full object-contain"
                      alt="{{ __('install.step_finish_img_alt') }}" />
 
-                <img src="{{ asset('images/install/system_tray.png') }}"
+                <img src="{{ asset('images/install/system_tray.webp') }}"
                      class="my-4 md:w-1/2 w-full object-contain"
                      alt="{{ __('install.step_finish_img_alt') }}" />
             </div>
