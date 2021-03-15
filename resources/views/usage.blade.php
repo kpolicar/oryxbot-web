@@ -41,7 +41,7 @@
 
 @section('content')
 
-    <div class="anchor" id="usage"></div>
+    <div class="anchor" id="steps"></div>
     <section class="bg-gray-900 py-8 pb-20">
 
         <div class="container mx-auto px-2 pt-4 pb-2 text-gray-500 lg:px-32 px-10">
@@ -53,7 +53,7 @@
                 <div class="h-1 mx-auto gradient w-64 opacity-75 my-0 py-0 rounded-t"></div>
             </div>
 
-            <div class="anchor" id="download"></div>
+            <div class="anchor" id="bank"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     1. Setup your bank appropriately
@@ -76,7 +76,7 @@
                      alt="{{ __('install.step_download_img_alt') }}">
             </div>
 
-            <div class="anchor" id="dependency"></div>
+            <div class="anchor" id="position"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     2. Get into position
@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <div class="anchor" id="extract"></div>
+            <div class="anchor" id="hotkeys"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     3. Learn the hotkeys
@@ -158,7 +158,7 @@
                 </p>
             </div>
 
-            <div class="anchor" id="extract"></div>
+            <div class="anchor" id="begin"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
                     4. Begin
