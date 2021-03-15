@@ -8,8 +8,8 @@ use Discord\Parts\Channel\Message;
 use Discord\Parts\Guild\Guild;
 
 include __DIR__.'/../vendor/autoload.php';
-const GUILD_ID = 764510615049076797;
-const WEBHOOK_USER_ID = 795037986592391178;
+const GUILD_ID = 816747376449421422;
+const WEBHOOK_USER_ID = 821073200972038196;
 
 $discord = new \Discord\Discord([
     'token' => '***REMOVED***',
