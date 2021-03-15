@@ -2,6 +2,7 @@
 
 use Discord\Parts\Channel\Message;
 use Discord\Parts\Guild\Guild;
+use Discord\Parts\User\User;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Str;
@@ -45,13 +46,19 @@ class MessageController
     }
 
     private function replyWithInfo(Message $message) {
-        $message->reply(
-            "Greetings!\n".
+        $message->reply($this->messageContent());
+    }
+
+    public function replyWithInfoToUser(User $user) {
+        $user->sendMessage($this->messageContent());
+    }
+
+    private function messageContent() {
+        return "Greetings!\n".
             "To connect Discord with your Oryxbot account, you should execute the command: `!login email`\n".
             "Replace *email* with the email address you have associated with your Oryxbot account.\n".
             "Once you connect your account, you will be granted the appropriate role.\n".
-            "Happy botting!"
-        );
+            "Happy botting!";
     }
 
     public function login(Message $message, $email) {

@@ -1,5 +1,8 @@
 <?php namespace DiscordApp;
 
+use Discord\Parts\User\User;
+use Discord\Parts\WebSockets\MessageReaction;
+use Discord\WebSockets\Event;
 use DiscordApp\Controllers\MessageController;
 use DiscordApp\Controllers\WebhookController;
 use Discord\Discord;
@@ -10,6 +13,7 @@ use Discord\Parts\Guild\Guild;
 include __DIR__.'/../vendor/autoload.php';
 const GUILD_ID = 816747376449421422;
 const WEBHOOK_USER_ID = 821073200972038196;
+const REACTION_MESSAGE_ID = 821105493421326358;
 
 $discord = new \Discord\Discord([
     'token' => '***REMOVED***',
@@ -20,7 +24,7 @@ $discord->on('ready', function (\Discord\Discord $discord) {
 
     $discord->guilds->fetch(GUILD_ID)->then(function (Guild $guild) use ($discord) {
 
-        $discord->on('message', function (Message $message, Discord $discord) use ($guild) {
+        $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) use ($guild) {
             try {
                 if ($message->author->id == WEBHOOK_USER_ID && str_starts_with($message->content, "!"))
                     return (new WebhookController($guild))->handleMessage($message);
@@ -35,6 +39,16 @@ $discord->on('ready', function (\Discord\Discord $discord) {
             } catch (\Throwable $throwable) {
                 echo "[ERROR]: ".$throwable->getMessage();
             }
+        });
+
+        $discord->on(Event::MESSAGE_REACTION_ADD, function (MessageReaction $reaction, Discord $discord) use ($guild) {
+            if ($reaction->message_id != REACTION_MESSAGE_ID)
+                return;
+            $reaction->message->deleteReaction(Message::REACT_DELETE_ID, $reaction->emoji, $reaction->user_id);
+
+            $discord->users->fetch($reaction->user_id)->then(function ($user) use ($guild) {
+                (new MessageController($guild))->replyWithInfoToUser($user);
+            });
         });
     });
     echo "Bot is ready.", PHP_EOL;
