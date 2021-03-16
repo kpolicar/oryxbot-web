@@ -1,6 +1,7 @@
 @extends('layouts.hero')
 
 @section('title', __('titles.login'))
+@section('meta:description', __('meta.login_description'))
 
 
 @section('content')

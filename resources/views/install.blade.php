@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('titles.installation'))
+@section('meta:description', __('meta.instructions_description'))
 
 @section('hero')
     <x-main-hero>

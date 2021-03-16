@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'v0.1 - Release Notes')
+@section('meta:description', __('meta.news_description'))
 
 
 @section('hero')

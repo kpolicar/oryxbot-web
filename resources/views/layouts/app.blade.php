@@ -10,7 +10,8 @@
         @hasSection('title')@yield('title') - @endif{{ 'Oryxbot - ' . __('titles.main') }}
     </title>
 
-    <meta name="description" content="{{ __('meta.main_description') }}">
+
+    <meta name="description" content="@yield('meta:description', __('meta.main_description'))">
     <meta name="keywords" content="Albion, Online, Bot, Trade, Mission, Silver, Run, Route, Cheat, Hack, External, Game, Automate, Program">
     <meta name="author" content="Oryxbot">
 
@@ -19,7 +20,7 @@
         <meta property="og:title" content="@hasSection('title')@yield('title') - @endif{{ 'Oryxbot - ' . __('titles.main') }}" />
     @show
     @section('og:description')
-        <meta name="og:description" content="{{ __('meta.main_description') }}" />
+        <meta name="og:description" content="@yield('meta:description', __('meta.main_description'))" />
     @show
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="{{ LaravelLocalization::getCurrentLocale() }}" />

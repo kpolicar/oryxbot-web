@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('titles.usage'))
+@section('meta:description', __('meta.usage_description'))
 
 @section('hero')
     <x-main-hero>

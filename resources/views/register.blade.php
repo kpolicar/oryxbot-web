@@ -1,6 +1,7 @@
 @extends('layouts.hero')
 
 @section('title', __('titles.register'))
+@section('meta:description', __('meta.register_description'))
 
 @if (request('ref'))
     @section('og:title')
