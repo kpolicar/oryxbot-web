@@ -6,20 +6,8 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    public function Error(Request $request) {
-        $message = "An error has occurred during maging! The bot has stopped.";
-        $this->NotifyDiscord($request, $message);
-        $this->NotifyOneSignal($request, $message);
-    }
-
-    public function Runes(Request $request) {
-        $message = "You have run out of runes (" . $request->input('rune') . "). The bot has stopped.";
-        $this->NotifyDiscord($request, $message);
-        $this->NotifyOneSignal($request, $message);
-    }
-
-    public function Finished(Request $request) {
-        $message = "Your item is complete! The bot has finished maging.";
+    public function RunComplete(Request $request) {
+        $message = "Trade mission run has been completed successfully.";
         $this->NotifyDiscord($request, $message);
         $this->NotifyOneSignal($request, $message);
     }
