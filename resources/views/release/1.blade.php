@@ -32,7 +32,7 @@
 
         <div class="container mx-auto flex flex-col lg:flex-row pt-4 pb-12">
 
-            <div class="mx-auto flex flex-col w-full lg:w-3/5 p-6">
+            <div class="mx-auto flex flex-col w-full lg:w-3/5 p-6 px-4">
 
                 <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-200">What's new</h2>
                 <div class="w-full mb-4">
