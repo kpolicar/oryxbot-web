@@ -1,13 +1,7 @@
 <?php
 
-use App\ClientVersion;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\DiscordController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Middleware\Subscribed;
-use App\Http\Resources\ClientUser as ClientUserResource;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +20,9 @@ Route::prefix('/discord')->group(function () {
 });
 
 
-Route::middleware(['auth:api', 'throttle:3,1,notification', Subscribed::class])->prefix('/notify')->group(function () {
+Route::middleware(['auth:api', 'throttle:3,1,notification'])->prefix('/notify')->group(function () {
     Route::prefix('trademission')->group(function () {
-        Route::post('complete', [NotificationController::class, "RunComplete"]);
+        Route::post('complete', [ApiController::class, "NotifyRunComplete"]);
     });
 });
 

@@ -42,7 +42,7 @@ class EncryptApiResponse
             $response->header('Content-Type', 'text/plain');
             $response->prepare($request);
 
-        } else if ($response instanceof Response) {
+        } else if ($response instanceof Response && $response->getContent() !== "") {
             $message = $response->content();
             $encrypted = $this->crypt->encryptString($message);
             $response->setContent($encrypted);

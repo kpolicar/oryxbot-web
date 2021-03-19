@@ -4,22 +4,65 @@ namespace App\Http\Controllers;
 
 use App\ClientVersion;
 use App\Exceptions\ConfigMissingException;
+use App\Http\Middleware\EncryptApiResponse;
+use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
 use App\Http\Resources\ClientUser as ClientUserResource;
 
 class ApiController extends Controller
 {
-    public function Info(ClientVersion $versions) {
-        $last = $versions->latest();
+
+    public function __construct()
+    {
+        $this->middleware(Subscribed::class)
+            ->except(['Info', 'User']);
+        $this->middleware(EncryptApiResponse::class)
+            ->except(['Info']);
+    }
+
+
+    public function Info($code, ClientVersion $versions) {
+        $version = $versions->firstWhere('code', $code);
 
         return [
-            'name' => $last['name'],
-            'endpoint' => $last['code'],
-            'number' => $last['number'],
+            'name' => $version['name'],
+            'endpoint' => $version['code'],
+            'number' => $version['number'],
         ];
     }
 
     public function User(Request $request) {
         return new ClientUserResource($request->user());
+    }
+
+    public function NotifyRunComplete(Request $request) {
+        $message = "Trade mission run has been completed successfully.";
+        $this->NotifyDiscord($request, $message);
+        $this->NotifyOneSignal($request, $message);
+    }
+
+    private function NotifyOneSignal(Request $request, $message)
+    {
+        if ($request->user()->optin_web_notifications) {
+            \OneSignal::sendNotificationToExternalUser(
+                $message,
+                $request->user()->id,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null,
+            );
+        }
+    }
+
+    private function NotifyDiscord(Request $request, $message)
+    {
+        if ($request->user()->optin_discord_notifications) {
+            $content = "!notify {$request->user()->discord_id} \":bell: $message\"";
+            \Http::post(
+                config('discord.webhook_url'),
+                compact('content')
+            );
+        }
     }
 }
