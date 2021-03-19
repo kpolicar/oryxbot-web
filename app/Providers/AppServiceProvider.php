@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use App\Contracts\ApiEncrypter as ApiEncrypterContract;
+use Illuminate\Encryption\Encrypter;
 use Str;
 use App\ClientVersion;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +19,13 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->instance(ClientVersion::class, new ClientVersion);
+        $this->app->bind(ApiEncrypterContract::class, function () {
+            $key = config('app.api_key');
+            if (Str::startsWith($key, 'base64:')) {
+                $key = base64_decode(substr($key, 7));
+            }
+            return new Encrypter($key, config('app.cipher'));
+        });
     }
 
     /**

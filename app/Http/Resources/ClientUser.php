@@ -18,17 +18,10 @@ class ClientUser extends JsonResource
     public function toArray($request)
     {
         return [
-            'CXpD6X71WZhYsHf' => $this->email,
-            'email' => $this->email,
-
-            'i30jfVx9krmacQH' => $this->name,
-            'name' => $this->name,
-
-            'wVakGMaAnUQkCFZ' => $this->is_subscribed,
-            'is_subscribed' => $this->is_subscribed,
-
-            'Sw6mNjvR0HZofKj' => $this->on_free_trial,
-            'on_free_trial' => $this->on_free_trial,
+            'KEwTWbPyWmdjUKh' => $this->email,
+            'efteqXlZxvUNNvi' => $this->name,
+            'MVsdYkjeqDKCQBD' => $this->is_subscribed,
+            'uCdeLPhkzFyOSTE' => $this->on_free_trial,
         ];
     }
 }

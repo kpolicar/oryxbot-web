@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\EncryptApiResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::prefix('api/{version}')
                 ->where(['version' => 'v([0-9.]+(beta)?)'])
-                ->middleware('api')
+                ->middleware(['api', EncryptApiResponse::class])
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
