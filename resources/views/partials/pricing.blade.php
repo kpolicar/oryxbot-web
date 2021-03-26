@@ -51,7 +51,7 @@
                     <ul class="w-full text-center text-sm">
                         <li class="border-b py-4">{{ __('pricing.package_subscription_duration') }}</li>
                         <li class="border-b py-4">{{ __('pricing.package_feature_routes_default') }}</li>
-                        <li class="border-b py-4"><span class="line-through">{{ __('pricing.package_feature_routes_custom') }}</span>*</li>
+                        <li class="border-b py-4">{{ __('pricing.package_feature_routes_custom') }}</li>
                         <li class="border-b py-4"><span class="line-through">{{ __('pricing.package_feature_notifications') }}</span>*</li>
                     </ul>
                 </div>

@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'v0.2 - Release Notes')
+@section('title', 'v0.3 - Release Notes')
 @section('meta:description', __('meta.news_description'))
 
 
 @section('hero')
     <x-main-hero>
 
-        <h2 class="tracking-loose text-xl w-full font">v0.2 <span class="uppercase">Beta</span></h2>
+        <h2 class="tracking-loose text-xl w-full font">v0.3 <span class="uppercase">Beta</span></h2>
         <h1 class="mb-0 text-5xl font-bold leading-tight">Release notes</h1>
-        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">18th March 2021</h2>
+        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">27th March 2021</h2>
         <p class="leading-normal text-lg mb-2">
-            Welcome to the second release of Oryxbot!
+            Welcome to the third release of Oryxbot!
         </p>
         <p class="leading-normal text-lg mb-2">
             Below you will find important information regarding this version of the bot client.
@@ -44,20 +44,13 @@
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span class="pt-1">
-                                Updated for <strong class="text-gray-300">compatibility</strong> with Albion's <strong class="text-gray-300">Call to Arms update</strong>
+                                Updated for <strong class="text-gray-300">compatibility</strong> with Albion's <strong class="text-gray-300">latest patch</strong>
                             </span>
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span>
-                                Record and run <strong class="text-gray-300">custom routes</strong>
-                            </span>
-                        </li>
-                        <li class="py-3 flex">
-                            <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
-                            <span>
-                                Added <strong class="text-gray-300">notifications</strong> (discord, web)
-                                for <strong class="text-gray-300">route finished</strong> event
+                                Added <strong class="text-gray-300">default routes</strong> for all Albion cities
                             </span>
                         </li>
                     </ul>
@@ -70,28 +63,12 @@
                     <ul class="text-gray-500 p-6 px-4 -mx-2 rounded-lg">
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                            <span class="pt-1">
-                            Add <strong class="text-gray-300">default routes</strong> for other Albion cities
-                        </span>
-                        </li>
-                        <li class="py-3 flex">
-                            <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                            <span class="pt-1">Improve behavior for
-                            <strong class="text-gray-300">avoiding character from getting stuck</strong>
-                            between obstacles
-                        </span>
-                        </li>
-                        <li class="py-3 flex">
-                            <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
                             <span class="pt-1">Improve <strong class="text-gray-300">NPC interactions</strong></span>
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                            <span class="pt-1">
-                            Improve the <strong class="text-gray-300">running</strong> algorithm,
-                            <strong class="text-gray-300">reduce twitchy</strong> behavior,
-                            improve dealing with the game's <strong class="text-gray-300">FPS freezing</strong>
-                        </span>
+                            <span class="pt-1">Support running <strong class="text-gray-300">any</strong>
+                                of the trade mission types - not just 3 hearts</span>
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
@@ -100,7 +77,7 @@
                     </ul>
 
                 </div>
-                <x-limitations :restrictions="['in_foreground', 'full_screen', 'lymhurst_only',  'needs_assistance']" />
+                <x-limitations :restrictions="['in_foreground', 'full_screen', 'needs_assistance']" />
             </div>
 
             <a href="{{ route('release', ['version' => 'v0.1beta']) }}" class="flex items-center group" style="width: fit-content">
