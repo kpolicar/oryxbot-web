@@ -22,6 +22,7 @@ Route::prefix('/discord')->group(function () {
 
 Route::middleware(['auth:api', 'throttle:3,1,notification'])->prefix('/notify')->group(function () {
     Route::prefix('trademission')->group(function () {
+        Route::post('starting', [ApiController::class, "NotifyRunStarting"]);
         Route::post('complete', [ApiController::class, "NotifyRunComplete"]);
     });
 });

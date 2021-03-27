@@ -41,6 +41,16 @@ class ApiController extends Controller
         $this->NotifyOneSignal($request, $message);
     }
 
+    public function NotifyRunStarting(Request $request) {
+        $request->validate([
+           'title' => 'max:43',
+           'message' => 'max:100'
+        ]);
+        $message = $request->post('title')."\n".$request->post('message');
+        $this->NotifyDiscord($request, $message);
+        $this->NotifyOneSignal($request, $message);
+    }
+
     private function NotifyOneSignal(Request $request, $message)
     {
         if ($request->user()->optin_web_notifications) {
