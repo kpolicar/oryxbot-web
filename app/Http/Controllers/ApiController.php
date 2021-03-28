@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ClientVersion;
 use App\Exceptions\ConfigMissingException;
+use App\Http\Middleware\DecryptApiRequest;
 use App\Http\Middleware\EncryptApiResponse;
 use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class ApiController extends Controller
             ->except(['Info', 'User']);
         $this->middleware(EncryptApiResponse::class)
             ->except(['Info']);
+        $this->middleware(DecryptApiRequest::class)
+            ->only(['NotifyRunStarting']);
     }
 
 
@@ -46,7 +49,7 @@ class ApiController extends Controller
            'title' => 'max:43',
            'message' => 'max:100'
         ]);
-        $message = $request->post('title')."\n".$request->post('message');
+        $message = $request->post('title')." | ".$request->post('message');
         $this->NotifyDiscord($request, $message);
         $this->NotifyOneSignal($request, $message);
     }
