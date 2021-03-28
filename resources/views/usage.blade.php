@@ -84,7 +84,7 @@
                 </h3>
 
                 <p class="text-base text-justify">
-                    Make your way to the Lymhurst faction NPC and turn on faction mode.
+                    Make your way to the city's faction NPC and turn on faction mode.
                     Make sure you have enough carrying weight to accept the quest.
                 </p>
 
