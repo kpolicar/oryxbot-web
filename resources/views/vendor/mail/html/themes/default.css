@@ -28,7 +28,7 @@ blockquote {
 }
 
 a {
-    color: #b0b0b0;
+    color: #C2B795;
 }
 
 a img {
@@ -38,7 +38,7 @@ a img {
 /* Typography */
 
 h1 {
-    color: #000;
+    color: #25282D;
     font-size: 18px;
     font-weight: bold;
     margin-top: 0;
@@ -80,7 +80,7 @@ img {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 100%;
-    background-color: #212121;
+    background-color: #C2B795;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -103,7 +103,7 @@ img {
 }
 
 .header a {
-    color: #ebebeb;
+    color: #25282D;
     font-size: 19px;
     font-weight: bold;
     text-decoration: none;
@@ -122,9 +122,9 @@ img {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 100%;
-    background-color: #212121;
-    border-bottom: 1px solid #212121;
-    border-top: 1px solid #212121;
+    background-color: #C2B795;
+    border-bottom: 1px solid #C2B795;
+    border-top: 1px solid #C2B795;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -169,13 +169,13 @@ img {
 }
 
 .footer p {
-    color: #b0adc5;
+    color: #25282D;
     font-size: 12px;
     text-align: center;
 }
 
 .footer a {
-    color: #b0adc5;
+    color: #25282D;
     text-decoration: underline;
 }
 
@@ -231,11 +231,11 @@ img {
 
 .button-blue,
 .button-primary {
-    background-color: #000000;
-    border-bottom: 8px solid #000000;
-    border-left: 18px solid #000000;
-    border-right: 18px solid #000000;
-    border-top: 8px solid #000000;
+    background-color: #25282D;
+    border-bottom: 8px solid #25282D;
+    border-left: 18px solid #25282D;
+    border-right: 18px solid #25282D;
+    border-top: 8px solid #25282D;
 }
 
 .button-green,
@@ -259,12 +259,12 @@ img {
 /* Panels */
 
 .panel {
-    border-left: #000000 solid 4px;
+    border-left: #25282D solid 4px;
     margin: 21px 0;
 }
 
 .panel-content {
-    background-color: #212121;
+    background-color: #C2B795;
     color: #718096;
     padding: 16px;
 }

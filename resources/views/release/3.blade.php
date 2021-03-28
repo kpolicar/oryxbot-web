@@ -9,7 +9,7 @@
 
         <h2 class="tracking-loose text-xl w-full font">v0.3 <span class="uppercase">Beta</span></h2>
         <h1 class="mb-0 text-5xl font-bold leading-tight">Release notes</h1>
-        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">27th March 2021</h2>
+        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">28th March 2021</h2>
         <p class="leading-normal text-lg mb-2">
             Welcome to the third release of Oryxbot!
         </p>
@@ -53,6 +53,15 @@
                                 Added <strong class="text-gray-300">default routes</strong> for all Albion cities
                             </span>
                         </li>
+                        <li class="py-3 flex">
+                            <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
+                            <span>
+                                Improved recording <strong class="text-gray-300">custom routes</strong> - you
+                                now configure for what <strong class="text-gray-300">city</strong> you are running,
+                                what region is your <strong class="text-gray-300">destination</strong>
+                                and you can add a <strong class="text-gray-300">label</strong> to the route
+                            </span>
+                        </li>
                     </ul>
 
                     <h2 class="w-full my-2 text-5xl font-bold leading-tight text-gray-200 mt-10">Upcoming</h2>
@@ -61,6 +70,10 @@
                     </div>
 
                     <ul class="text-gray-500 p-6 px-4 -mx-2 rounded-lg">
+                        <li class="py-3 flex">
+                            <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
+                            <span class="pt-1">Add additional <strong class="text-gray-300">trade mission locations</strong></span>
+                        </li>
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
                             <span class="pt-1">Improve <strong class="text-gray-300">NPC interactions</strong></span>
@@ -80,7 +93,7 @@
                 <x-limitations :restrictions="['in_foreground', 'full_screen', 'needs_assistance']" />
             </div>
 
-            <a href="{{ route('release', ['version' => 'v0.1beta']) }}" class="flex items-center group" style="width: fit-content">
+            <a href="{{ route('release', ['version' => 'v0.2beta']) }}" class="flex items-center group" style="width: fit-content">
                 <i class="fas fa-backward text-3xl pr-4 transform group-hover:-translate-x-2 duration-100"></i>
                 <span class="group-hover:underline">
                 Check out the <strong class="text-gray-300">previous release notes</strong>
