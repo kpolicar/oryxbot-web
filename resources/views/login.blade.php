@@ -1,7 +1,18 @@
 @extends('layouts.hero')
 
-@section('title', __('titles.login'))
-@section('meta:description', __('meta.login_description'))
+@php($intendedUrl=session('url.intended'))
+@php($intended=$intendedUrl ? app('router')->getRoutes()->match(app('request')->create($intendedUrl))->getName() : null)
+
+@if ($intended == 'discord.link' && url()->previous() == $intendedUrl)
+    @section('head')
+        <meta name="robots" content="noindex">
+    @endsection
+
+    @section('title', __('titles.discord-link'))
+    @section('meta:description', __('meta.discord_link_description'))
+@else
+    @section('title', __('titles.login'))
+@endif
 
 
 @section('content')

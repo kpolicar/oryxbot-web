@@ -14,6 +14,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+        if ($request->routeIs('discord.link')) {
+            return route('login', ['signature' => $request->get('signature')]);
+        }
         if (! $request->expectsJson()) {
             return route('login');
         }
