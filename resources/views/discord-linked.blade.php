@@ -3,6 +3,9 @@
 @section('title', __('titles.discord-link'))
 @section('meta:description', __('meta.discord_link_description'))
 
+@section('head')
+    <meta name="robots" content="noindex">
+@endsection
 
 @section('content')
     <x-main-hero>
@@ -22,7 +25,8 @@
         </div>
 
         <p>
-            You have successfully connected Discord with your Oryxbot account. You should be receiving a message confirming
+            <strong>You have successfully connected Discord with your Oryxbot account.</strong><br>
+            You should be receiving a message confirming
             the successful link from the Oryxbot Discord Bot shortly.
         </p>
         <p>

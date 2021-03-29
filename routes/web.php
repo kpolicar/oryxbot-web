@@ -93,6 +93,10 @@ Route::group(
     });
 
     require_once 'fortify.php';
+
+    Route::view(LaravelLocalization::transRoute('routes.login').'/discord', 'discord-link')
+        ->middleware(['guest'])
+        ->name('login.discord');
 });
 
 Route::post(
