@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Events\UserSyncedWithDiscord;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\URL;
 
 class DiscordController extends Controller
 {
@@ -18,5 +20,16 @@ class DiscordController extends Controller
         $user = User::where('email', $request->input('email'))->first();
         $user->discord_id = $request->input('discord_id');
         $user->save();
+    }
+
+    public function Url(Request $request)
+    {
+        return URL::temporarySignedRoute(
+            'discord.link',
+            Carbon::now()->addMinutes(10),
+            [
+                'id' => $request->input('id'),
+            ]
+        );
     }
 }

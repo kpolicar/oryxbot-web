@@ -2,6 +2,8 @@
 
 use App\ClientVersion;
 use App\Http\Controllers\CashierWebhookController;
+use App\Http\Controllers\DiscordLinkNotificationController;
+use App\Http\Controllers\LinkDiscordController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\WebhookController;
 use App\Http\Middleware\HasNeverSubscribed;
@@ -83,6 +85,12 @@ Route::group(
     Route::get('/billing-portal', [StripeController::class, 'billing'])
         ->middleware(Subscribed::class)
         ->name('billing');
+
+    Route::prefix('discord')->group(function () {
+        Route::get(LaravelLocalization::transRoute('routes.discord-link'), [LinkDiscordController::class, '__invoke'])
+            ->middleware(['auth', 'signed', 'throttle:3,1'])
+            ->name('discord.link');
+    });
 
     require_once 'fortify.php';
 });

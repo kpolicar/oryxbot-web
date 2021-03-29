@@ -94,4 +94,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->onTrial();
     }
+
+    public function linkDiscord($id)
+    {
+        $this->forceFill([
+            'discord_id' => $id
+        ])->save();
+    }
 }

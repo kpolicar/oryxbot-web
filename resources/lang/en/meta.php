@@ -10,4 +10,5 @@ return [
     'home' => 'Home',
     'invite_description' => ':name is inviting you to check out Oryxbot, an Albion Online Trade Mission bot!',
     'invite_anonymous_description' => 'You have been invited to check out Oryxbot, an Albion Online Trade Mission bot!',
+    'discord_link_description' => 'Open this link to connect Discord with your Oryxbot account. Once successful, you will receive notifications during your botting sessions.',
 ];

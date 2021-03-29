@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/discord')->group(function () {
     Route::post('login', [DiscordController::class, "Login"]);
+
+    Route::post('link-generate', [DiscordController::class, 'Url'])
+        ->name('discord.send');
 });
 
 
