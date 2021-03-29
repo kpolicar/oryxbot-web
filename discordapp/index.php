@@ -4,6 +4,7 @@ use Discord\Parts\User\User;
 use Discord\Parts\WebSockets\MessageReaction;
 use Discord\WebSockets\Event;
 use DiscordApp\Controllers\MessageController;
+use DiscordApp\Controllers\ReactionController;
 use DiscordApp\Controllers\WebhookController;
 use Discord\Discord;
 use Discord\Parts\Channel\Channel;
@@ -46,8 +47,8 @@ $discord->on('ready', function (\Discord\Discord $discord) {
                 return;
             $reaction->message->deleteReaction(Message::REACT_DELETE_ID, $reaction->emoji, $reaction->user_id);
 
-            $discord->users->fetch($reaction->user_id)->then(function ($user) use ($guild) {
-                (new MessageController($guild))->replyWithInfoToUser($user);
+            $discord->users->fetch($reaction->user_id)->then(function ($user) use ($guild, $reaction) {
+                return (new ReactionController($guild))->handle($user, $reaction);
             });
         });
     });
