@@ -10,6 +10,7 @@ use App\Http\Middleware\HasNeverSubscribed;
 use App\Http\Middleware\HasntUsedFreeTrial;
 use App\Http\Middleware\NotSubscribed;
 use App\Http\Middleware\OnFreeTrial;
+use App\Http\Middleware\SetLocaleFromSession;
 use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -86,17 +87,17 @@ Route::group(
         ->middleware(Subscribed::class)
         ->name('billing');
 
-    Route::prefix('discord')->group(function () {
-        Route::get(LaravelLocalization::transRoute('routes.discord-link'), [LinkDiscordController::class, '__invoke'])
-            ->middleware(['auth', 'signed', 'throttle:3,1'])
-            ->name('discord.link');
-    });
-
     require_once 'fortify.php';
 
-    Route::view(LaravelLocalization::transRoute('routes.login').'/discord', 'discord-link')
+    Route::view(LaravelLocalization::transRoute('routes.login-discord'), 'discord-link')
         ->middleware(['guest'])
         ->name('login.discord');
+});
+
+Route::prefix('discord')->group(function () {
+    Route::get('link/{id}', [LinkDiscordController::class, '__invoke'])
+        ->middleware([SetLocaleFromSession::class, 'auth', 'signed', 'throttle:3,1'])
+        ->name('discord.link');
 });
 
 Route::post(

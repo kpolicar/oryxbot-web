@@ -7,6 +7,7 @@ return [
     'install' => 'install',
     'usage' => 'guide',
     'login' => 'login',
+    'login-discord' => 'login/discord',
     'logout' => 'logout',
     'register' => 'register',
     'forgot-password' => 'forgot-password',
@@ -15,6 +16,4 @@ return [
     'email-verify' => 'email/verify',
     'email-verify-id-hash' => 'email/verify/{id}/{hash}',
     'email-verification-notification' => 'email/resend',
-    'discord-link' => 'link/{id}',
-
 ];
