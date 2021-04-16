@@ -173,7 +173,7 @@
                         Run to <strong class="text-gray-300">bank</strong> to unbank the required items for the quest & bank any reward items from your inventory
                     </li>
                     <li class="my-2">
-                        Run back to <strong class="text-gray-300">quest NPC</strong> and accept the first trade mission quest
+                        Run back to <strong class="text-gray-300">quest NPC</strong> and accept the trade mission quest
                     </li>
                     <li class="my-2">
                         Run the <strong class="text-gray-300">trade mission</strong> route
@@ -189,8 +189,6 @@
                 <p class="text-base text-justify">
                     Should your character die along the way, the bot will stop working. Unfortunately, character
                     death is not yet handled on our part, but will definitely be implemented in future updates.
-                    The upcoming "Loadouts" will help quite a lot in this regard - so that the bot will be
-                    able to reequip the character with the necessary equipment and restart the quest.
                 </p>
             </div>
 
