@@ -26,7 +26,7 @@
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="password">
-                        {{ __('forms.form_password') }}
+                        {{ __('forms.recover_form_password') }}
                     </label>
                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('password') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                            id="password" name="password" type="password" placeholder="******">
@@ -38,7 +38,7 @@
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="password_confirmation">
-                        {{ __('forms.form_password_confirm') }}
+                        {{ __('forms.recover_form_password_confirm') }}
                     </label>
                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('password_confirmation') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                            id="password_confirmation" name="password_confirmation" type="password" placeholder="******">
@@ -50,7 +50,7 @@
 
             <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded py-4 px-8 shadow-lg"
                     type="submit">
-                {{ __('forms.form_submit') }}
+                {{ __('forms.recover_form_submit') }}
             </button>
         </form>
     </x-main-hero>
