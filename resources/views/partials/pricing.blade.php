@@ -52,7 +52,7 @@
                         <li class="border-b py-4">{{ __('pricing.package_subscription_duration') }}</li>
                         <li class="border-b py-4">{{ __('pricing.package_feature_routes_default') }}</li>
                         <li class="border-b py-4">{{ __('pricing.package_feature_routes_custom') }}</li>
-                        <li class="border-b py-4"><span class="line-through">{{ __('pricing.package_feature_notifications') }}</span>*</li>
+                        <li class="border-b py-4">{{ __('pricing.package_feature_notifications') }}</li>
                     </ul>
                 </div>
                 @php($promoCode = config('pricing.trade_mission_bot.promo'))
@@ -97,8 +97,6 @@
 
         </div>
     </div>
-
-    <p class="w-full my-2 leading-tight text-center text-gray-200">* {{ __('pricing.package_feature_in_development') }}</p>
 
 
 </section>
