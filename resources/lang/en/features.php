@@ -12,8 +12,8 @@ return [
     'updates' => 'Regular updates',
     'updates_details' => 'Oryxbot is actively maintained and improved. We play Albion too, thus we are committed to make Oryxbot the best it can be - for you and for us!',
 
-    'profitable' => 'Profit',
-    'profitable_details' => 'Stop going through the grind that is Albion Online. Your time is worth more. Let Oryxbot make your fortune while you do the fun stuff.',
+    'profitable' => 'Profitable',
+    'profitable_details' => 'Stop going through the grind that is Albion Online. Make up to ≈ 750k silver per hour depending on how many hearts you\'re moving!',
 
     'scriptless' => 'Scriptless',
     'scriptless_details' => 'You don\'t have to rely on foreign scripts to get the job done. Everything is built in-house and simply works!',

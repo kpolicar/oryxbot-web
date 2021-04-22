@@ -50,6 +50,6 @@ class AppServiceProvider extends ServiceProvider
 
         $currentVersion = $this->app[ClientVersion::class]->latest();
         \View::share('download_password', "oryxbot");
-        \View::share('download_asset', "storage/Oryxbot_{$currentVersion['code']}_patch1.zip");
+        \View::share('download_asset', "storage/Oryxbot_{$currentVersion['code']}.zip");
     }
 }
