@@ -28,6 +28,7 @@ class StripeController extends Controller
             ->allowPromotionCodes()
             ->checkout(config('pricing.trade_mission_bot.stripe_id'), [
             'mode' => 'subscription',
+            'payment_method_types' => ['card'],
             'success_url' => route('profile', ['checkout' => true]),
             'cancel_url' => route('profile', ['checkout' => false]),
         ])->asStripeCheckoutSession();
@@ -38,6 +39,7 @@ class StripeController extends Controller
             ->allowPromotionCodes()
             ->checkout(config('pricing.trade_mission_bot.stripe_id'), [
             'mode' => 'subscription',
+            'payment_method_types' => ['card'],
             'subscription_data' => [
                 'trial_period_days' => config('pricing.trade_mission_bot.trial_period_days')
             ],

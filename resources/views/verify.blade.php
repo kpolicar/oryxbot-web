@@ -33,7 +33,7 @@
 
             <form action="{{ route('verification.send') }}" method="POST">
                 @csrf
-                <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded py-4 px-8 mt-8 shadow-lg"
+                <button class="mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 mt-8 shadow-lg"
                         type="submit">
                     {{ __('forms.verify_action') }}
                 </button>
@@ -46,12 +46,12 @@
             <p>
                 {{ __('forms.verify_instructions_complete') }}
             </p>
-            <a href="{{ route('profile') }}" class="inline-block mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded py-4 px-8 mt-8 shadow-lg">
+            <a href="{{ route('profile') }}" class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 mt-8 shadow-lg">
                 {{ __('forms.verify_action_back') }}
             </a>
         @endif
 
-        <p class="text-gray-400 text-sm mt-4">
+        <p class="text-gray-700 text-sm mt-4">
             @section('support_email')
                 <a href="mailto:support@oryxbot.com" class="font-bold">support@oryxbot.com</a>
             @endsection

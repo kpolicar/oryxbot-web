@@ -39,9 +39,15 @@ class ApiController extends Controller
     }
 
     public function NotifyRunComplete(Request $request) {
+        $url = route('profile');
         $message = "Trade mission run has been completed successfully.";
-        $this->NotifyDiscord($request, $message);
-        $this->NotifyOneSignal($request, $message);
+        if ($request->user()->on_free_trial) {
+            $message .= "\nSince your account is on free trial the bot has stopped!";
+            $message .= "\nSubscribe now to run the bot uninterrupted.";
+        }
+
+        $this->NotifyDiscord($request, "$message\n$url");
+        $this->NotifyOneSignal($request, $message, $url);
     }
 
     public function NotifyRunStarting(Request $request) {
@@ -54,13 +60,13 @@ class ApiController extends Controller
         $this->NotifyOneSignal($request, $message);
     }
 
-    private function NotifyOneSignal(Request $request, $message)
+    private function NotifyOneSignal(Request $request, $message, $url=null)
     {
         if ($request->user()->optin_web_notifications) {
             \OneSignal::sendNotificationToExternalUser(
                 $message,
                 $request->user()->id,
-                $url = null,
+                $url,
                 $data = null,
                 $buttons = null,
                 $schedule = null,
