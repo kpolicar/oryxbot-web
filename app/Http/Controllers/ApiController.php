@@ -20,7 +20,7 @@ class ApiController extends Controller
         $this->middleware(EncryptApiResponse::class)
             ->except(['Info']);
         $this->middleware(DecryptApiRequest::class)
-            ->only(['NotifyRunStarting', 'NotifyRunIdle']);
+            ->only(['NotifyRunStarting']);
     }
 
 
@@ -60,12 +60,8 @@ class ApiController extends Controller
         $this->NotifyOneSignal($request, $message);
     }
 
-    public function NotifyRunIdle(Request $request) {
-        $request->validate([
-            'idle_timeout' => 'required|integer',
-        ]);
-        $idleInSeconds = (int)($request->post('idle_timeout') / 1000);
-        $message = 'Your character has been idle for at least '.$idleInSeconds.' seconds.';
+    public function NotifyRunStuck(Request $request) {
+        $message = 'Your character appears to have gotten stuck! The bot is now paused!';
         $this->NotifyDiscord($request, $message);
         $this->NotifyOneSignal($request, $message);
     }

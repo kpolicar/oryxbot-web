@@ -27,7 +27,7 @@ Route::middleware(['auth:api', 'throttle:3,1,notification'])->prefix('/notify')-
     Route::prefix('trademission')->group(function () {
         Route::post('starting', [ApiController::class, "NotifyRunStarting"]);
         Route::post('complete', [ApiController::class, "NotifyRunComplete"]);
-        Route::post('idle', [ApiController::class, "NotifyRunIdle"]);
+        Route::post('stuck', [ApiController::class, "NotifyRunStuck"]);
     });
 });
 
