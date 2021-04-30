@@ -126,23 +126,31 @@
                             F2
                         </span>
                         <span class="ml-4">
-                            Start/Stop bot
+                            Start/Stop trade mission bot
                         </span>
                     </li>
                     <li class="my-6">
                         <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
-                            F3
+                            F5
                         </span>
                         <span class="ml-4">
                             Open/Close context menu
                         </span>
                     </li>
                     <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-10 rounded">
-                            Space
+                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
+                            F10
                         </span>
                         <span class="ml-4">
                             Pause/Resume bot
+                        </span>
+                    </li>
+                    <li class="my-6">
+                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-10 rounded">
+                            Insert
+                        </span>
+                        <span class="ml-4">
+                            Show/Hide overlay UI
                         </span>
                     </li>
                 </ul>
