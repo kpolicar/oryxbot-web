@@ -63,6 +63,12 @@
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span>
+                                Send notification for when the <strong class="text-gray-300">bot is stuck</strong>
+                            </span>
+                        </li>
+                        <li class="py-3 flex">
+                            <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
+                            <span>
                                 Modified <strong class="text-gray-300">hotkeys</strong>
                                 - take a look at <span class="text-gray-300 underline"><a href="{{ route('usage') }}#hotkeys">Usage</a></span>
                             </span>

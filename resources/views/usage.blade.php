@@ -138,7 +138,7 @@
                         </span>
                     </li>
                     <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
+                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-4 rounded">
                             F10
                         </span>
                         <span class="ml-4">
@@ -146,7 +146,7 @@
                         </span>
                     </li>
                     <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-10 rounded">
+                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
                             Insert
                         </span>
                         <span class="ml-4">
