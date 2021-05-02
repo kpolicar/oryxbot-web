@@ -2,6 +2,8 @@
 
 @section('title', __('titles.forgot'))
 
+@php($formElementId="forgot-form")
+@include('partials/captcha', compact('formElementId'))
 
 @section('content')
     <x-main-hero>
@@ -19,7 +21,7 @@
         </div>
 
         @if (!session('status'))
-            <form class="w-full" method="POST" action="{{ route('password.email') }}">
+            <form class="w-full" method="POST" action="{{ route('password.email') }}" id="{{ $formElementId }}">
                 @csrf
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">
@@ -35,8 +37,8 @@
                     </div>
                 </div>
 
-                <button class="mx-auto lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 shadow-lg group"
-                        type="submit">
+                <button class="g-recaptcha mx-auto lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 shadow-lg group"
+                        data-sitekey="{{ config('captcha.sitekey') }}" data-callback="onFormSubmit">
                     {{ __('forms.forgot_form_submit') }}
                     <i class="fas fa-angle-right text-lg ml-2 -mr-2 transform group-hover:translate-x-2 group-hover:translate-x-2 duration-100"></i>
                 </button>

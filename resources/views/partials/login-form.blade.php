@@ -1,13 +1,5 @@
 @php($formElementId="login-form")
-
-@section('head')
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-        function onFormSubmit(token) {
-            document.getElementById("{{ $formElementId }}").submit();
-        }
-    </script>
-@endsection
+@include('partials/captcha', compact('formElementId'))
 
 <form class="w-full" method="POST" action="{{  \LaravelLocalization::localizeURL('/login') }}" id="{{ $formElementId }}">
     @csrf

@@ -3,9 +3,9 @@
 @section('title', __('titles.discord-link'))
 @section('meta:description', __('meta.discord_link_description'))
 
-@section('head')
+@push('head')
     <meta name="robots" content="noindex">
-@endsection
+@endpush
 
 @section('content')
     <x-main-hero>

@@ -41,7 +41,7 @@ if (Features::enabled(Features::resetPasswords())) {
         ->name('password.request');
 
     Route::post(LaravelLocalization::transRoute('routes.forgot-password'), [PasswordResetLinkController::class, 'store'])
-        ->middleware(['guest'])
+        ->middleware(['guest', Captcha::class])
         ->name('password.email');
 
     Route::get(LaravelLocalization::transRoute('routes.reset-password-token'), [NewPasswordController::class, 'create'])
@@ -60,7 +60,7 @@ if (Features::enabled(Features::registration())) {
         ->name('register');
 
     Route::post(LaravelLocalization::transRoute('routes.register'), [RegisteredUserController::class, 'store'])
-        ->middleware(['guest']);
+        ->middleware(['guest', Captcha::class]);
 }
 
 // Email Verification...

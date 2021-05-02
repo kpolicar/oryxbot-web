@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
 
-    @yield('head')
+    @stack('head')
     @include('partials.onesignal')
 </head>
 
