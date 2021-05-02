@@ -26,7 +26,7 @@ class Captcha implements Rule
      */
     public function passes($attribute, $value)
     {
-        $response = Http::post(config('captcha.verifyurl'), [
+        $response = Http::asForm()->post(config('captcha.verifyurl'), [
             'secret' => config('captcha.secret'),
             'response' => $value,
             'remoteip' => $this->ipAddress,

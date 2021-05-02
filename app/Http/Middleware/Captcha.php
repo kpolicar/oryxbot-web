@@ -17,9 +17,11 @@ class Captcha
      */
     public function handle(Request $request, Closure $next)
     {
-        $request->validate([
-           'g-recaptcha-response' => new CaptchaRule($request->ip())
-        ]);
+        if (config('app.env') == 'production') {
+            $request->validate([
+                'g-recaptcha-response' => new CaptchaRule($request->ip())
+            ]);
+        }
         return $next($request);
     }
 }
