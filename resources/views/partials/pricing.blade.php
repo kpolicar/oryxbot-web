@@ -63,7 +63,7 @@
                             €15
                         </div>
                         <div class="mb-2 text-4xl">
-                            €5
+                            €10
                         </div>
                         <div class="text-sm">first {{ __('common.month') }}</div>
                         @else
