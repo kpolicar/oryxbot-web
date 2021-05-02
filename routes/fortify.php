@@ -26,8 +26,8 @@ $limiter = config('fortify.limiters.login');
 
 Route::post(LaravelLocalization::transRoute('routes.login'), [AuthenticatedSessionController::class, 'store'])
     ->middleware(array_filter([
-        Captcha::class,
         'guest',
+        Captcha::class,
         $limiter ? 'throttle:'.$limiter : null,
     ]));
 

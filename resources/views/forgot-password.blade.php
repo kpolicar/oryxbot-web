@@ -37,6 +37,10 @@
                     </div>
                 </div>
 
+                @error('g-recaptcha-response')
+                    <p class="text-red-700 text-xs italic">{{ $message }}</p>
+                @enderror
+
                 <button class="g-recaptcha mx-auto lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded py-4 px-8 shadow-lg group"
                         data-sitekey="{{ config('captcha.sitekey') }}" data-callback="onFormSubmit">
                     {{ __('forms.forgot_form_submit') }}
