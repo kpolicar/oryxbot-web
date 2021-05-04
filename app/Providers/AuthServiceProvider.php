@@ -9,6 +9,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
+use Laravel\Passport\RefreshToken;
+use Laravel\Passport\Token;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,11 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::tokensExpireIn(now()->addMinutes(2));
         Passport::refreshTokensExpireIn(now()->addMinutes(5));
+
+        Token::creating(function (Token $token) {
+            if (!$token->name) {
+                $token->name = request()->post('_passport_token_name');
+            }
+        });
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
 use DB;
 use Laravel\Passport\Events\AccessTokenCreated;
 
@@ -16,11 +17,37 @@ class EnforceUniqueUserAccessToken
      */
     public function handle(AccessTokenCreated $event)
     {
-        DB::table('oauth_access_tokens')
-            ->where('user_id', $event->userId)
+        $user = User::find($event->userId);
+        if (!$user)
+            return;
+
+        $token = $user->tokens()->firstWhere('id', $event->tokenId);
+        if ($token->name == null) {
+            $user->tokens()
+                ->where('revoked', 0)
+                ->where('id', '!=', $event->tokenId)
+                ->update([
+                    'revoked' => true
+                ]);
+            return;
+        }
+
+        $skip = max($user->subscription_instances-1, 0);
+        $tokensToDelete = $user->tokens()
+            ->where('revoked', 0)
             ->where('id', '!=', $event->tokenId)
-            ->update([
-                'revoked' => 1
-            ]);
+            ->get()
+            ->groupBy('name')
+            ->skip($skip);
+
+
+        if (!empty($tokensToDelete)) {
+            $user->tokens()
+                ->where('revoked', 0)
+                ->whereIn('name', $tokensToDelete->keys())
+                ->update([
+                    'revoked' => true
+                ]);
+        }
     }
 }

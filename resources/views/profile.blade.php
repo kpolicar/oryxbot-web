@@ -27,6 +27,11 @@
                     {{ __('profile.subscribed_false') }}
                 @endif
             </p>
+            @if ($user->subscription_instances > 1)
+                <p class="leading-normal text-2xl -mt-8">
+                        You are permitted to run <strong>{{ $user->subscription_instances }}</strong> instances<br class="mb-2">
+                </p>
+            @endif
 
             <x-billing-button class="inline-block cursor-pointer lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded mt-6 mb-2 py-4 px-8 shadow-lg group">
                 @if ($user->subscribedToTradeMissionBot())

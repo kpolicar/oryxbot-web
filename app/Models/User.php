@@ -46,6 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'subscribed_to' => 'datetime',
     ];
 
     protected static function boot()
@@ -87,7 +88,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getIsSubscribedAttribute()
     {
-        return $this->subscribed();
+        return $this->subscribed() || !!optional($this->subscribed_to)->isAfter($this->freshTimestamp());
     }
 
     public function getOnFreeTrialAttribute()
