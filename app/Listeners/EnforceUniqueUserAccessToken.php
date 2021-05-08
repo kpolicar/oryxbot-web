@@ -32,7 +32,7 @@ class EnforceUniqueUserAccessToken
             return;
         }
 
-        $skip = max(optional($user->subscription())->quantity - 1, 0);
+        $skip = max($user->subscription_instances-1, 0);
         $tokensToDelete = $user->tokens()
             ->where('revoked', 0)
             ->where('id', '!=', $event->tokenId)
