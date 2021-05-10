@@ -23,12 +23,14 @@ Route::prefix('/discord')->group(function () {
 });
 
 
-Route::middleware(['auth:api', 'throttle:3,1,notification'])->prefix('/notify')->group(function () {
-    Route::prefix('trademission')->group(function () {
-        Route::post('starting', [ApiController::class, "NotifyRunStarting"]);
-        Route::post('complete', [ApiController::class, "NotifyRunComplete"]);
-        Route::post('stuck', [ApiController::class, "NotifyRunStuck"]);
-    });
+Route::middleware(['auth:api', 'throttle:notification_rate_limit_per_minute,1,notification'])
+    ->prefix('/notify')
+    ->group(function () {
+        Route::prefix('trademission')->group(function () {
+            Route::post('starting', [ApiController::class, "NotifyRunStarting"]);
+            Route::post('complete', [ApiController::class, "NotifyRunComplete"]);
+            Route::post('stuck', [ApiController::class, "NotifyRunStuck"]);
+        });
 });
 
 Route::middleware('auth:api')->get('/user', [ApiController::class, 'User']);

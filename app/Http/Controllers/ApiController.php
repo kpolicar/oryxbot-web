@@ -39,15 +39,15 @@ class ApiController extends Controller
     }
 
     public function NotifyRunComplete(Request $request) {
-        $url = route('profile');
         $message = "Trade mission run has been completed successfully.";
         if ($request->user()->on_free_trial) {
+            $url = route('profile');
             $message .= "\nSince your account is on free trial the bot has stopped!";
-            $message .= "\nSubscribe now to run the bot uninterrupted.";
+            $message .= "\nSubscribe now to run the bot uninterrupted.\n$url";
         }
 
-        $this->NotifyDiscord($request, "$message\n$url");
-        $this->NotifyOneSignal($request, $message, $url);
+        $this->NotifyDiscord($request, $message);
+        $this->NotifyOneSignal($request, $message, isset($url) ? $url : null);
     }
 
     public function NotifyRunStarting(Request $request) {
