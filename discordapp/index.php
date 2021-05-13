@@ -46,6 +46,7 @@ $discord->on('ready', function (\Discord\Discord $discord) {
             if ($reaction->message_id != REACTION_MESSAGE_ID)
                 return;
             $reaction->message->deleteReaction(Message::REACT_DELETE_ID, $reaction->emoji, $reaction->user_id);
+            $reaction->message->react($reaction->emoji);
 
             $discord->users->fetch($reaction->user_id)->then(function ($user) use ($guild, $reaction) {
                 return (new ReactionController($guild))->handle($user, $reaction);

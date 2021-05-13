@@ -7,7 +7,7 @@ use App\Models\User;
 
 class UserObserver
 {
-    public function changing(User $user)
+    public function saving(User $user)
     {
         if ($user->wasChanged('discord_id') &&
             $user->discord_id &&
@@ -16,6 +16,7 @@ class UserObserver
             $user->optin_discord_notifications = true;
         }
     }
+
     public function updated(User $user)
     {
         if ($user->wasChanged('discord_id')) {
