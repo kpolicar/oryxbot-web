@@ -31,8 +31,8 @@
             If you have not yet installed Oryxbot and are encountering issues, please refer to the
             <a class="font-bold text-gray-800 hover:underline" href="{{ route('install') }}">Installation instructions</a>.
         </p>
-        <a href="{{ asset($download_asset) }}"
-           download
+        <a href="{{ route('download') }}"
+           rel="nofollow"
            class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
             {{ __('common.download') }}
         </a>

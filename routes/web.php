@@ -37,6 +37,12 @@ Route::group(
         return view('welcome');
     })->name('home');
 
+    Route::middleware('auth')
+        ->get(LaravelLocalization::transRoute('routes.download'), function (ClientVersion $version) {
+            $currentVersion = $version->latest();
+            return redirect(asset("storage/Oryxbot_{$currentVersion['code']}_patch2.zip"));
+        })->name('download');
+
     Route::get(LaravelLocalization::transRoute('routes.profile'), function (Request $request) {
         $message = $request->getSession()->get('notification');
         $action = "";

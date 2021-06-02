@@ -47,9 +47,6 @@ class AppServiceProvider extends ServiceProvider
             \URL::forceScheme('https');
         }
         \URL::forceRootUrl(\Config::get('app.url'));
-
-        $currentVersion = $this->app[ClientVersion::class]->latest();
         \View::share('download_password', "oryxbot");
-        \View::share('download_asset', "storage/Oryxbot_{$currentVersion['code']}_patch2.zip");
     }
 }

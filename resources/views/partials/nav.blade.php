@@ -88,7 +88,7 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                 </li>
             </ul>
             <div class="py-4">
-                <a id="navAction" href="{{ asset($download_asset) }}" download class="mx-auto lg:mx-0 lg:mx-2 hover:underline bg-black text-white font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">
+                <a id="navAction" href="{{ route('download') }}" rel="nofollow" class="mx-auto lg:mx-0 lg:mx-2 hover:underline bg-black text-white font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">
                     {{ __('common.download') }}
                 </a>
             </div>

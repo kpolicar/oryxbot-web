@@ -27,8 +27,8 @@
         {!! __('engage.subheading') !!}
     </h4>
 
-    <a href="{{ asset($download_asset) }}"
-       download
+    <a href="{{ route('download') }}"
+       rel="nofollow"
         class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
         {{ __('engage.download') }}
     </a>
