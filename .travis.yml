@@ -18,7 +18,7 @@ before_script:
 script:
   - vendor/bin/phpunit
   - ssh -i ./deploykey root@oryxbot.com "pkill -f 'php /var/www/html/discordapp/index.php' >> /dev/null 2>&1" || true
-  - ssh -i ./deploykey root@oryxbot.com "cd /var/www/html && git fetch origin prod && git reset --hard origin/prod && git pull origin prod && composer install --no-interaction && npm install --no-interaction && npm run production"
+  - ssh -i ./deploykey root@oryxbot.com "cd /var/www/html && git fetch origin prod && git reset --hard origin/prod && git pull origin prod && composer install --no-interaction && npm install --no-interaction && npm run production && php artisan config:cache && php artisan view:cache"
   - ssh -i ./deploykey root@oryxbot.com "(echo '* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1')|crontab"
   - ssh -i ./deploykey root@oryxbot.com "nohup php /var/www/html/discordapp/index.php > /dev/null 2>&1 &"
 before_install:
