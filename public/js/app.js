@@ -20175,10 +20175,11 @@ notifications.forEach(function (notification) {
 document.addEventListener('download', function () {
   return document.querySelector('#download-notification').classList.remove('hidden');
 });
-var downloadLinks = document.querySelectorAll("a[download]:not([data-external])");
+var downloadLinks = document.querySelectorAll("a[data-download]:not([data-external])");
 downloadLinks.forEach(function (downloadLink) {
-  downloadLink.addEventListener('click', function () {
-    return document.dispatchEvent(new Event('download'));
+  downloadLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.dispatchEvent(new Event('download'));
   });
 });
 var dropdowns = document.querySelectorAll("[data-dropdown]");

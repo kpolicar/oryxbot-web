@@ -14,6 +14,7 @@
         </div>
         <p class="leading-normal text-2xl mb-8">{{ __('messages.subheading') }}</p>
         <a href="{{ route('download') }}"
+           data-download
            rel="nofollow"
            class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg">
             {{ __('common.download') }}

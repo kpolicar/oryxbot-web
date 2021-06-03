@@ -15,9 +15,12 @@ document.addEventListener('download', () =>
     document.querySelector('#download-notification').classList.remove('hidden'))
 
 
-let downloadLinks = document.querySelectorAll("a[download]:not([data-external])")
+let downloadLinks = document.querySelectorAll("a[data-download]:not([data-external])")
 downloadLinks.forEach(downloadLink => {
-    downloadLink.addEventListener('click', () => document.dispatchEvent(new Event('download')))
+    downloadLink.addEventListener('click', e => {
+        e.preventDefault();
+        document.dispatchEvent(new Event('download'))
+    })
 })
 
 let dropdowns = document.querySelectorAll("[data-dropdown]")
