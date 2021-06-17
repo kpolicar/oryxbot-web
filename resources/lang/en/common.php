@@ -17,6 +17,7 @@ return [
     'purchase' => 'Purchase',
     'purchase_notverified' => 'You must verify your email address before purchasing subscription',
     'manage' => 'Manage',
+    'terms' => 'Terms of Service',
     'download' => 'Download',
     'month' => 'month',
     'cancel' => 'Cancel',

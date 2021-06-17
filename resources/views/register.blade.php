@@ -42,7 +42,7 @@
                         {{ __('forms.name') }}
                     </label>
                     <input class="appearance-none block w-full bg-white text-gray-700 border @error('name') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                           id="name" name="name" type="text" placeholder="{{ __('forms.name_example') }}">
+                           id="name" name="name" value="{{ old('name') }}" type="text" placeholder="{{ __('forms.name_example') }}">
 
                     @error('name')
                     <p class="text-red-700 text-xs italic">{{ $message }}</p>
@@ -54,14 +54,14 @@
                     </label>
 
                     <input class="appearance-none block w-full bg-white text-gray-700 border @error('email') border-red-700 @enderror border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                           id="email" name="email" type="email" placeholder="{{ __('forms.email_example') }}">
+                           id="email" name="email" value="{{ old('email') }}" type="email" placeholder="{{ __('forms.email_example') }}">
                     @error('email')
                     <p class="text-red-700 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
 
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-wrap -mx-3">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="password">
                         {{ __('forms.password') }}
@@ -70,6 +70,28 @@
                            id="password" name="password" type="password" placeholder="******">
                     @error('password')
                     <p class="text-red-700 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="flex flex-wrap my-3 -mx-3">
+                <div class="w-full px-3">
+                    <div class="flex items-center md:justify-start justify-center">
+                        <input class="focus:bg-white bg-gray-200 rounded text-gray-700 focus:text-gray-800"
+                               id="terms"
+                               name="terms"
+                               type="checkbox">
+                        <label class="uppercase tracking-wide text-xs font-bold mx-2" for="terms">
+                            @section('terms_link')
+                                <a href="{{ route('terms') }}" target="_blank" class="font-bold text-gray-700 hover:underline">
+                                    {{ __('common.terms') }}
+                                </a>
+                            @endsection
+                            {!! __('forms.terms_link', ['link' => View::getSection('terms_link')]) !!}
+                        </label>
+                    </div>
+                    @error('terms')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
             </div>

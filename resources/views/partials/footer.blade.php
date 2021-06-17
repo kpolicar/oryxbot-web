@@ -37,8 +37,14 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                 </svg> ORYXBOT
                 <small class="text-sm uppercase">Beta</small>
             </a>
+            <p class="text-gray-700 px-3 text-center md:text-right border-r-0 border-b md:border-r md:border-b-0">
+                {{ __('messages.copyright', ['year' => now()->format('Y')]) }}<br>
+                <a href="{{ route('terms') }}" class="text-gray-600 hover:underline">
+                    {{ __('common.terms') }}
+                </a><br>
+            </p>
             <p class="text-gray-700 px-3">
-                {{ __('messages.copyright') }}<br>
+                {{ __('messages.albion_trademark') }}<br>
                 {{ __('messages.affiliation') }}
             </p>
         </div>

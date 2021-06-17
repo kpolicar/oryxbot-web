@@ -97,7 +97,11 @@ Route::group(
     Route::view(LaravelLocalization::transRoute('routes.login-discord'), 'discord-link')
         ->middleware(['guest'])
         ->name('login.discord');
+
+    Route::view('terms', 'terms')
+        ->name('terms');
 });
+
 
 Route::prefix('discord')->group(function () {
     Route::get('link/{id}', [LinkDiscordController::class, '__invoke'])
