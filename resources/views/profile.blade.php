@@ -33,6 +33,12 @@
                 </p>
             @endif
 
+            @if ($credit = Auth::user()->stripe_balance)
+                <p class="leading-normal uppercase text-base text-gray-400 -mt-8 mb-8">
+                    <b>€{{ number_format(-$credit/100, 2) }}</b> <small>{{ __('profile.credit') }}</small>
+                </p>
+            @endif
+
             <x-billing-button class="inline-block cursor-pointer lg:mx-0 bg-gray-900 text-gray-200 font-bold rounded mt-6 mb-2 py-4 px-8 shadow-lg group">
                 @if ($user->subscribedToTradeMissionBot())
                     {{ __('profile.subscribed_manage') }}
