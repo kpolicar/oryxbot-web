@@ -2,12 +2,9 @@
 
 use App\ClientVersion;
 use App\Http\Controllers\CashierWebhookController;
-use App\Http\Controllers\DiscordLinkNotificationController;
 use App\Http\Controllers\LinkDiscordController;
 use App\Http\Controllers\StripeController;
-use App\Http\Controllers\WebhookController;
 use App\Http\Middleware\HasNeverSubscribed;
-use App\Http\Middleware\HasntUsedFreeTrial;
 use App\Http\Middleware\NotSubscribed;
 use App\Http\Middleware\OnFreeTrial;
 use App\Http\Middleware\SetLocaleFromSession;
@@ -26,6 +23,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::domain('dashboard.'.config('app.domain'))
+    ->middleware('auth')
+    ->group(function () {
+    Route::get('/', function () {
+        return 'yes';
+    })->name('dashboard');
+});
 
 Route::group(
     [
