@@ -64,15 +64,6 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                 </li>
                 <li class="xl:mr-3 m-1">
                     @auth
-                        <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2" href="{{ route('profile') }}">{{ __('common.profile') }}</a>
-                    @endauth
-
-                    @guest
-                        <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2" href="{{ route('login') }}">{{ __('common.login') }}</a>
-                    @endguest
-                </li>
-                <li class="xl:mr-3 m-1">
-                    @auth
                         <form class="m-0" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit"
@@ -88,8 +79,17 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                 </li>
             </ul>
             <div class="py-4">
-                <a id="navAction" href="{{ route('download') }}" data-download rel="nofollow" class="mx-auto lg:mx-0 lg:mx-2 hover:underline bg-black text-white font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">
-                    {{ __('common.download') }}
+                <a id="navAction"
+                   href="{{ Auth::check() ? route('download') : route('login') }}"
+                   rel="nofollow"
+                   class="mx-auto lg:mx-0 lg:mx-2 bg-black text-white font-bold rounded mt-4 lg:mt-0 py-2 px-4 pr-6 rounded-full shadow opacity-75 hover:opacity-100 hover:bg-gray-900 transition duration-300 group">
+                    @auth
+                        {{ __('common.dashboard') }}
+                    @endauth
+                    @guest
+                        {{ __('common.login') }}
+                    @endguest
+                    <i class="fas fa-angle-right text-lg ml-2 -mr-2 transform group-hover:translate-x-2 duration-100"></i>
                 </a>
             </div>
         </div>

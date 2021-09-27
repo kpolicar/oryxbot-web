@@ -3,6 +3,7 @@
 return [
     'menu' => 'Menu',
     'home' => 'Home',
+    'dashboard' => 'Dashboard',
     'installation' => 'Installation',
     'usage' => 'Usage',
     'whats_new' => 'What\'s new',
