@@ -34,7 +34,7 @@
             @endif
 
             @if ($credit = Auth::user()->stripe_balance)
-                <p class="leading-normal uppercase text-base text-gray-400 -mt-8 mb-8">
+                <p class="leading-normal uppercase font-bold">
                     <b>€{{ number_format(-$credit/100, 2) }}</b> <small>{{ __('profile.credit') }}</small>
                 </p>
             @endif

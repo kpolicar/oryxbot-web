@@ -15,6 +15,7 @@ return [
 
     'details' => 'Details',
 
+    'credit' => 'Credit',
     'referral' => 'Referral link',
     'referral_details' => 'the referral system is a work in progress and does not grant any rewards just yet',
 
