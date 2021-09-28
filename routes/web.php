@@ -24,97 +24,95 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::domain('dashboard.'.config('app.domain'))
-    ->middleware('auth')
-    ->group(function () {
-    Route::get('/', function () {
-        return 'yes';
-    })->name('dashboard');
+Route::get('/das', function () {
+    \App\Events\ExampleEvent::dispatch();
 });
 
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function() {
+Route::domain(config('app.domain'))->group(function () {
+    Route::group(
+        [
+            'prefix' => LaravelLocalization::setLocale(),
+            'middleware' => [ 'localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        ], function() {
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('home');
+        Route::get('/', function () {
+            return view('welcome');
+        })->name('home');
 
-    Route::middleware('auth')
-        ->get(LaravelLocalization::transRoute('routes.download'), function (ClientVersion $version) {
-            return redirect()->home();
-        })->name('download');
+        Route::middleware('auth')
+            ->get(LaravelLocalization::transRoute('routes.download'), function (ClientVersion $version) {
+                return redirect()->home();
+            })->name('download');
 
-    Route::get(LaravelLocalization::transRoute('routes.profile'), function (Request $request) {
-        $message = $request->getSession()->get('notification');
-        $action = "";
-        if (!$message) {
-            if (!optional($request->user())->hasVerifiedEmail()) {
-                $message = __('forms.quick_verify_header');
-                $action = 'partials.resend-verification';
-            } elseif ($request->get('verified')) {
-                $message = __('forms.quick_verify_success');
+        Route::get(LaravelLocalization::transRoute('routes.profile'), function (Request $request) {
+            $message = $request->getSession()->get('notification');
+            $action = "";
+            if (!$message) {
+                if (!optional($request->user())->hasVerifiedEmail()) {
+                    $message = __('forms.quick_verify_header');
+                    $action = 'partials.resend-verification';
+                } elseif ($request->get('verified')) {
+                    $message = __('forms.quick_verify_success');
+                }
             }
-        }
 
-        return view('profile')
-            ->with(compact('message', 'action'));
-    })->middleware('auth')->name('profile');
+            return view('profile')
+                ->with(compact('message', 'action'));
+        })->middleware('auth')->name('profile');
 
-    Route::view(LaravelLocalization::transRoute('routes.free-trial'), 'free-trial')
-        ->name('free-trial');
+        Route::view(LaravelLocalization::transRoute('routes.free-trial'), 'free-trial')
+            ->name('free-trial');
 
-    Route::view(LaravelLocalization::transRoute('routes.install'), 'install')
-        ->name('install');
+        Route::view(LaravelLocalization::transRoute('routes.install'), 'install')
+            ->name('install');
 
-    Route::view(LaravelLocalization::transRoute('routes.usage'), 'usage')
-        ->name('usage');
+        Route::view(LaravelLocalization::transRoute('routes.usage'), 'usage')
+            ->name('usage');
 
-    Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
-        $versionDetails = $version == "latest" ?
-            $versions->latest() :
-            $versions->firstWhere('code', $version);
-        $view = $versionDetails['number'] ?? abort(404);
+        Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
+            $versionDetails = $version == "latest" ?
+                $versions->latest() :
+                $versions->firstWhere('code', $version);
+            $view = $versionDetails['number'] ?? abort(404);
 
-        return view("release.$view", ['version' => $versionDetails]);
-    })->name('release');
+            return view("release.$view", ['version' => $versionDetails]);
+        })->name('release');
 
-    Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
-        ->middleware(NotSubscribed::class)
-        ->name('create-checkout-session');
+        Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
+            ->middleware(NotSubscribed::class)
+            ->name('create-checkout-session');
 
-    Route::post('/create-checkout-session-trial', [StripeController::class, 'checkoutSessionWithFreeTrial'])
-        ->middleware([NotSubscribed::class, HasNeverSubscribed::class])
-        ->name('create-checkout-session-trial');
+        Route::post('/create-checkout-session-trial', [StripeController::class, 'checkoutSessionWithFreeTrial'])
+            ->middleware([NotSubscribed::class, HasNeverSubscribed::class])
+            ->name('create-checkout-session-trial');
 
-    Route::post('/trial-cancel', [StripeController::class, 'cancelTrial'])
-        ->middleware([Subscribed::class, OnFreeTrial::class])
-        ->name('trial-cancel');
+        Route::post('/trial-cancel', [StripeController::class, 'cancelTrial'])
+            ->middleware([Subscribed::class, OnFreeTrial::class])
+            ->name('trial-cancel');
 
-    Route::get('/billing-portal', [StripeController::class, 'billing'])
-        ->middleware(Subscribed::class)
-        ->name('billing');
+        Route::get('/billing-portal', [StripeController::class, 'billing'])
+            ->middleware(Subscribed::class)
+            ->name('billing');
 
-    require_once 'fortify.php';
+        require_once 'fortify.php';
 
-    Route::view(LaravelLocalization::transRoute('routes.login-discord'), 'discord-link')
-        ->middleware(['guest'])
-        ->name('login.discord');
+        Route::view(LaravelLocalization::transRoute('routes.login-discord'), 'discord-link')
+            ->middleware(['guest'])
+            ->name('login.discord');
 
-    Route::view('terms', 'terms')
-        ->name('terms');
+        Route::view('terms', 'terms')
+            ->name('terms');
+    });
+
+
+    Route::prefix('discord')->group(function () {
+        Route::get('link/{id}', [LinkDiscordController::class, '__invoke'])
+            ->middleware([SetLocaleFromSession::class, 'auth', 'signed', 'throttle:3,1'])
+            ->name('discord.link');
+    });
+
+    Route::post(
+        config('cashier.path').'/webhook',
+        [CashierWebhookController::class, 'handleWebhook']
+    );
 });
-
-
-Route::prefix('discord')->group(function () {
-    Route::get('link/{id}', [LinkDiscordController::class, '__invoke'])
-        ->middleware([SetLocaleFromSession::class, 'auth', 'signed', 'throttle:3,1'])
-        ->name('discord.link');
-});
-
-Route::post(
-    config('cashier.path').'/webhook',
-    [CashierWebhookController::class, 'handleWebhook']
-);

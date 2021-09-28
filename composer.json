@@ -11,6 +11,7 @@
         "php": "^7.3",
         "ext-json": "*",
         "berkayk/onesignal-laravel": "^1.0",
+        "beyondcode/laravel-websockets": "^1.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -22,7 +23,9 @@
         "laravel/tinker": "^2.0",
         "mcamara/laravel-localization": "^1.6",
         "predis/predis": "^1.1",
-        "team-reflex/discord-php": "^5.1"
+        "pusher/pusher-php-server": "~3.0",
+        "team-reflex/discord-php": "^5.1",
+        "laravel/nova": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -67,5 +70,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./nova"
+        }
+    ]
 }
