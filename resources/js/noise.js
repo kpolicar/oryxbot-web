@@ -510,3 +510,4 @@ class Gradient {
 */
 var gradient = new Gradient();
 gradient.initGradient("#gradient-canvas");
+console.log(gradient)

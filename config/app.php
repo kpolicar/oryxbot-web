@@ -186,6 +186,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
+        Kpolicar\NovaOryxbotTheme\ThemeServiceProvider::class,
 
     ],
 

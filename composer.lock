@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b9bdaf5e62cbfad5602f411db3ef52a",
+    "content-hash": "77f6ee31d038c8aa3cdfc140033a0c14",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2085,6 +2085,42 @@
                 }
             ],
             "time": "2021-07-22T14:31:53+00:00"
+        },
+        {
+            "name": "kpolicar/nova-oryxbot-theme",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/NovaOryxbotTheme",
+                "reference": "51bc5f1785c727c5dabb5957059b3ee4f352ffa2"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kpolicar\\NovaOryxbotTheme\\ThemeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kpolicar\\NovaOryxbotTheme\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova theme.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "laravel/cashier",

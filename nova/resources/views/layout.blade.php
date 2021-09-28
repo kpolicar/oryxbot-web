@@ -35,7 +35,9 @@
         <div v-cloak class="flex min-h-screen">
             <!-- Sidebar -->
             <div class="flex-none pt-header min-h-screen w-sidebar bg-grad-sidebar px-6">
-                <a href="{{ \Laravel\Nova\Nova::path() }}">
+                <canvas id="gradient-canvas">
+                </canvas>
+                <a href="{{ \Illuminate\Support\Facades\Config::get('nova.url') }}">
                     <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-white">
                        @include('nova::partials.logo')
                     </div>
@@ -47,7 +49,7 @@
             </div>
 
             <!-- Content -->
-            <div class="content">
+            <div class="content bg-90 z-0">
                 <div class="flex items-center relative shadow h-header bg-white z-20 px-view">
                     <a v-if="@json(\Laravel\Nova\Nova::name() !== null)" href="{{ \Illuminate\Support\Facades\Config::get('nova.url') }}" class="no-underline dim font-bold text-90 mr-6">
                         {{ \Laravel\Nova\Nova::name() }}
@@ -98,5 +100,6 @@
     <script>
         Nova.liftOff()
     </script>
+    <script src="{{ mix('js/noise.js') }}"></script>
 </body>
 </html>

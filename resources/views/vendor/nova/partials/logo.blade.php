@@ -1,6 +1,6 @@
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="fill-current"
-     width="{{ $width ?? '24' }}"
-     height="{{ $height ?? '24' }}"
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="fill-current text-black"
+     width="{{ $width ?? '32' }}"
+     height="{{ $height ?? '32' }}"
      viewBox="{{ $viewBox ?? '0 0 700.000000 654.000000' }}"
      preserveAspectRatio="xMidYMid meet">
     <g transform="translate(0.000000,654.000000) scale(0.100000,-0.100000)" stroke="none">
@@ -31,4 +31,4 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
 2 -97 10 -176 88 -214 211 -20 67 -37 209 -26 226 7 11 58 -15 140 -70z"></path>
     </g>
 </svg>
-<span class="align-middle ml-3 font-sans uppercase font-bold">Oryxbot</span>
+<span class="align-middle ml-3 font-bold text-black mt-1">Oryxbot</span>

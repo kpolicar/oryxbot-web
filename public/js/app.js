@@ -21046,6 +21046,7 @@ var Gradient = /*#__PURE__*/function () {
 
 var gradient = new Gradient();
 gradient.initGradient("#gradient-canvas");
+console.log(gradient);
 
 /***/ }),
 

@@ -25,7 +25,8 @@
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "~3.0",
         "team-reflex/discord-php": "^5.1",
-        "laravel/nova": "*"
+        "laravel/nova": "*",
+        "kpolicar/nova-oryxbot-theme": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -75,6 +76,10 @@
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaOryxbotTheme"
         }
     ]
 }
