@@ -36,7 +36,9 @@
                             </a>
                         @endguest
                         @auth
-                            <x-billing-button trial class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
+                            <x-billing-button
+                                trial
+                                class="cursor-not-allowed inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
                         @endauth
                     </div>
                     <a href="{{ route('free-trial') }}" class="flex items-end justify-center text-gray-600 h-6 text-xs hover:underline">
@@ -60,10 +62,10 @@
                     <div class="w-full pt-2 text-3xl font-bold text-center leading-none mb-2">
                         @if ($shouldDisplayPromo)
                         <div class="line-through text-xl text-red-800">
-                            €15
+                            €{{ config('pricing.trade_mission_bot.price')/100 }}
                         </div>
                         <div class="mb-2 text-4xl">
-                            €10
+                            €{{ (config('pricing.trade_mission_bot.price')-config('pricing.trade_mission_bot.discount_price'))/100 }}
                         </div>
                         <div class="text-sm">first {{ __('common.month') }}</div>
                         @else

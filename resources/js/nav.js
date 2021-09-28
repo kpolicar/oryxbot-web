@@ -13,14 +13,14 @@ document.addEventListener('scroll', function() {
     if(scrollpos > 10){
         header.classList.add("bg-white");
         navaction.classList.remove("bg-black");
-        navaction.classList.add("gradient");
+        navaction.classList.add("gradient-dark");
         header.classList.add("shadow");
         navcontent.classList.remove("bg-gray-100");
         navcontent.classList.add("bg-white");
     }
     else {
         header.classList.remove("bg-white");
-        navaction.classList.remove("gradient");
+        navaction.classList.remove("gradient-dark");
         navaction.classList.add("bg-black");
         header.classList.remove("shadow");
         navcontent.classList.remove("bg-white");

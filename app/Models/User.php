@@ -84,7 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function eligibleForFreeTrial()
     {
-        return $this->hasVerifiedEmail() && !$this->subscriptions()->exists();
+        return false && $this->hasVerifiedEmail() && !$this->subscriptions()->exists();
     }
 
     public function getIsSubscribedAttribute()

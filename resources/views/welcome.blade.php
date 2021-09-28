@@ -8,9 +8,9 @@
 
 @section('hero')
     <x-main-hero>
-        <div class="flex flex-col-reverse">
-            <h1 class="my-4 text-5xl font-bold leading-tight">{!! __('messages.heading') !!}</h1>
-            <h2 class="uppercase tracking-loose w-full">{{ __('messages.category') }}</h2>
+        <div class="flex flex-col">
+            <h1 class="uppercase tracking-loose w-full">{{ __('messages.category') }}</h1>
+            <h2 class="my-4 text-5xl font-bold leading-tight">{!! __('messages.heading') !!}</h2>
         </div>
         <p class="leading-normal text-2xl mb-8">{{ __('messages.subheading') }}</p>
         <a href="{{ route('download') }}"

@@ -21,6 +21,10 @@ html, body {
     background: linear-gradient(90deg, #aea480 0%, #D3C8A8 100%);
 }
 
+.gradient-dark {
+    background: linear-gradient(90deg, darken(#aea480, 10%) 0%, darken(#D3C8A8, 10%) 100%);
+}
+
 .bg-gray-200 {
     background: #EFEFEF;
 }
