@@ -38,7 +38,7 @@
                 <canvas id="gradient-canvas">
                 </canvas>
                 <a href="{{ \Illuminate\Support\Facades\Config::get('nova.url') }}">
-                    <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-white">
+                    <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-black">
                        @include('nova::partials.logo')
                     </div>
                 </a>

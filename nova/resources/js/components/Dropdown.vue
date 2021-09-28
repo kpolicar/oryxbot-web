@@ -49,7 +49,7 @@ export default {
       >
         <button
           type="button"
-          staticClass="rounded active:outline-none active:shadow-outline focus:outline-none focus:shadow-outline"
+          staticClass="rounded"
         >
           {this.$slots.default}
         </button>

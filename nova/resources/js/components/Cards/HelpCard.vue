@@ -2,7 +2,7 @@
   <div class="flex justify-center items-centers">
     <div class="w-full max-w-xl">
       <heading class="flex mb-3">Get Started</heading>
-      <p class="text-90 leading-tight mb-8">
+      <p class="text-60 leading-tight mb-8">
         Welcome to Nova! Get familiar with Nova and explore its features in the
         documentation:
       </p>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div>
-                  <heading :level="3" class="mb-3">Resources</heading>
+                  <heading :level="3" class="text-80 mb-3">Resources</heading>
                   <p class="text-90 leading-normal">
                     Nova's resource manager allows you to quickly view and
                     manage your Eloquent model records directly from Nova's
@@ -54,7 +54,7 @@
                 </div>
 
                 <div>
-                  <heading :level="3" class="mb-3">Actions</heading>
+                  <heading :level="3" class="text-80 mb-3">Actions</heading>
                   <p class="text-90 leading-normal">
                     Actions perform tasks on a single record or an entire batch
                     of records. Have an action that takes a while? No problem.
@@ -83,7 +83,7 @@
                 </div>
 
                 <div>
-                  <heading :level="3" class="mb-3">Filters</heading>
+                  <heading :level="3" class="text-80 mb-3">Filters</heading>
                   <p class="text-90 leading-normal">
                     Write custom filters for your resource indexes to offer your
                     users quick glances at different segments of your data.
@@ -109,7 +109,7 @@
                 </div>
 
                 <div>
-                  <heading :level="3" class="mb-3">Lenses</heading>
+                  <heading :level="3" class="text-80 mb-3">Lenses</heading>
                   <p class="text-90 leading-normal">
                     Need to customize a resource list a little more than a
                     filter can provide? No problem. Add lenses to your resource
@@ -138,7 +138,7 @@
                 </div>
 
                 <div>
-                  <heading :level="3" class="mb-3">Metrics</heading>
+                  <heading :level="3" class="text-80 mb-3">Metrics</heading>
                   <p class="text-90 leading-normal">
                     Nova makes it painless to quickly display custom metrics for
                     your application. To put the cherry on top, we’ve included
@@ -165,7 +165,7 @@
                 </div>
 
                 <div>
-                  <heading :level="3" class="mb-3">Cards</heading>
+                  <heading :level="3" class="text-80 mb-3">Cards</heading>
                   <p class="text-90 leading-normal">
                     Nova offers CLI generators for scaffolding your own custom
                     cards. We’ll give you a Vue component and infinite

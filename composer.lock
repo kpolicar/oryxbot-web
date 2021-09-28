@@ -2437,11 +2437,11 @@
         },
         {
             "name": "laravel/nova",
-            "version": "3.27.0",
+            "version": "3.27.1",
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "e36abe2db502d615830f3d248f84a10c45ab04bf"
+                "reference": "270341462e7de0eb00f7994e4dfb58648e15e483"
             },
             "require": {
                 "brick/money": "^0.5.0",

@@ -42,7 +42,7 @@ export default {
 
   computed: {
     activeIconColor() {
-      return this.active ? 'var(--white)' : 'var(--90)'
+      return this.active ? 'var(--white)' : 'var(--70)'
     },
   },
 }
