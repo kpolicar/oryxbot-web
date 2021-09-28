@@ -30195,6 +30195,10 @@ html, body {
   background: linear-gradient(90deg, #aea480 0%, #D3C8A8 100%);
 }
 
+.gradient-dark {
+  background: linear-gradient(90deg, #998d62 0%, #c2b386 100%);
+}
+
 .bg-gray-200, .stripe-payment-form .stripe-fields input, .stripe-payment-form .stripe-fields .stripe-field {
   background: #EFEFEF;
 }
