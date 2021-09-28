@@ -88,7 +88,7 @@
     width: calc(100% + 12px);
     height: calc(100% + 12px);
     top: -6px;
-    left: -6px;
+    left: -50%;
     --gradient-color-1: #9B937C;
     --gradient-color-2: #C1B79A;
     --gradient-color-3: #D3C8A8;
