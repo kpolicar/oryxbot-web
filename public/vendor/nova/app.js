@@ -59436,7 +59436,7 @@ var render = function() {
       [
         _c("heading", { staticClass: "flex mb-3" }, [_vm._v("Get Started")]),
         _vm._v(" "),
-        _c("p", { staticClass: "text-90 leading-tight mb-8" }, [
+        _c("p", { staticClass: "text-60 leading-tight mb-8" }, [
           _vm._v(
             "\n      Welcome to Nova! Get familiar with Nova and explore its features in the\n      documentation:\n    "
           )
@@ -59499,7 +59499,10 @@ var render = function() {
                           [
                             _c(
                               "heading",
-                              { staticClass: "mb-3", attrs: { level: 3 } },
+                              {
+                                staticClass: "text-80 mb-3",
+                                attrs: { level: 3 }
+                              },
                               [_vm._v("Resources")]
                             ),
                             _vm._v(" "),
@@ -59562,7 +59565,10 @@ var render = function() {
                           [
                             _c(
                               "heading",
-                              { staticClass: "mb-3", attrs: { level: 3 } },
+                              {
+                                staticClass: "text-80 mb-3",
+                                attrs: { level: 3 }
+                              },
                               [_vm._v("Actions")]
                             ),
                             _vm._v(" "),
@@ -59629,7 +59635,10 @@ var render = function() {
                           [
                             _c(
                               "heading",
-                              { staticClass: "mb-3", attrs: { level: 3 } },
+                              {
+                                staticClass: "text-80 mb-3",
+                                attrs: { level: 3 }
+                              },
                               [_vm._v("Filters")]
                             ),
                             _vm._v(" "),
@@ -59692,7 +59701,10 @@ var render = function() {
                           [
                             _c(
                               "heading",
-                              { staticClass: "mb-3", attrs: { level: 3 } },
+                              {
+                                staticClass: "text-80 mb-3",
+                                attrs: { level: 3 }
+                              },
                               [_vm._v("Lenses")]
                             ),
                             _vm._v(" "),
@@ -59759,7 +59771,10 @@ var render = function() {
                           [
                             _c(
                               "heading",
-                              { staticClass: "mb-3", attrs: { level: 3 } },
+                              {
+                                staticClass: "text-80 mb-3",
+                                attrs: { level: 3 }
+                              },
                               [_vm._v("Metrics")]
                             ),
                             _vm._v(" "),
@@ -59822,7 +59837,10 @@ var render = function() {
                           [
                             _c(
                               "heading",
-                              { staticClass: "mb-3", attrs: { level: 3 } },
+                              {
+                                staticClass: "text-80 mb-3",
+                                attrs: { level: 3 }
+                              },
                               [_vm._v("Cards")]
                             ),
                             _vm._v(" "),

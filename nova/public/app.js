@@ -3955,7 +3955,7 @@ exports.default = {
           attrs: {
             type: 'button'
           },
-          staticClass: 'rounded'
+          staticClass: 'rounded active:outline-none active:shadow-outline focus:outline-none focus:shadow-outline'
         },
         [this.$slots.default]
       ), h(
