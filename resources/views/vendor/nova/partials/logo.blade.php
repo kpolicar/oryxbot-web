@@ -31,4 +31,4 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
 2 -97 10 -176 88 -214 211 -20 67 -37 209 -26 226 7 11 58 -15 140 -70z"></path>
     </g>
 </svg>
-<span class="ml-3 font-bold mt-1">Oryxbot</span>
+<span class="ml-3 font-bold mt-1 uppercase">Oryxbot</span>

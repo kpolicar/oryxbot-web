@@ -26,7 +26,10 @@
         "pusher/pusher-php-server": "~3.0",
         "team-reflex/discord-php": "^5.1",
         "laravel/nova": "*",
-        "kpolicar/nova-oryxbot-theme": "*"
+        "kpolicar/nova-oryxbot-theme": "*",
+        "kpolicar/oryxbot-instance": "*",
+        "kpolicar/oryxbot-logs": "*",
+        "kpolicar/oryxbot-insights": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -80,6 +83,18 @@
         {
             "type": "path",
             "url": "./nova-components/NovaOryxbotTheme"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/OryxbotInstance"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/OryxbotLogs"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/OryxbotInsights"
         }
     ]
 }

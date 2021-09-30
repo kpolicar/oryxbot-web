@@ -3,7 +3,7 @@
 
         <div class="w-full flex flex-col md:flex-row justify-center py-6 pb-3">
 
-            <a class="text-gray-800 no-underline hover:no-underline font-bold text-2xl lg:text-4xl px-3"  href="#">
+            <a class="text-gray-800 no-underline hover:no-underline font-bold text-2xl lg:text-4xl px-3 text-center md:text-right"  href="#">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="mb-1 h-8 fill-current inline"
                      viewBox="0 0 700.000000 654.000000"
                      preserveAspectRatio="xMidYMid meet">
@@ -42,7 +42,7 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                     {{ __('common.terms') }}
                 </a><br>
             </p>
-            <p class="text-gray-700 px-3">
+            <p class="text-gray-700 px-3 text-center md:text-right">
                 {{ __('messages.albion_trademark') }}<br>
                 {{ __('messages.affiliation') }}
             </p>
