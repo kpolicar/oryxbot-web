@@ -44,6 +44,21 @@ function initBrodcasting() {
             this.$toasted.show('VPN Connection has been lost!', { type: 'error' })
         }
     });
+
+    channel.listen('BotRunningChanged', (e) => {
+        let el = document.getElementById(`nav_oryxbot-instance-${e.instanceId}`);
+        el = el ? el.querySelector('svg') : el;
+        if (!el)
+            return;
+
+        if (e.running) {
+            el.classList.add('text-primary')
+            el.classList.remove('text-60')
+        } else {
+            el.classList.remove('text-primary')
+            el.classList.add('text-60')
+        }
+    });
 }
 
 export default {

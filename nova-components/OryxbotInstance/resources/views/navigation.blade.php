@@ -8,7 +8,7 @@
 <ul class="list-reset mb-8">
     @foreach(['Bot #1', 'Bot #2', 'Bot #3'] as $i => $resource)
         <li class="leading-tight mb-4 ml-8 pl-8 text-sm">
-            <router-link tag="h4" :to="{
+            <router-link tag="h4" id="nav_oryxbot-instance-{{ $i }}" :to="{
                 name: 'oryxbot-instance',
                 }" class="cursor-pointer flex items-center font-normal dim text-white mb-4 text-base no-underline">
 

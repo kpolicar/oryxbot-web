@@ -1762,7 +1762,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -2271,6 +2271,20 @@ function initBrodcasting() {
             _this.$toasted.show('VPN Connection has been successfully established!', { type: 'success' });
         } else {
             _this.$toasted.show('VPN Connection has been lost!', { type: 'error' });
+        }
+    });
+
+    channel.listen('BotRunningChanged', function (e) {
+        var el = document.getElementById('nav_oryxbot-instance-' + e.instanceId);
+        el = el ? el.querySelector('svg') : el;
+        if (!el) return;
+
+        if (e.running) {
+            el.classList.add('text-primary');
+            el.classList.remove('text-60');
+        } else {
+            el.classList.remove('text-primary');
+            el.classList.add('text-60');
         }
     });
 }
