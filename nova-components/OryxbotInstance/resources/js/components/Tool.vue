@@ -1,6 +1,6 @@
 <template>
     <div>
-        <heading class="mb-6">Instances</heading>
+        <heading class="mb-6">Bot #1</heading>
 
 
         <div class="flex mb-8">
@@ -8,53 +8,116 @@
                 <div class="flex mb-4">
                     <h3 class="mr-3 text-base text-80 font-bold uppercase">Step</h3>
                 </div>
-                <p class="flex items-center text-4xl mb-4">Running to NPC</p>
-                <p class="flex items-center text-80 font-bold">10% complete</p>
+                <p class="flex items-center text-4xl mb-4">{{ step }}</p>
+                <p class="flex items-center text-80 font-bold">{{ progress }}</p>
             </loading-card>
             <loading-card :loading="false" class="px-6 py-4 w-1/4 mx-8">
                 <div class="flex mb-4">
                     <h3 class="mr-3 text-base text-80 font-bold uppercase">Location</h3>
                 </div>
-                <p class="flex items-center text-4xl mb-4">(23,41)</p>
-                <p class="flex items-center text-80 font-bold">17 m/s</p>
+                <p class="flex items-center text-4xl mb-4">{{ location }}</p>
+                <p class="flex items-center text-80 font-bold">{{ speed }}</p>
             </loading-card>
             <loading-card :loading="false" class="px-6 py-4 w-1/4">
                 <div class="flex mb-4">
                     <h3 class="mr-3 text-base text-80 font-bold uppercase">Session</h3>
                 </div>
-                <p class="flex items-center text-4xl mb-4">2 hours 23 minutes</p>
-                <p class="flex items-center text-80 font-bold">Bot is running</p>
+                <p class="flex items-center text-4xl mb-4">{{ session }}</p>
+                <p class="flex items-center text-80 font-bold">{{ status }}</p>
             </loading-card>
         </div>
 
-        <card
-            class="bg-90 flex flex-col"
-            style="min-height: 300px"
-        >
-            <svg
-                class="spin fill-80 mb-6"
-                width="69"
-                height="72"
-                viewBox="0 0 23 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M20.12 20.455A12.184 12.184 0 0 1 11.5 24a12.18 12.18 0 0 1-9.333-4.319c4.772 3.933 11.88 3.687 16.36-.738a7.571 7.571 0 0 0 0-10.8c-3.018-2.982-7.912-2.982-10.931 0a3.245 3.245 0 0 0 0 4.628 3.342 3.342 0 0 0 4.685 0 1.114 1.114 0 0 1 1.561 0 1.082 1.082 0 0 1 0 1.543 5.57 5.57 0 0 1-7.808 0 5.408 5.408 0 0 1 0-7.714c3.881-3.834 10.174-3.834 14.055 0a9.734 9.734 0 0 1 .03 13.855zM4.472 5.057a7.571 7.571 0 0 0 0 10.8c3.018 2.982 7.912 2.982 10.931 0a3.245 3.245 0 0 0 0-4.628 3.342 3.342 0 0 0-4.685 0 1.114 1.114 0 0 1-1.561 0 1.082 1.082 0 0 1 0-1.543 5.57 5.57 0 0 1 7.808 0 5.408 5.408 0 0 1 0 7.714c-3.881 3.834-10.174 3.834-14.055 0a9.734 9.734 0 0 1-.015-13.87C5.096 1.35 8.138 0 11.5 0c3.75 0 7.105 1.68 9.333 4.319C16.06.386 8.953.632 4.473 5.057z"
-                    fill-rule="evenodd"
-                />
-            </svg>
+        <heading :level="2" class="mb-6 text-2xl">Connection</heading>
+        <div class="flex">
 
-            <h1 class="text-white text-4xl text-90 font-light mb-6">
-                We're in a black hole.
-            </h1>
+            <div class="mb-4 ml-2 flex justify-start items-start w-1/4">
 
-            <p class="text-white-50% text-lg">
-                You can edit this tool's component at:
-                <code class="ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1">
-                    /nova-components/OryxbotInstance/resources/js/components/Tool.vue
-                </code>
-            </p>
-        </card>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     data-prefix="far"
+                     data-icon="check-circle"
+                     class="w-8 text-success mr-2"
+                     role="img"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"></path>
+                </svg>
+
+                <div class="flex flex-col">
+
+                    <heading :level="3" class="mb-4 flex items-center mt-2 text-60">
+                        VPN
+                    </heading>
+
+                    <div class="flex">
+                        <ul class="text-80 list-reset mr-4">
+                            <li class="mb-2">Server name:</li>
+                            <li class="mb-2">Username:</li>
+                            <li class="mb-2">Password:</li>
+                        </ul>
+                        <ul class="text-60 list-reset font-bold">
+                            <li class="mb-2">138.67.23.148</li>
+                            <li class="mb-2">example123</li>
+                            <li class="mb-2">passwn21k</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="text-primary mt-2 no-underline hover:underline">Help</a>
+                </div>
+
+            </div>
+            <div class="mb-4 ml-8 flex justify-start items-start w-1/4">
+
+                <svg aria-hidden="true"
+                     focusable="false"
+                     data-prefix="fas"
+                     data-icon="ban"
+                     class="w-8 text-danger mr-2"
+                     role="img"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path>
+                </svg>
+
+                <div class="flex flex-col">
+
+                    <heading :level="3" class="mb-4 flex items-center mt-2 text-60">
+                        Tight VNC Server
+                    </heading>
+
+                    <div class="flex">
+                        <ul class="text-80 list-reset mr-4">
+                            <li class="mb-2">Resolution:</li>
+                            <li class="mb-2">Bandwidth:</li>
+                        </ul>
+                        <ul class="text-60 list-reset font-bold">
+                            <li class="mb-2">-</li>
+                            <li class="mb-2">-</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="text-primary mt-2 no-underline hover:underline">Help</a>
+                </div>
+
+            </div>
+        </div>
+
+        <heading :level="2" class="mb-6 text-2xl">Logs</heading>
+        <div class="flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90">
+            2021-09-18 00:36:02.4070 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:02.7440 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI<br>
+            2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI<br>
+            2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI<br>
+            2021-09-18 00:36:09.9348 | Info | Maging AI updated: Maging AI<br>
+            2021-09-18 00:36:16.1491 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:16.4911 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:18.3522 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:18.8892 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:22.6649 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:23.7060 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:24.2360 | Info | Action executed: Unknown action<br>
+            2021-09-18 00:36:26.2162 | Info | Mage config has changed.<br>
+            2021-09-18 00:36:26.2162 | Info | Mage config has been reset.<br>
+            2021-09-18 00:36:26.2162 | Debug | New config:
+        </div>
     </div>
 </template>
 
@@ -95,6 +158,14 @@ export default {
     mounted() {
         initBrodcasting.bind(this)();
     },
+    data: () => ({
+        step: 'Running to NPC',
+        location: '(23,41)',
+        session: '2 hours 23 minutes',
+        speed: '17 m/s',
+        progress: '10% complete',
+        status: 'Bot is running',
+    })
 }
 </script>
 

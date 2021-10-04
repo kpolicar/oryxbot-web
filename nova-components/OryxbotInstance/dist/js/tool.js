@@ -1762,7 +1762,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -2285,6 +2285,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 function initBrodcasting() {
     var _this = this;
@@ -2322,6 +2385,17 @@ function initBrodcasting() {
     },
     mounted: function mounted() {
         initBrodcasting.bind(this)();
+    },
+
+    data: function data() {
+        return {
+            step: 'Running to NPC',
+            location: '(23,41)',
+            session: '2 hours 23 minutes',
+            speed: '17 m/s',
+            progress: '10% complete',
+            status: 'Bot is running'
+        };
     }
 });
 
@@ -2336,7 +2410,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("heading", { staticClass: "mb-6" }, [_vm._v("Instances")]),
+      _c("heading", { staticClass: "mb-6" }, [_vm._v("Bot #1")]),
       _vm._v(" "),
       _c(
         "div",
@@ -2355,11 +2429,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
-                _vm._v("Running to NPC")
+                _vm._v(_vm._s(_vm.step))
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
-                _vm._v("10% complete")
+                _vm._v(_vm._s(_vm.progress))
               ])
             ]
           ),
@@ -2377,11 +2451,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
-                _vm._v("(23,41)")
+                _vm._v(_vm._s(_vm.location))
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
-                _vm._v("17 m/s")
+                _vm._v(_vm._s(_vm.speed))
               ])
             ]
           ),
@@ -2399,11 +2473,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
-                _vm._v("2 hours 23 minutes")
+                _vm._v(_vm._s(_vm.session))
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
-                _vm._v("Bot is running")
+                _vm._v(_vm._s(_vm.status))
               ])
             ]
           )
@@ -2411,65 +2485,257 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "card",
-        {
-          staticClass: "bg-90 flex flex-col",
-          staticStyle: { "min-height": "300px" }
-        },
-        [
-          _c(
-            "svg",
-            {
-              staticClass: "spin fill-80 mb-6",
-              attrs: {
-                width: "69",
-                height: "72",
-                viewBox: "0 0 23 24",
-                xmlns: "http://www.w3.org/2000/svg"
-              }
-            },
-            [
-              _c("path", {
-                attrs: {
-                  d:
-                    "M20.12 20.455A12.184 12.184 0 0 1 11.5 24a12.18 12.18 0 0 1-9.333-4.319c4.772 3.933 11.88 3.687 16.36-.738a7.571 7.571 0 0 0 0-10.8c-3.018-2.982-7.912-2.982-10.931 0a3.245 3.245 0 0 0 0 4.628 3.342 3.342 0 0 0 4.685 0 1.114 1.114 0 0 1 1.561 0 1.082 1.082 0 0 1 0 1.543 5.57 5.57 0 0 1-7.808 0 5.408 5.408 0 0 1 0-7.714c3.881-3.834 10.174-3.834 14.055 0a9.734 9.734 0 0 1 .03 13.855zM4.472 5.057a7.571 7.571 0 0 0 0 10.8c3.018 2.982 7.912 2.982 10.931 0a3.245 3.245 0 0 0 0-4.628 3.342 3.342 0 0 0-4.685 0 1.114 1.114 0 0 1-1.561 0 1.082 1.082 0 0 1 0-1.543 5.57 5.57 0 0 1 7.808 0 5.408 5.408 0 0 1 0 7.714c-3.881 3.834-10.174 3.834-14.055 0a9.734 9.734 0 0 1-.015-13.87C5.096 1.35 8.138 0 11.5 0c3.75 0 7.105 1.68 9.333 4.319C16.06.386 8.953.632 4.473 5.057z",
-                  "fill-rule": "evenodd"
-                }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "h1",
-            { staticClass: "text-white text-4xl text-90 font-light mb-6" },
-            [_vm._v("\n            We're in a black hole.\n        ")]
-          ),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-white-50% text-lg" }, [
-            _vm._v(
-              "\n            You can edit this tool's component at:\n            "
-            ),
+      _c("heading", { staticClass: "mb-6 text-2xl", attrs: { level: 2 } }, [
+        _vm._v("Connection")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex" }, [
+        _c(
+          "div",
+          { staticClass: "mb-4 ml-2 flex justify-start items-start w-1/4" },
+          [
             _c(
-              "code",
+              "svg",
               {
-                staticClass:
-                  "ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1"
+                staticClass: "w-8 text-success mr-2",
+                attrs: {
+                  "aria-hidden": "true",
+                  focusable: "false",
+                  "data-prefix": "far",
+                  "data-icon": "check-circle",
+                  role: "img",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 512 512"
+                }
               },
               [
-                _vm._v(
-                  "\n                /nova-components/OryxbotInstance/resources/js/components/Tool.vue\n            "
-                )
+                _c("path", {
+                  attrs: {
+                    fill: "currentColor",
+                    d:
+                      "M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
+                  }
+                })
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex flex-col" },
+              [
+                _c(
+                  "heading",
+                  {
+                    staticClass: "mb-4 flex items-center mt-2 text-60",
+                    attrs: { level: 3 }
+                  },
+                  [_vm._v("\n                    VPN\n                ")]
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "text-primary mt-2 no-underline hover:underline",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("Help")]
+                )
+              ],
+              1
             )
-          ])
-        ]
-      )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "mb-4 ml-8 flex justify-start items-start w-1/4" },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "w-8 text-danger mr-2",
+                attrs: {
+                  "aria-hidden": "true",
+                  focusable: "false",
+                  "data-prefix": "fas",
+                  "data-icon": "ban",
+                  role: "img",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 512 512"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    fill: "currentColor",
+                    d:
+                      "M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex flex-col" },
+              [
+                _c(
+                  "heading",
+                  {
+                    staticClass: "mb-4 flex items-center mt-2 text-60",
+                    attrs: { level: 3 }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Tight VNC Server\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "text-primary mt-2 no-underline hover:underline",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("Help")]
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("heading", { staticClass: "mb-6 text-2xl", attrs: { level: 2 } }, [
+        _vm._v("Logs")
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex" }, [
+      _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+        _c("li", { staticClass: "mb-2" }, [_vm._v("Server name:")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "mb-2" }, [_vm._v("Username:")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "mb-2" }, [_vm._v("Password:")])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+        _c("li", { staticClass: "mb-2" }, [_vm._v("138.67.23.148")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "mb-2" }, [_vm._v("example123")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "mb-2" }, [_vm._v("passwn21k")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex" }, [
+      _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+        _c("li", { staticClass: "mb-2" }, [_vm._v("Resolution:")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "mb-2" }, [_vm._v("Bandwidth:")])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+        _c("li", { staticClass: "mb-2" }, [_vm._v("-")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "mb-2" }, [_vm._v("-")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90" },
+      [
+        _vm._v(
+          "\n        2021-09-18 00:36:02.4070 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:02.7440 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:09.9348 | Info | Maging AI updated: Maging AI"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:16.1491 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:16.4911 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:18.3522 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:18.8892 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:22.6649 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:23.7060 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:24.2360 | Info | Action executed: Unknown action"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:26.2162 | Info | Mage config has changed."
+        ),
+        _c("br"),
+        _vm._v(
+          "\n        2021-09-18 00:36:26.2162 | Info | Mage config has been reset."
+        ),
+        _c("br"),
+        _vm._v("\n        2021-09-18 00:36:26.2162 | Debug | New config:\n    ")
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
