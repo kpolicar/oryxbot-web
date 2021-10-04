@@ -24,7 +24,10 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            //
+            Nova::provideToScript([
+                'pusherAppKey' => env('PUSHER_APP_KEY'),
+                'pusherAppCluster' => env('PUSHER_APP_CLUSTER'),
+            ]);
         });
     }
 

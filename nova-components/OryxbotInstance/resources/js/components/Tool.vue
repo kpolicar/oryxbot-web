@@ -34,6 +34,18 @@
 </template>
 
 <script>
+function initBrodcasting() {
+    let channel = Echo.private(`App.Models.User.${Nova.config.userId}`);
+
+    channel.listen('VpnConnectionChanged', (e) => {
+        if (e.established) {
+            this.$toasted.show('VPN Connection has been successfully established!', { type: 'success' })
+        } else {
+            this.$toasted.show('VPN Connection has been lost!', { type: 'error' })
+        }
+    });
+}
+
 export default {
     metaInfo() {
         return {
@@ -41,7 +53,7 @@ export default {
         }
     },
     mounted() {
-        //
+        initBrodcasting.bind(this)();
     },
 }
 </script>

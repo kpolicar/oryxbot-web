@@ -24,8 +24,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::get('/das', function () {
-    \App\Events\ExampleEvent::dispatch();
+Route::get('/vpn', function () {
+    \App\Events\VpnConnectionChanged::dispatch(\Auth::user(), true);
 });
 
 Route::domain(config('app.domain'))->group(function () {
