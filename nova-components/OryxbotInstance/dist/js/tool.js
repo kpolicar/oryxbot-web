@@ -1762,7 +1762,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -2260,6 +2260,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 function initBrodcasting() {
     var _this = this;
@@ -2314,9 +2339,82 @@ var render = function() {
       _c("heading", { staticClass: "mb-6" }, [_vm._v("Instances")]),
       _vm._v(" "),
       _c(
+        "div",
+        { staticClass: "flex mb-8" },
+        [
+          _c(
+            "loading-card",
+            { staticClass: "px-6 py-4 w-1/4", attrs: { loading: false } },
+            [
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c(
+                  "h3",
+                  { staticClass: "mr-3 text-base text-80 font-bold uppercase" },
+                  [_vm._v("Step")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
+                _vm._v("Running to NPC")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
+                _vm._v("10% complete")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "loading-card",
+            { staticClass: "px-6 py-4 w-1/4 mx-8", attrs: { loading: false } },
+            [
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c(
+                  "h3",
+                  { staticClass: "mr-3 text-base text-80 font-bold uppercase" },
+                  [_vm._v("Location")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
+                _vm._v("(23,41)")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
+                _vm._v("17 m/s")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "loading-card",
+            { staticClass: "px-6 py-4 w-1/4", attrs: { loading: false } },
+            [
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c(
+                  "h3",
+                  { staticClass: "mr-3 text-base text-80 font-bold uppercase" },
+                  [_vm._v("Session")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
+                _vm._v("2 hours 23 minutes")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
+                _vm._v("Bot is running")
+              ])
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
         "card",
         {
-          staticClass: "bg-90 flex flex-col items-center justify-center",
+          staticClass: "bg-90 flex flex-col",
           staticStyle: { "min-height": "300px" }
         },
         [

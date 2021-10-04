@@ -2,8 +2,33 @@
     <div>
         <heading class="mb-6">Instances</heading>
 
+
+        <div class="flex mb-8">
+            <loading-card :loading="false" class="px-6 py-4 w-1/4">
+                <div class="flex mb-4">
+                    <h3 class="mr-3 text-base text-80 font-bold uppercase">Step</h3>
+                </div>
+                <p class="flex items-center text-4xl mb-4">Running to NPC</p>
+                <p class="flex items-center text-80 font-bold">10% complete</p>
+            </loading-card>
+            <loading-card :loading="false" class="px-6 py-4 w-1/4 mx-8">
+                <div class="flex mb-4">
+                    <h3 class="mr-3 text-base text-80 font-bold uppercase">Location</h3>
+                </div>
+                <p class="flex items-center text-4xl mb-4">(23,41)</p>
+                <p class="flex items-center text-80 font-bold">17 m/s</p>
+            </loading-card>
+            <loading-card :loading="false" class="px-6 py-4 w-1/4">
+                <div class="flex mb-4">
+                    <h3 class="mr-3 text-base text-80 font-bold uppercase">Session</h3>
+                </div>
+                <p class="flex items-center text-4xl mb-4">2 hours 23 minutes</p>
+                <p class="flex items-center text-80 font-bold">Bot is running</p>
+            </loading-card>
+        </div>
+
         <card
-            class="bg-90 flex flex-col items-center justify-center"
+            class="bg-90 flex flex-col"
             style="min-height: 300px"
         >
             <svg
