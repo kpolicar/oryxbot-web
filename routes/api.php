@@ -33,6 +33,7 @@ Route::middleware(['auth:api', 'throttle:notification_rate_limit_per_minute,1,no
             Route::post('stepchanged', [ApiController::class, "BroadcastStepChanged"]);
             Route::post('moved', [ApiController::class, "BroadcastLocationChanged"]);
             Route::post('remotedesktop', [ApiController::class, "BroadcastRemoteDesktop"]);
+            Route::post('runningchanged', [ApiController::class, "BroadcastRunningChanged"]);
         });
 });
 

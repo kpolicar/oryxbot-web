@@ -20,7 +20,7 @@ class ApiController extends Controller
         $this->middleware(EncryptApiResponse::class)
             ->except(['Info']);
         $this->middleware(DecryptApiRequest::class)
-            ->only(['NotifyRunStarting']);
+            ->except(['Info']);
     }
 
 
@@ -76,24 +76,35 @@ class ApiController extends Controller
             'run-route-to-destination' => "Run route",
             'run-to-bank' => "Run to bank",
             'run-to-quest' => "Run to quest",
-        ][$request->getContent()];
+        ][$request->input('step')];
 
         \App\Events\BotStepChanged::dispatch($request->user(), $message, 0);
     }
 
     public function BroadcastLocationChanged(Request $request) {
-        $message = "(".$request->input('x').", ".$request->input('y').")";
+        $location = "(".$request->input('x').", ".$request->input('y').")";
 
-        \App\Events\BotLocationChanged::dispatch($request->user(), $message, 0);
+        \App\Events\BotLocationChanged::dispatch(
+            $request->user(),
+            $location,
+            $request->input('speed'),
+            0);
     }
 
     public function BroadcastRemoteDesktop(Request $request) {
-        $resolution = $request->input('resolution_x')."x".$request->input('y');
+        $resolution = (int)$request->input('resolution_x')."x".(int)$request->input('y');
 
         \App\Events\RemoteDesktopConnectionChanged::dispatch(
             $request->user(),
             $request->input('connected'),
             $resolution,
+            0);
+    }
+
+    public function BroadcastRunningChanged(Request $request) {
+        \App\Events\BotRunningChanged::dispatch(
+            $request->user(),
+            $request->boolean('running'),
             0);
     }
 

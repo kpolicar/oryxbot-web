@@ -26,7 +26,7 @@
                     <h3 class="mr-3 text-base text-80 font-bold uppercase">Location</h3>
                 </div>
                 <p class="flex items-center text-4xl mb-4">{{ location }}</p>
-                <p class="flex items-center text-80 font-bold">{{ speed }}</p>
+                <p class="flex items-center text-80 font-bold">{{ speed }} m/s</p>
             </loading-card>
             <loading-card :loading="false" class="px-6 py-4 w-1/4">
                 <div class="flex mb-4">
@@ -185,6 +185,11 @@ function initBrodcasting() {
         this.remote_connected = e.resolution;
         this.remote_resolution = e.resolution;
     });
+
+    channel.listen('BotLocationChanged', (e) => {
+        this.location = e.location;
+        this.speed = e.speed;
+    });
 }
 
 export default {
@@ -200,7 +205,7 @@ export default {
         step: '-',
         location: '-',
         session: '-',
-        speed: '0 m/s',
+        speed: '0',
         progress: '0% complete',
         status: 'Bot is disconnected',
         vpn_connected: false,

@@ -16,13 +16,15 @@ class BotLocationChanged implements ShouldBroadcastNow
 
     private $user;
     public $location;
+    public $speed;
     public $instanceId;
 
 
-    public function __construct(User $user, int $location, int $instanceId)
+    public function __construct(User $user, string $location, string $speed, int $instanceId)
     {
         $this->user = $user;
         $this->location = $location;
+        $this->speed = $speed;
         $this->instanceId = $instanceId;
     }
 
