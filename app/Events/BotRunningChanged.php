@@ -14,7 +14,7 @@ class BotRunningChanged implements ShouldBroadcastNow
 {
     use Dispatchable, SerializesModels, InteractsWithSockets;
 
-    public $user;
+    private $user;
     public $running;
     public $instanceId;
 
