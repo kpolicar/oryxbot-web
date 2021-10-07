@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/endpoint', function (Request $request) {
-//     //
-// });
+Route::get('/run', function (Request $request) {
+    \App\Events\BotRunningChanged::dispatch($request->user(), true, 0);
+});
+
+Route::get('/stop', function (Request $request) {
+    \App\Events\BotRunningChanged::dispatch($request->user(), false, 0);
+});

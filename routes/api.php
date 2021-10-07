@@ -30,6 +30,9 @@ Route::middleware(['auth:api', 'throttle:notification_rate_limit_per_minute,1,no
             Route::post('starting', [ApiController::class, "NotifyRunStarting"]);
             Route::post('complete', [ApiController::class, "NotifyRunComplete"]);
             Route::post('stuck', [ApiController::class, "NotifyRunStuck"]);
+            Route::post('stepchanged', [ApiController::class, "BroadcastStepChanged"]);
+            Route::post('moved', [ApiController::class, "BroadcastLocationChanged"]);
+            Route::post('remotedesktop', [ApiController::class, "BroadcastRemoteDesktop"]);
         });
 });
 

@@ -1762,7 +1762,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -2348,6 +2348,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 function initBrodcasting() {
     var _this = this;
@@ -2356,9 +2389,9 @@ function initBrodcasting() {
 
     channel.listen('VpnConnectionChanged', function (e) {
         if (e.established) {
-            _this.$toasted.show('VPN Connection has been successfully established!', { type: 'success' });
+            Nova.success('VPN Connection has been successfully established!');
         } else {
-            _this.$toasted.show('VPN Connection has been lost!', { type: 'error' });
+            Nova.error('VPN Connection has been lost!');
         }
     });
 
@@ -2375,6 +2408,11 @@ function initBrodcasting() {
             el.classList.add('text-60');
         }
     });
+
+    channel.listen('RemoteDesktopConnectionChanged', function (e) {
+        _this.remote_connected = e.resolution;
+        _this.remote_resolution = e.resolution;
+    });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2389,13 +2427,22 @@ function initBrodcasting() {
 
     data: function data() {
         return {
-            step: 'Running to NPC',
-            location: '(23,41)',
-            session: '2 hours 23 minutes',
-            speed: '17 m/s',
-            progress: '10% complete',
-            status: 'Bot is running'
+            step: '-',
+            location: '-',
+            session: '-',
+            speed: '0 m/s',
+            progress: '0% complete',
+            status: 'Bot is disconnected',
+            vpn_connected: false,
+            remote_connected: false,
+            remote_resolution: '-',
+            remote_bandwidth: '-'
         };
+    },
+    methods: {
+        StartBot: function StartBot() {
+            Nova.request().get('instances/run');
+        }
     }
 });
 
@@ -2411,6 +2458,28 @@ var render = function() {
     "div",
     [
       _c("heading", { staticClass: "mb-6" }, [_vm._v("Bot #1")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex mb-4" }, [
+        _c(
+          "button",
+          {
+            staticClass:
+              "btn btn-default btn-primary hover:bg-primary-dark px-8",
+            on: { click: _vm.StartBot }
+          },
+          [_vm._v("\n            Start\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "btn btn-default bg-30 text-90 hover:text-white hover:bg-primary-dark ml-2",
+            staticStyle: { transition: "150ms" }
+          },
+          [_vm._v("\n            Restart Service\n        ")]
+        )
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -2494,30 +2563,55 @@ var render = function() {
           "div",
           { staticClass: "mb-4 ml-2 flex justify-start items-start w-1/4" },
           [
-            _c(
-              "svg",
-              {
-                staticClass: "w-8 text-success mr-2",
-                attrs: {
-                  "aria-hidden": "true",
-                  focusable: "false",
-                  "data-prefix": "far",
-                  "data-icon": "check-circle",
-                  role: "img",
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 512 512"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    fill: "currentColor",
-                    d:
-                      "M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
-                  }
-                })
-              ]
-            ),
+            _vm.vpn_connected
+              ? _c(
+                  "svg",
+                  {
+                    staticClass: "w-8 text-success mr-2",
+                    attrs: {
+                      "aria-hidden": "true",
+                      focusable: "false",
+                      "data-prefix": "far",
+                      "data-icon": "check-circle",
+                      role: "img",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 512 512"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        fill: "currentColor",
+                        d:
+                          "M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
+                      }
+                    })
+                  ]
+                )
+              : _c(
+                  "svg",
+                  {
+                    staticClass: "w-8 text-danger mr-2",
+                    attrs: {
+                      "aria-hidden": "true",
+                      focusable: "false",
+                      "data-prefix": "fas",
+                      "data-icon": "ban",
+                      role: "img",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 512 512"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        fill: "currentColor",
+                        d:
+                          "M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
+                      }
+                    })
+                  ]
+                ),
             _vm._v(" "),
             _c(
               "div",
@@ -2553,30 +2647,55 @@ var render = function() {
           "div",
           { staticClass: "mb-4 ml-8 flex justify-start items-start w-1/4" },
           [
-            _c(
-              "svg",
-              {
-                staticClass: "w-8 text-danger mr-2",
-                attrs: {
-                  "aria-hidden": "true",
-                  focusable: "false",
-                  "data-prefix": "fas",
-                  "data-icon": "ban",
-                  role: "img",
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 512 512"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    fill: "currentColor",
-                    d:
-                      "M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
-                  }
-                })
-              ]
-            ),
+            _vm.remote_connected
+              ? _c(
+                  "svg",
+                  {
+                    staticClass: "w-8 text-success mr-2",
+                    attrs: {
+                      "aria-hidden": "true",
+                      focusable: "false",
+                      "data-prefix": "far",
+                      "data-icon": "check-circle",
+                      role: "img",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 512 512"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        fill: "currentColor",
+                        d:
+                          "M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
+                      }
+                    })
+                  ]
+                )
+              : _c(
+                  "svg",
+                  {
+                    staticClass: "w-8 text-danger mr-2",
+                    attrs: {
+                      "aria-hidden": "true",
+                      focusable: "false",
+                      "data-prefix": "fas",
+                      "data-icon": "ban",
+                      role: "img",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 512 512"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        fill: "currentColor",
+                        d:
+                          "M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
+                      }
+                    })
+                  ]
+                ),
             _vm._v(" "),
             _c(
               "div",
@@ -2595,7 +2714,19 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(1),
+                _c("div", { staticClass: "flex" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(_vm.remote_resolution))
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(_vm.remote_bandwidth))
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
                 _c(
                   "a",
@@ -2649,18 +2780,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex" }, [
-      _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
-        _c("li", { staticClass: "mb-2" }, [_vm._v("Resolution:")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "mb-2" }, [_vm._v("Bandwidth:")])
-      ]),
+    return _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Resolution:")]),
       _vm._v(" "),
-      _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
-        _c("li", { staticClass: "mb-2" }, [_vm._v("-")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "mb-2" }, [_vm._v("-")])
-      ])
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Bandwidth:")])
     ])
   },
   function() {

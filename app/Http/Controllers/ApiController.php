@@ -66,6 +66,37 @@ class ApiController extends Controller
         $this->NotifyOneSignal($request, $message);
     }
 
+    public function BroadcastStepChanged(Request $request) {
+        $message = [
+            'finish-quest' => "Finish quest",
+            'bank-items' => "Bank items",
+            'progress-quest' => "Progress quest",
+            'take-quest' => "Take quest",
+            'run-route-back' => "Run route back",
+            'run-route-to-destination' => "Run route",
+            'run-to-bank' => "Run to bank",
+            'run-to-quest' => "Run to quest",
+        ][$request->getContent()];
+
+        \App\Events\BotStepChanged::dispatch($request->user(), $message, 0);
+    }
+
+    public function BroadcastLocationChanged(Request $request) {
+        $message = "(".$request->input('x').", ".$request->input('y').")";
+
+        \App\Events\BotLocationChanged::dispatch($request->user(), $message, 0);
+    }
+
+    public function BroadcastRemoteDesktop(Request $request) {
+        $resolution = $request->input('resolution_x')."x".$request->input('y');
+
+        \App\Events\RemoteDesktopConnectionChanged::dispatch(
+            $request->user(),
+            $request->input('connected'),
+            $resolution,
+            0);
+    }
+
     private function NotifyOneSignal(Request $request, $message, $url=null)
     {
         if ($request->user()->optin_web_notifications) {
