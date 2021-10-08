@@ -16,7 +16,7 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: Nova.config.pusherAppKey,
     cluster: Nova.config.pusherAppCluster,
-    wsHost: window.location.hostname,
+    wsHost: Nova.config.pusherHost,
     wsPort: 6001,
     forceTLS: false,
     disableStats: true,

@@ -94,7 +94,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */](
   broadcaster: 'pusher',
   key: Nova.config.pusherAppKey,
   cluster: Nova.config.pusherAppCluster,
-  wsHost: window.location.hostname,
+  wsHost: Nova.config.pusherHost,
   wsPort: 6001,
   forceTLS: false,
   disableStats: true
