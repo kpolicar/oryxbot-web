@@ -18,6 +18,7 @@ window.Echo = new Echo({
     cluster: Nova.config.pusherAppCluster,
     wsHost: Nova.config.pusherHost,
     wsPort: 6001,
-    forceTLS: false,
+    wssPort: 6001,
+    forceTLS: true,
     disableStats: true,
 });

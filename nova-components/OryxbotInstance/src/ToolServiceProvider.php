@@ -25,13 +25,10 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            if (!in_array($event->request->user()->email, ['naltamer14@gmail.com', 'admin@oryxbot.coma']))
-                abort(403);
-
             Nova::provideToScript([
-                'pusherHost' => env('PUSHER_APP_HOST'),
-                'pusherAppKey' => env('PUSHER_APP_KEY'),
-                'pusherAppCluster' => env('PUSHER_APP_CLUSTER'),
+                'pusherHost' => config('broadcasting.connections.pusher.options.host'),
+                'pusherAppKey' => config('broadcasting.connections.pusher.key'),
+                'pusherAppCluster' => config('broadcasting.connections.pusher.options.cluster'),
             ]);
         });
     }

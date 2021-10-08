@@ -25,7 +25,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 Route::get('/vpn', function () {
-    \App\Events\BotRunningChanged::dispatch(\Auth::user(), true, 0);
+    \App\Events\VpnConnectionChanged::dispatch(\Auth::user(), true);
     //\App\Events\VpnConnectionChanged::dispatch(\Auth::user(), true);
 });
 
