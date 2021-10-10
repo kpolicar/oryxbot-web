@@ -186,6 +186,10 @@ function initBrodcasting() {
         this.remote_resolution = e.resolution;
     });
 
+    channel.listen('BotStepChanged', (e) => {
+        this.step = e.step;
+    });
+
     channel.listen('BotLocationChanged', (e) => {
         this.location = e.location;
         this.speed = e.speed;

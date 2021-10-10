@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\DiscordController;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Broadcast::routes(['middleware' => 'auth:api']);
 
 Route::prefix('/discord')->group(function () {
     Route::post('login', [DiscordController::class, "Login"]);
@@ -30,11 +33,16 @@ Route::middleware(['auth:api', 'throttle:notification_rate_limit_per_minute,1,no
             Route::post('starting', [ApiController::class, "NotifyRunStarting"]);
             Route::post('complete', [ApiController::class, "NotifyRunComplete"]);
             Route::post('stuck', [ApiController::class, "NotifyRunStuck"]);
-            Route::post('stepchanged', [ApiController::class, "BroadcastStepChanged"]);
-            Route::post('moved', [ApiController::class, "BroadcastLocationChanged"]);
-            Route::post('remotedesktop', [ApiController::class, "BroadcastRemoteDesktop"]);
-            Route::post('runningchanged', [ApiController::class, "BroadcastRunningChanged"]);
         });
+});
+
+Route::middleware(['auth:api'])
+    ->prefix('/data')
+    ->group(function () {
+        Route::post('stepchanged', [ApiController::class, "BroadcastStepChanged"]);
+        Route::post('moved', [ApiController::class, "BroadcastLocationChanged"]);
+        Route::post('remotedesktop', [ApiController::class, "BroadcastRemoteDesktop"]);
+        Route::post('runningchanged', [ApiController::class, "BroadcastRunningChanged"]);
 });
 
 Route::middleware('auth:api')->get('/user', [ApiController::class, 'User']);

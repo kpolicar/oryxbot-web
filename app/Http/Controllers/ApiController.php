@@ -20,7 +20,7 @@ class ApiController extends Controller
         $this->middleware(EncryptApiResponse::class)
             ->except(['Info']);
         $this->middleware(DecryptApiRequest::class)
-            ->except(['Info']);
+            ->except(['Info', 'User']);
     }
 
 
@@ -82,17 +82,18 @@ class ApiController extends Controller
     }
 
     public function BroadcastLocationChanged(Request $request) {
-        $location = "(".$request->input('x').", ".$request->input('y').")";
+        [$x, $y] = [(int)$request->input('x'), (int)$request->input('y')];
+        $location = "($x, $y)";
 
         \App\Events\BotLocationChanged::dispatch(
             $request->user(),
             $location,
-            $request->input('speed'),
+            (int)$request->input('speed'),
             0);
     }
 
     public function BroadcastRemoteDesktop(Request $request) {
-        $resolution = (int)$request->input('resolution_x')."x".(int)$request->input('y');
+        $resolution = (int)$request->input('resolution_x')."x".(int)$request->input('resolution_y');
 
         \App\Events\RemoteDesktopConnectionChanged::dispatch(
             $request->user(),

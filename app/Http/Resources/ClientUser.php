@@ -18,6 +18,7 @@ class ClientUser extends JsonResource
     public function toArray($request)
     {
         return [
+            'evmgKPdAiRlfcfa' => $this->id,
             'KEwTWbPyWmdjUKh' => $this->email,
             'efteqXlZxvUNNvi' => $this->name,
             'MVsdYkjeqDKCQBD' => $this->is_subscribed,
