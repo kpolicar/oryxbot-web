@@ -14,6 +14,7 @@
         "beyondcode/laravel-websockets": "^1.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "graham-campbell/digitalocean": "^8.3",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
         "kpolicar/nova-oryxbot-theme": "*",

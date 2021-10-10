@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Contracts\ApiEncrypter as ApiEncrypterContract;
+use App\Models\Subscription;
 use Illuminate\Encryption\Encrypter;
+use Laravel\Cashier\Cashier;
 use Str;
 use App\ClientVersion;
 use Illuminate\Support\Facades\Blade;
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
             }
             return new Encrypter($key, config('app.cipher'));
         });
+        Cashier::useSubscriptionModel(Subscription::class);
     }
 
     /**

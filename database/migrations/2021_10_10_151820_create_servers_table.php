@@ -15,13 +15,13 @@ class CreateServersTable extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subscription_id')
-                ->constrained('subscriptions');
+            $table->foreignId('instance_id')
+                ->constrained('instances');
             $table->string('droplet_id')->unique();
-            $table->ipAddress('ip_address');
-            $table->ipAddress('private_ip_address');
-            $table->string('vpn_username');
-            $table->string('vpn_password');
+            $table->ipAddress('ip_address')->nullable();
+            $table->ipAddress('private_ip_address')->nullable();
+            $table->string('vpn_username')->nullable();
+            $table->string('vpn_password')->nullable();
             $table->boolean('online')->default(0);
             $table->timestamp('last_online')->nullable();
             $table->timestamps();

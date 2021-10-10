@@ -176,6 +176,7 @@ return [
         Berkayk\OneSignal\OneSignalServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        GrahamCampbell\DigitalOcean\DigitalOceanServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -242,6 +243,7 @@ return [
 
         'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'DigitalOcean' => GrahamCampbell\DigitalOcean\Facades\DigitalOcean::class,
     ],
 
 ];

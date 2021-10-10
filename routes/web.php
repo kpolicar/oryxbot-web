@@ -9,6 +9,7 @@ use App\Http\Middleware\NotSubscribed;
 use App\Http\Middleware\OnFreeTrial;
 use App\Http\Middleware\SetLocaleFromSession;
 use App\Http\Middleware\Subscribed;
+use GrahamCampbell\DigitalOcean\Facades\DigitalOcean;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -25,6 +26,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 Route::get('/vpn', function () {
+    //$a = \DigitalOcean::create('bot1-oryxbot-s-1vcpu-1gb-fra1-01');
+    $sub = Auth::user()->subscription();
+    $sub->quantity = 0;
+    $sub->save();
+    dd($sub);
     //\App\Events\BotLocationChanged::dispatch(\Auth::user(), '(2,1)', '12', 0);
     \App\Events\VpnConnectionChanged::dispatch(\Auth::user(), true, 0);
 });

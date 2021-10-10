@@ -63,6 +63,11 @@ class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
+    public function instances()
+    {
+        return Instance::queryForSubscription($this->subscription());
+    }
+
     public function referrer() {
         return $this->belongsTo(User::class, 'referred_by', 'id');
     }
