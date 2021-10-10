@@ -15,6 +15,7 @@ class Instance extends Model
     ];
 
     protected $visible = [
+        'id',
         'name',
         'slug',
         'server',

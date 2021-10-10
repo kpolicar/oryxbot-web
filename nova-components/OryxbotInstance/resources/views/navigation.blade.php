@@ -6,9 +6,9 @@
 </h3>
 
 <ul class="list-reset mb-8">
-    @foreach(Auth::user()->instances as $i => $record)
+    @foreach (Auth::user()->instances as $record)
         <li class="leading-tight mb-4 ml-8 pl-8 text-sm">
-            <router-link tag="h4" id="nav_oryxbot-instance-{{ $i }}" :to="{
+            <router-link tag="h4" id="nav_oryxbot-instance-{{ $record->id }}" :to="{
                 name: 'oryxbot-instance',
                 params: {resourceName: '{{ $record->slug }}'}
                 }" class="cursor-pointer flex items-center font-normal dim text-white mb-4 text-base no-underline">

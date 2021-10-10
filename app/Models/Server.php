@@ -8,6 +8,7 @@ use GrahamCampbell\DigitalOcean\Facades\DigitalOcean;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Server extends Model
 {
@@ -35,8 +36,15 @@ class Server extends Model
                 $server->name,
                 $server->region,
                 $server->size,
-                static::IMAGE);
+                static::IMAGE,
+                false,
+                false,
+                false,
+                [],
+                $server->startupScript());
             $server->droplet_id = $remoteServer->id;
+            $server->ip_address = optional(collect($remoteServer->networks)->firstWhere('type', 'public'))->ipAddress;
+            $server->private_ip_address = optional(collect($remoteServer->networks)->firstWhere('type', 'private'))->ipAddress;
         });
         static::deleting(function () {
             DB::beginTransaction();
@@ -66,5 +74,12 @@ class Server extends Model
     public function instance()
     {
         return $this->belongsTo(Instance::class);
+    }
+
+    private function startupScript()
+    {
+        $script = Str::of(file_get_contents(base_path('digitalocean_startup.sh')))
+            ->replace(':webhookUrl', route('digitalocean.webhook'));
+        dd($script);
     }
 }

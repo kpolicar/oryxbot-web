@@ -2,6 +2,7 @@
 
 use App\ClientVersion;
 use App\Http\Controllers\CashierWebhookController;
+use App\Http\Controllers\DigitalOceanWebhookController;
 use App\Http\Controllers\LinkDiscordController;
 use App\Http\Controllers\StripeController;
 use App\Http\Middleware\HasNeverSubscribed;
@@ -28,7 +29,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::get('/vpn', function () {
     //$a = \DigitalOcean::create('bot1-oryxbot-s-1vcpu-1gb-fra1-01');
     $sub = Auth::user()->subscription();
-    $sub->quantity = 2;
+    $sub->quantity = 1;
     $sub->save();
     dd($sub);
     //\App\Events\BotLocationChanged::dispatch(\Auth::user(), '(2,1)', '12', 0);
@@ -122,4 +123,9 @@ Route::domain(config('app.domain'))->group(function () {
         config('cashier.path').'/webhook',
         [CashierWebhookController::class, 'handleWebhook']
     );
+
+    Route::post(
+        'digitalocean/webhook',
+        [DigitalOceanWebhookController::class, 'handleWebhook']
+    )->name('digitalocean.webhook');
 });
