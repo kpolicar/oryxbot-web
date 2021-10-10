@@ -26,9 +26,9 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::provideToScript([
-                'pusherHost' => config('broadcasting.connections.pusher.options.host'),
                 'pusherAppKey' => config('broadcasting.connections.pusher.key'),
-                'pusherAppCluster' => config('broadcasting.connections.pusher.options.cluster'),
+                'websocketsHost' => config('websockets.host'),
+                'websocketsPort' => config('websockets.port'),
             ]);
         });
     }

@@ -14,14 +14,16 @@ class VpnConnectionChanged implements ShouldBroadcastNow
 {
     use Dispatchable, SerializesModels, InteractsWithSockets;
 
-    public $user;
+    private $user;
     public $established;
+    public $instanceId;
 
 
-    public function __construct(User $user, bool $established)
+    public function __construct(User $user, bool $established, int $instanceId)
     {
         $this->user = $user;
         $this->established = $established;
+        $this->instanceId = $instanceId;
     }
 
 

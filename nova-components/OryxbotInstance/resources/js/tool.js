@@ -15,10 +15,10 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: Nova.config.pusherAppKey,
-    cluster: Nova.config.pusherAppCluster,
-    wsHost: Nova.config.pusherHost,
-    wsPort: 6001,
-    wssPort: 6001,
-    forceTLS: true,
+    wsHost: Nova.config.websocketsHost,
+    wsPort: Nova.config.websocketsPort,
+    wssPort: Nova.config.websocketsPort,
+    enabledTransports: ['ws', 'wss'],
+    forceTLS: process.env.NODE_ENV === 'production',
     disableStats: true,
 });

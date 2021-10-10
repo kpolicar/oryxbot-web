@@ -93,11 +93,11 @@ window.Pusher = __webpack_require__(12);
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */]({
   broadcaster: 'pusher',
   key: Nova.config.pusherAppKey,
-  cluster: Nova.config.pusherAppCluster,
-  wsHost: Nova.config.pusherHost,
-  wsPort: 6001,
-  wssPort: 6001,
-  forceTLS: true,
+  wsHost: Nova.config.websocketsHost,
+  wsPort: Nova.config.websocketsPort,
+  wssPort: Nova.config.websocketsPort,
+  enabledTransports: ['ws', 'wss'],
+  forceTLS: "development" === 'production',
   disableStats: true
 });
 
