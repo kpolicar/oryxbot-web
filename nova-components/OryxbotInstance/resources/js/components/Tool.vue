@@ -1,6 +1,6 @@
 <template>
     <div>
-        <heading class="mb-6">Bot #1</heading>
+        <heading class="mb-6">{{ instance.name }}</heading>
 
         <div class="flex mb-4">
             <button class="btn btn-default btn-primary hover:bg-primary-dark px-8" v-on:click="StartBot">
@@ -77,9 +77,9 @@
                             <li class="mb-2">Password:</li>
                         </ul>
                         <ul class="text-60 list-reset font-bold">
-                            <li class="mb-2">138.67.23.148</li>
-                            <li class="mb-2">example123</li>
-                            <li class="mb-2">passwn21k</li>
+                            <li class="mb-2">{{ instance.server.ip_address ? instance.server.ip_address : '-' }}</li>
+                            <li class="mb-2">{{ instance.server.vpn_username ? instance.server.vpn_username : '-' }}</li>
+                            <li class="mb-2">{{ instance.server.vpn_password ? instance.server.vpn_password : '-' }}</li>
                         </ul>
                     </div>
                     <a href="#" class="text-primary mt-2 no-underline hover:underline">Help</a>
@@ -199,7 +199,7 @@ function initBrodcasting() {
 export default {
     metaInfo() {
         return {
-          title: 'OryxbotInstance',
+          title: 'Instances',
         }
     },
     mounted() {
@@ -220,6 +220,13 @@ export default {
     methods: {
         StartBot() {
             Nova.request().get('instances/run');
+        }
+    },
+    computed: {
+        instance() {
+            return _.find(Nova.config.instances, function(instance) {
+                return this.$route.params.resourceName === instance.slug;
+            }.bind(this));
         }
     }
 }

@@ -26,6 +26,7 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::provideToScript([
+                'instances' => $event->request->user()->instances()->with('server')->get(),
                 'pusherAppKey' => config('broadcasting.connections.pusher.key'),
                 'websocketsHost' => config('websockets.host'),
                 'websocketsPort' => config('websockets.port'),

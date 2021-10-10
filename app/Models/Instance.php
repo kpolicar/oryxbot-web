@@ -14,6 +14,12 @@ class Instance extends Model
 
     ];
 
+    protected $visible = [
+        'name',
+        'slug',
+        'server',
+    ];
+
     public $serverToCreate;
 
 

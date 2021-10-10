@@ -1,13 +1,18 @@
 import Echo from 'laravel-echo'
 
 Nova.booting((Vue, router, store) => {
-  router.addRoutes([
-    {
-      name: 'oryxbot-instance',
-      path: '/instances',
-      component: require('./components/Tool'),
-    },
-  ])
+    _.each(Nova.config.instances, function(instance) {
+        router.addRoutes([
+            {
+                name: 'oryxbot-instance',
+                path: '/instances/:resourceName',
+                component: require('./components/Tool'),
+                params: {
+                    resourceName: instance.slug,
+                },
+            },
+        ])
+    });
 })
 
 window.Pusher = require('pusher-js');

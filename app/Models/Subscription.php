@@ -38,7 +38,8 @@ class Subscription extends CashierSubscription
             for ($i=$this->getOriginal('quantity');$i < $this->quantity; $i++) {
                 if (!$this->instances->has($i)) {
                     $instance = $this->instances()->make([
-                        'slug' => 'bot-'.$i,
+                        'name' => 'Bot #'.($i+1),
+                        'slug' => 'bot-'.($i+1),
                     ]);
                     $instance->serverToCreate = Server::makeWithName($i, $this->user_id);
                     $instance->save();

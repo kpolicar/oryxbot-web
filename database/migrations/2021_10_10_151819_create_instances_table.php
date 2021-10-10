@@ -17,6 +17,7 @@ class CreateInstancesTable extends Migration
             $table->id();
             $table->foreignId('subscription_id')
                 ->constrained('subscriptions');
+            $table->string('name');
             $table->string('slug');
             $table->timestamps();
         });

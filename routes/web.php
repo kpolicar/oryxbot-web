@@ -28,7 +28,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::get('/vpn', function () {
     //$a = \DigitalOcean::create('bot1-oryxbot-s-1vcpu-1gb-fra1-01');
     $sub = Auth::user()->subscription();
-    $sub->quantity = 0;
+    $sub->quantity = 2;
     $sub->save();
     dd($sub);
     //\App\Events\BotLocationChanged::dispatch(\Auth::user(), '(2,1)', '12', 0);

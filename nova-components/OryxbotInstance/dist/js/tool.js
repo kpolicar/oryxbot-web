@@ -81,24 +81,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 Nova.booting(function (Vue, router, store) {
-  router.addRoutes([{
-    name: 'oryxbot-instance',
-    path: '/instances',
-    component: __webpack_require__(3)
-  }]);
+    _.each(Nova.config.instances, function (instance) {
+        router.addRoutes([{
+            name: 'oryxbot-instance',
+            path: '/instances/:resourceName',
+            component: __webpack_require__(3),
+            params: {
+                resourceName: instance.slug
+            }
+        }]);
+    });
 });
 
 window.Pusher = __webpack_require__(12);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */]({
-  broadcaster: 'pusher',
-  key: Nova.config.pusherAppKey,
-  wsHost: Nova.config.websocketsHost,
-  wsPort: Nova.config.websocketsPort,
-  wssPort: Nova.config.websocketsPort,
-  enabledTransports: ['ws', 'wss'],
-  forceTLS: "development" === 'production',
-  disableStats: true
+    broadcaster: 'pusher',
+    key: Nova.config.pusherAppKey,
+    wsHost: Nova.config.websocketsHost,
+    wsPort: Nova.config.websocketsPort,
+    wssPort: Nova.config.websocketsPort,
+    enabledTransports: ['ws', 'wss'],
+    forceTLS: "development" === 'production',
+    disableStats: true
 });
 
 /***/ }),
@@ -1763,7 +1768,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -2428,7 +2433,7 @@ function initBrodcasting() {
 /* harmony default export */ __webpack_exports__["default"] = ({
     metaInfo: function metaInfo() {
         return {
-            title: 'OryxbotInstance'
+            title: 'Instances'
         };
     },
     mounted: function mounted() {
@@ -2453,6 +2458,13 @@ function initBrodcasting() {
         StartBot: function StartBot() {
             Nova.request().get('instances/run');
         }
+    },
+    computed: {
+        instance: function instance() {
+            return _.find(Nova.config.instances, function (instance) {
+                return this.$route.params.resourceName === instance.slug;
+            }.bind(this));
+        }
     }
 });
 
@@ -2467,7 +2479,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("heading", { staticClass: "mb-6" }, [_vm._v("Bot #1")]),
+      _c("heading", { staticClass: "mb-6" }, [
+        _vm._v(_vm._s(_vm.instance.name))
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "flex mb-4" }, [
         _c(
@@ -2636,7 +2650,41 @@ var render = function() {
                   [_vm._v("\n                    VPN\n                ")]
                 ),
                 _vm._v(" "),
-                _vm._m(0),
+                _c("div", { staticClass: "flex" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.instance.server.ip_address
+                            ? _vm.instance.server.ip_address
+                            : "-"
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.instance.server.vpn_username
+                            ? _vm.instance.server.vpn_username
+                            : "-"
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.instance.server.vpn_password
+                            ? _vm.instance.server.vpn_password
+                            : "-"
+                        )
+                      )
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
                 _c(
                   "a",
@@ -2768,22 +2816,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex" }, [
-      _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
-        _c("li", { staticClass: "mb-2" }, [_vm._v("Server name:")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "mb-2" }, [_vm._v("Username:")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "mb-2" }, [_vm._v("Password:")])
-      ]),
+    return _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Server name:")]),
       _vm._v(" "),
-      _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
-        _c("li", { staticClass: "mb-2" }, [_vm._v("138.67.23.148")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "mb-2" }, [_vm._v("example123")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "mb-2" }, [_vm._v("passwn21k")])
-      ])
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Username:")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Password:")])
     ])
   },
   function() {

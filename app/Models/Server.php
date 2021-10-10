@@ -19,6 +19,13 @@ class Server extends Model
     protected $size = 's-1vcpu-1gb';
     protected $region = 'fra1';
 
+    protected $visible = [
+        'ip_address',
+        'vpn_username',
+        'vpn_password',
+        'online',
+    ];
+
 
     protected static function boot()
     {
