@@ -10,13 +10,6 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ServerOnlineStatus extends RequestServerOnlineStatus implements ShouldBroadcastNow
+class RequestStatus extends BotEvent
 {
-    public $online;
-
-    public function __construct(User $user, bool $online, int $instanceId)
-    {
-        parent::__construct($user, $instanceId);
-        $this->online = $online;
-    }
 }

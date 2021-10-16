@@ -36,7 +36,7 @@ Route::get('/vpn', function () {
     $sub->quantity = 1;
     $sub->save();
     //\App\Events\BotLocationChanged::dispatch(\Auth::user(), '(2,1)', '12', 0);
-    \App\Events\VpnConnectionChanged::dispatch(\Auth::user(), true, 0);
+    \App\Events\VpnConnectionChanged::dispatch(\Auth::user(), 0, true);
 });
 
 Route::domain(config('app.domain'))->group(function () {

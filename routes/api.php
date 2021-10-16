@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\BotDataApiController;
 use App\Http\Controllers\DiscordController;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -39,11 +40,11 @@ Route::middleware(['auth:api', 'throttle:notification_rate_limit_per_minute,1,no
 Route::middleware(['auth:api'])
     ->prefix('/data')
     ->group(function () {
-        Route::post('stepchanged', [ApiController::class, "BroadcastStepChanged"]);
-        Route::post('moved', [ApiController::class, "BroadcastLocationChanged"]);
-        Route::post('remotedesktop', [ApiController::class, "BroadcastRemoteDesktop"]);
-        Route::post('runningchanged', [ApiController::class, "BroadcastRunningChanged"]);
-        Route::post('server-status', [ApiController::class, "BroadcastServerStatus"]);
+        Route::post('stepchanged', [BotDataApiController::class, "BroadcastStepChanged"]);
+        Route::post('moved', [BotDataApiController::class, "BroadcastLocationChanged"]);
+        Route::post('remotedesktop', [BotDataApiController::class, "BroadcastRemoteDesktop"]);
+        Route::post('runningchanged', [BotDataApiController::class, "BroadcastRunningChanged"]);
+        Route::post('status', [BotDataApiController::class, "BroadcastStatus"]);
 });
 
 Route::middleware('auth:api')->get('/user', [ApiController::class, 'User']);

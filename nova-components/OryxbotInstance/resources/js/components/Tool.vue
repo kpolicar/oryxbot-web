@@ -2,7 +2,7 @@
     <div>
         <heading class="mb-6">
             {{ instance.name }}
-            <small :class="{'opacity-50': requestingServerOnlineStatus, 'text-primary': serverOnline}"
+            <small :class="{'opacity-50': requestingStatus, 'text-primary': serverOnline}"
                    class="text-xs font-mono uppercase">
                 {{ serverOnline ? 'Online' : 'Offline' }}
             </small>
@@ -10,19 +10,22 @@
 
         <div class="flex mb-4">
             <button class="btn btn-default btn-primary px-8"
-                    v-bind:class="{'cursor-wait': requestingRunningChange, 'hover:bg-primary-dark': !requestingRunningChange}"
+                    v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
                     v-if="!running"
-                    :disabled="requestingRunningChange" v-on:click="StartBot">
+                    :disabled="requestingRunningChange || !serverOnline" v-on:click="StartBot">
                 Start
             </button>
             <button class="btn btn-default btn-primary px-8"
-                    v-bind:class="{'cursor-wait': requestingRunningChange, 'hover:bg-primary-dark': !requestingRunningChange}"
+                    v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
                     v-else
-                    :disabled="requestingRunningChange" v-on:click="StopBot">
+                    :disabled="requestingRunningChange || !serverOnline" v-on:click="StopBot">
                 Stop
             </button>
 
-            <button class="btn btn-default bg-30 text-90 hover:text-white hover:bg-primary-dark ml-2" style="transition: 150ms">
+            <button class="btn btn-default bg-30 text-90 ml-2" style="transition: 150ms"
+                    :disabled="requestingServerReboot"
+                    v-bind:class="{'cursor-wait opacity-50': requestingServerReboot, 'hover:bg-primary-dark hover:text-white': !requestingServerReboot}"
+                    v-on:click="RebootServer">
                 Restart Service
             </button>
         </div>
@@ -93,8 +96,8 @@
                         </ul>
                         <ul class="text-60 list-reset font-bold">
                             <li class="mb-2">{{ instance.server.ip_address ? instance.server.ip_address : '-' }}</li>
-                            <li class="mb-2">{{ instance.server.vpn_username ? instance.server.vpn_username : '-' }}</li>
-                            <li class="mb-2">{{ instance.server.vpn_password ? instance.server.vpn_password : '-' }}</li>
+                            <li class="mb-2">{{ instance.server.ip_address && instance.server.vpn_username ? instance.server.vpn_username : '-' }}</li>
+                            <li class="mb-2">{{ instance.server.ip_address && instance.server.vpn_password ? instance.server.vpn_password : '-' }}</li>
                         </ul>
                     </div>
                     <a href="#" class="text-primary mt-2 no-underline hover:underline">Help</a>
@@ -213,14 +216,27 @@ function initBrodcasting() {
         this.speed = e.speed;
     });
 
-    channel.listen('ServerOnlineStatus', (e) => {
+    channel.listen('Status', (e) => {
         this.requestingServerOnlineStatus = false;
-        this.serverOnline = e.online;
+
+        this.location= e.characterLocation;
+        this.speed= e.characterSpeed;
+        this.running= e.botRunning;
+        this.step= e.botStep;
+        this.remote_connected= e.remoteDesktopConnected;
+        this.remote_resolution= e.remoteDesktopResolution;
+        this.vpn_connected= e.vpnEstablished;
+        //this.session= e.param;
+        //this.progress= e.param;
+        //this.status= e.param;
+        //this.remote_bandwidth= e.param;
+        this.serverOnline= true;
+        this.requestingStatus= false;
     });
 
     channel.subscribed(() => {
         let requestServerOnlineStatusUntilReceivedResponse = function () {
-            this.RequestServerOnlineStatus();
+            this.RequestStatus();
             setTimeout(function () {
                 if (this.requestingServerOnlineStatus) {
                     requestServerOnlineStatusUntilReceivedResponse();
@@ -252,10 +268,11 @@ export default {
         remote_connected: false,
         remote_resolution: '-',
         remote_bandwidth: '-',
-        running: Nova.config.userTradeMissionRunning,
+        running: false,
         serverOnline: false,
         requestingRunningChange: false,
-        requestingServerOnlineStatus: false,
+        requestingStatus: false,
+        requestingServerReboot: false,
     }),
     methods: {
         StartBot() {
@@ -266,9 +283,16 @@ export default {
             this.requestingRunningChange = true;
             Nova.request().post(this.$route.fullPath+'/stop');
         },
-        RequestServerOnlineStatus() {
-            this.requestingServerOnlineStatus = true;
-            Nova.request().post(this.$route.fullPath+'/server-status');
+        RebootServer() {
+            this.requestingServerReboot = true;
+            Nova.request().post(this.$route.fullPath+'/server-reboot')
+                .then(() => Nova.success('Server is rebooting'))
+                .catch(error => Nova.error(error.response.data.message))
+                .finally(() => this.requestingServerReboot = false);
+        },
+        RequestStatus() {
+            this.requestingStatus = true;
+            Nova.request().post(this.$route.fullPath+'/status');
         }
     },
     computed: {

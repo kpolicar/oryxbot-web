@@ -10,25 +10,14 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class BotRunningChanged implements ShouldBroadcastNow
+class BotRunningChanged extends BotEvent
 {
-    use Dispatchable, SerializesModels, InteractsWithSockets;
-
-    private $user;
     public $running;
-    public $instanceId;
 
 
-    public function __construct(User $user, bool $running, int $instanceId)
+    public function __construct(User $user, int $instanceId, bool $running)
     {
-        $this->user = $user;
+        parent::__construct($user, $instanceId);
         $this->running = $running;
-        $this->instanceId = $instanceId;
-    }
-
-
-    public function broadcastOn()
-    {
-        return new PrivateChannel('App.Models.User.'.$this->user->id);
     }
 }

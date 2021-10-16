@@ -1,16 +1,13 @@
-<?php
-
-namespace App\Events;
+<?php namespace App\Events;
 
 use App\Models\User;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class RequestServerOnlineStatus implements ShouldBroadcastNow
+abstract class BotEvent implements ShouldBroadcastNow
 {
     use Dispatchable, SerializesModels, InteractsWithSockets;
 
@@ -23,7 +20,6 @@ class RequestServerOnlineStatus implements ShouldBroadcastNow
         $this->user = $user;
         $this->instanceId = $instanceId;
     }
-
 
     public function broadcastOn()
     {

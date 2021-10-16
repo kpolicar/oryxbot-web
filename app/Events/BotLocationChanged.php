@@ -10,27 +10,16 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class BotLocationChanged implements ShouldBroadcastNow
+class BotLocationChanged extends BotEvent
 {
-    use Dispatchable, SerializesModels, InteractsWithSockets;
-
-    private $user;
     public $location;
     public $speed;
-    public $instanceId;
 
 
-    public function __construct(User $user, string $location, string $speed, int $instanceId)
+    public function __construct(User $user, int $instanceId, string $location, string $speed)
     {
-        $this->user = $user;
+        parent::__construct($user, $instanceId);
         $this->location = $location;
         $this->speed = $speed;
-        $this->instanceId = $instanceId;
-    }
-
-
-    public function broadcastOn()
-    {
-        return new PrivateChannel('App.Models.User.'.$this->user->id);
     }
 }
