@@ -18,11 +18,11 @@ class Subscription extends CashierSubscription
             if ($subscription->wasChanged(['stripe_status', 'quantity'])) {
                 try {
                     $subscription->updateInstances();
-                    DB::commit();
                 } catch (\Exception $e) {
                     DB::rollback();
                     throw $e;
                 }
+                DB::commit();
             }
         });
     }

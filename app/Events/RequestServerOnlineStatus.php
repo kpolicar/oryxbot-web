@@ -10,19 +10,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class RequestBotRunningChanged implements ShouldBroadcastNow
+class RequestServerOnlineStatus implements ShouldBroadcastNow
 {
     use Dispatchable, SerializesModels, InteractsWithSockets;
 
     private $user;
-    public $running;
     public $instanceId;
 
 
-    public function __construct(User $user, bool $running, int $instanceId)
+    public function __construct(User $user, int $instanceId)
     {
         $this->user = $user;
-        $this->running = $running;
         $this->instanceId = $instanceId;
     }
 

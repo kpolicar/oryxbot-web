@@ -43,6 +43,7 @@ Route::middleware(['auth:api'])
         Route::post('moved', [ApiController::class, "BroadcastLocationChanged"]);
         Route::post('remotedesktop', [ApiController::class, "BroadcastRemoteDesktop"]);
         Route::post('runningchanged', [ApiController::class, "BroadcastRunningChanged"]);
+        Route::post('server-status', [ApiController::class, "BroadcastServerStatus"]);
 });
 
 Route::middleware('auth:api')->get('/user', [ApiController::class, 'User']);

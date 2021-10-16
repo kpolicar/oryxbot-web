@@ -1768,7 +1768,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -2387,6 +2387,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 function initBrodcasting() {
     var _this = this;
@@ -2402,6 +2411,9 @@ function initBrodcasting() {
     });
 
     channel.listen('BotRunningChanged', function (e) {
+        _this.running = e.running;
+        _this.requestingRunningChange = false;
+
         var el = document.getElementById('nav_oryxbot-instance-' + e.instanceId);
         el = el ? el.querySelector('svg') : el;
         if (!el) return;
@@ -2451,12 +2463,19 @@ function initBrodcasting() {
             vpn_connected: false,
             remote_connected: false,
             remote_resolution: '-',
-            remote_bandwidth: '-'
+            remote_bandwidth: '-',
+            running: Nova.config.userTradeMissionRunning,
+            requestingRunningChange: false
         };
     },
     methods: {
         StartBot: function StartBot() {
-            Nova.request().get('instances/run');
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath + '/start');
+        },
+        StopBot: function StopBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath + '/stop');
         }
     },
     computed: {
@@ -2484,15 +2503,33 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "flex mb-4" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "btn btn-default btn-primary hover:bg-primary-dark px-8",
-            on: { click: _vm.StartBot }
-          },
-          [_vm._v("\n            Start\n        ")]
-        ),
+        !_vm.running
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-default btn-primary px-8",
+                class: {
+                  "cursor-wait": _vm.requestingRunningChange,
+                  "hover:bg-primary-dark": !_vm.requestingRunningChange
+                },
+                attrs: { disabled: _vm.requestingRunningChange },
+                on: { click: _vm.StartBot }
+              },
+              [_vm._v("\n            Start\n        ")]
+            )
+          : _c(
+              "button",
+              {
+                staticClass: "btn btn-default btn-primary px-8",
+                class: {
+                  "cursor-wait": _vm.requestingRunningChange,
+                  "hover:bg-primary-dark": !_vm.requestingRunningChange
+                },
+                attrs: { disabled: _vm.requestingRunningChange },
+                on: { click: _vm.StopBot }
+              },
+              [_vm._v("\n            Stop\n        ")]
+            ),
         _vm._v(" "),
         _c(
           "button",

@@ -9,6 +9,7 @@ use App\Http\Middleware\EncryptApiResponse;
 use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
 use App\Http\Resources\ClientUser as ClientUserResource;
+use Illuminate\Support\Facades\Cache;
 
 class ApiController extends Controller
 {
@@ -103,9 +104,21 @@ class ApiController extends Controller
     }
 
     public function BroadcastRunningChanged(Request $request) {
+        $running = $request->boolean('running');
+
+        $request->user()->setTradeMissionRunning($running);
+
         \App\Events\BotRunningChanged::dispatch(
             $request->user(),
-            $request->boolean('running'),
+            $running,
+            0);
+    }
+
+    public function BroadcastServerStatus(Request $request) {
+        \Log::info('yes');
+        \App\Events\ServerOnlineStatus::dispatch(
+            $request->user(),
+            $request->boolean('online'),
             0);
     }
 

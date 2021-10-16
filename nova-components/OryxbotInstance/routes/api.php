@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/run', function (Request $request) {
+Route::post('{instance}/start', function (Request $request, $instance) {
     \App\Events\RequestBotRunningChanged::dispatch($request->user(), true, 0);
 });
 
-Route::get('/stop', function (Request $request) {
+Route::post('{instance}/stop', function (Request $request, $instance) {
     \App\Events\RequestBotRunningChanged::dispatch($request->user(), false, 0);
+});
+
+Route::post('{instance}/server-status', function (Request $request, $instance) {
+    \App\Events\RequestServerOnlineStatus::dispatch($request->user(), 0);
 });

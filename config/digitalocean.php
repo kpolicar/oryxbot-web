@@ -46,4 +46,7 @@ return [
 
     ],
 
+    'bot_snapshot_id'   => 93443269 ?: env('DIGITALOCEAN_BOT_SNAPSHOT_ID'),
+    'bot_ssh_key_id'   => env('DIGITALOCEAN_BOT_SSH_KEY_ID'),
+
 ];

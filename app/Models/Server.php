@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 class Server extends Model
 {
+    const FALLBACK_USERNAME = 'user';
     const IMAGE = 'ubuntu-20-04-x64';
 
     use HasFactory;
@@ -36,12 +37,17 @@ class Server extends Model
                 $server->name,
                 $server->region,
                 $server->size,
-                static::IMAGE,
+                config('digitalocean.bot_snapshot_id'),
                 false,
                 false,
                 false,
+                [config('digitalocean.bot_ssh_key_id')],
+                '',
+                true,
                 [],
-                $server->startupScript());
+                ['bot']);
+            $server->vpn_username = optional($server->user)->username ?: static::FALLBACK_USERNAME;
+            $server->vpn_password = Str::random(16);
             $server->droplet_id = $remoteServer->id;
             $server->ip_address = optional(collect($remoteServer->networks)->firstWhere('type', 'public'))->ipAddress;
             $server->private_ip_address = optional(collect($remoteServer->networks)->firstWhere('type', 'private'))->ipAddress;
@@ -53,14 +59,19 @@ class Server extends Model
         static::deleted(function (Server $server) {
             try {
                 DigitalOcean::droplet()->remove($server->droplet_id);
-                DB::commit();
             } catch (RuntimeException $exception) {
                 if ($exception->getCode() != 404) {
                     DB::rollback();
                     throw $exception;
                 }
             }
+            DB::commit();
         });
+    }
+
+    public static function findOrFailByDropletId($id)
+    {
+        return static::where('droplet_id', $id)->firstOrFail();
     }
 
     public static function makeWithName($iteration, $userId)
@@ -76,10 +87,8 @@ class Server extends Model
         return $this->belongsTo(Instance::class);
     }
 
-    private function startupScript()
+    public function getUserAttribute()
     {
-        $script = Str::of(file_get_contents(base_path('digitalocean_startup.sh')))
-            ->replace(':webhookUrl', route('digitalocean.webhook'));
-        dd($script);
+        return data_get($this, 'instance.subscription.user');
     }
 }

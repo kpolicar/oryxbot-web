@@ -1,10 +1,25 @@
 <template>
     <div>
-        <heading class="mb-6">{{ instance.name }}</heading>
+        <heading class="mb-6">
+            {{ instance.name }}
+            <small :class="{'opacity-50': requestingServerOnlineStatus, 'text-primary': serverOnline}"
+                   class="text-xs font-mono uppercase">
+                {{ serverOnline ? 'Online' : 'Offline' }}
+            </small>
+        </heading>
 
         <div class="flex mb-4">
-            <button class="btn btn-default btn-primary hover:bg-primary-dark px-8" v-on:click="StartBot">
+            <button class="btn btn-default btn-primary px-8"
+                    v-bind:class="{'cursor-wait': requestingRunningChange, 'hover:bg-primary-dark': !requestingRunningChange}"
+                    v-if="!running"
+                    :disabled="requestingRunningChange" v-on:click="StartBot">
                 Start
+            </button>
+            <button class="btn btn-default btn-primary px-8"
+                    v-bind:class="{'cursor-wait': requestingRunningChange, 'hover:bg-primary-dark': !requestingRunningChange}"
+                    v-else
+                    :disabled="requestingRunningChange" v-on:click="StopBot">
+                Stop
             </button>
 
             <button class="btn btn-default bg-30 text-90 hover:text-white hover:bg-primary-dark ml-2" style="transition: 150ms">
@@ -167,6 +182,9 @@ function initBrodcasting() {
     });
 
     channel.listen('BotRunningChanged', (e) => {
+        this.running = e.running;
+        this.requestingRunningChange = false;
+
         let el = document.getElementById(`nav_oryxbot-instance-${e.instanceId}`);
         el = el ? el.querySelector('svg') : el;
         if (!el)
@@ -194,6 +212,24 @@ function initBrodcasting() {
         this.location = e.location;
         this.speed = e.speed;
     });
+
+    channel.listen('ServerOnlineStatus', (e) => {
+        this.requestingServerOnlineStatus = false;
+        this.serverOnline = e.online;
+    });
+
+    channel.subscribed(() => {
+        let requestServerOnlineStatusUntilReceivedResponse = function () {
+            this.RequestServerOnlineStatus();
+            setTimeout(function () {
+                if (this.requestingServerOnlineStatus) {
+                    requestServerOnlineStatusUntilReceivedResponse();
+                }
+            }.bind(this), 5000);
+        }.bind(this);
+
+        requestServerOnlineStatusUntilReceivedResponse();
+    });
 }
 
 export default {
@@ -216,10 +252,23 @@ export default {
         remote_connected: false,
         remote_resolution: '-',
         remote_bandwidth: '-',
+        running: Nova.config.userTradeMissionRunning,
+        serverOnline: false,
+        requestingRunningChange: false,
+        requestingServerOnlineStatus: false,
     }),
     methods: {
         StartBot() {
-            Nova.request().get('instances/run');
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath+'/start');
+        },
+        StopBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath+'/stop');
+        },
+        RequestServerOnlineStatus() {
+            this.requestingServerOnlineStatus = true;
+            Nova.request().post(this.$route.fullPath+'/server-status');
         }
     },
     computed: {

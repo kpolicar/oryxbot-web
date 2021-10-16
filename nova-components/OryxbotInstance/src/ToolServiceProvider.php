@@ -30,6 +30,7 @@ class ToolServiceProvider extends ServiceProvider
                 'pusherAppKey' => config('broadcasting.connections.pusher.key'),
                 'websocketsHost' => config('websockets.host'),
                 'websocketsPort' => config('websockets.port'),
+                'userTradeMissionRunning' => (bool) optional($event->request->user())->tradeMissionRunning(),
             ]);
         });
     }
