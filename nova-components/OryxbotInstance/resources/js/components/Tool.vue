@@ -25,9 +25,22 @@
             <button class="btn btn-default bg-30 text-90 ml-2" style="transition: 150ms"
                     :disabled="requestingServerReboot"
                     v-bind:class="{'cursor-wait opacity-50': requestingServerReboot, 'hover:bg-primary-dark hover:text-white': !requestingServerReboot}"
-                    v-on:click="RebootServer">
+                    v-on:click="OnAttemptServerReboot">
                 Restart Service
             </button>
+            <portal to="modals" transition="fade-transition">
+                <confirm-action-modal
+                    v-if="showRebootServerConfirmModal"
+                    @confirm="OnConfirmServerReboot"
+                    @close="OnCancelServerReboot"
+                    :working="false"
+                    resourceName="oryxbot-instance"
+                    :selectedResources="['oryxbot-instance']"
+                    :errors="{}"
+                    :action="{name: 'Restart service', confirmText: 'Are you sure you want to restart your server? This may take up to a minute.', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [], class: 'btn-primary'}">
+
+                </confirm-action-modal>
+            </portal>
         </div>
 
 
@@ -60,23 +73,25 @@
 
             <div class="mb-4 ml-2 flex justify-start items-start w-1/4">
 
-                <svg v-if="vpn_connected"
+                <svg v-show="vpn_connected || remote_connected"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="far"
                      data-icon="check-circle"
                      class="w-8 text-success mr-2"
+                     style="overflow: visible"
                      role="img"
                      xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 512 512">
                     <path fill="currentColor" d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"></path>
                 </svg>
-                <svg v-else
+                <svg v-show="!vpn_connected && !remote_connected"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="fas"
                      data-icon="ban"
                      class="w-8 text-danger mr-2"
+                     style="overflow: visible"
                      role="img"
                      xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path>
@@ -106,23 +121,25 @@
             </div>
             <div class="mb-4 ml-8 flex justify-start items-start w-1/4">
 
-                <svg v-if="remote_connected"
+                <svg v-show="remote_connected"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="far"
                      data-icon="check-circle"
                      class="w-8 text-success mr-2"
+                     style="overflow: visible"
                      role="img"
                      xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 512 512">
                     <path fill="currentColor" d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"></path>
                 </svg>
-                <svg v-else
+                <svg v-show="!remote_connected"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="fas"
                      data-icon="ban"
                      class="w-8 text-danger mr-2"
+                     style="overflow: visible"
                      role="img"
                      xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path>
@@ -151,23 +168,7 @@
         </div>
 
         <heading :level="2" class="mb-6 text-2xl">Logs</heading>
-        <div class="flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90">
-            2021-09-18 00:36:02.4070 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:02.7440 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI<br>
-            2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI<br>
-            2021-09-18 00:36:08.7168 | Info | Maging AI updated: Custom Maging AI<br>
-            2021-09-18 00:36:09.9348 | Info | Maging AI updated: Maging AI<br>
-            2021-09-18 00:36:16.1491 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:16.4911 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:18.3522 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:18.8892 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:22.6649 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:23.7060 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:24.2360 | Info | Action executed: Unknown action<br>
-            2021-09-18 00:36:26.2162 | Info | Mage config has changed.<br>
-            2021-09-18 00:36:26.2162 | Info | Mage config has been reset.<br>
-            2021-09-18 00:36:26.2162 | Debug | New config:
+        <div class="flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90" style="height: 200px">
         </div>
     </div>
 </template>
@@ -218,6 +219,7 @@ function initBrodcasting() {
 
     channel.listen('Status', (e) => {
         this.requestingStatus = false;
+        this.requestingRunningChange = false;
 
         this.location= e.characterLocation;
         this.speed= e.characterSpeed;
@@ -281,6 +283,7 @@ export default {
         requestingStatus: false,
         requestingServerReboot: false,
         refreshTimeout: null,
+        showRebootServerConfirmModal: false,
     }),
     methods: {
         StartBot() {
@@ -301,7 +304,17 @@ export default {
         RequestStatus() {
             this.requestingStatus = true;
             Nova.request().post(this.$route.fullPath+'/status');
-        }
+        },
+        OnAttemptServerReboot() {
+            this.showRebootServerConfirmModal = true;
+        },
+        OnConfirmServerReboot() {
+            this.showRebootServerConfirmModal = false;
+            this.RebootServer();
+        },
+        OnCancelServerReboot() {
+            this.showRebootServerConfirmModal = false;
+        },
     },
     computed: {
         instance() {

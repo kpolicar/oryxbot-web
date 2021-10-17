@@ -1,9 +1,12 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Http\Middleware\DecryptApiRequest;
+use App\Http\Middleware\EncryptApiResponse;
+use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
 
-class BotDataApiController
+class BotDataApiController extends Controller
 {
     private const REQUEST_PARAM_BOT_STEP = 'bot_step';
     private const REQUEST_PARAM_CHARACTER_SPEED = 'character_speed';
@@ -14,6 +17,13 @@ class BotDataApiController
     private const REQUEST_PARAM_REMOTE_DESKTOP_CONNECTED = 'remote_desktop_connected';
     private const REQUEST_PARAM_BOT_RUNNING = 'bot_running';
 
+
+    public function __construct()
+    {
+        $this->middleware(Subscribed::class);
+        $this->middleware(EncryptApiResponse::class);
+        $this->middleware(DecryptApiRequest::class);
+    }
 
     public function BroadcastStepChanged(Request $request) {
         \App\Events\BotStepChanged::dispatch($request->user(), 0, $this->formatBotStepFromRequest($request));
@@ -43,7 +53,6 @@ class BotDataApiController
     }
 
     public function BroadcastStatus(Request $request) {
-        \Log::info('yes');
         \App\Events\Status::dispatch(
             $request->user(),
             0,
