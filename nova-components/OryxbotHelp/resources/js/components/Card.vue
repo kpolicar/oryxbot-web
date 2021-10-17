@@ -1,17 +1,16 @@
 <template>
     <div class="flex justify-center items-centers">
         <div class="w-full max-w-xl">
-            <heading class="flex mb-3">Get Started</heading>
+            <heading class="flex mb-3">Welcome to Oryxbot</heading>
             <p class="text-60 leading-tight mb-8">
-                Welcome to Nova! Get familiar with Nova and explore its features in the
-                documentation:
+                Get familiar with Oryxbot and explore its features:
             </p>
 
             <card>
                 <table class="w-full" cellpadding="0" cellspacing="0">
                     <tr>
                         <td class="align-top w-1/2 border-r border-b border-50">
-                            <a :href="resources" class="no-underline dim flex p-6">
+                            <a :href="installation" class="no-underline dim flex p-6">
                                 <div class="flex justify-center w-11 flex-no-shrink mr-6">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +26,7 @@
                                 </div>
 
                                 <div>
-                                    <heading :level="3" class="text-80 mb-3">Resources</heading>
+                                    <heading :level="3" class="text-80 mb-3">Installation</heading>
                                     <p class="text-90 leading-normal">
                                         Nova's resource manager allows you to quickly view and
                                         manage your Eloquent model records directly from Nova's
@@ -38,7 +37,7 @@
                         </td>
 
                         <td class="align-top w-1/2 border-b border-50">
-                            <a :href="actions" class="no-underline dim flex p-6">
+                            <a :href="usage" class="no-underline dim flex p-6">
                                 <div class="flex justify-center w-11 flex-no-shrink mr-6">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -54,9 +53,9 @@
                                 </div>
 
                                 <div>
-                                    <heading :level="3" class="text-80 mb-3">Actions</heading>
+                                    <heading :level="3" class="text-80 mb-3">Usage</heading>
                                     <p class="text-90 leading-normal">
-                                        Actions perform tasks on a single record or an entire batch
+                                        usage perform tasks on a single record or an entire batch
                                         of records. Have an action that takes a while? No problem.
                                         Nova can queue them using Laravel's powerful queue system.
                                     </p>
@@ -67,7 +66,7 @@
 
                     <tr>
                         <td class="align-top w-1/2 border-r border-b border-50">
-                            <a :href="filters" class="no-underline dim flex p-6">
+                            <a :href="releaseNotes" class="no-underline dim flex p-6">
                                 <div class="flex justify-center w-11 flex-no-shrink mr-6">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -83,9 +82,9 @@
                                 </div>
 
                                 <div>
-                                    <heading :level="3" class="text-80 mb-3">Filters</heading>
+                                    <heading :level="3" class="text-80 mb-3">Latest Release Notes</heading>
                                     <p class="text-90 leading-normal">
-                                        Write custom filters for your resource indexes to offer your
+                                        Write custom releaseNotes for your resource indexes to offer your
                                         users quick glances at different segments of your data.
                                     </p>
                                 </div>
@@ -93,7 +92,7 @@
                         </td>
 
                         <td class="align-top w-1/2 border-b border-50">
-                            <a :href="lenses" class="no-underline dim flex p-6">
+                            <a :href="discord" class="no-underline dim flex p-6">
                                 <div class="flex justify-center w-11 flex-no-shrink mr-6">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -109,10 +108,10 @@
                                 </div>
 
                                 <div>
-                                    <heading :level="3" class="text-80 mb-3">Lenses</heading>
+                                    <heading :level="3" class="text-80 mb-3">Discord</heading>
                                     <p class="text-90 leading-normal">
                                         Need to customize a resource list a little more than a
-                                        filter can provide? No problem. Add lenses to your resource
+                                        filter can provide? No problem. Add discord to your resource
                                         to take full control over the entire Eloquent query.
                                     </p>
                                 </div>
@@ -122,7 +121,7 @@
 
                     <tr>
                         <td class="align-top w-1/2 border-r border-b border-50">
-                            <a :href="metrics" class="no-underline dim flex p-6">
+                            <a :href="notifications" class="no-underline dim flex p-6">
                                 <div class="flex justify-center w-11 flex-no-shrink mr-6">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -138,9 +137,9 @@
                                 </div>
 
                                 <div>
-                                    <heading :level="3" class="text-80 mb-3">Metrics</heading>
+                                    <heading :level="3" class="text-80 mb-3">Notifications</heading>
                                     <p class="text-90 leading-normal">
-                                        Nova makes it painless to quickly display custom metrics for
+                                        Nova makes it painless to quickly display custom notifications for
                                         your application. To put the cherry on top, we’ve included
                                         query helpers to make it all easy as pie.
                                     </p>
@@ -149,7 +148,7 @@
                         </td>
 
                         <td class="align-top w-1/2 border-b border-50">
-                            <a :href="cards" class="no-underline dim flex p-6">
+                            <a :href="billing" class="no-underline dim flex p-6">
                                 <div class="flex justify-center w-11 flex-no-shrink mr-6">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -165,10 +164,10 @@
                                 </div>
 
                                 <div>
-                                    <heading :level="3" class="text-80 mb-3">Cards</heading>
+                                    <heading :level="3" class="text-80 mb-3">Billing</heading>
                                     <p class="text-90 leading-normal">
                                         Nova offers CLI generators for scaffolding your own custom
-                                        cards. We’ll give you a Vue component and infinite
+                                        billing. We’ll give you a Vue component and infinite
                                         possibilities.
                                     </p>
                                 </div>
@@ -190,35 +189,29 @@ export default {
     },
 
     methods: {
-        link(path) {
-            return `https://nova.laravel.com/docs/${this.version}/${path}`
+        siteLink(path) {
+            return `https://oryxbot.com/${path}`
         },
     },
 
     computed: {
-        resources() {
-            return this.link('resources')
+        installation() {
+            return this.siteLink('install')
         },
-        actions() {
-            return this.link('actions/defining-actions.html')
+        usage() {
+            return this.siteLink('guide')
         },
-        filters() {
-            return this.link('filters/defining-filters.html')
+        releaseNotes() {
+            return this.siteLink('release/latest')
         },
-        lenses() {
-            return this.link('lenses/defining-lenses.html')
+        discord() {
+            return this.siteLink('discord')
         },
-        metrics() {
-            return this.link('metrics/defining-metrics.html')
+        notifications() {
+            return this.siteLink('notifications')
         },
-        cards() {
-            return this.link('customization/cards.html')
-        },
-        version() {
-            const parts = window.Nova.config.version.split('.')
-            parts.splice(-2)
-
-            return `${parts}.0`
+        billing() {
+            return this.siteLink('billing')
         },
     },
 }

@@ -18,9 +18,12 @@ use Laravel\Fortify\Http\Controllers\VerifyEmailController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // Authentication...
-Route::get(LaravelLocalization::transRoute('routes.login'), [AuthenticatedSessionController::class, 'create'])
-    ->middleware(['guest'])
-    ->name('login');
+//Route::get(LaravelLocalization::transRoute('routes.login'), [AuthenticatedSessionController::class, 'create'])
+//    ->middleware(['guest'])
+//    ->name('login');
+Route::get(LaravelLocalization::transRoute('routes.login'), function () {
+    return redirect(route('nova.login'));
+})->name('login');
 
 $limiter = config('fortify.limiters.login');
 

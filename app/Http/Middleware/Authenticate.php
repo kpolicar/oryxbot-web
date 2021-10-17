@@ -18,7 +18,7 @@ class Authenticate extends Middleware
             return route('login.discord');
         }
         if (! $request->expectsJson()) {
-            return route('login');
+            return route('nova.login');
         }
     }
 }

@@ -108,7 +108,7 @@
         </form>
 
         <p class="mt-3 text-gray-900 text-base lg:text-left text-center">
-            <a href="{{ route('login') }}" class="font-bold">
+            <a href="{{ route('nova.login') }}" class="font-bold">
                 {{ __('forms.register_form_already_registered') }}
             </a>
         </p>

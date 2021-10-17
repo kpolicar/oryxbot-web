@@ -17,7 +17,7 @@ Nova.booting((Vue, router, store) => {
 
 window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
+window.Echo = () => new Echo({
     broadcaster: 'pusher',
     key: Nova.config.pusherAppKey,
     wsHost: Nova.config.websocketsHost,

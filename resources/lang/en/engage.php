@@ -2,7 +2,7 @@
 
 return [
 
-    'heading' => 'We have arrived!',
-    'subheading' => 'The first <strong class="uppercase">official release</strong> is here!<br/>Use promo code <strong>ORYXBOTv1</strong> for a €5 discount on your first month\'s subscription!',
+    'heading' => 'We are coming',
+    'subheading' => 'The <strong class="uppercase bold">first official release</strong> is approaching! Join the discord and stay tuned!',
     'download' => 'Download now!',
 ];

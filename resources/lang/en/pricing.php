@@ -7,10 +7,11 @@ return [
 
     'package_free' => 'Free trial',
     'package_subscription' => 'Subscription',
-    'package_subscription_duration' => '30 days',
+    'package_subscription_duration' => '1 month',
     'package_free_duration' => '3 days',
     'package_feature_routes_default' => 'Default routes',
     'package_feature_routes_custom' => 'Custom routes',
+    'package_feature_statistics' => 'Statistics',
 
     'package_feature_in_development' => 'Features are under active development and have not yet been made available',
 ];

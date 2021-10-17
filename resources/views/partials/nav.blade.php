@@ -69,7 +69,7 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
             </ul>
             <div class="lg:ml-24 ml-0 py-4">
                 <a id="navAction"
-                   href="{{ Auth::check() ? Request::getScheme().'://'.config('nova.domain') : route('login') }}"
+                   href="{{ Auth::check() ? Request::getScheme().'://'.config('nova.domain') : route('nova.login') }}"
                    rel="nofollow"
                    class="mx-auto lg:mx-0 lg:mx-2 bg-black text-white font-bold rounded mt-4 lg:mt-0 py-2 px-4 pr-6 rounded-full shadow opacity-75 hover:opacity-100 hover:bg-gray-900 transition duration-300 group">
                     @auth

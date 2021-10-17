@@ -173,6 +173,9 @@
 
 <script>
 function initBrodcasting() {
+    if (typeof window.Echo === 'function')
+        window.Echo = Echo();
+
     let channel = Echo.private(`App.Models.User.${Nova.config.userId}`);
 
     channel.listen('VpnConnectionChanged', (e) => {
@@ -243,7 +246,7 @@ export default {
           title: 'Instances',
         }
     },
-    created() {
+    mounted() {
         initBrodcasting.bind(this)();
     },
     destroyed() {
