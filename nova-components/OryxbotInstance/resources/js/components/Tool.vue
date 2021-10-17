@@ -217,7 +217,7 @@ function initBrodcasting() {
     });
 
     channel.listen('Status', (e) => {
-        this.requestingServerOnlineStatus = false;
+        this.requestingStatus = false;
 
         this.location= e.characterLocation;
         this.speed= e.characterSpeed;
@@ -230,15 +230,17 @@ function initBrodcasting() {
         //this.progress= e.param;
         //this.status= e.param;
         //this.remote_bandwidth= e.param;
-        this.serverOnline= true;
-        this.requestingStatus= false;
+        this.serverOnline = true;
     });
 
     channel.subscribed(() => {
         let requestServerOnlineStatusUntilReceivedResponse = function () {
             this.RequestStatus();
-            setTimeout(function () {
-                if (this.requestingServerOnlineStatus) {
+            this.refreshTimeout = setTimeout(function () {
+                this.refreshTimeout = null;
+                if (this.requestingStatus) {
+                    if (!document.hidden)
+                        Nova.error('Failed to connect to bot. Retrying...');
                     requestServerOnlineStatusUntilReceivedResponse();
                 }
             }.bind(this), 5000);
@@ -254,8 +256,13 @@ export default {
           title: 'Instances',
         }
     },
-    mounted() {
+    created() {
         initBrodcasting.bind(this)();
+    },
+    destroyed() {
+        Echo.leave(`App.Models.User.${Nova.config.userId}`);
+        if (this.refreshTimeout !== null)
+            clearTimeout(this.refreshTimeout)
     },
     data: () => ({
         step: '-',
@@ -273,6 +280,7 @@ export default {
         requestingRunningChange: false,
         requestingStatus: false,
         requestingServerReboot: false,
+        refreshTimeout: null,
     }),
     methods: {
         StartBot() {
