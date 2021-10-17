@@ -15,7 +15,9 @@
         "build-oryxbot-logs": "cd nova-components/OryxbotLogs && npm run dev",
         "build-oryxbot-logs-prod": "cd nova-components/OryxbotLogs && npm run prod",
         "build-oryxbot-insights": "cd nova-components/OryxbotInsights && npm run dev",
-        "build-oryxbot-insights-prod": "cd nova-components/OryxbotInsights && npm run prod"
+        "build-oryxbot-insights-prod": "cd nova-components/OryxbotInsights && npm run prod",
+        "build-oryxbot-help": "cd nova-components/OryxbotHelp && npm run dev",
+        "build-oryxbot-help-prod": "cd nova-components/OryxbotHelp && npm run prod"
     },
     "devDependencies": {
         "@tailwindcss/custom-forms": "^0.2.1",

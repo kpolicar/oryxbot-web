@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
+use Kpolicar\OryxbotHelp\OryxbotHelp;
 use Kpolicar\OryxbotInsights\OryxbotInsights;
 use Kpolicar\OryxbotInstance\OryxbotInstance;
 use Kpolicar\OryxbotLogs\OryxbotLogs;
-use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -59,7 +59,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new OryxbotHelp,
         ];
     }
 
