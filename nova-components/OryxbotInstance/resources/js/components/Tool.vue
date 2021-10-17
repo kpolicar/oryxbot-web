@@ -11,13 +11,13 @@
         <div class="flex mb-4">
             <button class="btn btn-default btn-primary px-8"
                     v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
-                    v-if="!running"
+                    v-show="!running"
                     :disabled="requestingRunningChange || !serverOnline" v-on:click="StartBot">
                 Start
             </button>
             <button class="btn btn-default btn-primary px-8"
                     v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
-                    v-else
+                    v-show="running"
                     :disabled="requestingRunningChange || !serverOnline" v-on:click="StopBot">
                 Stop
             </button>
@@ -115,7 +115,6 @@
                             <li class="mb-2">{{ instance.server.ip_address && instance.server.vpn_password ? instance.server.vpn_password : '-' }}</li>
                         </ul>
                     </div>
-                    <a href="#" class="text-primary mt-2 no-underline hover:underline">Help</a>
                 </div>
 
             </div>
@@ -161,7 +160,6 @@
                             <li class="mb-2">{{ remote_bandwidth}}</li>
                         </ul>
                     </div>
-                    <a href="#" class="text-primary mt-2 no-underline hover:underline">Help</a>
                 </div>
 
             </div>
@@ -188,19 +186,6 @@ function initBrodcasting() {
     channel.listen('BotRunningChanged', (e) => {
         this.running = e.running;
         this.requestingRunningChange = false;
-
-        let el = document.getElementById(`nav_oryxbot-instance-${e.instanceId}`);
-        el = el ? el.querySelector('svg') : el;
-        if (!el)
-            return;
-
-        if (e.running) {
-            el.classList.add('text-primary')
-            el.classList.remove('text-60')
-        } else {
-            el.classList.remove('text-primary')
-            el.classList.add('text-60')
-        }
     });
 
     channel.listen('RemoteDesktopConnectionChanged', (e) => {
@@ -272,7 +257,6 @@ export default {
         session: '-',
         speed: '0',
         progress: '0% complete',
-        status: 'Bot is disconnected',
         vpn_connected: false,
         remote_connected: false,
         remote_resolution: '-',
@@ -321,6 +305,27 @@ export default {
             return _.find(Nova.config.instances, function(instance) {
                 return this.$route.params.resourceName === instance.slug;
             }.bind(this));
+        },
+        status() {
+            return this.running
+                ? 'Bot is running'
+                : 'Bot is not running';
+        }
+    },
+    watch: {
+        running(val) {
+            let el = document.getElementById(`nav_oryxbot-instance-${this.instance.id}`);
+            el = el ? el.querySelector('svg') : el;
+            if (!el)
+                return;
+
+            if (val) {
+                el.classList.add('text-primary')
+                el.classList.remove('text-60')
+            } else {
+                el.classList.remove('text-primary')
+                el.classList.add('text-60')
+            }
         }
     }
 }
