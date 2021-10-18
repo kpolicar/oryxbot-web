@@ -66,13 +66,25 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                     <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2"
                        href="#pricing">Pricing</a>
                 </li>
+                @if (Auth::check() && !Auth::user()->subscribedToTradeMissionBot())
+                <li class="xl:mr-3 m-1">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2">
+                            Sign out
+                        </button>
+                    </form>
+                </li>
+                @endif
             </ul>
             <div class="lg:ml-24 ml-0 py-4">
                 <a id="navAction"
+                   @if (!Auth::check() || Auth::user()->subscribedToTradeMissionBot())
                    href="{{ Auth::check() ? Request::getScheme().'://'.config('nova.domain') : route('nova.login') }}"
+                   @endif
                    rel="nofollow"
                    @if(!optional(Auth::user())->subscribedToTradeMissionBot())data-checkout="{{ route('create-checkout-session') }}"@endif
-                   class="mx-auto lg:mx-0 lg:mx-2 bg-black text-white font-bold rounded mt-4 lg:mt-0 py-2 px-4 pr-6 rounded-full shadow opacity-75 hover:opacity-100 hover:bg-gray-900 transition duration-300 group">
+                   class="cursor-pointer mx-auto lg:mx-0 lg:mx-2 bg-black text-white font-bold rounded mt-4 lg:mt-0 py-2 px-4 pr-6 rounded-full shadow opacity-75 hover:opacity-100 hover:bg-gray-900 transition duration-300 group">
                     @auth
                         @if (Auth::user()->subscribedToTradeMissionBot())
                             {{ __('common.dashboard') }}
