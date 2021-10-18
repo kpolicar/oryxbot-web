@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\BotDataApiController;
 use App\Http\Controllers\DiscordController;
+use App\Http\Middleware\Subscribed;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,7 @@ Route::middleware(['auth:api', 'throttle:notification_rate_limit_per_minute,1,no
         });
 });
 
-Route::middleware(['auth:api'])
+Route::middleware(['auth:api', Subscribed::class])
     ->prefix('/data')
     ->group(function () {
         Route::post('stepchanged', [BotDataApiController::class, "BroadcastStepChanged"]);

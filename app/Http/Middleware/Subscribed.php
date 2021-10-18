@@ -17,7 +17,7 @@ class Subscribed
     public function handle(Request $request, Closure $next)
     {
         if (!$request->user()->subscribedToTradeMissionBot())
-           abort(404);
+           abort(403);
         return $next($request);
     }
 }

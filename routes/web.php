@@ -26,6 +26,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+Route::middleware(config('nova.middleware', []))
+    ->domain(config('nova.domain', null))
+    ->prefix(Nova::path())
+    ->get('/billing-portal', [StripeController::class, 'billing'])
+    ->name('billing');
+
 Route::get('/vpn', function () {
     /*$server = Auth::user()->instances->first()->server;
     $droplet = $server->droplet_id;
@@ -100,10 +106,6 @@ Route::domain(config('app.domain'))->group(function () {
         Route::post('/trial-cancel', [StripeController::class, 'cancelTrial'])
             ->middleware([Subscribed::class, OnFreeTrial::class])
             ->name('trial-cancel');
-
-        Route::get('/billing-portal', [StripeController::class, 'billing'])
-            ->middleware(Subscribed::class)
-            ->name('billing');
 
         require_once 'fortify.php';
 

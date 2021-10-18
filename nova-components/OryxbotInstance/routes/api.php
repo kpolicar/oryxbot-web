@@ -28,7 +28,7 @@ Route::post('{instance}/status', function (Request $request, $instance) {
 
 Route::post('{instance}/server-reboot', function (Request $request, $instance) {
     if ($instance = $request->user()->instances->first()) {
-        \DigitalOcean::droplet()->powerCycle($instance->server->droplet_id);
+        \DigitalOcean::droplet()->reboot($instance->server->droplet_id);
     } else {
         abort(404, 'Server not found');
     }

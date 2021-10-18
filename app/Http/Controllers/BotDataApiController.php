@@ -3,7 +3,6 @@
 
 use App\Http\Middleware\DecryptApiRequest;
 use App\Http\Middleware\EncryptApiResponse;
-use App\Http\Middleware\Subscribed;
 use Illuminate\Http\Request;
 
 class BotDataApiController extends Controller
@@ -20,7 +19,6 @@ class BotDataApiController extends Controller
 
     public function __construct()
     {
-        $this->middleware(Subscribed::class);
         $this->middleware(EncryptApiResponse::class);
         $this->middleware(DecryptApiRequest::class);
     }

@@ -11,9 +11,13 @@ import {loadStripe} from '@stripe/stripe-js';
             "[data-checkout]"
         ),
         function (input) {
-            input.addEventListener("click", function () {
+            input.addEventListener("click", function (event) {
+                event.preventDefault();
                 axios.post(input.getAttribute('data-checkout'))
                     .then(response => stripe.redirectToCheckout({ sessionId: response.data.id }))
+                    .catch(function (error) {
+                        console.error(error);
+                    })
                     .then(result => {
                         if (result.error) {
                             alert(result.error.message);
