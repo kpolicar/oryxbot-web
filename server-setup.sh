@@ -66,4 +66,7 @@ chown user /home/user/Applications/VncViewer/VncViewer.jar
 apt-get install -y xdotool
 apt install supervisor
 
+#https://www.unixtutorial.org/disable-sleep-on-ubuntu-server/
+systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
 echo -e "[program:oryxbot]\ncommand=/home/user/Applications/Oryxbot/OryxBot\nnumprocs=1\nautostart=false\nautorestart=true\nuser=user\nenvironment=DISPLAY=:0\nstdout_logfile=/home/user/Applications/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/user/Applications/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB" > /etc/supervisor/conf.d/oryxbot.conf

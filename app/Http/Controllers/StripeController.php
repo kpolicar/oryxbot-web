@@ -12,8 +12,8 @@ use Stripe\Exception\InvalidRequestException;
 class StripeController extends Controller
 {
     public function __construct() {
-        $this->middleware('throttle:stripe')
-            ->except('cancelTrial');
+        //$this->middleware('throttle:stripe')
+        //    ->except('cancelTrial');
         $this->middleware(['auth', 'verified']);
         $this->middleware('customer');
     }
@@ -27,6 +27,7 @@ class StripeController extends Controller
     }
 
     public function checkoutSession(Request $request) {
+        return;
         return $request->user()
             ->allowPromotionCodes()
             ->checkout(config('pricing.trade_mission_bot.stripe_id'), [

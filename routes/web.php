@@ -33,6 +33,7 @@ Route::middleware(config('nova.middleware', []))
     ->name('billing');
 
 Route::get('/vpn', function () {
+    return;
     /*$server = Auth::user()->instances->first()->server;
     $droplet = $server->droplet_id;
     dd($server->getAttributes());
@@ -96,7 +97,9 @@ Route::domain(config('app.domain'))->group(function () {
         })->name('release');
 
         Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
-            ->middleware(NotSubscribed::class)
+            ->middleware([NotSubscribed::class/*, function(Request $request) {
+                return $request->user()->email == 'naltamer14@gmail.com'; //todo: temp
+            }*/])
             ->name('create-checkout-session');
 
         Route::post('/create-checkout-session-trial', [StripeController::class, 'checkoutSessionWithFreeTrial'])
