@@ -68,5 +68,14 @@ apt install supervisor
 
 #https://www.unixtutorial.org/disable-sleep-on-ubuntu-server/
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+#https://askubuntu.com/questions/1337649/how-to-disable-suspend-in-20-minutes-from-the-lightdm-login-screen
+sudo -u lightdm dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
+sudo -u lightdm dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 0
+sudo -u lightdm dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+sudo -u lightdm dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+sudo -u lightdm dbus-launch gsettings set com.canonical.unity.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
+sudo -u lightdm dbus-launch gsettings set com.canonical.unity.settings-daemon.plugins.power sleep-inactive-battery-timeout 0
+sudo -u lightdm dbus-launch gsettings set com.canonical.unity.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+sudo -u lightdm dbus-launch gsettings set com.canonical.unity.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
 
 echo -e "[program:oryxbot]\ncommand=/home/user/Applications/Oryxbot/OryxBot\nnumprocs=1\nautostart=false\nautorestart=true\nuser=user\nenvironment=DISPLAY=:0\nstdout_logfile=/home/user/Applications/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/user/Applications/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB" > /etc/supervisor/conf.d/oryxbot.conf
