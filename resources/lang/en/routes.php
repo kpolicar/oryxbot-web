@@ -8,6 +8,7 @@ return [
     'usage' => 'guide',
     'login' => 'login',
     'login-discord' => 'login/discord',
+    'discord' => 'discord',
     'download' => 'download',
     'logout' => 'logout',
     'register' => 'register',

@@ -38,7 +38,7 @@
                         @auth
                             <x-billing-button
                                 trial
-                                class="cursor-not-allowed inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
+                                class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
                         @endauth
                     </div>
                     <a href="{{ route('free-trial') }}" class="flex items-end justify-center text-gray-600 h-6 text-xs hover:underline">
@@ -58,7 +58,8 @@
                     </ul>
                 </div>
                 @php($promoCode = config('pricing.trade_mission_bot.promo'))
-                @php($shouldDisplayPromo = $promoCode && !($user = Auth::user()) || !$user->subscribedToTradeMissionBot())
+                @php($shouldDisplayPromo = !($user = Auth::user()) || !optional(Auth::user())->subscribedToTradeMissionBot())
+                @php($shouldDisplayPromo &= !!$promoCode)
                 <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
                     <div class="w-full pt-2 text-3xl font-bold text-center leading-none mb-2">
                         @if ($shouldDisplayPromo)

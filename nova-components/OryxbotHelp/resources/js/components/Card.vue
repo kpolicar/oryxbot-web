@@ -129,7 +129,7 @@
                     </tr>
 
                     <tr>
-                        <td class="align-top w-1/2 border-r border-b border-50">
+                        <td class="align-top w-1/2 border-r border-b border-50 pointer-events-none opacity-50">
                             <a :href="notifications" class="no-underline dim flex p-6">
                                 <div class="flex justify-center w-11 flex-no-shrink mr-6">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40">
@@ -184,6 +184,9 @@ export default {
         siteLink(path) {
             return `https://oryxbot.com/${path}`
         },
+        dashboardLink(path) {
+            return `https://dashboard.oryxbot.com/${path}`
+        },
     },
 
     computed: {
@@ -203,7 +206,7 @@ export default {
             return this.siteLink('notifications')
         },
         billing() {
-            return this.siteLink('billing')
+            return this.dashboardLink('billing-portal')
         },
     },
 }

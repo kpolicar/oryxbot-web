@@ -60,7 +60,7 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                     <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2" href="{{ route('release', ['version' => 'latest']) }}">{{ __('common.whats_new') }}</a>
                 </li>
                 <li class="xl:mr-3 m-1">
-                    <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2" target="_blank" href="https://discord.gg/X5e9gyKre5">Discord</a>
+                    <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2" target="_blank" href="{{ route('discord') }}">Discord</a>
                 </li>
                 <li class="xl:mr-3 m-1">
                     <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2"

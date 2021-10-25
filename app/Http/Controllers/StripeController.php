@@ -27,7 +27,6 @@ class StripeController extends Controller
     }
 
     public function checkoutSession(Request $request) {
-        return;
         return $request->user()
             ->allowPromotionCodes()
             ->checkout(config('pricing.trade_mission_bot.stripe_id'), [

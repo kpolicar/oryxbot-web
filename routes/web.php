@@ -57,10 +57,39 @@ Route::domain(config('app.domain'))->group(function () {
             return view('welcome');
         })->name('home');
 
-        Route::middleware('auth')
-            ->get(LaravelLocalization::transRoute('routes.download'), function (ClientVersion $version) {
-                return redirect()->home();
-            })->name('download');
+        Route::middleware(['auth', Subscribed::class])->group(function () {
+
+            Route::view(LaravelLocalization::transRoute('routes.install'), 'install')
+                ->name('install');
+
+            Route::view(LaravelLocalization::transRoute('routes.usage'), 'usage')
+                ->name('usage');
+
+            Route::get(LaravelLocalization::transRoute('routes.download'), function (ClientVersion $version) {
+                    return redirect()->home();
+                })->name('download');
+
+            Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
+                $versionDetails = $version == "latest" ?
+                    $versions->latest() :
+                    $versions->firstWhere('code', $version);
+                $view = $versionDetails['number'] ?? abort(404);
+
+                return view("release.$view", ['version' => $versionDetails]);
+            })->name('release');
+        });
+
+        Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
+            ->middleware([NotSubscribed::class])
+            ->name('create-checkout-session');
+
+        Route::post('/create-checkout-session-trial', [StripeController::class, 'checkoutSessionWithFreeTrial'])
+            ->middleware([NotSubscribed::class, HasNeverSubscribed::class])
+            ->name('create-checkout-session-trial');
+
+        Route::post('/trial-cancel', [StripeController::class, 'cancelTrial'])
+            ->middleware([Subscribed::class, OnFreeTrial::class])
+            ->name('trial-cancel');
 
         Route::get(LaravelLocalization::transRoute('routes.profile'), function (Request $request) {
             $message = $request->getSession()->get('notification');
@@ -76,39 +105,10 @@ Route::domain(config('app.domain'))->group(function () {
 
             return view('profile')
                 ->with(compact('message', 'action'));
-        })->middleware('auth')->name('profile');
+        })->name('profile');
 
         Route::view(LaravelLocalization::transRoute('routes.free-trial'), 'free-trial')
             ->name('free-trial');
-
-        Route::view(LaravelLocalization::transRoute('routes.install'), 'install')
-            ->name('install');
-
-        Route::view(LaravelLocalization::transRoute('routes.usage'), 'usage')
-            ->name('usage');
-
-        Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
-            $versionDetails = $version == "latest" ?
-                $versions->latest() :
-                $versions->firstWhere('code', $version);
-            $view = $versionDetails['number'] ?? abort(404);
-
-            return view("release.$view", ['version' => $versionDetails]);
-        })->name('release');
-
-        Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
-            ->middleware([NotSubscribed::class/*, function(Request $request) {
-                return $request->user()->email == 'naltamer14@gmail.com'; //todo: temp
-            }*/])
-            ->name('create-checkout-session');
-
-        Route::post('/create-checkout-session-trial', [StripeController::class, 'checkoutSessionWithFreeTrial'])
-            ->middleware([NotSubscribed::class, HasNeverSubscribed::class])
-            ->name('create-checkout-session-trial');
-
-        Route::post('/trial-cancel', [StripeController::class, 'cancelTrial'])
-            ->middleware([Subscribed::class, OnFreeTrial::class])
-            ->name('trial-cancel');
 
         require_once 'fortify.php';
 
@@ -118,6 +118,9 @@ Route::domain(config('app.domain'))->group(function () {
 
         Route::view('terms', 'terms')
             ->name('terms');
+
+        Route::redirect(LaravelLocalization::transRoute('routes.discord'), config('services.discord.invite_link'))
+            ->name('discord');
     });
 
 

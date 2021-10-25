@@ -12,13 +12,15 @@
             <button class="btn btn-default btn-primary px-8"
                     v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
                     v-show="!running"
-                    :disabled="requestingRunningChange || !serverOnline" v-on:click="StartBot">
+                    :disabled="requestingRunningChange || !serverOnline"
+                    v-on:click="showStartModal = true">
                 Start
             </button>
             <button class="btn btn-default btn-primary px-8"
                     v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
                     v-show="running"
-                    :disabled="requestingRunningChange || !serverOnline" v-on:click="StopBot">
+                    :disabled="requestingRunningChange || !serverOnline"
+                    v-on:click="StopBot">
                 Stop
             </button>
 
@@ -37,7 +39,19 @@
                     resourceName="oryxbot-instance"
                     :selectedResources="['oryxbot-instance']"
                     :errors="{}"
-                    :action="{name: 'Restart service', confirmText: 'Are you sure you want to restart your server? This may take up to a minute.', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [], class: 'btn-primary'}">
+                    :action="{name: 'Restart service', confirmText: 'Are you sure you want to restart your server? This normally takes up to one minute.', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [], class: 'btn-primary'}">
+
+                </confirm-action-modal>
+                <confirm-action-modal
+                    v-if="showStartModal"
+                    @confirm="OnStartBot"
+                    ref="startModal"
+                    @close="showStartModal = false"
+                    :working="false"
+                    resourceName="oryxbot-instance"
+                    :selectedResources="['oryxbot-instance']"
+                    :errors="this.cityFieldErrors"
+                    :action="this.cityFieldAction">
 
                 </confirm-action-modal>
             </portal>
@@ -172,6 +186,8 @@
 </template>
 
 <script>
+import { Errors } from 'form-backend-validation'
+
 function initBrodcasting() {
     if (typeof window.Echo === 'function')
         window.Echo = Echo();
@@ -248,6 +264,9 @@ export default {
     },
     mounted() {
         initBrodcasting.bind(this)();
+
+        Nova.$on('field-city-change', value => this.fieldCityValue = value);
+        Nova.$on('field-hearts-change', value => this.fieldHeartsValue = value);
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
@@ -271,8 +290,35 @@ export default {
         requestingServerReboot: false,
         refreshTimeout: null,
         showRebootServerConfirmModal: false,
+        showStartModal: false,
+        cityFieldErrors: new Errors(),
+        fieldCityValue: null,
+        fieldHeartsValue: 3,
+        cityFieldAction: {name: 'Start Oryxbot', confirmText: 'Are you sure you want to restart your server? This may take up to a minute.', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [
+            {component: 'select-field', field: 'city', attribute: 'field-city', value: null, options: [
+                    {label: 'Thetford', value: 'thetford'},
+                    {label: 'Fort Sterling', value: 'fort-sterling'},
+                    {label: 'Lymhurst', value: 'lymhurst'},
+                    {label: 'Bridgewatch', value: 'bridgewatch'},
+                    {label: 'Martlock', value: 'martlock'},
+                    {label: 'Caerleon', value: 'caerleon'},
+                ], name: 'Royal City', helpText: 'Please select the city you will begin running from'},
+
+            {component: 'select-field', field: 'hearts', attribute: 'field-hearts', value: 3, options: [
+                    {label: '3', value: 3},
+                    {label: '7', value: 7},
+                    {label: '15', value: 15},
+                ], name: 'Faction Hearts', helpText: 'Please select how many faction hearts you would like to transport'}
+        ], class: 'btn-primary'},
     }),
     methods: {
+        OnStartBot() {
+            this.showStartModal = false;
+            console.log("City: "+this.fieldCityValue)
+            console.log("Hearts: "+this.fieldHeartsValue)
+        },
+        OnChange() {
+        },
         StartBot() {
             this.requestingRunningChange = true;
             Nova.request().post(this.$route.fullPath+'/start');

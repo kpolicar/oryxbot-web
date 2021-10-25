@@ -36,4 +36,8 @@ return [
         'endpoint' => 'https://forum.cheat-gam3.com/api',
     ],
 
+    'discord' => [
+        'invite_link' => 'https://discord.gg/7CWSugkjnb'
+    ],
+
 ];

@@ -72,7 +72,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function instances()
     {
-        return Instance::queryForSubscription($this->subscription());
+        return $this->hasManyThrough(Instance::class, Subscription::class);
     }
 
     public function referrer() {
