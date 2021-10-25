@@ -292,10 +292,10 @@ export default {
         showRebootServerConfirmModal: false,
         showStartModal: false,
         cityFieldErrors: new Errors(),
-        fieldCityValue: null,
+        fieldCityValue: 'thetford',
         fieldHeartsValue: 3,
         cityFieldAction: {name: 'Start Oryxbot', confirmText: 'Are you sure you want to restart your server? This may take up to a minute.', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [
-            {component: 'select-field', field: 'city', attribute: 'field-city', value: null, options: [
+            {component: 'select-field', field: 'city', attribute: 'field-city', value: 'thetford', options: [
                     {label: 'Thetford', value: 'thetford'},
                     {label: 'Fort Sterling', value: 'fort-sterling'},
                     {label: 'Lymhurst', value: 'lymhurst'},
@@ -314,14 +314,11 @@ export default {
     methods: {
         OnStartBot() {
             this.showStartModal = false;
-            console.log("City: "+this.fieldCityValue)
-            console.log("Hearts: "+this.fieldHeartsValue)
-        },
-        OnChange() {
+            this.StartBot();
         },
         StartBot() {
             this.requestingRunningChange = true;
-            Nova.request().post(this.$route.fullPath+'/start');
+            Nova.request().post(this.$route.fullPath+'/start?city='+this.fieldCityValue+'&hearts='+this.fieldHeartsValue);
         },
         StopBot() {
             this.requestingRunningChange = true;

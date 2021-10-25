@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('{instance}/start', function (Request $request, $instance) {
-    \App\Events\RequestBotRunningChanged::dispatch($request->user(), 0, true);
+    $hearts = $request->input('hearts');
+    \App\Events\RequestBotRunningChanged::dispatch($request->user(),
+        0,
+        true,
+        $request->input('city'),
+        $hearts ? (int) $hearts : null);
 });
 
 Route::post('{instance}/stop', function (Request $request, $instance) {
