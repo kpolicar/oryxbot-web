@@ -7,7 +7,7 @@ return [
         'price' => 2000,
         'discount_price' => 500,
         'trial_period_days' => 3,
-        'promo' => 'OryxbotV1',
+        'promo' => 'ORYXBOTV1',
     ]
 
 ];

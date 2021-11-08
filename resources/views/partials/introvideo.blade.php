@@ -23,4 +23,8 @@
            disablePictureInPicture>
         <source src="{{ Storage::url('videos/oryxbot_intro.mp4') }}" type="video/mp4" />
     </video>
+
+    <p class="text-xs text-gray-600 text-center">
+        Oryxbot is no longer in BETA, this video is outdated and is subject to change - however, it does still reflect what Oryxbot does
+    </p>
 </section>

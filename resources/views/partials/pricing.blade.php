@@ -92,7 +92,7 @@
                     </div>
                     @if ($shouldDisplayPromo)
                     <p class="text-xs text-gray-600 text-center italic mt-2 h-6">
-                        After your first month you will be billed at the standard rate <strong>€{{ config('pricing.trade_mission_bot.price')/100 }} per month</strong>
+                        After your first month you will be transferred to the standard rate <strong>€{{ config('pricing.trade_mission_bot.price')/100 }} per month</strong>
                     </p>
                     @endif
                 </div>

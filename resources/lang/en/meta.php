@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'main_description' => 'Oryxbot is an Albion Online Trade Mission bot compatible with the latest version of the game. Transport faction hearts and make silver effortlessly.',
+    'main_description' => 'Oryxbot is an undetected Albion Online Trade Mission bot compatible with the latest version of the game. Transport faction hearts and make silver effortlessly.',
     'news_description' => 'Check out the latest features for Oryxbot, an Albion Online Trade Mission bot. Transport faction hearts and make silver effortlessly.',
     'login_description' => 'Log into Oryxbot and begin your Albion Online botting journey! Transport faction hearts and make silver effortlessly.',
     'register_description' => 'Register to Oryxbot and begin your Albion Online botting journey! Transport faction hearts and make silver effortlessly.',
