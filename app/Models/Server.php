@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Laravel\Passport\Token;
 
 class Server extends Model
 {
@@ -20,6 +21,7 @@ class Server extends Model
     protected $name = 'user-x-bot-x--s-1vcpu-1gb-fra1';
     protected $size = 's-1vcpu-1gb';
     protected $region = 'fra1';
+    protected $accessToken;
 
     protected $visible = [
         'ip_address',
@@ -42,7 +44,7 @@ class Server extends Model
                 false,
                 false,
                 [config('digitalocean.bot_ssh_key_id')],
-                '',
+                '#!/bin/bash'."\n\n".'echo "'.$server->accessToken.'" > /etc/oryxbot.apikey',
                 true,
                 [],
                 ['bot']);
@@ -58,6 +60,7 @@ class Server extends Model
 
         static::deleted(function (Server $server) {
             try {
+                $server->token()->delete();
                 DigitalOcean::droplet()->remove($server->droplet_id);
             } catch (RuntimeException $exception) {
                 if ($exception->getCode() != 404) {
@@ -80,6 +83,22 @@ class Server extends Model
         $self = static::make();
         $self->name = "user-$userId-bot-$iteration"."--{$self->size}-{$self->region}";
         return $self;
+    }
+
+    public function getPersonalAccessTokenName()
+    {
+        return $this->name;
+    }
+
+    public function setToken($personalAccessToken)
+    {
+        $this->accessToken = $personalAccessToken->accessToken;
+        $this->token_id = $personalAccessToken->token->id;
+    }
+
+    public function token()
+    {
+        return $this->belongsTo(Token::class);
     }
 
     public function instance()

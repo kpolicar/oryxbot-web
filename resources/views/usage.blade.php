@@ -31,12 +31,6 @@
             If you have not yet installed Oryxbot and are encountering issues, please refer to the
             <a class="font-bold text-gray-800 hover:underline" href="{{ route('install') }}">Installation instructions</a>.
         </p>
-        <a href="{{ route('download') }}"
-           rel="nofollow"
-           data-download
-           class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
-            {{ __('common.download') }}
-        </a>
 
     </x-main-hero>
 @endsection
@@ -102,76 +96,56 @@
             <div class="anchor" id="hotkeys"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    3. Learn the hotkeys
+                    3. Start the bot
                 </h3>
 
                 <p class="text-base text-justify">
-                    Before you run the trade mission, you should be familiar with the hotkeys Oryxbot utilizes.<br>
-                    Remember, Oryxbot takes full control
-                    of your keyboard and mouse. You will have trouble stopping the bot if you don't know the proper hotkey.
-                    If you do forget, there is always the option of <strong class="text-gray-300">ctrl+alt+delete</strong>
-                    to <strong class="text-gray-300">end the task</strong> using <strong class="text-gray-300">Windows Task Manager</strong>.
+                    Make sure you're connected to the Oryxbot VPN!<br>
+                    Refer to the
+                    <a class="text-gray-300 font-bold hover:underline"
+                       href="{{ route('install') }}#vpn">
+                        VPN installation instructions
+                    </a>
+                    if you're having trouble with this.
                 </p>
 
-                <ul class="list-reset px-8">
-                    <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700 shadow-keyboard-key p-2 px-5 rounded">
-                            F1
-                        </span>
-                        <span class="ml-4">
-                            Record custom route
-                        </span>
-                    </li>
-                    <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
-                            F2
-                        </span>
-                        <span class="ml-4">
-                            Start/Stop trade mission bot
-                        </span>
-                    </li>
-                    <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
-                            F5
-                        </span>
-                        <span class="ml-4">
-                            Open/Close context menu
-                        </span>
-                    </li>
-                    <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-4 rounded">
-                            F10
-                        </span>
-                        <span class="ml-4">
-                            Pause/Resume bot
-                        </span>
-                    </li>
-                    <li class="my-6">
-                        <span class="bg-gray-300 text-gray-700  shadow-keyboard-key p-2 px-5 rounded">
-                            Insert
-                        </span>
-                        <span class="ml-4">
-                            Show/Hide overlay UI
-                        </span>
-                    </li>
-                </ul>
-
-                <p class="text-base text-justify">
-                    The hotkeys are also visible on the context menu should you forget them.
-                    So if you just remember the hotkey to Open the context menu, you should be fine.
+                <p class="text-base text-justify mt-2">
+                    Once you're in position and you've successfully connected to the VPN, you may start the bot.
                 </p>
                 <p class="text-base text-justify mt-2">
-                    The <strong class="text-gray-300">pause</strong> function might be useful if you would like to take re-take control of the game without
-                    having the bot lose it's progress. If you <strong class="text-gray-300">stop</strong> the bot mid-journey, it's state will reset. For this
-                    reason, you probably don't want to stop the bot while on your journey, since you may have to end up walking
-                    the rest of the route yourself.
+                    Press the "Start" button in the dashboard, then bring the focus back to Albion Online and
+                    put your hand off the mouse.
+                    During the bots' operation, you must not interact with your computer. Oryxbot will take
+                    control of your computer and run the trade missions.<br>
                 </p>
+
+
+                <div class="flex flex-wrap justify-center my-4">
+                    <img src="{{ asset('images/usage/dashboard.png') }}"
+                         class="object-contain w-full border border-gray-700"
+                         alt="">
+                </div>
+
+                <div class="px-4 lg:px-3 flex items-center border border-primary rounded p-5 lg:mx-10 mx-0 mb-2">
+                    <i class="fas fa-exclamation-circle text-4xl mr-3 text-red-400"></i>
+                    <p class="text-base text-justify">
+                        The connection status will only update once you have started the bot!
+                    </p>
+                </div>
+
+                <div class="px-4 lg:px-3 flex items-center border border-primary rounded p-5 lg:mx-10 mx-0">
+                    <i class="fas fa-info-circle text-4xl mr-3 text-gray-300"></i>
+                    <p class="text-base text-justify">
+                        You can control the instance via the dashboard on your mobile phone, to prevent interrupting the bot on your computer.
+                    </p>
+                </div>
+
             </div>
 
             <div class="anchor" id="begin"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    4. Begin
+                    4. Lay back and enjoy the ride
                 </h3>
 
                 <p class="text-base text-justify">

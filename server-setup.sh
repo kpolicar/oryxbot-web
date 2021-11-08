@@ -44,7 +44,7 @@ sysctl -w vm.panic_on_oom=2
 
 
 #Give net capture right to script file
-sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' ./OryxBot
+sudo /usr/sbin/setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' ./OryxBot
 
 
 # Needed (https://github.com/dotnet/dotnet-docker/issues/618)

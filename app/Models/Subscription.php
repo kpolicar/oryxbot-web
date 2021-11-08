@@ -12,7 +12,7 @@ class Subscription extends CashierSubscription
         parent::boot();
         static::saved(function (Subscription $subscription) {
             UpdateSubscriptionInstances::dispatchIf(
-                $subscription->wasChanged(['stripe_status', 'quantity']),
+                $subscription->wasChanged(['stripe_status', 'quantity']) || $subscription->wasRecentlyCreated,
                 $subscription);
         });
     }

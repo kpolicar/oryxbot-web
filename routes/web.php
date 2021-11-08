@@ -32,8 +32,8 @@ Route::middleware(config('nova.middleware', []))
     ->get('/billing-portal', [StripeController::class, 'billing'])
     ->name('billing');
 
-Route::get('/vpn', function () {
-    return;
+Route::get('/vpnd', function () {
+    dd(\DigitalOcean::snapshot()->getAll());
     /*$server = Auth::user()->instances->first()->server;
     $droplet = $server->droplet_id;
     dd($server->getAttributes());

@@ -1,8 +1,7 @@
 <?php
 
 return [
-
-    'heading' => 'We are coming',
-    'subheading' => 'The <strong class="uppercase bold">first official release</strong> is approaching! Join the discord and stay tuned!',
+    'heading' => 'We are back!',
+    'subheading' => 'The <strong class="uppercase bold">first official release</strong> has just been posted! <br>Use the promocode <strong>ORYXBOTV1</strong> to get a 5€ discount for your first month!',
     'download' => 'Download now!',
 ];

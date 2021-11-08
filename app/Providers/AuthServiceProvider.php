@@ -20,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\User' => 'App\Policies\UserPolicy',
     ];
 
     /**
@@ -33,8 +33,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         Passport::routes(null, ['middleware' => [DecryptApiRequest::class, EncryptApiResponse::class]]);
 
-        Passport::tokensExpireIn(now()->addMinutes(2));
-        Passport::refreshTokensExpireIn(now()->addMinutes(5));
+        Passport::tokensExpireIn(now()->addYear());
+        Passport::refreshTokensExpireIn(now()->addYear());
 
         Token::creating(function (Token $token) {
             if (!$token->name) {

@@ -23,9 +23,9 @@
     @endif
 
     @if(in_array('full_screen', $restrictions))
-        <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-expand text-3xl mr-3 text-gray-200"></i> Borderless Fullscreen</h2>
+        <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-expand text-3xl mr-3 text-gray-200"></i> Fullscreen</h2>
         <p class="text-gray-500 my-3">
-            Your Albion Online client must be running in borderless full-screen mode for Oryxbot to work properly.
+            Your Albion Online client must be running in full-screen mode for Oryxbot to work properly.
             Oryxbot retrieves your screen resolution and calculates where it needs to click
             based on that.
         </p>

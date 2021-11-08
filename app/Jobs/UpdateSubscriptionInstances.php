@@ -50,7 +50,7 @@ class UpdateSubscriptionInstances implements ShouldQueue
 
     protected function updateSubscriptionInstances()
     {
-        if ($this->subscription->stripe_status = \Stripe\Subscription::STATUS_ACTIVE) {
+        if ($this->subscription->stripe_status == \Stripe\Subscription::STATUS_ACTIVE) {
             $originalQuantity = $this->subscription->instances->count();
 
             for ($i=$originalQuantity;$i < $this->subscription->quantity; $i++) {
@@ -59,7 +59,9 @@ class UpdateSubscriptionInstances implements ShouldQueue
                         'name' => 'Bot #'.($i+1),
                         'slug' => 'bot-'.($i+1),
                     ]);
-                    $instance->serverToCreate = Server::makeWithName($i, $this->subscription->user_id);
+                    $instance->serverToCreate = $server = Server::makeWithName($i, $this->subscription->user_id);
+                    $server->setToken(
+                        $this->subscription->user->createToken($server->getPersonalAccessTokenName()));
                     $instance->save();
                 }
             }

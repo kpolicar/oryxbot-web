@@ -30,12 +30,6 @@
             {{ __('install.refer_usage') }}
             <a class="font-bold text-gray-800 hover:underline" href="{{ route('usage') }}">{{ __('install.refer_usage_link') }}</a>.
         </p>
-        <a href="{{ route('download') }}"
-           data-download
-           rel="nofollow"
-           class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded my-6 py-4 px-8 shadow-lg">
-            {{ __('common.download') }}
-        </a>
 
     </x-main-hero>
 @endsection
@@ -61,141 +55,100 @@
                 </h3>
 
                 <p class="text-base text-justify">
-                    {{ __('install.step_download_description') }}
+                    Oryxbot does not run on your local computer. Instead, the bot runs on a server and connects
+                    to your machine through "remote access software".
                 </p>
-            </div>
 
-            <img src="{{ asset('images/install/install.webp') }}"
-                 class="my-4 object-contain"
-                 alt="{{ __('install.step_download_img_alt') }}">
-
-            <div class="anchor" id="antivirus"></div>
-            <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    1A. {{ __('install.step_download_antivirus') }}
-                </h3>
-
-                <p class="text-base mb-2 text-justify">
-                    {{ __('install.step_download_antivirus_description') }}<br>
-                    {{ __('install.step_download_antivirus_description_malware') }}
-                </p>
                 <p class="text-base text-justify">
-                    @section('antivirus_avast_link')
-                        <a class="font-bold text-gray-300 hover:underline" target="_blank" href="https://support.avast.com/en-ww/article/Mac-Security-scan-exclusions/">
-                           {{  __('install.step_download_antivirus_avast_link') }}
+                    Therefore, you will be installing software from third parties:
+                </p>
+
+                <div class="anchor" id="tightvnc"></div>
+                <div class="ml-10">
+                    <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300">
+                        1A. TightVNC SERVER
+                    </h3>
+
+                    <p class="text-base text-justify">
+                        Download from the
+                        <a class="text-gray-300 font-bold inline-flex group"
+                           target="_blank"
+                           href="https://www.tightvnc.com/download.php">
+                        <span class="group-hover:underline">
+                            Official TightVNC Website
+                        </span>
+                            <i class="fas fa-external-link-alt text-xs mx-1 mt-1"></i>
                         </a>
-                    @endsection
-                    {!! __('install.step_download_antivirus_avast', ['link' => View::getSection('antivirus_avast_link')]) !!}
-                </p>
+                    </p>
+
+                    <p class="text-base text-justify mt-2">
+                        Alongside Albion Online, you will be running a TightVNC server on your local machine.
+                        The Oryxbot server will connect to your machine's server software and take control of your computer.
+                    </p>
+                    <p class="text-base text-justify mt-2">
+                        You will want to adjust your server settings to what you can see below:
+                    </p>
+                </div>
+                <div class="flex flex-wrap">
+                    <img src="{{ asset('images/install/tightvnc_first.png') }}"
+                         class="xl:w-1/3 w-full my-4 object-contain pr-1"
+                         alt="" />
+                    <img src="{{ asset('images/install/tightvnc_second.png') }}"
+                         class="xl:w-1/3 w-full my-4 object-contain pr-1"
+                         alt="" />
+                    <img src="{{ asset('images/install/tightvnc_third.png') }}"
+                         class="xl:w-1/3 w-full my-4 object-contain pr-1"
+                         alt="" />
+                </div>
             </div>
 
-            <div class="anchor" id="dependency-microsoft"></div>
+
+            <div class="anchor" id="vpn"></div>
             <div class="px-4 lg:px-0">
                 <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    1B. {{ __('install.step_download_dependency') }}
+                    2. Setup VPN
                 </h3>
 
-                <p class="text-base mb-2 text-justify">
-                    {{ __('install.step_download_dependency_target') }}
-                </p>
-                <p class="text-base mb-2 text-justify">
-                    {{ __('install.step_download_dependency_target_detailed') }}
-                </p>
                 <p class="text-base text-justify">
-                    @section('download_official')
-                    <a class="font-bold text-gray-300 hover:underline" target="_blank" href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">
-                        {{ __('install.step_download_dependency_download_link_official') }}
+                    Next, you will need to setup a VPN connection to your Oryxbot server. This is done without
+                    installing any software, as VPNs are supported natively by Windows.
+                </p>
+
+                <p class="text-base text-justify">
+                    It's highly recommended you follow
+                    <a class="text-gray-300 font-bold inline-flex group"
+                       target="_blank"
+                       href="https://support.microsoft.com/en-us/windows/connect-to-a-vpn-in-windows-3d29aeb1-f497-f6b7-7633-115722c1009c">
+                        <span class="group-hover:underline">Microsoft's official guide</span>
+                        <i class="fas fa-external-link-alt text-xs mx-1 mt-1"></i>
                     </a>
-                    @endsection
-                    @section('download_direct')
-                    <a class="font-bold text-gray-300 hover:underline" href="https://aka.ms/vs/16/release/vc_redist.x86.exe" download data-external>
-                        {{ __('install.step_download_dependency_download_link_direct') }}
-                    </a>
-                    @endsection
-
-                    {!! __('install.step_download_dependency_download', [
-                        'link_official' => View::getSection('download_official'),
-                        'link_direct' => View::getSection('download_direct')
-                    ]) !!} <br>
-
-                    {{ __('install.step_download_dependency_download_32bit') }}
+                    for using the built-in Windows VPN.
                 </p>
             </div>
+        </div>
 
-            <div class="anchor" id="extract"></div>
-            <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    2. {{ __('install.step_extract') }}
-                </h3>
+        <div class="flex items-middle justify-center flex-wrap px-5">
+            <img src="{{ asset('images/install/add_vpn.png') }}"
+                 class="xl:w-1/2 w-full my-4 object-contain pr-1"
+                 alt="{{ __('install.step_extract_img_alt') }}" />
+            <img src="{{ asset('images/install/vpn_settings.png') }}"
+                 class="xl:w-1/2 w-full my-4 object-contain pl-1"
+                 alt="{{ __('install.step_extract_img_alt') }}" />
+        </div>
 
+        <div class="container mx-auto px-2 pt-4 pb-2 text-gray-500 lg:px-32 px-10">
+            <div class="px-4 lg:px-3 flex items-center border border-primary rounded p-5 lg:mx-10 mx-0">
+                <i class="fas fa-info-circle text-4xl mr-3 text-gray-300"></i>
                 <p class="text-base text-justify">
-                    {!! __('install.step_extract_description', ['password' => '<strong class="text-gray-300">"'.$download_password.'"</strong>']) !!}
+                    You can find the connection details for your server (IP address, login credentials)
+                    on your instance page in the
+                    <a class="text-gray-300 hover:underline font-bold"
+                       target="_blank"
+                       href="{{ Request::getScheme().'://'.config('nova.domain') }}">dashboard</a>.
                 </p>
             </div>
 
-            <div class="flex items-middle justify-center flex-wrap">
-                <img src="{{ asset('images/install/extract.webp') }}"
-                     class="xl:w-3/4 w-full my-4 object-contain pr-1"
-                     alt="{{ __('install.step_extract_img_alt') }}" />
-                <img src="{{ asset('images/install/password.webp') }}"
-                     class="xl:w-1/4 w-full my-4 object-contain pl-1 h-64 xl:h-auto"
-                     alt="{{ __('install.step_extract_img_alt') }}" />
-            </div>
-
-            <div class="anchor" id="dependency-npcap"></div>
-            <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    3. Install dependencies
-                </h3>
-
-                <p class="text-base text-justify">
-                    Run the <strong class="text-gray-300">setup.npcap-1.00.exe</strong> file to install Oryxbot's dependency. This program
-                    allows Oryxbot to monitor your network's traffic and is therefore needed to listen in on the
-                    Albion client's messaging with their server. You need only go through this setup once - you do not need to repeat the
-                    process when updating to newer Oryxbot versions.
-                </p>
-            </div>
-
-            <img src="{{ asset('images/install/run_setup.webp') }}"
-                 class="my-4 xl:w-2/3 w-full object-contain"
-                 alt="{{ __('install.step_run_img_alt') }}" />
-
-            <div class="anchor" id="run"></div>
-            <div class="px-4 lg:px-0">
-                <h3 class="mt-10 w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    4. {{ __('install.step_run') }}
-                </h3>
-
-                <p class="text-base text-justify">
-                    {{ __('install.step_run_description') }}
-                </p>
-            </div>
-
-            <img src="{{ asset('images/install/run_as_admin.webp') }}"
-                 class="my-4 xl:w-2/3 w-full object-contain"
-                 alt="{{ __('install.step_run_img_alt') }}" />
-
-            <div class="px-4 lg:px-0">
-                <h3 class=" w-full text-xl font-bold leading-tight text-gray-300 uppercase">
-                    5. {{ __('install.step_finish') }}
-                </h3>
-
-                <p class="text-base text-justify">
-                    {{ __('install.step_finish_description') }}
-                </p>
-            </div>
-
-            <div class="flex flex-wrap items-bottom justify-between">
-                <img src="{{ asset('images/install/login.webp') }}"
-                     class="my-4 md:w-1/2 w-full object-contain"
-                     alt="{{ __('install.step_finish_img_alt') }}" />
-
-                <img src="{{ asset('images/install/system_tray.webp') }}"
-                     class="my-4 md:w-1/2 w-full object-contain"
-                     alt="{{ __('install.step_finish_img_alt') }}" />
-            </div>
-
-            <p class="text-xl">
+            <p class="text-xl mt-10">
                 <i class="fas fa-caret-right"></i>
                 @section('usage')
                 <a class="font-bold text-gray-300 hover:underline" href="{{ route('usage') }}">

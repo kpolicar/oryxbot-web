@@ -46,9 +46,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             return $user->subscribedToTradeMissionBot();
-            return in_array($user->email, [
-                'naltamer14@gmail.com', 'admin@oryxbot.com'
-            ]);
         });
     }
 

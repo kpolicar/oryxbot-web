@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;

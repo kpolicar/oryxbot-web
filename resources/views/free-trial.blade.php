@@ -25,15 +25,16 @@
             So you would like to try Oryxbot, but you're not willing to commit just yet?
         </p>
         <p class="leading-normal text-lg mb-2">
-            You're in luck! Oryxbot offers a <strong>3 days free trial</strong>. The free version is limited to
+            <strong>Unfortunately, Oryxbot no longer offers a free trial.</strong>
+            {{-- You're in luck! Oryxbot offers a <strong>3 days free trial</strong>. The free version is limited to
             default routes on roads. If you want to record and run your own custom routes, you will need
-            to purchase the full version of Oryxbot.
+            to purchase the full version of Oryxbot.--}}
         </p>
-        <p class="leading-normal text-lg mb-2">
+        {{--<p class="leading-normal text-lg mb-2">
             After the free trial expires your billing cycle will begin and you will be charged on the card you
             have provided.
             You can cancel your subscription at any time on your profile page.
-        </p>
+        </p>--}}
 
         @auth
             <x-billing-button trial class="inline-block mx-auto lg:mx-0 hover:underline bg-gray-900 text-gray-200 font-bold rounded mt-6 py-4 px-8 shadow-lg group">
