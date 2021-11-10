@@ -90,7 +90,7 @@
                     </p>
                 </div>
                 <div class="flex flex-wrap">
-                    <img src="{{ asset('images/install/tightvnc_first.png') }}"
+                    <img src="{{ asset('images/install/tightvnc_server_settings.png') }}"
                          class="xl:w-1/3 w-full my-4 object-contain pr-1"
                          alt="" />
                     <img src="{{ asset('images/install/tightvnc_second.png') }}"
@@ -99,6 +99,19 @@
                     <img src="{{ asset('images/install/tightvnc_third.png') }}"
                          class="xl:w-1/3 w-full my-4 object-contain pr-1"
                          alt="" />
+                </div>
+                <div class="flex flex-wrap mb-10">
+                    <img src="{{ asset('images/install/tightvnc_change_password.png') }}"
+                         class="xl:w-1/6 w-1/2 xl:mx-0 mx-auto my-4 object-contain pr-1"
+                         alt="" />
+                </div>
+
+                <div class="px-4 lg:px-3 flex items-center border border-primary rounded p-5 lg:mx-10 mx-0">
+                    <i class="fas fa-exclamation-circle text-4xl mr-3 text-red-400"></i>
+                    <p class="text-base text-justify">
+                        You will have to restart your computer for these settings to take effect!<br>
+                        <small>(or you can manually restart the Windows TightVNC Service)</small>
+                    </p>
                 </div>
             </div>
 
@@ -128,7 +141,7 @@
         </div>
 
         <div class="flex items-middle justify-center flex-wrap px-5">
-            <img src="{{ asset('images/install/add_vpn.png') }}"
+            <img src="{{ asset('images/install/tightvnc_add_vpn.png') }}"
                  class="xl:w-1/2 w-full my-4 object-contain pr-1"
                  alt="{{ __('install.step_extract_img_alt') }}" />
             <img src="{{ asset('images/install/vpn_settings.png') }}"

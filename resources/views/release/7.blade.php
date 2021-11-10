@@ -41,8 +41,7 @@
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span>
-                                Fully reworked client to run on
-                                <strong class="text-gray-300">external Oryxbot Server</strong>
+                                Fully <strong class="text-gray-300">reworked client</strong>
                             </span>
                         </li>
                         <li class="py-3 flex">

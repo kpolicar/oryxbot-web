@@ -68,16 +68,16 @@ Route::domain(config('app.domain'))->group(function () {
             Route::get(LaravelLocalization::transRoute('routes.download'), function (ClientVersion $version) {
                     return redirect()->home();
                 })->name('download');
-
-            Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
-                $versionDetails = $version == "latest" ?
-                    $versions->latest() :
-                    $versions->firstWhere('code', $version);
-                $view = $versionDetails['number'] ?? abort(404);
-
-                return view("release.$view", ['version' => $versionDetails]);
-            })->name('release');
         });
+
+        Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
+            $versionDetails = $version == "latest" ?
+                $versions->latest() :
+                $versions->firstWhere('code', $version);
+            $view = $versionDetails['number'] ?? abort(404);
+
+            return view("release.$view", ['version' => $versionDetails]);
+        })->name('release');
 
         Route::post('/create-checkout-session', [StripeController::class, 'checkoutSession'])
             ->middleware([NotSubscribed::class])
