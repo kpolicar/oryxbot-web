@@ -13,11 +13,13 @@ use Illuminate\Queue\SerializesModels;
 class BotRunningChanged extends BotEvent
 {
     public $running;
+    public $recordingRunning;
 
 
-    public function __construct(User $user, int $instanceId, bool $running)
+    public function __construct(User $user, int $instanceId, bool $running, bool $recordingRunning)
     {
         parent::__construct($user, $instanceId);
         $this->running = $running;
+        $this->recordingRunning = $recordingRunning;
     }
 }

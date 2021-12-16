@@ -15,6 +15,7 @@ class BotDataApiController extends Controller
     private const REQUEST_PARAM_REMOTE_DESKTOP_RESOLUTION_Y = 'remote_desktop_resolution_y';
     private const REQUEST_PARAM_REMOTE_DESKTOP_CONNECTED = 'remote_desktop_connected';
     private const REQUEST_PARAM_BOT_RUNNING = 'bot_running';
+    private const REQUEST_PARAM_BOT_RECORDING_RUNNING = 'bot_recording_running';
 
 
     public function __construct()
@@ -47,7 +48,8 @@ class BotDataApiController extends Controller
         \App\Events\BotRunningChanged::dispatch(
             $request->user(),
             0,
-            $request->boolean(static::REQUEST_PARAM_BOT_RUNNING));
+            $request->boolean(static::REQUEST_PARAM_BOT_RUNNING),
+            $request->boolean(static::REQUEST_PARAM_BOT_RECORDING_RUNNING));
     }
 
     public function BroadcastStatus(Request $request) {
@@ -57,6 +59,7 @@ class BotDataApiController extends Controller
             $this->formatLocationFromRequest($request),
             $this->formatSpeedFromRequest($request),
             $request->boolean(static::REQUEST_PARAM_BOT_RUNNING),
+            $request->boolean(static::REQUEST_PARAM_BOT_RECORDING_RUNNING),
             $this->formatBotStepFromRequest($request),
             $request->boolean(static::REQUEST_PARAM_REMOTE_DESKTOP_CONNECTED),
             $this->formatRemoteDesktopResolutionFromRequest($request),

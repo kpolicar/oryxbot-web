@@ -12,7 +12,7 @@
             <button class="btn btn-default btn-primary px-8"
                     v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
                     v-show="!running"
-                    :disabled="requestingRunningChange || !serverOnline"
+                    :disabled="requestingRunningChange || recording || !serverOnline"
                     v-on:click="showStartModal = true">
                 Start
             </button>
@@ -22,6 +22,12 @@
                     :disabled="requestingRunningChange || !serverOnline"
                     v-on:click="StopBot">
                 Stop
+            </button>
+            <button class="btn btn-default btn-primary px-8 ml-2"
+                    v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
+                    :disabled="requestingRunningChange || running || !serverOnline || true"
+                    v-on:click="showStartRecordingModal = true">
+                Record
             </button>
 
             <button class="btn btn-default bg-30 text-90 ml-2" style="transition: 150ms"
@@ -51,7 +57,19 @@
                     resourceName="oryxbot-instance"
                     :selectedResources="['oryxbot-instance']"
                     :errors="this.cityFieldErrors"
-                    :action="this.cityFieldAction">
+                    :action="this.startBotAction">
+
+                </confirm-action-modal>
+                <confirm-action-modal
+                    v-if="showStartRecordingModal"
+                    @confirm="OnStartRecordingBot"
+                    ref="startRecordingModal"
+                    @close="showStartRecordingModal = false"
+                    :working="false"
+                    resourceName="oryxbot-instance"
+                    :selectedResources="['oryxbot-instance']"
+                    :errors="this.cityFieldErrors"
+                    :action="this.startRecordingBotAction">
 
                 </confirm-action-modal>
             </portal>
@@ -204,6 +222,7 @@ function initBrodcasting() {
 
     channel.listen('BotRunningChanged', (e) => {
         this.running = e.running;
+        this.recording = e.recordingRunning;
         this.requestingRunningChange = false;
     });
 
@@ -267,6 +286,8 @@ export default {
 
         Nova.$on('field-city-change', value => this.fieldCityValue = value);
         Nova.$on('field-hearts-change', value => this.fieldHeartsValue = value);
+        Nova.$on('field-destination-change', value => this.fieldDestinationValue = value);
+        Nova.$on('field-name-change', value => this.fieldNameValue = value);
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
@@ -284,6 +305,7 @@ export default {
         remote_resolution: '-',
         remote_bandwidth: '-',
         running: false,
+        recording: false,
         serverOnline: false,
         requestingRunningChange: false,
         requestingStatus: false,
@@ -291,17 +313,20 @@ export default {
         refreshTimeout: null,
         showRebootServerConfirmModal: false,
         showStartModal: false,
+        showStartRecordingModal: false,
         cityFieldErrors: new Errors(),
-        fieldCityValue: 'thetford',
+        fieldCityValue: 'fort-sterling',
+        fieldDestinationValue: 'aspenwood',
         fieldHeartsValue: 3,
-        cityFieldAction: {name: 'Start Oryxbot', confirmText: 'Are you sure you want to restart your server? This may take up to a minute.', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [
-            {component: 'select-field', field: 'city', attribute: 'field-city', value: 'thetford', options: [
-                    {label: 'Thetford', value: 'thetford'},
+        fieldNameValue: '',
+        startBotAction: {name: 'Start Oryxbot', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [
+            {component: 'select-field', field: 'city', attribute: 'field-city', value: 'fort-sterling', options: [
+                    {label: 'Thetford (broken)', value: 'thetford'},
                     {label: 'Fort Sterling', value: 'fort-sterling'},
-                    {label: 'Lymhurst', value: 'lymhurst'},
-                    {label: 'Bridgewatch', value: 'bridgewatch'},
-                    {label: 'Martlock', value: 'martlock'},
-                    {label: 'Caerleon', value: 'caerleon'},
+                    {label: 'Lymhurst (broken)', value: 'lymhurst'},
+                    {label: 'Bridgewatch (broken)', value: 'bridgewatch'},
+                    {label: 'Martlock (broken)', value: 'martlock'},
+                    {label: 'Caerleon (broken)', value: 'caerleon'},
                 ], name: 'Royal City', helpText: 'Please select the city you will begin running from'},
 
             {component: 'select-field', field: 'hearts', attribute: 'field-hearts', value: 3, options: [
@@ -309,6 +334,20 @@ export default {
                     {label: '7', value: 7},
                     {label: '15', value: 15},
                 ], name: 'Faction Hearts', helpText: 'Please select how many faction hearts you would like to transport'}
+        ], class: 'btn-primary'},
+        startRecordingBotAction: {name: 'Custom Route', confirmButtonText: 'Start Recording', cancelButtonText: 'Cancel', fields: [
+            {component: 'text-field', field: 'name', attribute: 'field-name', value: '', name: 'Name', helpText: 'How you would like to name your route'},
+            {component: 'select-field', field: 'city', attribute: 'field-city', value: 'fort-sterling', options: [
+                    {label: 'Thetford (broken)', value: 'thetford'},
+                    {label: 'Fort Sterling', value: 'fort-sterling'},
+                    {label: 'Lymhurst (broken)', value: 'lymhurst'},
+                    {label: 'Bridgewatch (broken)', value: 'bridgewatch'},
+                    {label: 'Martlock (broken)', value: 'martlock'},
+                    {label: 'Caerleon (broken)', value: 'caerleon'},
+                ], name: 'Royal City', helpText: 'Please select the city you will begin running from'},
+            {component: 'select-field', field: 'destination', attribute: 'field-destination', value: 'aspenwood', options: [
+                    {label: 'Aspenwood', value: 'aspenwood'},
+                ], name: 'Destination', helpText: 'Please select the destination of your trade mission'},
         ], class: 'btn-primary'},
     }),
     methods: {
@@ -345,6 +384,14 @@ export default {
         OnCancelServerReboot() {
             this.showRebootServerConfirmModal = false;
         },
+        OnStartRecordingBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath+'/start-recording?city='+this.fieldCityValue+'&destination='+this.fieldDestinationValue+'&name='+this.fieldNameValue);
+        },
+        OnStopRecordingBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath+'/stop');
+        },
     },
     computed: {
         instance() {
@@ -353,9 +400,11 @@ export default {
             }.bind(this));
         },
         status() {
-            return this.running
-                ? 'Bot is running'
-                : 'Bot is not running';
+            return this.recording
+                ? 'Bot is recording'
+                : this.running
+                  ? 'Bot is running'
+                  : 'Bot is not running';
         }
     },
     watch: {

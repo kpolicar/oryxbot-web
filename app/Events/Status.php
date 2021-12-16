@@ -15,6 +15,7 @@ class Status extends BotEvent
     public $characterLocation;
     public $characterSpeed;
     public $botRunning;
+    public $botRecordingRunning;
     public $botStep;
     public $remoteDesktopConnected;
     public $remoteDesktopResolution;
@@ -26,6 +27,7 @@ class Status extends BotEvent
         string $characterLocation,
         string $characterSpeed,
         bool $botRunning,
+        bool $botRecordingRunning,
         string $botStep,
         bool $remoteDesktopConnected,
         string $remoteDesktopResolution,
@@ -35,6 +37,7 @@ class Status extends BotEvent
         $this->characterLocation = $characterLocation;
         $this->characterSpeed = $characterSpeed;
         $this->botRunning = $botRunning;
+        $this->botRecordingRunning = $botRecordingRunning;
         $this->botStep = $botStep;
         $this->remoteDesktopConnected = $remoteDesktopConnected;
         $this->remoteDesktopResolution = $remoteDesktopResolution;

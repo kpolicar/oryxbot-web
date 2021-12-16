@@ -23,6 +23,14 @@ Route::post('{instance}/start', function (Request $request, $instance) {
         $hearts ? (int) $hearts : null);
 });
 
+Route::post('{instance}/start-recording', function (Request $request, $instance) {
+    \App\Events\RequestBotRecordStart::dispatch($request->user(),
+        0,
+        $request->input('name'),
+        $request->input('city'),
+        $request->input('destination'));
+});
+
 Route::post('{instance}/stop', function (Request $request, $instance) {
     \App\Events\RequestBotRunningChanged::dispatch($request->user(), 0, false);
 });
