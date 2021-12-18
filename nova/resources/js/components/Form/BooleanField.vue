@@ -34,6 +34,9 @@ export default {
   methods: {
     toggle() {
       this.value = !this.value
+        if (this.field) {
+            Nova.$emit(this.field.attribute + '-change', this.value)
+        }
     },
   },
 

@@ -1034,11 +1034,14 @@ _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MOD
         case 2:
           stripe = _context.sent;
           Array.prototype.forEach.call(document.querySelectorAll("[data-checkout]"), function (input) {
-            input.addEventListener("click", function () {
+            input.addEventListener("click", function (event) {
+              event.preventDefault();
               axios.post(input.getAttribute('data-checkout')).then(function (response) {
                 return stripe.redirectToCheckout({
                   sessionId: response.data.id
                 });
+              })["catch"](function (error) {
+                console.error(error);
               }).then(function (result) {
                 if (result.error) {
                   alert(result.error.message);

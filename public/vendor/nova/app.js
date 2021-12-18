@@ -5047,6 +5047,9 @@ exports.default = {
   methods: {
     toggle: function toggle() {
       this.value = !this.value;
+      if (this.field) {
+        Nova.$emit(this.field.attribute + '-change', this.value);
+      }
     }
   },
 
@@ -38911,7 +38914,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.ico-button {\n  width: 35px;\n  height: 35px;\n}\n.ico-button:hover {\n  color: var(--primary);\n}\n.ico-button:active {\n  color: var(--brand-80);\n}\n.cm-fat-cursor .CodeMirror-cursor {\n  background: #000;\n}\n.cm-s-default .cm-header {\n  color: black;\n}\n.cm-s-default .cm-link {\n  color: var(--primary);\n}\n.CodeMirror-line {\n  color: var(--gray-60);\n}\n.cm-s-default .cm-variable-2 {\n  color: var(--gray-60);\n}\n.cm-s-default .cm-quote {\n  color: var(--gray-60);\n}\n.cm-s-default .cm-comment {\n  color: var(--gray-60);\n}\n.cm-s-default .cm-string {\n  color: var(--gray-40);\n}\n.cm-s-default .cm-url {\n  color: var(--gray-40);\n}\n.CodeMirror {\n  height: auto;\n  font: 14px/1.5 Menlo, Consolas, Monaco, 'Andale Mono', monospace;\n  box-sizing: border-box;\n  width: 100%;\n}\n.readonly > .CodeMirror {\n  background-color: var(--30) !important;\n}\n.markdown-fullscreen .markdown-content {\n  height: calc(100vh - 30px);\n}\n.markdown-fullscreen .CodeMirror {\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.ico-button {\r\n  width: 35px;\r\n  height: 35px;\n}\n.ico-button:hover {\r\n  color: var(--primary);\n}\n.ico-button:active {\r\n  color: var(--brand-80);\n}\n.cm-fat-cursor .CodeMirror-cursor {\r\n  background: #000;\n}\n.cm-s-default .cm-header {\r\n  color: black;\n}\n.cm-s-default .cm-link {\r\n  color: var(--primary);\n}\n.CodeMirror-line {\r\n  color: var(--gray-60);\n}\n.cm-s-default .cm-variable-2 {\r\n  color: var(--gray-60);\n}\n.cm-s-default .cm-quote {\r\n  color: var(--gray-60);\n}\n.cm-s-default .cm-comment {\r\n  color: var(--gray-60);\n}\n.cm-s-default .cm-string {\r\n  color: var(--gray-40);\n}\n.cm-s-default .cm-url {\r\n  color: var(--gray-40);\n}\n.CodeMirror {\r\n  height: auto;\r\n  font: 14px/1.5 Menlo, Consolas, Monaco, 'Andale Mono', monospace;\r\n  box-sizing: border-box;\r\n  width: 100%;\n}\n.readonly > .CodeMirror {\r\n  background-color: var(--30) !important;\n}\n.markdown-fullscreen .markdown-content {\r\n  height: calc(100vh - 30px);\n}\n.markdown-fullscreen .CodeMirror {\r\n  height: 100%;\n}\r\n", ""]);
 
 // exports
 
@@ -38926,7 +38929,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.\\!cursor-not-allowed[data-v-412102b4] {\n  cursor: not-allowed !important;\n}\n", ""]);
+exports.push([module.i, "\n.\\!cursor-not-allowed[data-v-412102b4] {\r\n  cursor: not-allowed !important;\n}\r\n", ""]);
 
 // exports
 
@@ -38941,7 +38944,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.progress[data-v-6ca9e6be] {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  height: 2px;\n  width: 0%;\n  transition: width 0.2s, opacity 0.4s;\n  opacity: 1;\n  background-color: #efc14e;\n  z-index: 999999;\n}\n", ""]);
+exports.push([module.i, "\n.progress[data-v-6ca9e6be] {\r\n  position: fixed;\r\n  top: 0px;\r\n  left: 0px;\r\n  right: 0px;\r\n  height: 2px;\r\n  width: 0%;\r\n  transition: width 0.2s, opacity 0.4s;\r\n  opacity: 1;\r\n  background-color: #efc14e;\r\n  z-index: 999999;\n}\r\n", ""]);
 
 // exports
 
@@ -39796,7 +39799,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.card[data-v-a0368d9a] {\n  padding: 0 !important;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-a0368d9a] {\r\n  padding: 0 !important;\n}\r\n", ""]);
 
 // exports
 
