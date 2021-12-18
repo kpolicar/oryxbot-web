@@ -50,7 +50,7 @@ class UpdateSubscriptionInstances implements ShouldQueue
 
     protected function updateSubscriptionInstances()
     {
-        if ($this->subscription->stripe_status == \Stripe\Subscription::STATUS_ACTIVE) {
+        if (in_array($this->subscription->stripe_status, [\Stripe\Subscription::STATUS_ACTIVE, \Stripe\Subscription::STATUS_TRIALING])) {
             $originalQuantity = $this->subscription->instances->count();
 
             for ($i=$originalQuantity;$i < $this->subscription->quantity; $i++) {

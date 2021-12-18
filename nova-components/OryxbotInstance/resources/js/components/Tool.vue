@@ -25,6 +25,13 @@
             </button>
             <button class="btn btn-default btn-primary px-8 ml-2"
                     v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
+                    v-show="!running"
+                    :disabled="requestingRunningChange || recording || !serverOnline"
+                    v-on:click="showResumeModal = true">
+                Resume
+            </button>
+            <button class="btn btn-default btn-primary px-8 ml-2"
+                    v-bind:class="{'cursor-wait': requestingRunningChange, 'cursor-not-allowed': !serverOnline, 'hover:bg-primary-dark': !requestingRunningChange && serverOnline}"
                     :disabled="requestingRunningChange || running || !serverOnline || true"
                     v-on:click="showStartRecordingModal = true">
                 Record
@@ -58,6 +65,18 @@
                     :selectedResources="['oryxbot-instance']"
                     :errors="this.cityFieldErrors"
                     :action="this.startBotAction">
+
+                </confirm-action-modal>
+                <confirm-action-modal
+                    v-if="showResumeModal"
+                    @confirm="OnResumeBot"
+                    ref="resumeModal"
+                    @close="showResumeModal = false"
+                    :working="false"
+                    resourceName="oryxbot-instance"
+                    :selectedResources="['oryxbot-instance']"
+                    :errors="this.cityFieldErrors"
+                    :action="this.resumeBotAction">
 
                 </confirm-action-modal>
                 <confirm-action-modal
@@ -288,6 +307,8 @@ export default {
         Nova.$on('field-hearts-change', value => this.fieldHeartsValue = value);
         Nova.$on('field-destination-change', value => this.fieldDestinationValue = value);
         Nova.$on('field-name-change', value => this.fieldNameValue = value);
+        Nova.$on('field-region-change', value => this.fieldRegionValue = value);
+        Nova.$on('field-progressed-change', value => this.fieldProgressedValue = value);
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
@@ -313,12 +334,15 @@ export default {
         refreshTimeout: null,
         showRebootServerConfirmModal: false,
         showStartModal: false,
+        showResumeModal: false,
         showStartRecordingModal: false,
         cityFieldErrors: new Errors(),
         fieldCityValue: 'fort-sterling',
         fieldDestinationValue: 'aspenwood',
         fieldHeartsValue: 3,
         fieldNameValue: '',
+        fieldRegionValue: 'aspenwood',
+        fieldProgressedValue: false,
         startBotAction: {name: 'Start Oryxbot', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [
             {component: 'select-field', field: 'city', attribute: 'field-city', value: 'fort-sterling', options: [
                     {label: 'Thetford (broken)', value: 'thetford'},
@@ -334,6 +358,28 @@ export default {
                     {label: '7', value: 7},
                     {label: '15', value: 15},
                 ], name: 'Faction Hearts', helpText: 'Please select how many faction hearts you would like to transport'}
+        ], class: 'btn-primary'},
+        resumeBotAction: {name: 'Resume Oryxbot Run', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [
+            {component: 'select-field', field: 'city', attribute: 'field-city', value: 'fort-sterling', options: [
+                    {label: 'Thetford (broken)', value: 'thetford'},
+                    {label: 'Fort Sterling', value: 'fort-sterling'},
+                    {label: 'Lymhurst (broken)', value: 'lymhurst'},
+                    {label: 'Bridgewatch (broken)', value: 'bridgewatch'},
+                    {label: 'Martlock (broken)', value: 'martlock'},
+                    {label: 'Caerleon (broken)', value: 'caerleon'},
+                ], name: 'Royal City', helpText: 'Please select the city you will begin running from'},
+
+            {component: 'select-field', field: 'region', attribute: 'field-region', value: 'aspenwood', options: [
+                    {label: 'Aspenwood', value: 'aspenwood'},
+                ], name: 'Current Region', helpText: 'Please select the region your character is currently located in'},
+            {component: 'boolean-field', field: 'progressed', attribute: 'field-progressed', value: false, name: 'Progressed', helpText: 'Check this field if you have already arrived at the faction emissary and progressed the quest'},
+
+                {component: 'select-field', field: 'hearts', attribute: 'field-hearts', value: 3, options: [
+                        {label: '3', value: 3},
+                        {label: '7', value: 7},
+                        {label: '15', value: 15},
+                    ], name: 'Faction Hearts', helpText: 'Please select how many faction hearts you would like to transport on your next run'}
+
         ], class: 'btn-primary'},
         startRecordingBotAction: {name: 'Custom Route', confirmButtonText: 'Start Recording', cancelButtonText: 'Cancel', fields: [
             {component: 'text-field', field: 'name', attribute: 'field-name', value: '', name: 'Name', helpText: 'How you would like to name your route'},
@@ -355,9 +401,17 @@ export default {
             this.showStartModal = false;
             this.StartBot();
         },
+        OnResumeBot() {
+            this.showResumeModal = false;
+            this.ResumeBot();
+        },
         StartBot() {
             this.requestingRunningChange = true;
             Nova.request().post(this.$route.fullPath+'/start?city='+this.fieldCityValue+'&hearts='+this.fieldHeartsValue);
+        },
+        ResumeBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath+'/resume?city='+this.fieldCityValue+'&region='+this.fieldRegionValue+'&progressed='+this.fieldProgressedValue+'&hearts='+this.fieldHeartsValue);
         },
         StopBot() {
             this.requestingRunningChange = true;
@@ -385,6 +439,7 @@ export default {
             this.showRebootServerConfirmModal = false;
         },
         OnStartRecordingBot() {
+            this.showStartRecordingModal = false;
             this.requestingRunningChange = true;
             Nova.request().post(this.$route.fullPath+'/start-recording?city='+this.fieldCityValue+'&destination='+this.fieldDestinationValue+'&name='+this.fieldNameValue);
         },

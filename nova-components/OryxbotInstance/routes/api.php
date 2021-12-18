@@ -23,6 +23,17 @@ Route::post('{instance}/start', function (Request $request, $instance) {
         $hearts ? (int) $hearts : null);
 });
 
+Route::post('{instance}/resume', function (Request $request, $instance) {
+    $hearts = $request->input('hearts');
+    \App\Events\RequestBotResume::dispatch($request->user(),
+        0,
+        true,
+        $request->input('city'),
+        $request->input('region'),
+        $request->boolean('progressed'),
+        $hearts ? (int) $hearts : null);
+});
+
 Route::post('{instance}/start-recording', function (Request $request, $instance) {
     \App\Events\RequestBotRecordStart::dispatch($request->user(),
         0,
