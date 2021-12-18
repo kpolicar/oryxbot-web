@@ -27,7 +27,6 @@ Route::post('{instance}/resume', function (Request $request, $instance) {
     $hearts = $request->input('hearts');
     \App\Events\RequestBotResume::dispatch($request->user(),
         0,
-        true,
         $request->input('city'),
         $request->input('region'),
         $request->boolean('progressed'),

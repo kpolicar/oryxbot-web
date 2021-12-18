@@ -370,6 +370,11 @@ export default {
                 ], name: 'Royal City', helpText: 'Please select the city you will begin running from'},
 
             {component: 'select-field', field: 'region', attribute: 'field-region', value: 'aspenwood', options: [
+                    {label: 'Mawar Gorge', value: 'mawar-gorge'},
+                    {label: 'Pen Kerrig', value: 'pen-kerrig'},
+                    {label: 'Cedarcopse', value: 'cedarcopse'},
+                    {label: 'Russerdell', value: 'russerdell'},
+                    {label: 'Oakcopse', value: 'oakcopse'},
                     {label: 'Aspenwood', value: 'aspenwood'},
                 ], name: 'Current Region', helpText: 'Please select the region your character is currently located in'},
             {component: 'boolean-field', field: 'progressed', attribute: 'field-progressed', value: false, name: 'Progressed', helpText: 'Check this field if you have already arrived at the faction emissary and progressed the quest'},
