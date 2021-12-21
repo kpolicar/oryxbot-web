@@ -10,7 +10,7 @@ use Discord\Parts\User\Member;
 
 class WebhookController
 {
-    const ROLE_SUBSCRIBER_ID = 816748298727456778;
+    const ROLE_SUBSCRIBER_ID = 922899362886082632;
     /**
      * @var Guild
      */
@@ -32,6 +32,13 @@ class WebhookController
             });
         $this->$command($message, ...$argument);
         echo "Executed command: $message->content\n";
+    }
+
+    public function linked(Message $message, $id)
+    {
+        $this->guild->members->fetch($id)->then(function (Member $member) {
+            $member->user->sendMessage("You have successfully linked Discord with your Inkybot account.");
+        });
     }
 
     public function subscribe(Message $message, $id) {

@@ -18,9 +18,9 @@ class ApiController extends Controller
         $this->middleware(Subscribed::class)
             ->except(['Info', 'User']);
         $this->middleware(EncryptApiResponse::class)
-            ->except(['Info']);
+            ->except(['Info', 'NotifyRunComplete', 'NotifyRunStuck']);
         $this->middleware(DecryptApiRequest::class)
-            ->except(['Info', 'User']);
+            ->except(['Info', 'User', 'NotifyRunComplete', 'NotifyRunStuck']);
     }
 
 
