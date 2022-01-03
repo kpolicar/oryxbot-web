@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
         \View::share('download_password', "oryxbot");
 
         $this->app->singleton('cryptoPromo', function () {
-            return now()->isBefore('2022-01-10');
+            return false && now()->isBefore('2022-01-10');
         });
         \View::share('cryptoPromo', $this->app['cryptoPromo']);
     }

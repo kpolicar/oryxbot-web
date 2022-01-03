@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\CoinbaseWebhookReceived;
 use App\Events\PaymentSucceeded;
 use App\Events\UserPurchasedSubscription;
 use App\Events\UserSyncedWithDiscord;
 use App\Listeners\EnforceUniqueUserAccessToken;
+use App\Listeners\SaveCoinbaseWebhook;
 use App\Listeners\SendUserSubscriptionStatusToDiscord;
 use App\Listeners\StorePayment;
 use App\Models\User;
@@ -35,6 +37,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserSyncedWithDiscord::class => [
             SendUserSubscriptionStatusToDiscord::class,
+        ],
+        CoinbaseWebhookReceived::class => [
+            SaveCoinbaseWebhook::class
         ],
         PaymentSucceeded::class => [
             StorePayment::class

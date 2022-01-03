@@ -7,7 +7,7 @@ return [
     'install_instructions' => 'Installation instructions',
 
     'copyright' => 'Copyright © :year Oryxbot',
-    'albion_trademark' => 'Albion Online® is a trademark of Sandbox Interactive © 2021',
+    'albion_trademark' => 'Albion Online® is a trademark of Sandbox Interactive © 2022',
     'affiliation' => 'Oryxbot is not in any way affiliated with Sandbox Interactive GmbH.',
 
     'download_started' => 'Your download has started. You will need to unzip the compressed file using the password :password',
