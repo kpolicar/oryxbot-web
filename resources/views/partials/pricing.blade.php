@@ -1,3 +1,7 @@
+@php($promoCode = config('pricing.trade_mission_bot.promo'))
+@php($shouldDisplayPromo = (!($user = Auth::user()) || (!optional(Auth::user())->subscribedToTradeMissionBot() && Auth::user()->subscriptions->isEmpty())))
+@php($shouldDisplayPromo &= !!$promoCode)
+
 <div class="anchor" id="pricing"></div>
 <section class="bg-gray-900 py-8 pb-12">
 
@@ -41,7 +45,7 @@
                                 class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
                         @endauth
                     </div>
-                    <a href="{{ route('free-trial') }}" class="flex items-start justify-center text-gray-600 h-6 text-xs hover:underline h-16 pt-2 -mb-2">
+                    <a href="{{ route('free-trial') }}" class="flex items-start justify-center text-gray-600 {{ $shouldDisplayPromo ? 'h-16' : 'h-10' }} text-xs hover:underline pt-2 -mb-2">
                         Read more
                     </a>
                 </div>
@@ -57,9 +61,6 @@
                         <li class="border-b py-4 line-through">{{ __('pricing.package_feature_statistics') }}</li>
                     </ul>
                 </div>
-                @php($promoCode = config('pricing.trade_mission_bot.promo'))
-                @php($shouldDisplayPromo = !($user = Auth::user()) || !optional(Auth::user())->subscribedToTradeMissionBot())
-                @php($shouldDisplayPromo &= !!$promoCode)
                 <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
                     <div class="w-full pt-2 text-3xl font-bold text-center leading-none mb-2">
                         @if ($shouldDisplayPromo)
@@ -82,20 +83,20 @@
 
                     <div class="flex items-center justify-center">
                         @auth
-                            <x-billing-button class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ $shouldDisplayPromo ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg" />
+                            <x-billing-button class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
                         @else
                             <a href="{{ route('register') }}"
-                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded {{ $shouldDisplayPromo ? 'mt-6' : 'my-6' }} py-4 px-8 shadow-lg">
+                               class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg">
                                 {{ __('common.signup') }}
                             </a>
                         @endauth
                     </div>
-                    @if ($shouldDisplayPromo)
-                    <p class="text-xs text-gray-600 text-center italic mt-2 h-12">
+                    <p class="text-xs text-gray-600 text-center italic mt-2 {{ $shouldDisplayPromo ? 'h-12' : 'h-6' }}">
+                        @if ($shouldDisplayPromo)
                         After your first month you will be transferred to the standard rate <strong>€{{ config('pricing.trade_mission_bot.price')/100 }} per month</strong>.
-                        You can cancel the subscription at any time.
+                        @endif
+                        You can cancel your subscription at any time.
                     </p>
-                    @endif
                 </div>
             </div>
 

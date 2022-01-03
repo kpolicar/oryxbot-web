@@ -16,11 +16,15 @@ class CoinbaseController extends Controller
     public function subscribe(Request $request)
     {
         $price = config('pricing.trade_mission_bot.price');
+        if ($discount=config('pricing.trade_mission_bot.discount_price') && $request->user()->subscriptions->isEmpty()) {
+            $price -= $discount;
+            $description = ' (Applied €'.(number_format($discount/100, 2)).' discount)';
+        }
         $currency = config('pricing.trade_mission_bot.currency');
         $charge = new Charge(
             [
                 "name" => __('pricing.name'),
-                "description" => __('pricing.package_default'),
+                "description" => __('pricing.package_default').($description ?? ''),
                 "metadata" => [
                     "user_id" => $request->user()->id,
                     "user_email" => $request->user()->email,

@@ -34,19 +34,6 @@ Route::middleware(config('nova.middleware', []))
     ->get('/billing-portal', [StripeController::class, 'billing'])
     ->name('billing');
 
-Route::get('/vpnd', function () {
-    dd(\DigitalOcean::snapshot()->getAll());
-    /*$server = Auth::user()->instances->first()->server;
-    $droplet = $server->droplet_id;
-    dd($server->getAttributes());
-    dd(\DigitalOcean::droplet()->getById($droplet));
-    //$a = \DigitalOcean::create('bot1-oryxbot-s-1vcpu-1gb-fra1-01');*/
-    $sub = Auth::user()->subscription();
-    $sub->quantity = 1;
-    $sub->save();
-    //\App\Events\BotLocationChanged::dispatch(\Auth::user(), '(2,1)', '12', 0);
-    \App\Events\VpnConnectionChanged::dispatch(\Auth::user(), 0, true);
-});
 
 Route::domain(config('app.domain'))->group(function () {
     Route::group(

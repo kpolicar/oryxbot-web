@@ -33,7 +33,7 @@ class StripeController extends Controller
             'mode' => 'subscription',
             'payment_method_types' => ['card'],
             'success_url' => route('home', ['checkout' => true]),
-            'cancel_url' => route('home', ['checkout' => false]),
+            'cancel_url' => route('subscribe', ['checkout' => false]),
         ])->asStripeCheckoutSession();
     }
 

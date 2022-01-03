@@ -89,6 +89,9 @@ class CoinbaseWebhookController extends Controller
         if (app('cryptoPromo')) {
             $subscription->trialDays(3);
         }
+        if ($user->subscriptions->isEmpty()) {
+            $subscription->withPromotionCode(config('pricing.trade_mission_bot.promo_code_stripe_id'));
+        }
         $subscription = $subscription->quantity($charge['metadata']['quantity'])
             ->noProrate()
             ->withMetadata([

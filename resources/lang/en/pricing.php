@@ -15,7 +15,7 @@ return [
 
     'package_feature_in_development' => 'Features are under active development and have not yet been made available',
 
-    'name' => 'Oryxbot',
+    'name' => '1 month subscription on Oryxbot',
     'package_default' => 'Trade Mission Bot',
     'plan_default' => 'Trade Mission Bot',
 ];
