@@ -37,7 +37,7 @@ class WebhookController
     public function linked(Message $message, $id)
     {
         $this->guild->members->fetch($id)->then(function (Member $member) {
-            $member->user->sendMessage("You have successfully linked Discord with your Inkybot account.");
+            $member->user->sendMessage("You have successfully linked Discord with your Oryxbot account.");
         });
     }
 

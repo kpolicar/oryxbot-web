@@ -12,6 +12,7 @@ return [
     'download' => 'download',
     'logout' => 'logout',
     'register' => 'register',
+    'subscribe' => 'subscribe',
     'forgot-password' => 'forgot-password',
     'reset-password' => 'reset-password',
     'reset-password-token' => 'reset-password/{token}',

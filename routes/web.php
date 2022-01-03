@@ -2,6 +2,8 @@
 
 use App\ClientVersion;
 use App\Http\Controllers\CashierWebhookController;
+use App\Http\Controllers\CoinbaseController;
+use App\Http\Controllers\CoinbaseWebhookController;
 use App\Http\Controllers\DigitalOceanController;
 use App\Http\Controllers\LinkDiscordController;
 use App\Http\Controllers\StripeController;
@@ -70,6 +72,18 @@ Route::domain(config('app.domain'))->group(function () {
                 })->name('download');
         });
 
+        Route::middleware('can:purchase-subscription')->group(function () {
+
+            Route::get(LaravelLocalization::transRoute('routes.subscribe'), function (Request $request) {
+                return view('subscribe');
+            })->name('subscribe')->middleware('auth');
+
+            Route::post(LaravelLocalization::transRoute('routes.subscribe-coinbase-checkout'), [CoinbaseController::class, 'subscribe'])
+                ->name('subscribe.coinbase.checkout');
+
+        });
+
+
         Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
             $versionDetails = $version == "latest" ?
                 $versions->latest() :
@@ -134,6 +148,7 @@ Route::domain(config('app.domain'))->group(function () {
         config('cashier.path').'/webhook',
         [CashierWebhookController::class, 'handleWebhook']
     );
+    Route::post('coinbase/webhook', [CoinbaseWebhookController::class, 'handleWebhook']);
 
     Route::prefix('digitalocean')->group(function () {
         Route::post(

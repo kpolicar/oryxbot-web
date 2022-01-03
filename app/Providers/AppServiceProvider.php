@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Contracts\ApiEncrypter as ApiEncrypterContract;
 use App\Models\Subscription;
+use CoinbaseCommerce\ApiClient as CoinbaseClient;
 use Illuminate\Encryption\Encrypter;
 use Laravel\Cashier\Cashier;
 use Str;
@@ -28,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
             }
             return new Encrypter($key, config('app.cipher'));
         });
+        if ($key=config('services.coinbase.key'))
+            CoinbaseClient::init($key);
         Cashier::useSubscriptionModel(Subscription::class);
     }
 
@@ -51,5 +54,10 @@ class AppServiceProvider extends ServiceProvider
         }
         \URL::forceRootUrl(\Config::get('app.url'));
         \View::share('download_password', "oryxbot");
+
+        $this->app->singleton('cryptoPromo', function () {
+            return false && now()->isBefore('2022-01-02');
+        });
+        \View::share('cryptoPromo', $this->app['cryptoPromo']);
     }
 }

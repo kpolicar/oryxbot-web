@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Contracts\ApiEncrypter;
 use App\Http\Middleware\DecryptApiRequest;
 use App\Http\Middleware\EncryptApiResponse;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -40,6 +41,13 @@ class AuthServiceProvider extends ServiceProvider
             if (!$token->name) {
                 $token->name = request()->post('_passport_token_name');
             }
+        });
+
+
+        Gate::define('purchase-subscription', function (User $user) {
+            return $user->hasVerifiedEmail()
+                && (!$user->hasStripeId() || !$user->subscribed())
+                && !$user->hasIncompletePayment();
         });
     }
 }

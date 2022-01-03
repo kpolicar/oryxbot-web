@@ -11,6 +11,7 @@
         "php": "^7.4",
         "ext-json": "*",
         "berkayk/onesignal-laravel": "^1.0",
+        "coinbase/coinbase-commerce": "dev-master#107702e71f8b058701f92a3a101f5954ca6792e1",
         "beyondcode/laravel-websockets": "^1.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -102,6 +103,10 @@
         {
             "type": "path",
             "url": "./nova-components/OryxbotHelp"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Fossil01/coinbase-commerce-php"
         }
     ]
 }

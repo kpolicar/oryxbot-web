@@ -81,9 +81,10 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                 <a id="navAction"
                    @if (!Auth::check() || Auth::user()->subscribedToTradeMissionBot())
                    href="{{ Auth::check() ? Request::getScheme().'://'.config('nova.domain') : route('nova.login') }}"
+                   @else
+                   href="{{ route('subscribe') }}"
                    @endif
                    rel="nofollow"
-                   @if(!optional(Auth::user())->subscribedToTradeMissionBot())data-checkout="{{ route('create-checkout-session') }}"@endif
                    class="cursor-pointer mx-auto lg:mx-0 lg:mx-2 bg-black text-white font-bold rounded mt-4 lg:mt-0 py-2 px-4 pr-6 rounded-full shadow opacity-75 hover:opacity-100 hover:bg-gray-900 transition duration-300 group">
                     @auth
                         @if (Auth::user()->subscribedToTradeMissionBot())

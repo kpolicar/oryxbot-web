@@ -30,10 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'xenforo' => [
-        'key' => env('XENFORO_API_KEY'),
-        'node' => '1714',
-        'endpoint' => 'https://forum.cheat-gam3.com/api',
+    'coinbase' => [
+        'key' => env('COINBASE_KEY'),
+        'webhook_secret' => env('COINBASE_WEBHOOK_SECRET')
     ],
 
     'discord' => [

@@ -14,4 +14,8 @@ return [
     'package_feature_statistics' => 'Statistics',
 
     'package_feature_in_development' => 'Features are under active development and have not yet been made available',
+
+    'name' => 'Oryxbot',
+    'package_default' => 'Trade Mission Bot',
+    'plan_default' => 'Trade Mission Bot',
 ];

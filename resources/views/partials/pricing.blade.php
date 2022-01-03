@@ -41,7 +41,7 @@
                                 class="inline-block mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded mt-6 py-4 px-8 shadow-lg" />
                         @endauth
                     </div>
-                    <a href="{{ route('free-trial') }}" class="flex items-end justify-center text-gray-600 h-6 text-xs hover:underline">
+                    <a href="{{ route('free-trial') }}" class="flex items-start justify-center text-gray-600 h-6 text-xs hover:underline h-16 pt-2 -mb-2">
                         Read more
                     </a>
                 </div>
@@ -91,8 +91,9 @@
                         @endauth
                     </div>
                     @if ($shouldDisplayPromo)
-                    <p class="text-xs text-gray-600 text-center italic mt-2 h-6">
-                        After your first month you will be transferred to the standard rate <strong>€{{ config('pricing.trade_mission_bot.price')/100 }} per month</strong>
+                    <p class="text-xs text-gray-600 text-center italic mt-2 h-12">
+                        After your first month you will be transferred to the standard rate <strong>€{{ config('pricing.trade_mission_bot.price')/100 }} per month</strong>.
+                        You can cancel the subscription at any time.
                     </p>
                     @endif
                 </div>

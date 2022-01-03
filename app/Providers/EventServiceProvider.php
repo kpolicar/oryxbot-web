@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\PaymentSucceeded;
 use App\Events\UserPurchasedSubscription;
 use App\Events\UserSyncedWithDiscord;
 use App\Listeners\EnforceUniqueUserAccessToken;
 use App\Listeners\SendUserSubscriptionStatusToDiscord;
+use App\Listeners\StorePayment;
 use App\Models\User;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Authenticated;
@@ -33,6 +35,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserSyncedWithDiscord::class => [
             SendUserSubscriptionStatusToDiscord::class,
+        ],
+        PaymentSucceeded::class => [
+            StorePayment::class
         ],
     ];
 
