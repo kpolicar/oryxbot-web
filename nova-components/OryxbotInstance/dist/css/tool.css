@@ -1,5 +1,1 @@
-.btn-disabled.cursor-wait,
-.btn[disabled].cursor-wait {
-  cursor: wait;
-}
-
+.btn-disabled.cursor-wait,.btn[disabled].cursor-wait{cursor:wait}
