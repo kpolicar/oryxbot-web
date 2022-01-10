@@ -6,6 +6,7 @@ use App\Http\Controllers\CoinbaseController;
 use App\Http\Controllers\CoinbaseWebhookController;
 use App\Http\Controllers\DigitalOceanController;
 use App\Http\Controllers\LinkDiscordController;
+use App\Http\Controllers\SetupController;
 use App\Http\Controllers\StripeController;
 use App\Http\Middleware\HasNeverSubscribed;
 use App\Http\Middleware\NotSubscribed;
@@ -31,8 +32,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::middleware(config('nova.middleware', []))
     ->domain(config('nova.domain', null))
     ->prefix(Nova::path())
-    ->get('/billing-portal', [StripeController::class, 'billing'])
-    ->name('billing');
+    ->group(function () {
+
+        Route::get('/billing-portal', [StripeController::class, 'billing'])
+            ->name('billing');
+
+        Route::get('/setup', [SetupController::class, 'index'])
+            ->name('setup');
+    });
 
 
 Route::domain(config('app.domain'))->group(function () {

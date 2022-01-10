@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Kpolicar\OryxbotHelp\OryxbotHelp;
 use Kpolicar\OryxbotInsights\OryxbotInsights;
 use Kpolicar\OryxbotInstance\OryxbotInstance;
 use Kpolicar\OryxbotLogs\OryxbotLogs;
+use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -92,6 +95,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
-        //
+        Nova::serving(function (ServingNova $serving) {
+            if (!$serving->request->routeIs('setup')) {
+                throw new HttpResponseException(redirect()->to(route('setup')));
+            }
+        });
     }
 }
