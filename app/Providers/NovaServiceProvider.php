@@ -32,6 +32,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function routes()
     {
+        //dd($this->app['digitalocean.factory']->make([
+        //    'token'   => 'abc',
+        //    'method'  => 'token',
+        //])->droplet()->getAll());
         Nova::routes()
                 ->withAuthenticationRoutes()
                 ->withPasswordResetRoutes()

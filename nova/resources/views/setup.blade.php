@@ -1,4 +1,7 @@
-@extends('nova::auth.layout')
+@extends('nova::layout_basic')
+
+
+@section('title', 'Setup - '.\Laravel\Nova\Nova::name())
 
 @section('content')
 

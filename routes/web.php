@@ -116,7 +116,7 @@ Route::domain(config('app.domain'))->group(function () {
 
             return view('profile')
                 ->with(compact('message', 'action'));
-        })->name('profile');
+        })->middleware('auth')->name('profile');
 
         Route::view(LaravelLocalization::transRoute('routes.free-trial'), 'free-trial')
             ->name('free-trial');
