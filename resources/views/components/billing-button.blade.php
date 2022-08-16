@@ -14,9 +14,9 @@
     @php($purchaseNotPossible = !Auth::user()->hasVerifiedEmail())
     @php($class = $purchaseNotPossible ? "cursor-not-allowed hover:no-underline ".$class : $class)
 
-    <a @if($class != "")class="{{ $class }}"@endif
-        href="{{ route('subscribe') }}"
-        @if($purchaseNotPossible) disabled title="{{ __('common.purchase_notverified') }}" @endif>
-        {{ $slot != '' ? $slot : __('common.purchase') }}
-    </a>
+    <a @if($class != "")class="{{ $class }} cursor-not-allowed hover:no-underline"@else"cursor-not-allowed hover:no-underline"@endif
+    {{--href="{{ route('subscribe') }}"--}} href="#"
+    @if($purchaseNotPossible) disabled title="{{ __('common.purchase_notverified') }}" @else title="Subscriptions have been temporarily disabled." @endif>
+    {{ $slot != '' ? $slot : __('common.purchase') }}
+</a>
 @endif
