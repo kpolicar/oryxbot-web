@@ -12,15 +12,17 @@ echo -e "[SeatDefaults]\nautologin-user=user" >> /etc/lightdm/lightdm.conf
 
 #.NET 5.0 (https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2004-)
 
-wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
+wget https://packages.microsoft.com/config/ubuntu/23.10/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
 sudo dpkg -i /tmp/packages-microsoft-prod.deb
 rm /tmp/packages-microsoft-prod.deb
+sudo apt-add-repository https://packages.microsoft.com/ubuntu/23.10/prod
 
+apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 
 sudo apt-get update; \
   sudo apt-get install -y apt-transport-https && \
   sudo apt-get update && \
-  sudo apt-get install -y dotnet-runtime-5.0
+  sudo apt-get install -y dotnet-runtime-7.0
 
 
 

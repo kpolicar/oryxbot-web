@@ -12,7 +12,7 @@
         </div>
 
         <div class="-mx-3 flex flex-wrap">
-            <x-feature-card icon="box-open">
+            <x-feature-card icon="cloud">
                 <x-slot name="title">
                     {{ __('features.external') }}
                 </x-slot>

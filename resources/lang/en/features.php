@@ -4,7 +4,7 @@ return [
 
     'heading' => 'Features',
     'external' => '100% External',
-    'external_details' => 'Oryxbot is a standalone, external program that does not hook into the Albion client in any way. There is little to no chance of getting banned using the new version of our bot.',
+    'external_details' => 'Oryxbot runs in the cloud, separate from your computer, so BattleEye is not able to detect it. There is little to no chance of getting banned using the new version of our bot.',
 
     'human_like' => 'Human-like Behavior',
     'human_like_details' => 'Simulating mouse and keyboard strokes with smooth, human-like movements makes the bot\'s behavior indistinguishable from human players.',
