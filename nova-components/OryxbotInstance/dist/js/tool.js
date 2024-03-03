@@ -1,1 +1,10889 @@
-!function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:r})},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=12)}([function(t,e,n){"use strict";var r=n(4),o=Object.prototype.toString;function i(t){return"[object Array]"===o.call(t)}function s(t){return void 0===t}function a(t){return null!==t&&"object"==typeof t}function c(t){if("[object Object]"!==o.call(t))return!1;var e=Object.getPrototypeOf(t);return null===e||e===Object.prototype}function u(t){return"[object Function]"===o.call(t)}function l(t,e){if(null!==t&&void 0!==t)if("object"!=typeof t&&(t=[t]),i(t))for(var n=0,r=t.length;n<r;n++)e.call(null,t[n],n,t);else for(var o in t)Object.prototype.hasOwnProperty.call(t,o)&&e.call(null,t[o],o,t)}t.exports={isArray:i,isArrayBuffer:function(t){return"[object ArrayBuffer]"===o.call(t)},isBuffer:function(t){return null!==t&&!s(t)&&null!==t.constructor&&!s(t.constructor)&&"function"==typeof t.constructor.isBuffer&&t.constructor.isBuffer(t)},isFormData:function(t){return"undefined"!=typeof FormData&&t instanceof FormData},isArrayBufferView:function(t){return"undefined"!=typeof ArrayBuffer&&ArrayBuffer.isView?ArrayBuffer.isView(t):t&&t.buffer&&t.buffer instanceof ArrayBuffer},isString:function(t){return"string"==typeof t},isNumber:function(t){return"number"==typeof t},isObject:a,isPlainObject:c,isUndefined:s,isDate:function(t){return"[object Date]"===o.call(t)},isFile:function(t){return"[object File]"===o.call(t)},isBlob:function(t){return"[object Blob]"===o.call(t)},isFunction:u,isStream:function(t){return a(t)&&u(t.pipe)},isURLSearchParams:function(t){return"undefined"!=typeof URLSearchParams&&t instanceof URLSearchParams},isStandardBrowserEnv:function(){return("undefined"==typeof navigator||"ReactNative"!==navigator.product&&"NativeScript"!==navigator.product&&"NS"!==navigator.product)&&"undefined"!=typeof window&&"undefined"!=typeof document},forEach:l,merge:function t(){var e={};function n(n,r){c(e[r])&&c(n)?e[r]=t(e[r],n):c(n)?e[r]=t({},n):i(n)?e[r]=n.slice():e[r]=n}for(var r=0,o=arguments.length;r<o;r++)l(arguments[r],n);return e},extend:function(t,e,n){return l(e,function(e,o){t[o]=n&&"function"==typeof e?r(e,n):e}),t},trim:function(t){return t.trim?t.trim():t.replace(/^\s+|\s+$/g,"")},stripBOM:function(t){return 65279===t.charCodeAt(0)&&(t=t.slice(1)),t}}},function(t,e,n){"use strict";(function(e){var r=n(0),o=n(35),i=n(6),s={"Content-Type":"application/x-www-form-urlencoded"};function a(t,e){!r.isUndefined(t)&&r.isUndefined(t["Content-Type"])&&(t["Content-Type"]=e)}var c,u={transitional:{silentJSONParsing:!0,forcedJSONParsing:!0,clarifyTimeoutError:!1},adapter:("undefined"!=typeof XMLHttpRequest?c=n(7):void 0!==e&&"[object process]"===Object.prototype.toString.call(e)&&(c=n(7)),c),transformRequest:[function(t,e){return o(e,"Accept"),o(e,"Content-Type"),r.isFormData(t)||r.isArrayBuffer(t)||r.isBuffer(t)||r.isStream(t)||r.isFile(t)||r.isBlob(t)?t:r.isArrayBufferView(t)?t.buffer:r.isURLSearchParams(t)?(a(e,"application/x-www-form-urlencoded;charset=utf-8"),t.toString()):r.isObject(t)||e&&"application/json"===e["Content-Type"]?(a(e,"application/json"),function(t,e,n){if(r.isString(t))try{return(e||JSON.parse)(t),r.trim(t)}catch(t){if("SyntaxError"!==t.name)throw t}return(n||JSON.stringify)(t)}(t)):t}],transformResponse:[function(t){var e=this.transitional||u.transitional,n=e&&e.silentJSONParsing,o=e&&e.forcedJSONParsing,s=!n&&"json"===this.responseType;if(s||o&&r.isString(t)&&t.length)try{return JSON.parse(t)}catch(t){if(s){if("SyntaxError"===t.name)throw i(t,this,"E_JSON_PARSE");throw t}}return t}],timeout:0,xsrfCookieName:"XSRF-TOKEN",xsrfHeaderName:"X-XSRF-TOKEN",maxContentLength:-1,maxBodyLength:-1,validateStatus:function(t){return t>=200&&t<300},headers:{common:{Accept:"application/json, text/plain, */*"}}};r.forEach(["delete","get","head"],function(t){u.headers[t]={}}),r.forEach(["post","put","patch"],function(t){u.headers[t]=r.merge(s)}),t.exports=u}).call(e,n(34))},function(t,e,n){"use strict";function r(t){this.message=t}r.prototype.toString=function(){return"Cancel"+(this.message?": "+this.message:"")},r.prototype.__CANCEL__=!0,t.exports=r},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}();var o=function(){function t(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.record(e)}return r(t,[{key:"all",value:function(){return this.errors}},{key:"has",value:function(t){var e=this.errors.hasOwnProperty(t);e||(e=Object.keys(this.errors).filter(function(e){return e.startsWith(t+".")||e.startsWith(t+"[")}).length>0);return e}},{key:"first",value:function(t){return this.get(t)[0]}},{key:"get",value:function(t){return this.errors[t]||[]}},{key:"any",value:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[];if(0===e.length)return Object.keys(this.errors).length>0;var n={};return e.forEach(function(e){return n[e]=t.get(e)}),n}},{key:"record",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.errors=t}},{key:"clear",value:function(t){if(t){var e=Object.assign({},this.errors);Object.keys(e).filter(function(e){return e===t||e.startsWith(t+".")||e.startsWith(t+"[")}).forEach(function(t){return delete e[t]}),this.errors=e}else this.errors={}}}]),t}();e.default=o},function(t,e,n){"use strict";t.exports=function(t,e){return function(){for(var n=new Array(arguments.length),r=0;r<n.length;r++)n[r]=arguments[r];return t.apply(e,n)}}},function(t,e,n){"use strict";var r=n(0);function o(t){return encodeURIComponent(t).replace(/%3A/gi,":").replace(/%24/g,"$").replace(/%2C/gi,",").replace(/%20/g,"+").replace(/%5B/gi,"[").replace(/%5D/gi,"]")}t.exports=function(t,e,n){if(!e)return t;var i;if(n)i=n(e);else if(r.isURLSearchParams(e))i=e.toString();else{var s=[];r.forEach(e,function(t,e){null!==t&&void 0!==t&&(r.isArray(t)?e+="[]":t=[t],r.forEach(t,function(t){r.isDate(t)?t=t.toISOString():r.isObject(t)&&(t=JSON.stringify(t)),s.push(o(e)+"="+o(t))}))}),i=s.join("&")}if(i){var a=t.indexOf("#");-1!==a&&(t=t.slice(0,a)),t+=(-1===t.indexOf("?")?"?":"&")+i}return t}},function(t,e,n){"use strict";t.exports=function(t,e,n,r,o){return t.config=e,n&&(t.code=n),t.request=r,t.response=o,t.isAxiosError=!0,t.toJSON=function(){return{message:this.message,name:this.name,description:this.description,number:this.number,fileName:this.fileName,lineNumber:this.lineNumber,columnNumber:this.columnNumber,stack:this.stack,config:this.config,code:this.code,status:this.response&&this.response.status?this.response.status:null}},t}},function(t,e,n){"use strict";var r=n(0),o=n(36),i=n(37),s=n(5),a=n(38),c=n(41),u=n(42),l=n(8),h=n(1),f=n(2);t.exports=function(t){return new Promise(function(e,n){var p,d=t.data,v=t.headers,y=t.responseType;function m(){t.cancelToken&&t.cancelToken.unsubscribe(p),t.signal&&t.signal.removeEventListener("abort",p)}r.isFormData(d)&&delete v["Content-Type"];var g=new XMLHttpRequest;if(t.auth){var b=t.auth.username||"",w=t.auth.password?unescape(encodeURIComponent(t.auth.password)):"";v.Authorization="Basic "+btoa(b+":"+w)}var _=a(t.baseURL,t.url);function k(){if(g){var r="getAllResponseHeaders"in g?c(g.getAllResponseHeaders()):null,i={data:y&&"text"!==y&&"json"!==y?g.response:g.responseText,status:g.status,statusText:g.statusText,headers:r,config:t,request:g};o(function(t){e(t),m()},function(t){n(t),m()},i),g=null}}if(g.open(t.method.toUpperCase(),s(_,t.params,t.paramsSerializer),!0),g.timeout=t.timeout,"onloadend"in g?g.onloadend=k:g.onreadystatechange=function(){g&&4===g.readyState&&(0!==g.status||g.responseURL&&0===g.responseURL.indexOf("file:"))&&setTimeout(k)},g.onabort=function(){g&&(n(l("Request aborted",t,"ECONNABORTED",g)),g=null)},g.onerror=function(){n(l("Network Error",t,null,g)),g=null},g.ontimeout=function(){var e=t.timeout?"timeout of "+t.timeout+"ms exceeded":"timeout exceeded",r=t.transitional||h.transitional;t.timeoutErrorMessage&&(e=t.timeoutErrorMessage),n(l(e,t,r.clarifyTimeoutError?"ETIMEDOUT":"ECONNABORTED",g)),g=null},r.isStandardBrowserEnv()){var S=(t.withCredentials||u(_))&&t.xsrfCookieName?i.read(t.xsrfCookieName):void 0;S&&(v[t.xsrfHeaderName]=S)}"setRequestHeader"in g&&r.forEach(v,function(t,e){void 0===d&&"content-type"===e.toLowerCase()?delete v[e]:g.setRequestHeader(e,t)}),r.isUndefined(t.withCredentials)||(g.withCredentials=!!t.withCredentials),y&&"json"!==y&&(g.responseType=t.responseType),"function"==typeof t.onDownloadProgress&&g.addEventListener("progress",t.onDownloadProgress),"function"==typeof t.onUploadProgress&&g.upload&&g.upload.addEventListener("progress",t.onUploadProgress),(t.cancelToken||t.signal)&&(p=function(t){g&&(n(!t||t&&t.type?new f("canceled"):t),g.abort(),g=null)},t.cancelToken&&t.cancelToken.subscribe(p),t.signal&&(t.signal.aborted?p():t.signal.addEventListener("abort",p))),d||(d=null),g.send(d)})}},function(t,e,n){"use strict";var r=n(6);t.exports=function(t,e,n,o,i){var s=new Error(t);return r(s,e,n,o,i)}},function(t,e,n){"use strict";t.exports=function(t){return!(!t||!t.__CANCEL__)}},function(t,e,n){"use strict";var r=n(0);t.exports=function(t,e){e=e||{};var n={};function o(t,e){return r.isPlainObject(t)&&r.isPlainObject(e)?r.merge(t,e):r.isPlainObject(e)?r.merge({},e):r.isArray(e)?e.slice():e}function i(n){return r.isUndefined(e[n])?r.isUndefined(t[n])?void 0:o(void 0,t[n]):o(t[n],e[n])}function s(t){if(!r.isUndefined(e[t]))return o(void 0,e[t])}function a(n){return r.isUndefined(e[n])?r.isUndefined(t[n])?void 0:o(void 0,t[n]):o(void 0,e[n])}function c(n){return n in e?o(t[n],e[n]):n in t?o(void 0,t[n]):void 0}var u={url:s,method:s,data:s,baseURL:a,transformRequest:a,transformResponse:a,paramsSerializer:a,timeout:a,timeoutMessage:a,withCredentials:a,adapter:a,responseType:a,xsrfCookieName:a,xsrfHeaderName:a,onUploadProgress:a,onDownloadProgress:a,decompress:a,maxContentLength:a,maxBodyLength:a,transport:a,httpAgent:a,httpsAgent:a,cancelToken:a,socketPath:a,responseEncoding:a,validateStatus:c};return r.forEach(Object.keys(t).concat(Object.keys(e)),function(t){var e=u[t]||i,o=e(t);r.isUndefined(o)&&e!==c||(n[t]=o)}),n}},function(t,e){t.exports={version:"0.23.0"}},function(t,e,n){n(13),t.exports=n(49)},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}function i(t,e,n){return e&&o(t.prototype,e),n&&o(t,n),t}function s(){return(s=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t}).apply(this,arguments)}function a(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),e&&u(t,e)}function c(t){return(c=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}function u(t,e){return(u=Object.setPrototypeOf||function(t,e){return t.__proto__=e,t})(t,e)}function l(t,e){return!e||"object"!=typeof e&&"function"!=typeof e?function(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}(t):e}function h(t){var e=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Date.prototype.toString.call(Reflect.construct(Date,[],function(){})),!0}catch(t){return!1}}();return function(){var n,r=c(t);if(e){var o=c(this).constructor;n=Reflect.construct(r,arguments,o)}else n=r.apply(this,arguments);return l(this,n)}}Object.defineProperty(e,"__esModule",{value:!0});var f=function(){function t(e){r(this,t),this._defaultOptions={auth:{headers:{}},authEndpoint:"/broadcasting/auth",broadcaster:"pusher",csrfToken:null,host:null,key:null,namespace:"App.Events"},this.setOptions(e),this.connect()}return i(t,[{key:"setOptions",value:function(t){return this.options=s(this._defaultOptions,t),this.csrfToken()&&(this.options.auth.headers["X-CSRF-TOKEN"]=this.csrfToken()),t}},{key:"csrfToken",value:function(){var t;return"undefined"!=typeof window&&window.Laravel&&window.Laravel.csrfToken?window.Laravel.csrfToken:this.options.csrfToken?this.options.csrfToken:"undefined"!=typeof document&&"function"==typeof document.querySelector&&(t=document.querySelector('meta[name="csrf-token"]'))?t.getAttribute("content"):null}}]),t}(),p=function(){function t(){r(this,t)}return i(t,[{key:"listenForWhisper",value:function(t,e){return this.listen(".client-"+t,e)}},{key:"notification",value:function(t){return this.listen(".Illuminate\\Notifications\\Events\\BroadcastNotificationCreated",t)}},{key:"stopListeningForWhisper",value:function(t,e){return this.stopListening(".client-"+t,e)}}]),t}(),d=function(){function t(e){r(this,t),this.setNamespace(e)}return i(t,[{key:"format",value:function(t){return"."===t.charAt(0)||"\\"===t.charAt(0)?t.substr(1):(this.namespace&&(t=this.namespace+"."+t),t.replace(/\./g,"\\"))}},{key:"setNamespace",value:function(t){this.namespace=t}}]),t}(),v=function(t){a(n,p);var e=h(n);function n(t,o,i){var s;return r(this,n),(s=e.call(this)).name=o,s.pusher=t,s.options=i,s.eventFormatter=new d(s.options.namespace),s.subscribe(),s}return i(n,[{key:"subscribe",value:function(){this.subscription=this.pusher.subscribe(this.name)}},{key:"unsubscribe",value:function(){this.pusher.unsubscribe(this.name)}},{key:"listen",value:function(t,e){return this.on(this.eventFormatter.format(t),e),this}},{key:"listenToAll",value:function(t){var e=this;return this.subscription.bind_global(function(n,r){if(!n.startsWith("pusher:")){var o=e.options.namespace.replace(/\./g,"\\"),i=n.startsWith(o)?n.substring(o.length+1):"."+n;t(i,r)}}),this}},{key:"stopListening",value:function(t,e){return e?this.subscription.unbind(this.eventFormatter.format(t),e):this.subscription.unbind(this.eventFormatter.format(t)),this}},{key:"stopListeningToAll",value:function(t){return t?this.subscription.unbind_global(t):this.subscription.unbind_global(),this}},{key:"subscribed",value:function(t){return this.on("pusher:subscription_succeeded",function(){t()}),this}},{key:"error",value:function(t){return this.on("pusher:subscription_error",function(e){t(e)}),this}},{key:"on",value:function(t,e){return this.subscription.bind(t,e),this}}]),n}(),y=function(t){a(n,v);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"whisper",value:function(t,e){return this.pusher.channels.channels[this.name].trigger("client-".concat(t),e),this}}]),n}(),m=function(t){a(n,v);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"whisper",value:function(t,e){return this.pusher.channels.channels[this.name].trigger("client-".concat(t),e),this}}]),n}(),g=function(t){a(n,v);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"here",value:function(t){return this.on("pusher:subscription_succeeded",function(e){t(Object.keys(e.members).map(function(t){return e.members[t]}))}),this}},{key:"joining",value:function(t){return this.on("pusher:member_added",function(e){t(e.info)}),this}},{key:"leaving",value:function(t){return this.on("pusher:member_removed",function(e){t(e.info)}),this}},{key:"whisper",value:function(t,e){return this.pusher.channels.channels[this.name].trigger("client-".concat(t),e),this}}]),n}(),b=function(t){a(n,p);var e=h(n);function n(t,o,i){var s;return r(this,n),(s=e.call(this)).events={},s.listeners={},s.name=o,s.socket=t,s.options=i,s.eventFormatter=new d(s.options.namespace),s.subscribe(),s}return i(n,[{key:"subscribe",value:function(){this.socket.emit("subscribe",{channel:this.name,auth:this.options.auth||{}})}},{key:"unsubscribe",value:function(){this.unbind(),this.socket.emit("unsubscribe",{channel:this.name,auth:this.options.auth||{}})}},{key:"listen",value:function(t,e){return this.on(this.eventFormatter.format(t),e),this}},{key:"stopListening",value:function(t,e){return this.unbindEvent(this.eventFormatter.format(t),e),this}},{key:"subscribed",value:function(t){return this.on("connect",function(e){t(e)}),this}},{key:"error",value:function(t){return this}},{key:"on",value:function(t,e){var n=this;return this.listeners[t]=this.listeners[t]||[],this.events[t]||(this.events[t]=function(e,r){n.name===e&&n.listeners[t]&&n.listeners[t].forEach(function(t){return t(r)})},this.socket.on(t,this.events[t])),this.listeners[t].push(e),this}},{key:"unbind",value:function(){var t=this;Object.keys(this.events).forEach(function(e){t.unbindEvent(e)})}},{key:"unbindEvent",value:function(t,e){this.listeners[t]=this.listeners[t]||[],e&&(this.listeners[t]=this.listeners[t].filter(function(t){return t!==e})),e&&0!==this.listeners[t].length||(this.events[t]&&(this.socket.removeListener(t,this.events[t]),delete this.events[t]),delete this.listeners[t])}}]),n}(),w=function(t){a(n,b);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"whisper",value:function(t,e){return this.socket.emit("client event",{channel:this.name,event:"client-".concat(t),data:e}),this}}]),n}(),k=function(t){a(n,w);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"here",value:function(t){return this.on("presence:subscribed",function(e){t(e.map(function(t){return t.user_info}))}),this}},{key:"joining",value:function(t){return this.on("presence:joining",function(e){return t(e.user_info)}),this}},{key:"leaving",value:function(t){return this.on("presence:leaving",function(e){return t(e.user_info)}),this}}]),n}(),S=function(t){a(n,p);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"subscribe",value:function(){}},{key:"unsubscribe",value:function(){}},{key:"listen",value:function(t,e){return this}},{key:"stopListening",value:function(t,e){return this}},{key:"subscribed",value:function(t){return this}},{key:"error",value:function(t){return this}},{key:"on",value:function(t,e){return this}}]),n}(),C=function(t){a(n,S);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"whisper",value:function(t,e){return this}}]),n}(),x=function(t){a(n,S);var e=h(n);function n(){return r(this,n),e.apply(this,arguments)}return i(n,[{key:"here",value:function(t){return this}},{key:"joining",value:function(t){return this}},{key:"leaving",value:function(t){return this}},{key:"whisper",value:function(t,e){return this}}]),n}(),O=function(t){a(n,f);var e=h(n);function n(){var t;return r(this,n),(t=e.apply(this,arguments)).channels={},t}return i(n,[{key:"connect",value:function(){void 0!==this.options.client?this.pusher=this.options.client:this.pusher=new Pusher(this.options.key,this.options)}},{key:"listen",value:function(t,e,n){return this.channel(t).listen(e,n)}},{key:"channel",value:function(t){return this.channels[t]||(this.channels[t]=new v(this.pusher,t,this.options)),this.channels[t]}},{key:"privateChannel",value:function(t){return this.channels["private-"+t]||(this.channels["private-"+t]=new y(this.pusher,"private-"+t,this.options)),this.channels["private-"+t]}},{key:"encryptedPrivateChannel",value:function(t){return this.channels["private-encrypted-"+t]||(this.channels["private-encrypted-"+t]=new m(this.pusher,"private-encrypted-"+t,this.options)),this.channels["private-encrypted-"+t]}},{key:"presenceChannel",value:function(t){return this.channels["presence-"+t]||(this.channels["presence-"+t]=new g(this.pusher,"presence-"+t,this.options)),this.channels["presence-"+t]}},{key:"leave",value:function(t){var e=this;[t,"private-"+t,"presence-"+t].forEach(function(t,n){e.leaveChannel(t)})}},{key:"leaveChannel",value:function(t){this.channels[t]&&(this.channels[t].unsubscribe(),delete this.channels[t])}},{key:"socketId",value:function(){return this.pusher.connection.socket_id}},{key:"disconnect",value:function(){this.pusher.disconnect()}}]),n}(),T=function(t){a(n,f);var e=h(n);function n(){var t;return r(this,n),(t=e.apply(this,arguments)).channels={},t}return i(n,[{key:"connect",value:function(){var t=this,e=this.getSocketIO();return this.socket=e(this.options.host,this.options),this.socket.on("reconnect",function(){Object.values(t.channels).forEach(function(t){t.subscribe()})}),this.socket}},{key:"getSocketIO",value:function(){if(void 0!==this.options.client)return this.options.client;if("undefined"!=typeof io)return io;throw new Error("Socket.io client not found. Should be globally available or passed via options.client")}},{key:"listen",value:function(t,e,n){return this.channel(t).listen(e,n)}},{key:"channel",value:function(t){return this.channels[t]||(this.channels[t]=new b(this.socket,t,this.options)),this.channels[t]}},{key:"privateChannel",value:function(t){return this.channels["private-"+t]||(this.channels["private-"+t]=new w(this.socket,"private-"+t,this.options)),this.channels["private-"+t]}},{key:"presenceChannel",value:function(t){return this.channels["presence-"+t]||(this.channels["presence-"+t]=new k(this.socket,"presence-"+t,this.options)),this.channels["presence-"+t]}},{key:"leave",value:function(t){var e=this;[t,"private-"+t,"presence-"+t].forEach(function(t){e.leaveChannel(t)})}},{key:"leaveChannel",value:function(t){this.channels[t]&&(this.channels[t].unsubscribe(),delete this.channels[t])}},{key:"socketId",value:function(){return this.socket.id}},{key:"disconnect",value:function(){this.socket.disconnect()}}]),n}(),P=function(t){a(n,f);var e=h(n);function n(){var t;return r(this,n),(t=e.apply(this,arguments)).channels={},t}return i(n,[{key:"connect",value:function(){}},{key:"listen",value:function(t,e,n){return new S}},{key:"channel",value:function(t){return new S}},{key:"privateChannel",value:function(t){return new C}},{key:"presenceChannel",value:function(t){return new x}},{key:"leave",value:function(t){}},{key:"leaveChannel",value:function(t){}},{key:"socketId",value:function(){return"fake-socket-id"}},{key:"disconnect",value:function(){}}]),n}(),E=function(){function t(e){r(this,t),this.options=e,this.connect(),this.options.withoutInterceptors||this.registerInterceptors()}return i(t,[{key:"channel",value:function(t){return this.connector.channel(t)}},{key:"connect",value:function(){"pusher"==this.options.broadcaster?this.connector=new O(this.options):"socket.io"==this.options.broadcaster?this.connector=new T(this.options):"null"==this.options.broadcaster?this.connector=new P(this.options):"function"==typeof this.options.broadcaster&&(this.connector=new this.options.broadcaster(this.options))}},{key:"disconnect",value:function(){this.connector.disconnect()}},{key:"join",value:function(t){return this.connector.presenceChannel(t)}},{key:"leave",value:function(t){this.connector.leave(t)}},{key:"leaveChannel",value:function(t){this.connector.leaveChannel(t)}},{key:"listen",value:function(t,e,n){return this.connector.listen(t,e,n)}},{key:"private",value:function(t){return this.connector.privateChannel(t)}},{key:"encryptedPrivate",value:function(t){return this.connector.encryptedPrivateChannel(t)}},{key:"socketId",value:function(){return this.connector.socketId()}},{key:"registerInterceptors",value:function(){"function"==typeof Vue&&Vue.http&&this.registerVueRequestInterceptor(),"function"==typeof axios&&this.registerAxiosRequestInterceptor(),"function"==typeof jQuery&&this.registerjQueryAjaxSetup()}},{key:"registerVueRequestInterceptor",value:function(){var t=this;Vue.http.interceptors.push(function(e,n){t.socketId()&&e.headers.set("X-Socket-ID",t.socketId()),n()})}},{key:"registerAxiosRequestInterceptor",value:function(){var t=this;axios.interceptors.request.use(function(e){return t.socketId()&&(e.headers["X-Socket-Id"]=t.socketId()),e})}},{key:"registerjQueryAjaxSetup",value:function(){var t=this;void 0!==jQuery.ajax&&jQuery.ajaxPrefilter(function(e,n,r){t.socketId()&&r.setRequestHeader("X-Socket-Id",t.socketId())})}}]),t}();Nova.booting(function(t,e,r){_.each(Nova.config.instances,function(t){e.addRoutes([{name:"oryxbot-instance",path:"/instances/:resourceName",component:n(14),params:{resourceName:t.slug}}])})}),window.Pusher=n(48),window.Echo=function(){return new E({broadcaster:"pusher",key:Nova.config.pusherAppKey,wsHost:Nova.config.websocketsHost,wsPort:Nova.config.websocketsPort,wssPort:Nova.config.websocketsPort,enabledTransports:["ws","wss"],forceTLS:!0,disableStats:!0})}},function(t,e,n){var r=n(20)(n(21),n(47),!1,function(t){n(15)},null,null);t.exports=r.exports},function(t,e,n){var r=n(16);"string"==typeof r&&(r=[[t.i,r,""]]),r.locals&&(t.exports=r.locals);n(18)("57d06d58",r,!0,{})},function(t,e,n){(t.exports=n(17)(!1)).push([t.i,"",""])},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=function(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var o=(s=r,"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(s))))+" */"),i=r.sources.map(function(t){return"/*# sourceURL="+r.sourceRoot+t+" */"});return[n].concat(i).concat([o]).join("\n")}var s;return[n].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<t.length;o++){var s=t[o];"number"==typeof s[0]&&r[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),e.push(s))}},e}},function(t,e,n){var r="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!r)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var o=n(19),i={},s=r&&(document.head||document.getElementsByTagName("head")[0]),a=null,c=0,u=!1,l=function(){},h=null,f="data-vue-ssr-id",p="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function d(t){for(var e=0;e<t.length;e++){var n=t[e],r=i[n.id];if(r){r.refs++;for(var o=0;o<r.parts.length;o++)r.parts[o](n.parts[o]);for(;o<n.parts.length;o++)r.parts.push(y(n.parts[o]));r.parts.length>n.parts.length&&(r.parts.length=n.parts.length)}else{var s=[];for(o=0;o<n.parts.length;o++)s.push(y(n.parts[o]));i[n.id]={id:n.id,refs:1,parts:s}}}}function v(){var t=document.createElement("style");return t.type="text/css",s.appendChild(t),t}function y(t){var e,n,r=document.querySelector("style["+f+'~="'+t.id+'"]');if(r){if(u)return l;r.parentNode.removeChild(r)}if(p){var o=c++;r=a||(a=v()),e=b.bind(null,r,o,!1),n=b.bind(null,r,o,!0)}else r=v(),e=function(t,e){var n=e.css,r=e.media,o=e.sourceMap;r&&t.setAttribute("media",r);h.ssrId&&t.setAttribute(f,e.id);o&&(n+="\n/*# sourceURL="+o.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,r),n=function(){r.parentNode.removeChild(r)};return e(t),function(r){if(r){if(r.css===t.css&&r.media===t.media&&r.sourceMap===t.sourceMap)return;e(t=r)}else n()}}t.exports=function(t,e,n,r){u=n,h=r||{};var s=o(t,e);return d(s),function(e){for(var n=[],r=0;r<s.length;r++){var a=s[r];(c=i[a.id]).refs--,n.push(c)}e?d(s=o(t,e)):s=[];for(r=0;r<n.length;r++){var c;if(0===(c=n[r]).refs){for(var u=0;u<c.parts.length;u++)c.parts[u]();delete i[c.id]}}}};var m,g=(m=[],function(t,e){return m[t]=e,m.filter(Boolean).join("\n")});function b(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=g(e,o);else{var i=document.createTextNode(o),s=t.childNodes;s[e]&&t.removeChild(s[e]),s.length?t.insertBefore(i,s[e]):t.appendChild(i)}}},function(t,e){t.exports=function(t,e){for(var n=[],r={},o=0;o<e.length;o++){var i=e[o],s=i[0],a={id:t+":"+o,css:i[1],media:i[2],sourceMap:i[3]};r[s]?r[s].parts.push(a):n.push(r[s]={id:s,parts:[a]})}return n}},function(t,e){t.exports=function(t,e,n,r,o,i){var s,a=t=t||{},c=typeof t.default;"object"!==c&&"function"!==c||(s=t,a=t.default);var u,l="function"==typeof a?a.options:a;if(e&&(l.render=e.render,l.staticRenderFns=e.staticRenderFns,l._compiled=!0),n&&(l.functional=!0),o&&(l._scopeId=o),i?(u=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),r&&r.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},l._ssrRegister=u):r&&(u=r),u){var h=l.functional,f=h?l.render:l.beforeCreate;h?(l._injectStyles=u,l.render=function(t,e){return u.call(e),f(t,e)}):l.beforeCreate=f?[].concat(f,u):[u]}return{esModule:s,exports:a,options:l}}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n(22);n.n(r);e.default={metaInfo:function(){return{title:"Instances"}},mounted:function(){var t=this;(function(){var t=this;"function"==typeof window.Echo&&(window.Echo=Echo());var e=Echo.private("App.Models.User."+Nova.config.userId);e.listen("VpnConnectionChanged",function(t){t.established?Nova.success("VPN Connection has been successfully established!"):Nova.error("VPN Connection has been lost!")}),e.listen("BotRunningChanged",function(e){t.running=e.running,t.recording=e.recordingRunning,t.requestingRunningChange=!1}),e.listen("RemoteDesktopConnectionChanged",function(e){t.remote_connected=e.resolution,t.remote_resolution=e.resolution}),e.listen("BotStepChanged",function(e){t.step=e.step}),e.listen("BotLocationChanged",function(e){t.location=e.location,t.speed=e.speed}),e.listen("Status",function(e){t.requestingStatus=!1,t.requestingRunningChange=!1,t.location=e.characterLocation,t.speed=e.characterSpeed,t.running=e.botRunning,t.step=e.botStep,t.remote_connected=e.remoteDesktopConnected,t.remote_resolution=e.remoteDesktopResolution,t.vpn_connected=e.vpnEstablished,t.serverOnline=!0}),e.subscribed(function(){var e=function(){this.RequestStatus(),this.refreshTimeout=setTimeout(function(){this.refreshTimeout=null,this.requestingStatus&&(document.hidden||Nova.error("Failed to connect to bot. Retrying..."),e())}.bind(this),5e3)}.bind(t);e()})}).bind(this)(),Nova.$on("field-city-change",function(e){return t.fieldCityValue=e}),Nova.$on("field-hearts-change",function(e){return t.fieldHeartsValue=e}),Nova.$on("field-destination-change",function(e){return t.fieldDestinationValue=e}),Nova.$on("field-name-change",function(e){return t.fieldNameValue=e}),Nova.$on("field-region-change",function(e){return t.fieldRegionValue=e}),Nova.$on("field-progressed-change",function(e){return t.fieldProgressedValue=e})},destroyed:function(){Echo.leave("App.Models.User."+Nova.config.userId),null!==this.refreshTimeout&&clearTimeout(this.refreshTimeout)},data:function(){return{step:"-",location:"-",session:"-",speed:"0",progress:"0% complete",vpn_connected:!1,remote_connected:!1,remote_resolution:"-",remote_bandwidth:"-",running:!1,recording:!1,serverOnline:!1,requestingRunningChange:!1,requestingStatus:!1,requestingServerReboot:!1,refreshTimeout:null,showRebootServerConfirmModal:!1,showStartModal:!1,showResumeModal:!1,showStartRecordingModal:!1,cityFieldErrors:new r.Errors,fieldCityValue:"fort-sterling",fieldDestinationValue:"aspenwood",fieldHeartsValue:3,fieldNameValue:"",fieldRegionValue:"aspenwood",fieldProgressedValue:!1,startBotAction:{name:"Start Oryxbot",confirmButtonText:"Confirm",cancelButtonText:"Cancel",fields:[{component:"select-field",field:"city",attribute:"field-city",value:"fort-sterling",options:[{label:"Thetford (broken)",value:"thetford"},{label:"Fort Sterling",value:"fort-sterling"},{label:"Lymhurst (broken)",value:"lymhurst"},{label:"Bridgewatch (broken)",value:"bridgewatch"},{label:"Martlock (broken)",value:"martlock"},{label:"Caerleon (broken)",value:"caerleon"}],name:"Royal City",helpText:"Please select the city you will begin running from"},{component:"select-field",field:"hearts",attribute:"field-hearts",value:3,options:[{label:"3",value:3},{label:"7",value:7},{label:"15",value:15}],name:"Faction Hearts",helpText:"Please select how many faction hearts you would like to transport"}],class:"btn-primary"},resumeBotAction:{name:"Resume Oryxbot Run",confirmButtonText:"Confirm",cancelButtonText:"Cancel",fields:[{component:"select-field",field:"city",attribute:"field-city",value:"fort-sterling",options:[{label:"Thetford (broken)",value:"thetford"},{label:"Fort Sterling",value:"fort-sterling"},{label:"Lymhurst (broken)",value:"lymhurst"},{label:"Bridgewatch (broken)",value:"bridgewatch"},{label:"Martlock (broken)",value:"martlock"},{label:"Caerleon (broken)",value:"caerleon"}],name:"Royal City",helpText:"Please select the city you will begin running from"},{component:"select-field",field:"region",attribute:"field-region",value:"aspenwood",options:[{label:"Mawar Gorge",value:"mawar-gorge"},{label:"Pen Kerrig",value:"pen-kerrig"},{label:"Cedarcopse",value:"cedarcopse"},{label:"Russerdell",value:"russerdell"},{label:"Oakcopse",value:"oakcopse"},{label:"Aspenwood",value:"aspenwood"}],name:"Current Region",helpText:"Please select the region your character is currently located in"},{component:"boolean-field",field:"progressed",attribute:"field-progressed",value:!1,name:"Progressed",helpText:"Check this field if you have already arrived at the faction emissary and progressed the quest"},{component:"select-field",field:"hearts",attribute:"field-hearts",value:3,options:[{label:"3",value:3},{label:"7",value:7},{label:"15",value:15}],name:"Faction Hearts",helpText:"Please select how many faction hearts you would like to transport on your next run"}],class:"btn-primary"},startRecordingBotAction:{name:"Custom Route",confirmButtonText:"Start Recording",cancelButtonText:"Cancel",fields:[{component:"text-field",field:"name",attribute:"field-name",value:"",name:"Name",helpText:"How you would like to name your route"},{component:"select-field",field:"city",attribute:"field-city",value:"fort-sterling",options:[{label:"Thetford (broken)",value:"thetford"},{label:"Fort Sterling",value:"fort-sterling"},{label:"Lymhurst (broken)",value:"lymhurst"},{label:"Bridgewatch (broken)",value:"bridgewatch"},{label:"Martlock (broken)",value:"martlock"},{label:"Caerleon (broken)",value:"caerleon"}],name:"Royal City",helpText:"Please select the city you will begin running from"},{component:"select-field",field:"destination",attribute:"field-destination",value:"aspenwood",options:[{label:"Aspenwood",value:"aspenwood"}],name:"Destination",helpText:"Please select the destination of your trade mission"}],class:"btn-primary"}}},methods:{OnStartBot:function(){this.showStartModal=!1,this.StartBot()},OnResumeBot:function(){this.showResumeModal=!1,this.ResumeBot()},StartBot:function(){this.requestingRunningChange=!0,Nova.request().post(this.$route.fullPath+"/start?city="+this.fieldCityValue+"&hearts="+this.fieldHeartsValue)},ResumeBot:function(){this.requestingRunningChange=!0,Nova.request().post(this.$route.fullPath+"/resume?city="+this.fieldCityValue+"&region="+this.fieldRegionValue+"&progressed="+this.fieldProgressedValue+"&hearts="+this.fieldHeartsValue)},StopBot:function(){this.requestingRunningChange=!0,Nova.request().post(this.$route.fullPath+"/stop")},RebootServer:function(){var t=this;this.requestingServerReboot=!0,Nova.request().post(this.$route.fullPath+"/server-reboot").then(function(){return Nova.success("Server is rebooting")}).catch(function(t){return Nova.error(t.response.data.message)}).finally(function(){return t.requestingServerReboot=!1})},RequestStatus:function(){this.requestingStatus=!0,Nova.request().post(this.$route.fullPath+"/status")},OnAttemptServerReboot:function(){this.showRebootServerConfirmModal=!0},OnConfirmServerReboot:function(){this.showRebootServerConfirmModal=!1,this.RebootServer()},OnCancelServerReboot:function(){this.showRebootServerConfirmModal=!1},OnStartRecordingBot:function(){this.showStartRecordingModal=!1,this.requestingRunningChange=!0,Nova.request().post(this.$route.fullPath+"/start-recording?city="+this.fieldCityValue+"&destination="+this.fieldDestinationValue+"&name="+this.fieldNameValue)},OnStopRecordingBot:function(){this.requestingRunningChange=!0,Nova.request().post(this.$route.fullPath+"/stop")}},computed:{instance:function(){return _.find(Nova.config.instances,function(t){return this.$route.params.resourceName===t.slug}.bind(this))},status:function(){return this.recording?"Bot is recording":this.running?"Bot is running":"Bot is not running"}},watch:{running:function(t){var e=document.getElementById("nav_oryxbot-instance-"+this.instance.id);(e=e?e.querySelector("svg"):e)&&(t?(e.classList.add("text-primary"),e.classList.remove("text-60")):(e.classList.remove("text-primary"),e.classList.add("text-60")))}}}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n(23);Object.defineProperty(e,"default",{enumerable:!0,get:function(){return i(r).default}}),Object.defineProperty(e,"Form",{enumerable:!0,get:function(){return i(r).default}});var o=n(3);function i(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"Errors",{enumerable:!0,get:function(){return i(o).default}})},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r,o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},i=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),s=n(3),a=(r=s)&&r.__esModule?r:{default:r},c=n(24);var u=function(){function t(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.processing=!1,this.successful=!1,this.withData(e).withOptions(n).withErrors({})}return i(t,[{key:"withData",value:function(t){for(var e in(0,c.isArray)(t)&&(t=t.reduce(function(t,e){return t[e]="",t},{})),this.setInitialValues(t),this.errors=new a.default,this.processing=!1,this.successful=!1,t)(0,c.guardAgainstReservedFieldName)(e),this[e]=t[e];return this}},{key:"withErrors",value:function(t){return this.errors=new a.default(t),this}},{key:"withOptions",value:function(t){this.__options={resetOnSuccess:!0},t.hasOwnProperty("resetOnSuccess")&&(this.__options.resetOnSuccess=t.resetOnSuccess),t.hasOwnProperty("onSuccess")&&(this.onSuccess=t.onSuccess),t.hasOwnProperty("onFail")&&(this.onFail=t.onFail);var e="undefined"!=typeof window&&window.axios;if(this.__http=t.http||e||n(28),!this.__http)throw new Error("No http library provided. Either pass an http option, or install axios.");return this}},{key:"data",value:function(){var t={};for(var e in this.initial)t[e]=this[e];return t}},{key:"only",value:function(t){var e=this;return t.reduce(function(t,n){return t[n]=e[n],t},{})}},{key:"reset",value:function(){(0,c.merge)(this,this.initial),this.errors.clear()}},{key:"setInitialValues",value:function(t){this.initial={},(0,c.merge)(this.initial,t)}},{key:"populate",value:function(t){var e=this;return Object.keys(t).forEach(function(n){var r,o,i;(0,c.guardAgainstReservedFieldName)(n),e.hasOwnProperty(n)&&(0,c.merge)(e,(r={},o=n,i=t[n],o in r?Object.defineProperty(r,o,{value:i,enumerable:!0,configurable:!0,writable:!0}):r[o]=i,r))}),this}},{key:"clear",value:function(){for(var t in this.initial)this[t]="";this.errors.clear()}},{key:"post",value:function(t){return this.submit("post",t)}},{key:"put",value:function(t){return this.submit("put",t)}},{key:"patch",value:function(t){return this.submit("patch",t)}},{key:"delete",value:function(t){return this.submit("delete",t)}},{key:"submit",value:function(t,e){var n=this;return this.__validateRequestType(t),this.errors.clear(),this.processing=!0,this.successful=!1,new Promise(function(r,o){n.__http[t](e,n.hasFiles()?(0,c.objectToFormData)(n.data()):n.data()).then(function(t){n.processing=!1,n.onSuccess(t.data),r(t.data)}).catch(function(t){n.processing=!1,n.onFail(t),o(t)})})}},{key:"hasFiles",value:function(){for(var t in this.initial)if(this.hasFilesDeep(this[t]))return!0;return!1}},{key:"hasFilesDeep",value:function(t){if(null===t)return!1;if("object"===(void 0===t?"undefined":o(t)))for(var e in t)if(t.hasOwnProperty(e)&&this.hasFilesDeep(t[e]))return!0;if(Array.isArray(t))for(var n in t)if(t.hasOwnProperty(n))return this.hasFilesDeep(t[n]);return(0,c.isFile)(t)}},{key:"onSuccess",value:function(t){this.successful=!0,this.__options.resetOnSuccess&&this.reset()}},{key:"onFail",value:function(t){this.successful=!1,t.response&&t.response.data.errors&&this.errors.record(t.response.data.errors)}},{key:"hasError",value:function(t){return this.errors.has(t)}},{key:"getError",value:function(t){return this.errors.first(t)}},{key:"getErrors",value:function(t){return this.errors.get(t)}},{key:"__validateRequestType",value:function(t){var e=["get","delete","head","post","put","patch"];if(-1===e.indexOf(t))throw new Error("`"+t+"` is not a valid request type, must be one of: `"+e.join("`, `")+"`.")}}],[{key:"create",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return(new t).withData(e)}}]),t}();e.default=u},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n(25);Object.keys(r).forEach(function(t){"default"!==t&&"__esModule"!==t&&Object.defineProperty(e,t,{enumerable:!0,get:function(){return r[t]}})});var o=n(26);Object.keys(o).forEach(function(t){"default"!==t&&"__esModule"!==t&&Object.defineProperty(e,t,{enumerable:!0,get:function(){return o[t]}})});var i=n(27);Object.keys(i).forEach(function(t){"default"!==t&&"__esModule"!==t&&Object.defineProperty(e,t,{enumerable:!0,get:function(){return i[t]}})})},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};function o(t){return t instanceof File||t instanceof FileList}function i(t){if(null===t)return null;if(o(t))return t;if(Array.isArray(t)){var e=[];for(var n in t)t.hasOwnProperty(n)&&(e[n]=i(t[n]));return e}if("object"===(void 0===t?"undefined":r(t))){var s={};for(var a in t)t.hasOwnProperty(a)&&(s[a]=i(t[a]));return s}return t}e.isArray=function(t){return"[object Array]"===Object.prototype.toString.call(t)},e.isFile=o,e.merge=function(t,e){for(var n in e)t[n]=i(e[n])},e.cloneDeep=i},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};function o(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:new FormData,n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;if(null===t||"undefined"===t||0===t.length)return e.append(n,t);for(var r in t)t.hasOwnProperty(r)&&s(e,i(n,r),t[r]);return e}function i(t,e){return t?t+"["+e+"]":e}function s(t,e,n){return n instanceof Date?t.append(e,n.toISOString()):n instanceof File?t.append(e,n,n.name):"boolean"==typeof n?t.append(e,n?"1":"0"):null===n?t.append(e,""):"object"!==(void 0===n?"undefined":r(n))?t.append(e,n):void o(n,t,e)}e.objectToFormData=o},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.guardAgainstReservedFieldName=function(t){if(-1!==r.indexOf(t))throw new Error("Field name "+t+" isn't allowed to be used in a Form or Errors instance.")};var r=e.reservedFieldNames=["__http","__options","__validateRequestType","clear","data","delete","errors","getError","getErrors","hasError","initial","onFail","only","onSuccess","patch","populate","post","processing","successful","put","reset","submit","withData","withErrors","withOptions"]},function(t,e,n){t.exports=n(29)},function(t,e,n){"use strict";var r=n(0),o=n(4),i=n(30),s=n(10);var a=function t(e){var n=new i(e),a=o(i.prototype.request,n);return r.extend(a,i.prototype,n),r.extend(a,n),a.create=function(n){return t(s(e,n))},a}(n(1));a.Axios=i,a.Cancel=n(2),a.CancelToken=n(44),a.isCancel=n(9),a.VERSION=n(11).version,a.all=function(t){return Promise.all(t)},a.spread=n(45),a.isAxiosError=n(46),t.exports=a,t.exports.default=a},function(t,e,n){"use strict";var r=n(0),o=n(5),i=n(31),s=n(32),a=n(10),c=n(43),u=c.validators;function l(t){this.defaults=t,this.interceptors={request:new i,response:new i}}l.prototype.request=function(t){"string"==typeof t?(t=arguments[1]||{}).url=arguments[0]:t=t||{},(t=a(this.defaults,t)).method?t.method=t.method.toLowerCase():this.defaults.method?t.method=this.defaults.method.toLowerCase():t.method="get";var e=t.transitional;void 0!==e&&c.assertOptions(e,{silentJSONParsing:u.transitional(u.boolean),forcedJSONParsing:u.transitional(u.boolean),clarifyTimeoutError:u.transitional(u.boolean)},!1);var n=[],r=!0;this.interceptors.request.forEach(function(e){"function"==typeof e.runWhen&&!1===e.runWhen(t)||(r=r&&e.synchronous,n.unshift(e.fulfilled,e.rejected))});var o,i=[];if(this.interceptors.response.forEach(function(t){i.push(t.fulfilled,t.rejected)}),!r){var l=[s,void 0];for(Array.prototype.unshift.apply(l,n),l=l.concat(i),o=Promise.resolve(t);l.length;)o=o.then(l.shift(),l.shift());return o}for(var h=t;n.length;){var f=n.shift(),p=n.shift();try{h=f(h)}catch(t){p(t);break}}try{o=s(h)}catch(t){return Promise.reject(t)}for(;i.length;)o=o.then(i.shift(),i.shift());return o},l.prototype.getUri=function(t){return t=a(this.defaults,t),o(t.url,t.params,t.paramsSerializer).replace(/^\?/,"")},r.forEach(["delete","get","head","options"],function(t){l.prototype[t]=function(e,n){return this.request(a(n||{},{method:t,url:e,data:(n||{}).data}))}}),r.forEach(["post","put","patch"],function(t){l.prototype[t]=function(e,n,r){return this.request(a(r||{},{method:t,url:e,data:n}))}}),t.exports=l},function(t,e,n){"use strict";var r=n(0);function o(){this.handlers=[]}o.prototype.use=function(t,e,n){return this.handlers.push({fulfilled:t,rejected:e,synchronous:!!n&&n.synchronous,runWhen:n?n.runWhen:null}),this.handlers.length-1},o.prototype.eject=function(t){this.handlers[t]&&(this.handlers[t]=null)},o.prototype.forEach=function(t){r.forEach(this.handlers,function(e){null!==e&&t(e)})},t.exports=o},function(t,e,n){"use strict";var r=n(0),o=n(33),i=n(9),s=n(1),a=n(2);function c(t){if(t.cancelToken&&t.cancelToken.throwIfRequested(),t.signal&&t.signal.aborted)throw new a("canceled")}t.exports=function(t){return c(t),t.headers=t.headers||{},t.data=o.call(t,t.data,t.headers,t.transformRequest),t.headers=r.merge(t.headers.common||{},t.headers[t.method]||{},t.headers),r.forEach(["delete","get","head","post","put","patch","common"],function(e){delete t.headers[e]}),(t.adapter||s.adapter)(t).then(function(e){return c(t),e.data=o.call(t,e.data,e.headers,t.transformResponse),e},function(e){return i(e)||(c(t),e&&e.response&&(e.response.data=o.call(t,e.response.data,e.response.headers,t.transformResponse))),Promise.reject(e)})}},function(t,e,n){"use strict";var r=n(0),o=n(1);t.exports=function(t,e,n){var i=this||o;return r.forEach(n,function(n){t=n.call(i,t,e)}),t}},function(t,e){var n,r,o=t.exports={};function i(){throw new Error("setTimeout has not been defined")}function s(){throw new Error("clearTimeout has not been defined")}function a(t){if(n===setTimeout)return setTimeout(t,0);if((n===i||!n)&&setTimeout)return n=setTimeout,setTimeout(t,0);try{return n(t,0)}catch(e){try{return n.call(null,t,0)}catch(e){return n.call(this,t,0)}}}!function(){try{n="function"==typeof setTimeout?setTimeout:i}catch(t){n=i}try{r="function"==typeof clearTimeout?clearTimeout:s}catch(t){r=s}}();var c,u=[],l=!1,h=-1;function f(){l&&c&&(l=!1,c.length?u=c.concat(u):h=-1,u.length&&p())}function p(){if(!l){var t=a(f);l=!0;for(var e=u.length;e;){for(c=u,u=[];++h<e;)c&&c[h].run();h=-1,e=u.length}c=null,l=!1,function(t){if(r===clearTimeout)return clearTimeout(t);if((r===s||!r)&&clearTimeout)return r=clearTimeout,clearTimeout(t);try{r(t)}catch(e){try{return r.call(null,t)}catch(e){return r.call(this,t)}}}(t)}}function d(t,e){this.fun=t,this.array=e}function v(){}o.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)e[n-1]=arguments[n];u.push(new d(t,e)),1!==u.length||l||a(p)},d.prototype.run=function(){this.fun.apply(null,this.array)},o.title="browser",o.browser=!0,o.env={},o.argv=[],o.version="",o.versions={},o.on=v,o.addListener=v,o.once=v,o.off=v,o.removeListener=v,o.removeAllListeners=v,o.emit=v,o.prependListener=v,o.prependOnceListener=v,o.listeners=function(t){return[]},o.binding=function(t){throw new Error("process.binding is not supported")},o.cwd=function(){return"/"},o.chdir=function(t){throw new Error("process.chdir is not supported")},o.umask=function(){return 0}},function(t,e,n){"use strict";var r=n(0);t.exports=function(t,e){r.forEach(t,function(n,r){r!==e&&r.toUpperCase()===e.toUpperCase()&&(t[e]=n,delete t[r])})}},function(t,e,n){"use strict";var r=n(8);t.exports=function(t,e,n){var o=n.config.validateStatus;n.status&&o&&!o(n.status)?e(r("Request failed with status code "+n.status,n.config,null,n.request,n)):t(n)}},function(t,e,n){"use strict";var r=n(0);t.exports=r.isStandardBrowserEnv()?{write:function(t,e,n,o,i,s){var a=[];a.push(t+"="+encodeURIComponent(e)),r.isNumber(n)&&a.push("expires="+new Date(n).toGMTString()),r.isString(o)&&a.push("path="+o),r.isString(i)&&a.push("domain="+i),!0===s&&a.push("secure"),document.cookie=a.join("; ")},read:function(t){var e=document.cookie.match(new RegExp("(^|;\\s*)("+t+")=([^;]*)"));return e?decodeURIComponent(e[3]):null},remove:function(t){this.write(t,"",Date.now()-864e5)}}:{write:function(){},read:function(){return null},remove:function(){}}},function(t,e,n){"use strict";var r=n(39),o=n(40);t.exports=function(t,e){return t&&!r(e)?o(t,e):e}},function(t,e,n){"use strict";t.exports=function(t){return/^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(t)}},function(t,e,n){"use strict";t.exports=function(t,e){return e?t.replace(/\/+$/,"")+"/"+e.replace(/^\/+/,""):t}},function(t,e,n){"use strict";var r=n(0),o=["age","authorization","content-length","content-type","etag","expires","from","host","if-modified-since","if-unmodified-since","last-modified","location","max-forwards","proxy-authorization","referer","retry-after","user-agent"];t.exports=function(t){var e,n,i,s={};return t?(r.forEach(t.split("\n"),function(t){if(i=t.indexOf(":"),e=r.trim(t.substr(0,i)).toLowerCase(),n=r.trim(t.substr(i+1)),e){if(s[e]&&o.indexOf(e)>=0)return;s[e]="set-cookie"===e?(s[e]?s[e]:[]).concat([n]):s[e]?s[e]+", "+n:n}}),s):s}},function(t,e,n){"use strict";var r=n(0);t.exports=r.isStandardBrowserEnv()?function(){var t,e=/(msie|trident)/i.test(navigator.userAgent),n=document.createElement("a");function o(t){var r=t;return e&&(n.setAttribute("href",r),r=n.href),n.setAttribute("href",r),{href:n.href,protocol:n.protocol?n.protocol.replace(/:$/,""):"",host:n.host,search:n.search?n.search.replace(/^\?/,""):"",hash:n.hash?n.hash.replace(/^#/,""):"",hostname:n.hostname,port:n.port,pathname:"/"===n.pathname.charAt(0)?n.pathname:"/"+n.pathname}}return t=o(window.location.href),function(e){var n=r.isString(e)?o(e):e;return n.protocol===t.protocol&&n.host===t.host}}():function(){return!0}},function(t,e,n){"use strict";var r=n(11).version,o={};["object","boolean","number","function","string","symbol"].forEach(function(t,e){o[t]=function(n){return typeof n===t||"a"+(e<1?"n ":" ")+t}});var i={};o.transitional=function(t,e,n){function o(t,e){return"[Axios v"+r+"] Transitional option '"+t+"'"+e+(n?". "+n:"")}return function(n,r,s){if(!1===t)throw new Error(o(r," has been removed"+(e?" in "+e:"")));return e&&!i[r]&&(i[r]=!0,console.warn(o(r," has been deprecated since v"+e+" and will be removed in the near future"))),!t||t(n,r,s)}},t.exports={assertOptions:function(t,e,n){if("object"!=typeof t)throw new TypeError("options must be an object");for(var r=Object.keys(t),o=r.length;o-- >0;){var i=r[o],s=e[i];if(s){var a=t[i],c=void 0===a||s(a,i,t);if(!0!==c)throw new TypeError("option "+i+" must be "+c)}else if(!0!==n)throw Error("Unknown option "+i)}},validators:o}},function(t,e,n){"use strict";var r=n(2);function o(t){if("function"!=typeof t)throw new TypeError("executor must be a function.");var e;this.promise=new Promise(function(t){e=t});var n=this;this.promise.then(function(t){if(n._listeners){var e,r=n._listeners.length;for(e=0;e<r;e++)n._listeners[e](t);n._listeners=null}}),this.promise.then=function(t){var e,r=new Promise(function(t){n.subscribe(t),e=t}).then(t);return r.cancel=function(){n.unsubscribe(e)},r},t(function(t){n.reason||(n.reason=new r(t),e(n.reason))})}o.prototype.throwIfRequested=function(){if(this.reason)throw this.reason},o.prototype.subscribe=function(t){this.reason?t(this.reason):this._listeners?this._listeners.push(t):this._listeners=[t]},o.prototype.unsubscribe=function(t){if(this._listeners){var e=this._listeners.indexOf(t);-1!==e&&this._listeners.splice(e,1)}},o.source=function(){var t;return{token:new o(function(e){t=e}),cancel:t}},t.exports=o},function(t,e,n){"use strict";t.exports=function(t){return function(e){return t.apply(null,e)}}},function(t,e,n){"use strict";t.exports=function(t){return"object"==typeof t&&!0===t.isAxiosError}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",[n("heading",{staticClass:"mb-6"},[t._v("\n        "+t._s(t.instance.name)+"\n        "),n("small",{staticClass:"text-xs font-mono uppercase",class:{"opacity-50":t.requestingStatus,"text-primary":t.serverOnline}},[t._v("\n            "+t._s(t.serverOnline?"Online":"Offline")+"\n        ")])]),t._v(" "),n("div",{staticClass:"flex mb-4"},[n("button",{directives:[{name:"show",rawName:"v-show",value:!t.running,expression:"!running"}],staticClass:"btn btn-default btn-primary px-8",class:{"cursor-wait":t.requestingRunningChange,"cursor-not-allowed":!t.serverOnline,"hover:bg-primary-dark":!t.requestingRunningChange&&t.serverOnline},attrs:{disabled:t.requestingRunningChange||t.recording||!t.serverOnline},on:{click:function(e){t.showStartModal=!0}}},[t._v("\n            Start\n        ")]),t._v(" "),n("button",{directives:[{name:"show",rawName:"v-show",value:t.running,expression:"running"}],staticClass:"btn btn-default btn-primary px-8",class:{"cursor-wait":t.requestingRunningChange,"cursor-not-allowed":!t.serverOnline,"hover:bg-primary-dark":!t.requestingRunningChange&&t.serverOnline},attrs:{disabled:t.requestingRunningChange||!t.serverOnline},on:{click:t.StopBot}},[t._v("\n            Stop\n        ")]),t._v(" "),n("button",{directives:[{name:"show",rawName:"v-show",value:!t.running,expression:"!running"}],staticClass:"btn btn-default btn-primary px-8 ml-2",class:{"cursor-wait":t.requestingRunningChange,"cursor-not-allowed":!t.serverOnline,"hover:bg-primary-dark":!t.requestingRunningChange&&t.serverOnline},attrs:{disabled:t.requestingRunningChange||t.recording||!t.serverOnline},on:{click:function(e){t.showResumeModal=!0}}},[t._v("\n            Resume\n        ")]),t._v(" "),n("button",{staticClass:"btn btn-default btn-primary px-8 ml-2",class:{"cursor-wait":t.requestingRunningChange,"cursor-not-allowed":!t.serverOnline,"hover:bg-primary-dark":!t.requestingRunningChange&&t.serverOnline},attrs:{disabled:t.requestingRunningChange||t.running||!t.serverOnline||!0},on:{click:function(e){t.showStartRecordingModal=!0}}},[t._v("\n            Record\n        ")]),t._v(" "),n("button",{staticClass:"btn btn-default bg-30 text-90 ml-2",class:{"cursor-wait opacity-50":t.requestingServerReboot,"hover:bg-primary-dark hover:text-white":!t.requestingServerReboot},staticStyle:{transition:"150ms"},attrs:{disabled:t.requestingServerReboot},on:{click:t.OnAttemptServerReboot}},[t._v("\n            Restart Service\n        ")]),t._v(" "),n("portal",{attrs:{to:"modals",transition:"fade-transition"}},[t.showRebootServerConfirmModal?n("confirm-action-modal",{attrs:{working:!1,resourceName:"oryxbot-instance",selectedResources:["oryxbot-instance"],errors:{},action:{name:"Restart service",confirmText:"Are you sure you want to restart your server? This normally takes up to one minute.",confirmButtonText:"Confirm",cancelButtonText:"Cancel",fields:[],class:"btn-primary"}},on:{confirm:t.OnConfirmServerReboot,close:t.OnCancelServerReboot}}):t._e(),t._v(" "),t.showStartModal?n("confirm-action-modal",{ref:"startModal",attrs:{working:!1,resourceName:"oryxbot-instance",selectedResources:["oryxbot-instance"],errors:this.cityFieldErrors,action:this.startBotAction},on:{confirm:t.OnStartBot,close:function(e){t.showStartModal=!1}}}):t._e(),t._v(" "),t.showResumeModal?n("confirm-action-modal",{ref:"resumeModal",attrs:{working:!1,resourceName:"oryxbot-instance",selectedResources:["oryxbot-instance"],errors:this.cityFieldErrors,action:this.resumeBotAction},on:{confirm:t.OnResumeBot,close:function(e){t.showResumeModal=!1}}}):t._e(),t._v(" "),t.showStartRecordingModal?n("confirm-action-modal",{ref:"startRecordingModal",attrs:{working:!1,resourceName:"oryxbot-instance",selectedResources:["oryxbot-instance"],errors:this.cityFieldErrors,action:this.startRecordingBotAction},on:{confirm:t.OnStartRecordingBot,close:function(e){t.showStartRecordingModal=!1}}}):t._e()],1)],1),t._v(" "),n("div",{staticClass:"flex mb-8"},[n("loading-card",{staticClass:"px-6 py-4 w-1/4",attrs:{loading:!1}},[n("div",{staticClass:"flex mb-4"},[n("h3",{staticClass:"mr-3 text-base text-80 font-bold uppercase"},[t._v("Step")])]),t._v(" "),n("p",{staticClass:"flex items-center text-4xl mb-4"},[t._v(t._s(t.step))]),t._v(" "),n("p",{staticClass:"flex items-center text-80 font-bold"},[t._v(t._s(t.progress))])]),t._v(" "),n("loading-card",{staticClass:"px-6 py-4 w-1/4 mx-8",attrs:{loading:!1}},[n("div",{staticClass:"flex mb-4"},[n("h3",{staticClass:"mr-3 text-base text-80 font-bold uppercase"},[t._v("Location")])]),t._v(" "),n("p",{staticClass:"flex items-center text-4xl mb-4"},[t._v(t._s(t.location))]),t._v(" "),n("p",{staticClass:"flex items-center text-80 font-bold"},[t._v(t._s(t.speed)+" m/s")])]),t._v(" "),n("loading-card",{staticClass:"px-6 py-4 w-1/4",attrs:{loading:!1}},[n("div",{staticClass:"flex mb-4"},[n("h3",{staticClass:"mr-3 text-base text-80 font-bold uppercase"},[t._v("Session")])]),t._v(" "),n("p",{staticClass:"flex items-center text-4xl mb-4"},[t._v(t._s(t.session))]),t._v(" "),n("p",{staticClass:"flex items-center text-80 font-bold"},[t._v(t._s(t.status))])])],1),t._v(" "),n("heading",{staticClass:"mb-6 text-2xl",attrs:{level:2}},[t._v("Connection")]),t._v(" "),n("div",{staticClass:"flex"},[n("div",{staticClass:"mb-4 ml-2 flex justify-start items-start w-1/4"},[n("svg",{directives:[{name:"show",rawName:"v-show",value:t.vpn_connected||t.remote_connected,expression:"vpn_connected || remote_connected"}],staticClass:"w-8 text-success mr-2",staticStyle:{overflow:"visible"},attrs:{"aria-hidden":"true",focusable:"false","data-prefix":"far","data-icon":"check-circle",role:"img",xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512"}},[n("path",{attrs:{fill:"currentColor",d:"M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"}})]),t._v(" "),n("svg",{directives:[{name:"show",rawName:"v-show",value:!t.vpn_connected&&!t.remote_connected,expression:"!vpn_connected && !remote_connected"}],staticClass:"w-8 text-danger mr-2",staticStyle:{overflow:"visible"},attrs:{"aria-hidden":"true",focusable:"false","data-prefix":"fas","data-icon":"ban",role:"img",xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512"}},[n("path",{attrs:{fill:"currentColor",d:"M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"}})]),t._v(" "),n("div",{staticClass:"flex flex-col"},[n("heading",{staticClass:"mb-4 flex items-center mt-2 text-60",attrs:{level:3}},[t._v("\n                    VPN\n                ")]),t._v(" "),n("div",{staticClass:"flex"},[t._m(0),t._v(" "),n("ul",{staticClass:"text-60 list-reset font-bold"},[n("li",{staticClass:"mb-2"},[t._v(t._s(t.instance.server.ip_address?t.instance.server.ip_address:"-"))]),t._v(" "),n("li",{staticClass:"mb-2"},[t._v(t._s(t.instance.server.ip_address&&t.instance.server.vpn_username?t.instance.server.vpn_username:"-"))]),t._v(" "),n("li",{staticClass:"mb-2"},[t._v(t._s(t.instance.server.ip_address&&t.instance.server.vpn_password?t.instance.server.vpn_password:"-"))])])])],1)]),t._v(" "),n("div",{staticClass:"mb-4 ml-8 flex justify-start items-start w-1/4"},[n("svg",{directives:[{name:"show",rawName:"v-show",value:t.remote_connected,expression:"remote_connected"}],staticClass:"w-8 text-success mr-2",staticStyle:{overflow:"visible"},attrs:{"aria-hidden":"true",focusable:"false","data-prefix":"far","data-icon":"check-circle",role:"img",xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512"}},[n("path",{attrs:{fill:"currentColor",d:"M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"}})]),t._v(" "),n("svg",{directives:[{name:"show",rawName:"v-show",value:!t.remote_connected,expression:"!remote_connected"}],staticClass:"w-8 text-danger mr-2",staticStyle:{overflow:"visible"},attrs:{"aria-hidden":"true",focusable:"false","data-prefix":"fas","data-icon":"ban",role:"img",xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512"}},[n("path",{attrs:{fill:"currentColor",d:"M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"}})]),t._v(" "),n("div",{staticClass:"flex flex-col"},[n("heading",{staticClass:"mb-4 flex items-center mt-2 text-60",attrs:{level:3}},[t._v("\n                    Tight VNC Server\n                ")]),t._v(" "),n("div",{staticClass:"flex"},[t._m(1),t._v(" "),n("ul",{staticClass:"text-60 list-reset font-bold"},[n("li",{staticClass:"mb-2"},[t._v(t._s(t.remote_resolution))]),t._v(" "),n("li",{staticClass:"mb-2"},[t._v(t._s(t.remote_bandwidth))])])])],1)])]),t._v(" "),n("heading",{staticClass:"mb-6 text-2xl",attrs:{level:2}},[t._v("Logs")]),t._v(" "),n("div",{staticClass:"flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90",staticStyle:{height:"200px"}})],1)},staticRenderFns:[function(){var t=this.$createElement,e=this._self._c||t;return e("ul",{staticClass:"text-80 list-reset mr-4"},[e("li",{staticClass:"mb-2"},[this._v("Server name:")]),this._v(" "),e("li",{staticClass:"mb-2"},[this._v("Username:")]),this._v(" "),e("li",{staticClass:"mb-2"},[this._v("Password:")])])},function(){var t=this.$createElement,e=this._self._c||t;return e("ul",{staticClass:"text-80 list-reset mr-4"},[e("li",{staticClass:"mb-2"},[this._v("Resolution:")]),this._v(" "),e("li",{staticClass:"mb-2"},[this._v("Bandwidth:")])])}]}},function(t,e,n){var r;window,r=function(){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=2)}([function(t,e,n){"use strict";var r,o=this&&this.__extends||(r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)});Object.defineProperty(e,"__esModule",{value:!0});var i=function(){function t(t){void 0===t&&(t="="),this._paddingCharacter=t}return t.prototype.encodedLength=function(t){return this._paddingCharacter?(t+2)/3*4|0:(8*t+5)/6|0},t.prototype.encode=function(t){for(var e="",n=0;n<t.length-2;n+=3){var r=t[n]<<16|t[n+1]<<8|t[n+2];e+=this._encodeByte(r>>>18&63),e+=this._encodeByte(r>>>12&63),e+=this._encodeByte(r>>>6&63),e+=this._encodeByte(r>>>0&63)}var o=t.length-n;if(o>0){r=t[n]<<16|(2===o?t[n+1]<<8:0);e+=this._encodeByte(r>>>18&63),e+=this._encodeByte(r>>>12&63),e+=2===o?this._encodeByte(r>>>6&63):this._paddingCharacter||"",e+=this._paddingCharacter||""}return e},t.prototype.maxDecodedLength=function(t){return this._paddingCharacter?t/4*3|0:(6*t+7)/8|0},t.prototype.decodedLength=function(t){return this.maxDecodedLength(t.length-this._getPaddingLength(t))},t.prototype.decode=function(t){if(0===t.length)return new Uint8Array(0);for(var e=this._getPaddingLength(t),n=t.length-e,r=new Uint8Array(this.maxDecodedLength(n)),o=0,i=0,s=0,a=0,c=0,u=0,l=0;i<n-4;i+=4)a=this._decodeChar(t.charCodeAt(i+0)),c=this._decodeChar(t.charCodeAt(i+1)),u=this._decodeChar(t.charCodeAt(i+2)),l=this._decodeChar(t.charCodeAt(i+3)),r[o++]=a<<2|c>>>4,r[o++]=c<<4|u>>>2,r[o++]=u<<6|l,s|=256&a,s|=256&c,s|=256&u,s|=256&l;if(i<n-1&&(a=this._decodeChar(t.charCodeAt(i)),c=this._decodeChar(t.charCodeAt(i+1)),r[o++]=a<<2|c>>>4,s|=256&a,s|=256&c),i<n-2&&(u=this._decodeChar(t.charCodeAt(i+2)),r[o++]=c<<4|u>>>2,s|=256&u),i<n-3&&(l=this._decodeChar(t.charCodeAt(i+3)),r[o++]=u<<6|l,s|=256&l),0!==s)throw new Error("Base64Coder: incorrect characters for decoding");return r},t.prototype._encodeByte=function(t){var e=t;return e+=65,e+=25-t>>>8&6,e+=51-t>>>8&-75,e+=61-t>>>8&-15,e+=62-t>>>8&3,String.fromCharCode(e)},t.prototype._decodeChar=function(t){var e=256;return e+=(42-t&t-44)>>>8&-256+t-43+62,e+=(46-t&t-48)>>>8&-256+t-47+63,e+=(47-t&t-58)>>>8&-256+t-48+52,e+=(64-t&t-91)>>>8&-256+t-65+0,e+=(96-t&t-123)>>>8&-256+t-97+26},t.prototype._getPaddingLength=function(t){var e=0;if(this._paddingCharacter){for(var n=t.length-1;n>=0&&t[n]===this._paddingCharacter;n--)e++;if(t.length<4||e>2)throw new Error("Base64Coder: incorrect padding")}return e},t}();e.Coder=i;var s=new i;e.encode=function(t){return s.encode(t)},e.decode=function(t){return s.decode(t)};var a=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return o(e,t),e.prototype._encodeByte=function(t){var e=t;return e+=65,e+=25-t>>>8&6,e+=51-t>>>8&-75,e+=61-t>>>8&-13,e+=62-t>>>8&49,String.fromCharCode(e)},e.prototype._decodeChar=function(t){var e=256;return e+=(44-t&t-46)>>>8&-256+t-45+62,e+=(94-t&t-96)>>>8&-256+t-95+63,e+=(47-t&t-58)>>>8&-256+t-48+52,e+=(64-t&t-91)>>>8&-256+t-65+0,e+=(96-t&t-123)>>>8&-256+t-97+26},e}(i);e.URLSafeCoder=a;var c=new a;e.encodeURLSafe=function(t){return c.encode(t)},e.decodeURLSafe=function(t){return c.decode(t)},e.encodedLength=function(t){return s.encodedLength(t)},e.maxDecodedLength=function(t){return s.maxDecodedLength(t)},e.decodedLength=function(t){return s.decodedLength(t)}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r="utf8: invalid string",o="utf8: invalid source encoding";function i(t){for(var e=0,n=0;n<t.length;n++){var o=t.charCodeAt(n);if(o<128)e+=1;else if(o<2048)e+=2;else if(o<55296)e+=3;else{if(!(o<=57343))throw new Error(r);if(n>=t.length-1)throw new Error(r);n++,e+=4}}return e}e.encode=function(t){for(var e=new Uint8Array(i(t)),n=0,r=0;r<t.length;r++){var o=t.charCodeAt(r);o<128?e[n++]=o:o<2048?(e[n++]=192|o>>6,e[n++]=128|63&o):o<55296?(e[n++]=224|o>>12,e[n++]=128|o>>6&63,e[n++]=128|63&o):(r++,o=(1023&o)<<10,o|=1023&t.charCodeAt(r),o+=65536,e[n++]=240|o>>18,e[n++]=128|o>>12&63,e[n++]=128|o>>6&63,e[n++]=128|63&o)}return e},e.encodedLength=i,e.decode=function(t){for(var e=[],n=0;n<t.length;n++){var r=t[n];if(128&r){var i=void 0;if(r<224){if(n>=t.length)throw new Error(o);if(128!=(192&(s=t[++n])))throw new Error(o);r=(31&r)<<6|63&s,i=128}else if(r<240){if(n>=t.length-1)throw new Error(o);var s=t[++n],a=t[++n];if(128!=(192&s)||128!=(192&a))throw new Error(o);r=(15&r)<<12|(63&s)<<6|63&a,i=2048}else{if(!(r<248))throw new Error(o);if(n>=t.length-2)throw new Error(o);s=t[++n],a=t[++n];var c=t[++n];if(128!=(192&s)||128!=(192&a)||128!=(192&c))throw new Error(o);r=(15&r)<<18|(63&s)<<12|(63&a)<<6|63&c,i=65536}if(r<i||r>=55296&&r<=57343)throw new Error(o);if(r>=65536){if(r>1114111)throw new Error(o);r-=65536,e.push(String.fromCharCode(55296|r>>10)),r=56320|1023&r}}e.push(String.fromCharCode(r))}return e.join("")}},function(t,e,n){t.exports=n(3).default},function(t,e,n){"use strict";n.r(e);var r,o=function(){function t(t,e){this.lastId=0,this.prefix=t,this.name=e}return t.prototype.create=function(t){this.lastId++;var e=this.lastId,n=this.prefix+e,r=this.name+"["+e+"]",o=!1,i=function(){o||(t.apply(null,arguments),o=!0)};return this[e]=i,{number:e,id:n,name:r,callback:i}},t.prototype.remove=function(t){delete this[t.number]},t}(),i=new o("_pusher_script_","Pusher.ScriptReceivers"),s={VERSION:"7.0.3",PROTOCOL:7,wsPort:80,wssPort:443,wsPath:"",httpHost:"sockjs.pusher.com",httpPort:80,httpsPort:443,httpPath:"/pusher",stats_host:"stats.pusher.com",authEndpoint:"/pusher/auth",authTransport:"ajax",activityTimeout:12e4,pongTimeout:3e4,unavailableTimeout:1e4,cluster:"mt1",cdn_http:"http://js.pusher.com",cdn_https:"https://js.pusher.com",dependency_suffix:""},a=function(){function t(t){this.options=t,this.receivers=t.receivers||i,this.loading={}}return t.prototype.load=function(t,e,n){var r=this;if(r.loading[t]&&r.loading[t].length>0)r.loading[t].push(n);else{r.loading[t]=[n];var o=we.createScriptRequest(r.getPath(t,e)),i=r.receivers.create(function(e){if(r.receivers.remove(i),r.loading[t]){var n=r.loading[t];delete r.loading[t];for(var s=function(t){t||o.cleanup()},a=0;a<n.length;a++)n[a](e,s)}});o.send(i)}},t.prototype.getRoot=function(t){var e=we.getDocument().location.protocol;return(t&&t.useTLS||"https:"===e?this.options.cdn_https:this.options.cdn_http).replace(/\/*$/,"")+"/"+this.options.version},t.prototype.getPath=function(t,e){return this.getRoot(e)+"/"+t+this.options.suffix+".js"},t}(),c=new o("_pusher_dependencies","Pusher.DependenciesReceivers"),u=new a({cdn_http:s.cdn_http,cdn_https:s.cdn_https,version:s.VERSION,suffix:s.dependency_suffix,receivers:c}),l={baseUrl:"https://pusher.com",urls:{authenticationEndpoint:{path:"/docs/authenticating_users"},javascriptQuickStart:{path:"/docs/javascript_quick_start"},triggeringClientEvents:{path:"/docs/client_api_guide/client_events#trigger-events"},encryptedChannelSupport:{fullUrl:"https://github.com/pusher/pusher-js/tree/cc491015371a4bde5743d1c87a0fbac0feb53195#encrypted-channel-support"}}},h={buildLogSuffix:function(t){var e,n=l.urls[t];return n?(n.fullUrl?e=n.fullUrl:n.path&&(e=l.baseUrl+n.path),e?"See: "+e:""):""}},f=(r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),p=function(t){function e(e){var n=this.constructor,r=t.call(this,e)||this;return Object.setPrototypeOf(r,n.prototype),r}return f(e,t),e}(Error),d=function(t){function e(e){var n=this.constructor,r=t.call(this,e)||this;return Object.setPrototypeOf(r,n.prototype),r}return f(e,t),e}(Error),v=function(t){function e(e){var n=this.constructor,r=t.call(this,e)||this;return Object.setPrototypeOf(r,n.prototype),r}return f(e,t),e}(Error),y=function(t){function e(e){var n=this.constructor,r=t.call(this,e)||this;return Object.setPrototypeOf(r,n.prototype),r}return f(e,t),e}(Error),m=function(t){function e(e){var n=this.constructor,r=t.call(this,e)||this;return Object.setPrototypeOf(r,n.prototype),r}return f(e,t),e}(Error),g=function(t){function e(e){var n=this.constructor,r=t.call(this,e)||this;return Object.setPrototypeOf(r,n.prototype),r}return f(e,t),e}(Error),b=function(t){function e(e){var n=this.constructor,r=t.call(this,e)||this;return Object.setPrototypeOf(r,n.prototype),r}return f(e,t),e}(Error),w=function(t){function e(e,n){var r=this.constructor,o=t.call(this,n)||this;return o.status=e,Object.setPrototypeOf(o,r.prototype),o}return f(e,t),e}(Error),_=function(t,e,n){var r,o=this;for(var i in(r=we.createXHR()).open("POST",o.options.authEndpoint,!0),r.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),this.authOptions.headers)r.setRequestHeader(i,this.authOptions.headers[i]);return r.onreadystatechange=function(){if(4===r.readyState)if(200===r.status){var t=void 0,e=!1;try{t=JSON.parse(r.responseText),e=!0}catch(t){n(new w(200,"JSON returned from auth endpoint was invalid, yet status code was 200. Data was: "+r.responseText),{auth:""})}e&&n(null,t)}else{var i=h.buildLogSuffix("authenticationEndpoint");n(new w(r.status,"Unable to retrieve auth string from auth endpoint - received status: "+r.status+" from "+o.options.authEndpoint+". Clients must be authenticated to join private or presence channels. "+i),{auth:""})}},r.send(this.composeQuery(e)),r};for(var k=String.fromCharCode,S="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",C={},x=0,O=S.length;x<O;x++)C[S.charAt(x)]=x;var T=function(t){var e=t.charCodeAt(0);return e<128?t:e<2048?k(192|e>>>6)+k(128|63&e):k(224|e>>>12&15)+k(128|e>>>6&63)+k(128|63&e)},P=function(t){return t.replace(/[^\x00-\x7F]/g,T)},E=function(t){var e=[0,2,1][t.length%3],n=t.charCodeAt(0)<<16|(t.length>1?t.charCodeAt(1):0)<<8|(t.length>2?t.charCodeAt(2):0);return[S.charAt(n>>>18),S.charAt(n>>>12&63),e>=2?"=":S.charAt(n>>>6&63),e>=1?"=":S.charAt(63&n)].join("")},R=window.btoa||function(t){return t.replace(/[\s\S]{1,3}/g,E)},j=function(){function t(t,e,n,r){var o=this;this.clear=e,this.timer=t(function(){o.timer&&(o.timer=r(o.timer))},n)}return t.prototype.isRunning=function(){return null!==this.timer},t.prototype.ensureAborted=function(){this.timer&&(this.clear(this.timer),this.timer=null)},t}(),L=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}();function A(t){window.clearTimeout(t)}function N(t){window.clearInterval(t)}var M=function(t){function e(e,n){return t.call(this,setTimeout,A,e,function(t){return n(),null})||this}return L(e,t),e}(j),I=function(t){function e(e,n){return t.call(this,setInterval,N,e,function(t){return n(),t})||this}return L(e,t),e}(j),q={now:function(){return Date.now?Date.now():(new Date).valueOf()},defer:function(t){return new M(0,t)},method:function(t){for(var e=[],n=1;n<arguments.length;n++)e[n-1]=arguments[n];var r=Array.prototype.slice.call(arguments,1);return function(e){return e[t].apply(e,r.concat(arguments))}}};function B(t){for(var e=[],n=1;n<arguments.length;n++)e[n-1]=arguments[n];for(var r=0;r<e.length;r++){var o=e[r];for(var i in o)o[i]&&o[i].constructor&&o[i].constructor===Object?t[i]=B(t[i]||{},o[i]):t[i]=o[i]}return t}function D(t,e){var n=Array.prototype.indexOf;if(null===t)return-1;if(n&&t.indexOf===n)return t.indexOf(e);for(var r=0,o=t.length;r<o;r++)if(t[r]===e)return r;return-1}function F(t,e){for(var n in t)Object.prototype.hasOwnProperty.call(t,n)&&e(t[n],n,t)}function U(t){var e=[];return F(t,function(t,n){e.push(n)}),e}function H(t,e,n){for(var r=0;r<t.length;r++)e.call(n||window,t[r],r,t)}function z(t,e){for(var n=[],r=0;r<t.length;r++)n.push(e(t[r],r,t,n));return n}function V(t,e){e=e||function(t){return!!t};for(var n=[],r=0;r<t.length;r++)e(t[r],r,t,n)&&n.push(t[r]);return n}function J(t,e){var n={};return F(t,function(r,o){(e&&e(r,o,t,n)||Boolean(r))&&(n[o]=r)}),n}function X(t,e){for(var n=0;n<t.length;n++)if(e(t[n],n,t))return!0;return!1}function $(t){return e=function(t){return"object"==typeof t&&(t=G(t)),encodeURIComponent((e=t.toString(),R(P(e))));var e},n={},F(t,function(t,r){n[r]=e(t)}),n;var e,n}function W(t){var e,n,r=J(t,function(t){return void 0!==t});return z((e=$(r),n=[],F(e,function(t,e){n.push([e,t])}),n),q.method("join","=")).join("&")}function G(t){try{return JSON.stringify(t)}catch(r){return JSON.stringify((e=[],n=[],function t(r,o){var i,s,a;switch(typeof r){case"object":if(!r)return null;for(i=0;i<e.length;i+=1)if(e[i]===r)return{$ref:n[i]};if(e.push(r),n.push(o),"[object Array]"===Object.prototype.toString.apply(r))for(a=[],i=0;i<r.length;i+=1)a[i]=t(r[i],o+"["+i+"]");else for(s in a={},r)Object.prototype.hasOwnProperty.call(r,s)&&(a[s]=t(r[s],o+"["+JSON.stringify(s)+"]"));return a;case"number":case"string":case"boolean":return r}}(t,"$")))}var e,n}var Q=new(function(){function t(){this.globalLog=function(t){window.console&&window.console.log&&window.console.log(t)}}return t.prototype.debug=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];this.log(this.globalLog,t)},t.prototype.warn=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];this.log(this.globalLogWarn,t)},t.prototype.error=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];this.log(this.globalLogError,t)},t.prototype.globalLogWarn=function(t){window.console&&window.console.warn?window.console.warn(t):this.globalLog(t)},t.prototype.globalLogError=function(t){window.console&&window.console.error?window.console.error(t):this.globalLogWarn(t)},t.prototype.log=function(t){for(var e=[],n=1;n<arguments.length;n++)e[n-1]=arguments[n];var r=function(){for(var t=["Pusher"],e=0;e<arguments.length;e++)"string"==typeof arguments[e]?t.push(arguments[e]):t.push(G(arguments[e]));return t.join(" : ")}.apply(this,arguments);if(je.log)je.log(r);else if(je.logToConsole){t.bind(this)(r)}},t}()),K=function(t,e,n){void 0!==this.authOptions.headers&&Q.warn("To send headers with the auth request, you must use AJAX, rather than JSONP.");var r=t.nextAuthCallbackID.toString();t.nextAuthCallbackID++;var o=t.getDocument(),i=o.createElement("script");t.auth_callbacks[r]=function(t){n(null,t)};var s="Pusher.auth_callbacks['"+r+"']";i.src=this.options.authEndpoint+"?callback="+encodeURIComponent(s)+"&"+this.composeQuery(e);var a=o.getElementsByTagName("head")[0]||o.documentElement;a.insertBefore(i,a.firstChild)},Y=function(){function t(t){this.src=t}return t.prototype.send=function(t){var e=this,n="Error loading "+e.src;e.script=document.createElement("script"),e.script.id=t.id,e.script.src=e.src,e.script.type="text/javascript",e.script.charset="UTF-8",e.script.addEventListener?(e.script.onerror=function(){t.callback(n)},e.script.onload=function(){t.callback(null)}):e.script.onreadystatechange=function(){"loaded"!==e.script.readyState&&"complete"!==e.script.readyState||t.callback(null)},void 0===e.script.async&&document.attachEvent&&/opera/i.test(navigator.userAgent)?(e.errorScript=document.createElement("script"),e.errorScript.id=t.id+"_error",e.errorScript.text=t.name+"('"+n+"');",e.script.async=e.errorScript.async=!1):e.script.async=!0;var r=document.getElementsByTagName("head")[0];r.insertBefore(e.script,r.firstChild),e.errorScript&&r.insertBefore(e.errorScript,e.script.nextSibling)},t.prototype.cleanup=function(){this.script&&(this.script.onload=this.script.onerror=null,this.script.onreadystatechange=null),this.script&&this.script.parentNode&&this.script.parentNode.removeChild(this.script),this.errorScript&&this.errorScript.parentNode&&this.errorScript.parentNode.removeChild(this.errorScript),this.script=null,this.errorScript=null},t}(),Z=function(){function t(t,e){this.url=t,this.data=e}return t.prototype.send=function(t){if(!this.request){var e=W(this.data),n=this.url+"/"+t.number+"?"+e;this.request=we.createScriptRequest(n),this.request.send(t)}},t.prototype.cleanup=function(){this.request&&this.request.cleanup()},t}(),tt={name:"jsonp",getAgent:function(t,e){return function(n,r){var o="http"+(e?"s":"")+"://"+(t.host||t.options.host)+t.options.path,s=we.createJSONPRequest(o,n),a=we.ScriptReceivers.create(function(e,n){i.remove(a),s.cleanup(),n&&n.host&&(t.host=n.host),r&&r(e,n)});s.send(a)}}};function et(t,e,n){return t+(e.useTLS?"s":"")+"://"+(e.useTLS?e.hostTLS:e.hostNonTLS)+n}function nt(t,e){return"/app/"+t+("?protocol="+s.PROTOCOL+"&client=js&version="+s.VERSION+(e?"&"+e:""))}var rt={getInitial:function(t,e){return et("ws",e,(e.httpPath||"")+nt(t,"flash=false"))}},ot={getInitial:function(t,e){return et("http",e,(e.httpPath||"/pusher")+nt(t))}},it={getInitial:function(t,e){return et("http",e,e.httpPath||"/pusher")},getPath:function(t,e){return nt(t)}},st=function(){function t(){this._callbacks={}}return t.prototype.get=function(t){return this._callbacks[at(t)]},t.prototype.add=function(t,e,n){var r=at(t);this._callbacks[r]=this._callbacks[r]||[],this._callbacks[r].push({fn:e,context:n})},t.prototype.remove=function(t,e,n){if(t||e||n){var r=t?[at(t)]:U(this._callbacks);e||n?this.removeCallback(r,e,n):this.removeAllCallbacks(r)}else this._callbacks={}},t.prototype.removeCallback=function(t,e,n){H(t,function(t){this._callbacks[t]=V(this._callbacks[t]||[],function(t){return e&&e!==t.fn||n&&n!==t.context}),0===this._callbacks[t].length&&delete this._callbacks[t]},this)},t.prototype.removeAllCallbacks=function(t){H(t,function(t){delete this._callbacks[t]},this)},t}();function at(t){return"_"+t}var ct=function(){function t(t){this.callbacks=new st,this.global_callbacks=[],this.failThrough=t}return t.prototype.bind=function(t,e,n){return this.callbacks.add(t,e,n),this},t.prototype.bind_global=function(t){return this.global_callbacks.push(t),this},t.prototype.unbind=function(t,e,n){return this.callbacks.remove(t,e,n),this},t.prototype.unbind_global=function(t){return t?(this.global_callbacks=V(this.global_callbacks||[],function(e){return e!==t}),this):(this.global_callbacks=[],this)},t.prototype.unbind_all=function(){return this.unbind(),this.unbind_global(),this},t.prototype.emit=function(t,e,n){for(var r=0;r<this.global_callbacks.length;r++)this.global_callbacks[r](t,e);var o=this.callbacks.get(t),i=[];if(n?i.push(e,n):e&&i.push(e),o&&o.length>0)for(r=0;r<o.length;r++)o[r].fn.apply(o[r].context||window,i);else this.failThrough&&this.failThrough(t,e);return this},t}(),ut=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),lt=function(t){function e(e,n,r,o,i){var s=t.call(this)||this;return s.initialize=we.transportConnectionInitializer,s.hooks=e,s.name=n,s.priority=r,s.key=o,s.options=i,s.state="new",s.timeline=i.timeline,s.activityTimeout=i.activityTimeout,s.id=s.timeline.generateUniqueID(),s}return ut(e,t),e.prototype.handlesActivityChecks=function(){return Boolean(this.hooks.handlesActivityChecks)},e.prototype.supportsPing=function(){return Boolean(this.hooks.supportsPing)},e.prototype.connect=function(){var t=this;if(this.socket||"initialized"!==this.state)return!1;var e=this.hooks.urls.getInitial(this.key,this.options);try{this.socket=this.hooks.getSocket(e,this.options)}catch(e){return q.defer(function(){t.onError(e),t.changeState("closed")}),!1}return this.bindListeners(),Q.debug("Connecting",{transport:this.name,url:e}),this.changeState("connecting"),!0},e.prototype.close=function(){return!!this.socket&&(this.socket.close(),!0)},e.prototype.send=function(t){var e=this;return"open"===this.state&&(q.defer(function(){e.socket&&e.socket.send(t)}),!0)},e.prototype.ping=function(){"open"===this.state&&this.supportsPing()&&this.socket.ping()},e.prototype.onOpen=function(){this.hooks.beforeOpen&&this.hooks.beforeOpen(this.socket,this.hooks.urls.getPath(this.key,this.options)),this.changeState("open"),this.socket.onopen=void 0},e.prototype.onError=function(t){this.emit("error",{type:"WebSocketError",error:t}),this.timeline.error(this.buildTimelineMessage({error:t.toString()}))},e.prototype.onClose=function(t){t?this.changeState("closed",{code:t.code,reason:t.reason,wasClean:t.wasClean}):this.changeState("closed"),this.unbindListeners(),this.socket=void 0},e.prototype.onMessage=function(t){this.emit("message",t)},e.prototype.onActivity=function(){this.emit("activity")},e.prototype.bindListeners=function(){var t=this;this.socket.onopen=function(){t.onOpen()},this.socket.onerror=function(e){t.onError(e)},this.socket.onclose=function(e){t.onClose(e)},this.socket.onmessage=function(e){t.onMessage(e)},this.supportsPing()&&(this.socket.onactivity=function(){t.onActivity()})},e.prototype.unbindListeners=function(){this.socket&&(this.socket.onopen=void 0,this.socket.onerror=void 0,this.socket.onclose=void 0,this.socket.onmessage=void 0,this.supportsPing()&&(this.socket.onactivity=void 0))},e.prototype.changeState=function(t,e){this.state=t,this.timeline.info(this.buildTimelineMessage({state:t,params:e})),this.emit(t,e)},e.prototype.buildTimelineMessage=function(t){return B({cid:this.id},t)},e}(ct),ht=function(){function t(t){this.hooks=t}return t.prototype.isSupported=function(t){return this.hooks.isSupported(t)},t.prototype.createConnection=function(t,e,n,r){return new lt(this.hooks,t,e,n,r)},t}(),ft=new ht({urls:rt,handlesActivityChecks:!1,supportsPing:!1,isInitialized:function(){return Boolean(we.getWebSocketAPI())},isSupported:function(){return Boolean(we.getWebSocketAPI())},getSocket:function(t){return we.createWebSocket(t)}}),pt={urls:ot,handlesActivityChecks:!1,supportsPing:!0,isInitialized:function(){return!0}},dt=B({getSocket:function(t){return we.HTTPFactory.createStreamingSocket(t)}},pt),vt=B({getSocket:function(t){return we.HTTPFactory.createPollingSocket(t)}},pt),yt={isSupported:function(){return we.isXHRSupported()}},mt={ws:ft,xhr_streaming:new ht(B({},dt,yt)),xhr_polling:new ht(B({},vt,yt))},gt=new ht({file:"sockjs",urls:it,handlesActivityChecks:!0,supportsPing:!1,isSupported:function(){return!0},isInitialized:function(){return void 0!==window.SockJS},getSocket:function(t,e){return new window.SockJS(t,null,{js_path:u.getPath("sockjs",{useTLS:e.useTLS}),ignore_null_origin:e.ignoreNullOrigin})},beforeOpen:function(t,e){t.send(JSON.stringify({path:e}))}}),bt={isSupported:function(t){return we.isXDRSupported(t.useTLS)}},wt=new ht(B({},dt,bt)),_t=new ht(B({},vt,bt));mt.xdr_streaming=wt,mt.xdr_polling=_t,mt.sockjs=gt;var kt=mt,St=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),Ct=new(function(t){function e(){var e=t.call(this)||this,n=e;return void 0!==window.addEventListener&&(window.addEventListener("online",function(){n.emit("online")},!1),window.addEventListener("offline",function(){n.emit("offline")},!1)),e}return St(e,t),e.prototype.isOnline=function(){return void 0===window.navigator.onLine||window.navigator.onLine},e}(ct)),xt=function(){function t(t,e,n){this.manager=t,this.transport=e,this.minPingDelay=n.minPingDelay,this.maxPingDelay=n.maxPingDelay,this.pingDelay=void 0}return t.prototype.createConnection=function(t,e,n,r){var o=this;r=B({},r,{activityTimeout:this.pingDelay});var i=this.transport.createConnection(t,e,n,r),s=null,a=function(){i.unbind("open",a),i.bind("closed",c),s=q.now()},c=function(t){if(i.unbind("closed",c),1002===t.code||1003===t.code)o.manager.reportDeath();else if(!t.wasClean&&s){var e=q.now()-s;e<2*o.maxPingDelay&&(o.manager.reportDeath(),o.pingDelay=Math.max(e/2,o.minPingDelay))}};return i.bind("open",a),i},t.prototype.isSupported=function(t){return this.manager.isAlive()&&this.transport.isSupported(t)},t}(),Ot={decodeMessage:function(t){try{var e=JSON.parse(t.data),n=e.data;if("string"==typeof n)try{n=JSON.parse(e.data)}catch(t){}var r={event:e.event,channel:e.channel,data:n};return e.user_id&&(r.user_id=e.user_id),r}catch(e){throw{type:"MessageParseError",error:e,data:t.data}}},encodeMessage:function(t){return JSON.stringify(t)},processHandshake:function(t){var e=Ot.decodeMessage(t);if("pusher:connection_established"===e.event){if(!e.data.activity_timeout)throw"No activity timeout specified in handshake";return{action:"connected",id:e.data.socket_id,activityTimeout:1e3*e.data.activity_timeout}}if("pusher:error"===e.event)return{action:this.getCloseAction(e.data),error:this.getCloseError(e.data)};throw"Invalid handshake"},getCloseAction:function(t){return t.code<4e3?t.code>=1002&&t.code<=1004?"backoff":null:4e3===t.code?"tls_only":t.code<4100?"refused":t.code<4200?"backoff":t.code<4300?"retry":"refused"},getCloseError:function(t){return 1e3!==t.code&&1001!==t.code?{type:"PusherError",data:{code:t.code,message:t.reason||t.message}}:null}},Tt=Ot,Pt=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),Et=function(t){function e(e,n){var r=t.call(this)||this;return r.id=e,r.transport=n,r.activityTimeout=n.activityTimeout,r.bindListeners(),r}return Pt(e,t),e.prototype.handlesActivityChecks=function(){return this.transport.handlesActivityChecks()},e.prototype.send=function(t){return this.transport.send(t)},e.prototype.send_event=function(t,e,n){var r={event:t,data:e};return n&&(r.channel=n),Q.debug("Event sent",r),this.send(Tt.encodeMessage(r))},e.prototype.ping=function(){this.transport.supportsPing()?this.transport.ping():this.send_event("pusher:ping",{})},e.prototype.close=function(){this.transport.close()},e.prototype.bindListeners=function(){var t=this,e={message:function(e){var n;try{n=Tt.decodeMessage(e)}catch(n){t.emit("error",{type:"MessageParseError",error:n,data:e.data})}if(void 0!==n){switch(Q.debug("Event recd",n),n.event){case"pusher:error":t.emit("error",{type:"PusherError",data:n.data});break;case"pusher:ping":t.emit("ping");break;case"pusher:pong":t.emit("pong")}t.emit("message",n)}},activity:function(){t.emit("activity")},error:function(e){t.emit("error",e)},closed:function(e){n(),e&&e.code&&t.handleCloseEvent(e),t.transport=null,t.emit("closed")}},n=function(){F(e,function(e,n){t.transport.unbind(n,e)})};F(e,function(e,n){t.transport.bind(n,e)})},e.prototype.handleCloseEvent=function(t){var e=Tt.getCloseAction(t),n=Tt.getCloseError(t);n&&this.emit("error",n),e&&this.emit(e,{action:e,error:n})},e}(ct),Rt=function(){function t(t,e){this.transport=t,this.callback=e,this.bindListeners()}return t.prototype.close=function(){this.unbindListeners(),this.transport.close()},t.prototype.bindListeners=function(){var t=this;this.onMessage=function(e){var n;t.unbindListeners();try{n=Tt.processHandshake(e)}catch(e){return t.finish("error",{error:e}),void t.transport.close()}"connected"===n.action?t.finish("connected",{connection:new Et(n.id,t.transport),activityTimeout:n.activityTimeout}):(t.finish(n.action,{error:n.error}),t.transport.close())},this.onClosed=function(e){t.unbindListeners();var n=Tt.getCloseAction(e)||"backoff",r=Tt.getCloseError(e);t.finish(n,{error:r})},this.transport.bind("message",this.onMessage),this.transport.bind("closed",this.onClosed)},t.prototype.unbindListeners=function(){this.transport.unbind("message",this.onMessage),this.transport.unbind("closed",this.onClosed)},t.prototype.finish=function(t,e){this.callback(B({transport:this.transport,action:t},e))},t}(),jt=function(){function t(t,e){this.channel=t;var n=e.authTransport;if(void 0===we.getAuthorizers()[n])throw"'"+n+"' is not a recognized auth transport";this.type=n,this.options=e,this.authOptions=e.auth||{}}return t.prototype.composeQuery=function(t){var e="socket_id="+encodeURIComponent(t)+"&channel_name="+encodeURIComponent(this.channel.name);for(var n in this.authOptions.params)e+="&"+encodeURIComponent(n)+"="+encodeURIComponent(this.authOptions.params[n]);return e},t.prototype.authorize=function(e,n){t.authorizers=t.authorizers||we.getAuthorizers(),t.authorizers[this.type].call(this,we,e,n)},t}(),Lt=function(){function t(t,e){this.timeline=t,this.options=e||{}}return t.prototype.send=function(t,e){this.timeline.isEmpty()||this.timeline.send(we.TimelineTransport.getAgent(this,t),e)},t}(),At=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),Nt=function(t){function e(e,n){var r=t.call(this,function(t,n){Q.debug("No callbacks on "+e+" for "+t)})||this;return r.name=e,r.pusher=n,r.subscribed=!1,r.subscriptionPending=!1,r.subscriptionCancelled=!1,r}return At(e,t),e.prototype.authorize=function(t,e){return e(null,{auth:""})},e.prototype.trigger=function(t,e){if(0!==t.indexOf("client-"))throw new p("Event '"+t+"' does not start with 'client-'");if(!this.subscribed){var n=h.buildLogSuffix("triggeringClientEvents");Q.warn("Client event triggered before channel 'subscription_succeeded' event . "+n)}return this.pusher.send_event(t,e,this.name)},e.prototype.disconnect=function(){this.subscribed=!1,this.subscriptionPending=!1},e.prototype.handleEvent=function(t){var e=t.event,n=t.data;if("pusher_internal:subscription_succeeded"===e)this.handleSubscriptionSucceededEvent(t);else if(0!==e.indexOf("pusher_internal:")){this.emit(e,n,{})}},e.prototype.handleSubscriptionSucceededEvent=function(t){this.subscriptionPending=!1,this.subscribed=!0,this.subscriptionCancelled?this.pusher.unsubscribe(this.name):this.emit("pusher:subscription_succeeded",t.data)},e.prototype.subscribe=function(){var t=this;this.subscribed||(this.subscriptionPending=!0,this.subscriptionCancelled=!1,this.authorize(this.pusher.connection.socket_id,function(e,n){e?(t.subscriptionPending=!1,Q.error(e.toString()),t.emit("pusher:subscription_error",Object.assign({},{type:"AuthError",error:e.message},e instanceof w?{status:e.status}:{}))):t.pusher.send_event("pusher:subscribe",{auth:n.auth,channel_data:n.channel_data,channel:t.name})}))},e.prototype.unsubscribe=function(){this.subscribed=!1,this.pusher.send_event("pusher:unsubscribe",{channel:this.name})},e.prototype.cancelSubscription=function(){this.subscriptionCancelled=!0},e.prototype.reinstateSubscription=function(){this.subscriptionCancelled=!1},e}(ct),Mt=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),It=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Mt(e,t),e.prototype.authorize=function(t,e){return $t.createAuthorizer(this,this.pusher.config).authorize(t,e)},e}(Nt),qt=function(){function t(){this.reset()}return t.prototype.get=function(t){return Object.prototype.hasOwnProperty.call(this.members,t)?{id:t,info:this.members[t]}:null},t.prototype.each=function(t){var e=this;F(this.members,function(n,r){t(e.get(r))})},t.prototype.setMyID=function(t){this.myID=t},t.prototype.onSubscription=function(t){this.members=t.presence.hash,this.count=t.presence.count,this.me=this.get(this.myID)},t.prototype.addMember=function(t){return null===this.get(t.user_id)&&this.count++,this.members[t.user_id]=t.user_info,this.get(t.user_id)},t.prototype.removeMember=function(t){var e=this.get(t.user_id);return e&&(delete this.members[t.user_id],this.count--),e},t.prototype.reset=function(){this.members={},this.count=0,this.myID=null,this.me=null},t}(),Bt=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),Dt=function(t){function e(e,n){var r=t.call(this,e,n)||this;return r.members=new qt,r}return Bt(e,t),e.prototype.authorize=function(e,n){var r=this;t.prototype.authorize.call(this,e,function(t,e){if(!t){if(void 0===(e=e).channel_data){var o=h.buildLogSuffix("authenticationEndpoint");return Q.error("Invalid auth response for channel '"+r.name+"',expected 'channel_data' field. "+o),void n("Invalid auth response")}var i=JSON.parse(e.channel_data);r.members.setMyID(i.user_id)}n(t,e)})},e.prototype.handleEvent=function(t){var e=t.event;if(0===e.indexOf("pusher_internal:"))this.handleInternalEvent(t);else{var n=t.data,r={};t.user_id&&(r.user_id=t.user_id),this.emit(e,n,r)}},e.prototype.handleInternalEvent=function(t){var e=t.event,n=t.data;switch(e){case"pusher_internal:subscription_succeeded":this.handleSubscriptionSucceededEvent(t);break;case"pusher_internal:member_added":var r=this.members.addMember(n);this.emit("pusher:member_added",r);break;case"pusher_internal:member_removed":var o=this.members.removeMember(n);o&&this.emit("pusher:member_removed",o)}},e.prototype.handleSubscriptionSucceededEvent=function(t){this.subscriptionPending=!1,this.subscribed=!0,this.subscriptionCancelled?this.pusher.unsubscribe(this.name):(this.members.onSubscription(t.data),this.emit("pusher:subscription_succeeded",this.members))},e.prototype.disconnect=function(){this.members.reset(),t.prototype.disconnect.call(this)},e}(It),Ft=n(1),Ut=n(0),Ht=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),zt=function(t){function e(e,n,r){var o=t.call(this,e,n)||this;return o.key=null,o.nacl=r,o}return Ht(e,t),e.prototype.authorize=function(e,n){var r=this;t.prototype.authorize.call(this,e,function(t,e){if(t)n(t,e);else{var o=e.shared_secret;o?(r.key=Object(Ut.decode)(o),delete e.shared_secret,n(null,e)):n(new Error("No shared_secret key in auth payload for encrypted channel: "+r.name),null)}})},e.prototype.trigger=function(t,e){throw new m("Client events are not currently supported for encrypted channels")},e.prototype.handleEvent=function(e){var n=e.event,r=e.data;0!==n.indexOf("pusher_internal:")&&0!==n.indexOf("pusher:")?this.handleEncryptedEvent(n,r):t.prototype.handleEvent.call(this,e)},e.prototype.handleEncryptedEvent=function(t,e){var n=this;if(this.key)if(e.ciphertext&&e.nonce){var r=Object(Ut.decode)(e.ciphertext);if(r.length<this.nacl.secretbox.overheadLength)Q.error("Expected encrypted event ciphertext length to be "+this.nacl.secretbox.overheadLength+", got: "+r.length);else{var o=Object(Ut.decode)(e.nonce);if(o.length<this.nacl.secretbox.nonceLength)Q.error("Expected encrypted event nonce length to be "+this.nacl.secretbox.nonceLength+", got: "+o.length);else{var i=this.nacl.secretbox.open(r,o,this.key);if(null===i)return Q.debug("Failed to decrypt an event, probably because it was encrypted with a different key. Fetching a new key from the authEndpoint..."),void this.authorize(this.pusher.connection.socket_id,function(e,s){e?Q.error("Failed to make a request to the authEndpoint: "+s+". Unable to fetch new key, so dropping encrypted event"):null!==(i=n.nacl.secretbox.open(r,o,n.key))?n.emit(t,n.getDataToEmit(i)):Q.error("Failed to decrypt event with new key. Dropping encrypted event")});this.emit(t,this.getDataToEmit(i))}}}else Q.error("Unexpected format for encrypted event, expected object with `ciphertext` and `nonce` fields, got: "+e);else Q.debug("Received encrypted event before key has been retrieved from the authEndpoint")},e.prototype.getDataToEmit=function(t){var e=Object(Ft.decode)(t);try{return JSON.parse(e)}catch(t){return e}},e}(It),Vt=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),Jt=function(t){function e(e,n){var r=t.call(this)||this;r.state="initialized",r.connection=null,r.key=e,r.options=n,r.timeline=r.options.timeline,r.usingTLS=r.options.useTLS,r.errorCallbacks=r.buildErrorCallbacks(),r.connectionCallbacks=r.buildConnectionCallbacks(r.errorCallbacks),r.handshakeCallbacks=r.buildHandshakeCallbacks(r.errorCallbacks);var o=we.getNetwork();return o.bind("online",function(){r.timeline.info({netinfo:"online"}),"connecting"!==r.state&&"unavailable"!==r.state||r.retryIn(0)}),o.bind("offline",function(){r.timeline.info({netinfo:"offline"}),r.connection&&r.sendActivityCheck()}),r.updateStrategy(),r}return Vt(e,t),e.prototype.connect=function(){this.connection||this.runner||(this.strategy.isSupported()?(this.updateState("connecting"),this.startConnecting(),this.setUnavailableTimer()):this.updateState("failed"))},e.prototype.send=function(t){return!!this.connection&&this.connection.send(t)},e.prototype.send_event=function(t,e,n){return!!this.connection&&this.connection.send_event(t,e,n)},e.prototype.disconnect=function(){this.disconnectInternally(),this.updateState("disconnected")},e.prototype.isUsingTLS=function(){return this.usingTLS},e.prototype.startConnecting=function(){var t=this,e=function(n,r){n?t.runner=t.strategy.connect(0,e):"error"===r.action?(t.emit("error",{type:"HandshakeError",error:r.error}),t.timeline.error({handshakeError:r.error})):(t.abortConnecting(),t.handshakeCallbacks[r.action](r))};this.runner=this.strategy.connect(0,e)},e.prototype.abortConnecting=function(){this.runner&&(this.runner.abort(),this.runner=null)},e.prototype.disconnectInternally=function(){(this.abortConnecting(),this.clearRetryTimer(),this.clearUnavailableTimer(),this.connection)&&this.abandonConnection().close()},e.prototype.updateStrategy=function(){this.strategy=this.options.getStrategy({key:this.key,timeline:this.timeline,useTLS:this.usingTLS})},e.prototype.retryIn=function(t){var e=this;this.timeline.info({action:"retry",delay:t}),t>0&&this.emit("connecting_in",Math.round(t/1e3)),this.retryTimer=new M(t||0,function(){e.disconnectInternally(),e.connect()})},e.prototype.clearRetryTimer=function(){this.retryTimer&&(this.retryTimer.ensureAborted(),this.retryTimer=null)},e.prototype.setUnavailableTimer=function(){var t=this;this.unavailableTimer=new M(this.options.unavailableTimeout,function(){t.updateState("unavailable")})},e.prototype.clearUnavailableTimer=function(){this.unavailableTimer&&this.unavailableTimer.ensureAborted()},e.prototype.sendActivityCheck=function(){var t=this;this.stopActivityCheck(),this.connection.ping(),this.activityTimer=new M(this.options.pongTimeout,function(){t.timeline.error({pong_timed_out:t.options.pongTimeout}),t.retryIn(0)})},e.prototype.resetActivityCheck=function(){var t=this;this.stopActivityCheck(),this.connection&&!this.connection.handlesActivityChecks()&&(this.activityTimer=new M(this.activityTimeout,function(){t.sendActivityCheck()}))},e.prototype.stopActivityCheck=function(){this.activityTimer&&this.activityTimer.ensureAborted()},e.prototype.buildConnectionCallbacks=function(t){var e=this;return B({},t,{message:function(t){e.resetActivityCheck(),e.emit("message",t)},ping:function(){e.send_event("pusher:pong",{})},activity:function(){e.resetActivityCheck()},error:function(t){e.emit("error",t)},closed:function(){e.abandonConnection(),e.shouldRetry()&&e.retryIn(1e3)}})},e.prototype.buildHandshakeCallbacks=function(t){var e=this;return B({},t,{connected:function(t){e.activityTimeout=Math.min(e.options.activityTimeout,t.activityTimeout,t.connection.activityTimeout||1/0),e.clearUnavailableTimer(),e.setConnection(t.connection),e.socket_id=e.connection.id,e.updateState("connected",{socket_id:e.socket_id})}})},e.prototype.buildErrorCallbacks=function(){var t=this,e=function(e){return function(n){n.error&&t.emit("error",{type:"WebSocketError",error:n.error}),e(n)}};return{tls_only:e(function(){t.usingTLS=!0,t.updateStrategy(),t.retryIn(0)}),refused:e(function(){t.disconnect()}),backoff:e(function(){t.retryIn(1e3)}),retry:e(function(){t.retryIn(0)})}},e.prototype.setConnection=function(t){for(var e in this.connection=t,this.connectionCallbacks)this.connection.bind(e,this.connectionCallbacks[e]);this.resetActivityCheck()},e.prototype.abandonConnection=function(){if(this.connection){for(var t in this.stopActivityCheck(),this.connectionCallbacks)this.connection.unbind(t,this.connectionCallbacks[t]);var e=this.connection;return this.connection=null,e}},e.prototype.updateState=function(t,e){var n=this.state;if(this.state=t,n!==t){var r=t;"connected"===r&&(r+=" with new socket ID "+e.socket_id),Q.debug("State changed",n+" -> "+r),this.timeline.info({state:t,params:e}),this.emit("state_change",{previous:n,current:t}),this.emit(t,e)}},e.prototype.shouldRetry=function(){return"connecting"===this.state||"connected"===this.state},e}(ct),Xt=function(){function t(){this.channels={}}return t.prototype.add=function(t,e){return this.channels[t]||(this.channels[t]=function(t,e){if(0===t.indexOf("private-encrypted-")){if(e.config.nacl)return $t.createEncryptedChannel(t,e,e.config.nacl);var n=h.buildLogSuffix("encryptedChannelSupport");throw new m("Tried to subscribe to a private-encrypted- channel but no nacl implementation available. "+n)}return 0===t.indexOf("private-")?$t.createPrivateChannel(t,e):0===t.indexOf("presence-")?$t.createPresenceChannel(t,e):$t.createChannel(t,e)}(t,e)),this.channels[t]},t.prototype.all=function(){return function(t){var e=[];return F(t,function(t){e.push(t)}),e}(this.channels)},t.prototype.find=function(t){return this.channels[t]},t.prototype.remove=function(t){var e=this.channels[t];return delete this.channels[t],e},t.prototype.disconnect=function(){F(this.channels,function(t){t.disconnect()})},t}();var $t={createChannels:function(){return new Xt},createConnectionManager:function(t,e){return new Jt(t,e)},createChannel:function(t,e){return new Nt(t,e)},createPrivateChannel:function(t,e){return new It(t,e)},createPresenceChannel:function(t,e){return new Dt(t,e)},createEncryptedChannel:function(t,e,n){return new zt(t,e,n)},createTimelineSender:function(t,e){return new Lt(t,e)},createAuthorizer:function(t,e){return e.authorizer?e.authorizer(t,e):new jt(t,e)},createHandshake:function(t,e){return new Rt(t,e)},createAssistantToTheTransportManager:function(t,e,n){return new xt(t,e,n)}},Wt=function(){function t(t){this.options=t||{},this.livesLeft=this.options.lives||1/0}return t.prototype.getAssistant=function(t){return $t.createAssistantToTheTransportManager(this,t,{minPingDelay:this.options.minPingDelay,maxPingDelay:this.options.maxPingDelay})},t.prototype.isAlive=function(){return this.livesLeft>0},t.prototype.reportDeath=function(){this.livesLeft-=1},t}(),Gt=function(){function t(t,e){this.strategies=t,this.loop=Boolean(e.loop),this.failFast=Boolean(e.failFast),this.timeout=e.timeout,this.timeoutLimit=e.timeoutLimit}return t.prototype.isSupported=function(){return X(this.strategies,q.method("isSupported"))},t.prototype.connect=function(t,e){var n=this,r=this.strategies,o=0,i=this.timeout,s=null,a=function(c,u){u?e(null,u):(o+=1,n.loop&&(o%=r.length),o<r.length?(i&&(i*=2,n.timeoutLimit&&(i=Math.min(i,n.timeoutLimit))),s=n.tryStrategy(r[o],t,{timeout:i,failFast:n.failFast},a)):e(!0))};return s=this.tryStrategy(r[o],t,{timeout:i,failFast:this.failFast},a),{abort:function(){s.abort()},forceMinPriority:function(e){t=e,s&&s.forceMinPriority(e)}}},t.prototype.tryStrategy=function(t,e,n,r){var o=null,i=null;return n.timeout>0&&(o=new M(n.timeout,function(){i.abort(),r(!0)})),i=t.connect(e,function(t,e){t&&o&&o.isRunning()&&!n.failFast||(o&&o.ensureAborted(),r(t,e))}),{abort:function(){o&&o.ensureAborted(),i.abort()},forceMinPriority:function(t){i.forceMinPriority(t)}}},t}(),Qt=function(){function t(t){this.strategies=t}return t.prototype.isSupported=function(){return X(this.strategies,q.method("isSupported"))},t.prototype.connect=function(t,e){return function(t,e,n){var r=z(t,function(t,r,o,i){return t.connect(e,n(r,i))});return{abort:function(){H(r,Kt)},forceMinPriority:function(t){H(r,function(e){e.forceMinPriority(t)})}}}(this.strategies,t,function(t,n){return function(r,o){n[t].error=r,r?function(t){return function(t,e){for(var n=0;n<t.length;n++)if(!e(t[n],n,t))return!1;return!0}(t,function(t){return Boolean(t.error)})}(n)&&e(!0):(H(n,function(t){t.forceMinPriority(o.transport.priority)}),e(null,o))}})},t}();function Kt(t){t.error||t.aborted||(t.abort(),t.aborted=!0)}var Yt=function(){function t(t,e,n){this.strategy=t,this.transports=e,this.ttl=n.ttl||18e5,this.usingTLS=n.useTLS,this.timeline=n.timeline}return t.prototype.isSupported=function(){return this.strategy.isSupported()},t.prototype.connect=function(t,e){var n=this.usingTLS,r=function(t){var e=we.getLocalStorage();if(e)try{var n=e[Zt(t)];if(n)return JSON.parse(n)}catch(e){te(t)}return null}(n),o=[this.strategy];if(r&&r.timestamp+this.ttl>=q.now()){var i=this.transports[r.transport];i&&(this.timeline.info({cached:!0,transport:r.transport,latency:r.latency}),o.push(new Gt([i],{timeout:2*r.latency+1e3,failFast:!0})))}var s=q.now(),a=o.pop().connect(t,function r(i,c){i?(te(n),o.length>0?(s=q.now(),a=o.pop().connect(t,r)):e(i)):(!function(t,e,n){var r=we.getLocalStorage();if(r)try{r[Zt(t)]=G({timestamp:q.now(),transport:e,latency:n})}catch(t){}}(n,c.transport.name,q.now()-s),e(null,c))});return{abort:function(){a.abort()},forceMinPriority:function(e){t=e,a&&a.forceMinPriority(e)}}},t}();function Zt(t){return"pusherTransport"+(t?"TLS":"NonTLS")}function te(t){var e=we.getLocalStorage();if(e)try{delete e[Zt(t)]}catch(t){}}var ee=function(){function t(t,e){var n=e.delay;this.strategy=t,this.options={delay:n}}return t.prototype.isSupported=function(){return this.strategy.isSupported()},t.prototype.connect=function(t,e){var n,r=this.strategy,o=new M(this.options.delay,function(){n=r.connect(t,e)});return{abort:function(){o.ensureAborted(),n&&n.abort()},forceMinPriority:function(e){t=e,n&&n.forceMinPriority(e)}}},t}(),ne=function(){function t(t,e,n){this.test=t,this.trueBranch=e,this.falseBranch=n}return t.prototype.isSupported=function(){return(this.test()?this.trueBranch:this.falseBranch).isSupported()},t.prototype.connect=function(t,e){return(this.test()?this.trueBranch:this.falseBranch).connect(t,e)},t}(),re=function(){function t(t){this.strategy=t}return t.prototype.isSupported=function(){return this.strategy.isSupported()},t.prototype.connect=function(t,e){var n=this.strategy.connect(t,function(t,r){r&&n.abort(),e(t,r)});return n},t}();function oe(t){return function(){return t.isSupported()}}var ie,se=function(t,e,n){var r={};function o(e,o,i,s,a){var c=n(t,e,o,i,s,a);return r[e]=c,c}var i,s=Object.assign({},e,{hostNonTLS:t.wsHost+":"+t.wsPort,hostTLS:t.wsHost+":"+t.wssPort,httpPath:t.wsPath}),a=Object.assign({},s,{useTLS:!0}),c=Object.assign({},e,{hostNonTLS:t.httpHost+":"+t.httpPort,hostTLS:t.httpHost+":"+t.httpsPort,httpPath:t.httpPath}),u={loop:!0,timeout:15e3,timeoutLimit:6e4},l=new Wt({lives:2,minPingDelay:1e4,maxPingDelay:t.activityTimeout}),h=new Wt({lives:2,minPingDelay:1e4,maxPingDelay:t.activityTimeout}),f=o("ws","ws",3,s,l),p=o("wss","ws",3,a,l),d=o("sockjs","sockjs",1,c),v=o("xhr_streaming","xhr_streaming",1,c,h),y=o("xdr_streaming","xdr_streaming",1,c,h),m=o("xhr_polling","xhr_polling",1,c),g=o("xdr_polling","xdr_polling",1,c),b=new Gt([f],u),w=new Gt([p],u),_=new Gt([d],u),k=new Gt([new ne(oe(v),v,y)],u),S=new Gt([new ne(oe(m),m,g)],u),C=new Gt([new ne(oe(k),new Qt([k,new ee(S,{delay:4e3})]),S)],u),x=new ne(oe(C),C,_);return i=e.useTLS?new Qt([b,new ee(x,{delay:2e3})]):new Qt([b,new ee(w,{delay:2e3}),new ee(x,{delay:5e3})]),new Yt(new re(new ne(oe(f),i,x)),r,{ttl:18e5,timeline:e.timeline,useTLS:e.useTLS})},ae={getRequest:function(t){var e=new window.XDomainRequest;return e.ontimeout=function(){t.emit("error",new d),t.close()},e.onerror=function(e){t.emit("error",e),t.close()},e.onprogress=function(){e.responseText&&e.responseText.length>0&&t.onChunk(200,e.responseText)},e.onload=function(){e.responseText&&e.responseText.length>0&&t.onChunk(200,e.responseText),t.emit("finished",200),t.close()},e},abortRequest:function(t){t.ontimeout=t.onerror=t.onprogress=t.onload=null,t.abort()}},ce=function(){var t=function(e,n){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(e,n)};return function(e,n){function r(){this.constructor=e}t(e,n),e.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),ue=function(t){function e(e,n,r){var o=t.call(this)||this;return o.hooks=e,o.method=n,o.url=r,o}return ce(e,t),e.prototype.start=function(t){var e=this;this.position=0,this.xhr=this.hooks.getRequest(this),this.unloader=function(){e.close()},we.addUnloadListener(this.unloader),this.xhr.open(this.method,this.url,!0),this.xhr.setRequestHeader&&this.xhr.setRequestHeader("Content-Type","application/json"),this.xhr.send(t)},e.prototype.close=function(){this.unloader&&(we.removeUnloadListener(this.unloader),this.unloader=null),this.xhr&&(this.hooks.abortRequest(this.xhr),this.xhr=null)},e.prototype.onChunk=function(t,e){for(;;){var n=this.advanceBuffer(e);if(!n)break;this.emit("chunk",{status:t,data:n})}this.isBufferTooLong(e)&&this.emit("buffer_too_long")},e.prototype.advanceBuffer=function(t){var e=t.slice(this.position),n=e.indexOf("\n");return-1!==n?(this.position+=n+1,e.slice(0,n)):null},e.prototype.isBufferTooLong=function(t){return this.position===t.length&&t.length>262144},e}(ct);!function(t){t[t.CONNECTING=0]="CONNECTING",t[t.OPEN=1]="OPEN",t[t.CLOSED=3]="CLOSED"}(ie||(ie={}));var le=ie,he=1;function fe(t){return t+(-1===t.indexOf("?")?"?":"&")+"t="+ +new Date+"&n="+he++}function pe(t){return Math.floor(Math.random()*t)}var de,ve=function(){function t(t,e){this.hooks=t,this.session=pe(1e3)+"/"+function(t){for(var e=[],n=0;n<t;n++)e.push(pe(32).toString(32));return e.join("")}(8),this.location=function(t){var e=/([^\?]*)\/*(\??.*)/.exec(t);return{base:e[1],queryString:e[2]}}(e),this.readyState=le.CONNECTING,this.openStream()}return t.prototype.send=function(t){return this.sendRaw(JSON.stringify([t]))},t.prototype.ping=function(){this.hooks.sendHeartbeat(this)},t.prototype.close=function(t,e){this.onClose(t,e,!0)},t.prototype.sendRaw=function(t){if(this.readyState!==le.OPEN)return!1;try{return we.createSocketRequest("POST",fe((e=this.location,n=this.session,e.base+"/"+n+"/xhr_send"))).start(t),!0}catch(t){return!1}var e,n},t.prototype.reconnect=function(){this.closeStream(),this.openStream()},t.prototype.onClose=function(t,e,n){this.closeStream(),this.readyState=le.CLOSED,this.onclose&&this.onclose({code:t,reason:e,wasClean:n})},t.prototype.onChunk=function(t){var e;if(200===t.status)switch(this.readyState===le.OPEN&&this.onActivity(),t.data.slice(0,1)){case"o":e=JSON.parse(t.data.slice(1)||"{}"),this.onOpen(e);break;case"a":e=JSON.parse(t.data.slice(1)||"[]");for(var n=0;n<e.length;n++)this.onEvent(e[n]);break;case"m":e=JSON.parse(t.data.slice(1)||"null"),this.onEvent(e);break;case"h":this.hooks.onHeartbeat(this);break;case"c":e=JSON.parse(t.data.slice(1)||"[]"),this.onClose(e[0],e[1],!0)}},t.prototype.onOpen=function(t){var e,n,r;this.readyState===le.CONNECTING?(t&&t.hostname&&(this.location.base=(e=this.location.base,n=t.hostname,(r=/(https?:\/\/)([^\/:]+)((\/|:)?.*)/.exec(e))[1]+n+r[3])),this.readyState=le.OPEN,this.onopen&&this.onopen()):this.onClose(1006,"Server lost session",!0)},t.prototype.onEvent=function(t){this.readyState===le.OPEN&&this.onmessage&&this.onmessage({data:t})},t.prototype.onActivity=function(){this.onactivity&&this.onactivity()},t.prototype.onError=function(t){this.onerror&&this.onerror(t)},t.prototype.openStream=function(){var t=this;this.stream=we.createSocketRequest("POST",fe(this.hooks.getReceiveURL(this.location,this.session))),this.stream.bind("chunk",function(e){t.onChunk(e)}),this.stream.bind("finished",function(e){t.hooks.onFinished(t,e)}),this.stream.bind("buffer_too_long",function(){t.reconnect()});try{this.stream.start()}catch(e){q.defer(function(){t.onError(e),t.onClose(1006,"Could not start streaming",!1)})}},t.prototype.closeStream=function(){this.stream&&(this.stream.unbind_all(),this.stream.close(),this.stream=null)},t}(),ye={getReceiveURL:function(t,e){return t.base+"/"+e+"/xhr_streaming"+t.queryString},onHeartbeat:function(t){t.sendRaw("[]")},sendHeartbeat:function(t){t.sendRaw("[]")},onFinished:function(t,e){t.onClose(1006,"Connection interrupted ("+e+")",!1)}},me={getReceiveURL:function(t,e){return t.base+"/"+e+"/xhr"+t.queryString},onHeartbeat:function(){},sendHeartbeat:function(t){t.sendRaw("[]")},onFinished:function(t,e){200===e?t.reconnect():t.onClose(1006,"Connection interrupted ("+e+")",!1)}},ge={getRequest:function(t){var e=new(we.getXHRAPI());return e.onreadystatechange=e.onprogress=function(){switch(e.readyState){case 3:e.responseText&&e.responseText.length>0&&t.onChunk(e.status,e.responseText);break;case 4:e.responseText&&e.responseText.length>0&&t.onChunk(e.status,e.responseText),t.emit("finished",e.status),t.close()}},e},abortRequest:function(t){t.onreadystatechange=null,t.abort()}},be={createStreamingSocket:function(t){return this.createSocket(ye,t)},createPollingSocket:function(t){return this.createSocket(me,t)},createSocket:function(t,e){return new ve(t,e)},createXHR:function(t,e){return this.createRequest(ge,t,e)},createRequest:function(t,e,n){return new ue(t,e,n)},createXDR:function(t,e){return this.createRequest(ae,t,e)}},we={nextAuthCallbackID:1,auth_callbacks:{},ScriptReceivers:i,DependenciesReceivers:c,getDefaultStrategy:se,Transports:kt,transportConnectionInitializer:function(){var t=this;t.timeline.info(t.buildTimelineMessage({transport:t.name+(t.options.useTLS?"s":"")})),t.hooks.isInitialized()?t.changeState("initialized"):t.hooks.file?(t.changeState("initializing"),u.load(t.hooks.file,{useTLS:t.options.useTLS},function(e,n){t.hooks.isInitialized()?(t.changeState("initialized"),n(!0)):(e&&t.onError(e),t.onClose(),n(!1))})):t.onClose()},HTTPFactory:be,TimelineTransport:tt,getXHRAPI:function(){return window.XMLHttpRequest},getWebSocketAPI:function(){return window.WebSocket||window.MozWebSocket},setup:function(t){var e=this;window.Pusher=t;var n=function(){e.onDocumentBody(t.ready)};window.JSON?n():u.load("json2",{},n)},getDocument:function(){return document},getProtocol:function(){return this.getDocument().location.protocol},getAuthorizers:function(){return{ajax:_,jsonp:K}},onDocumentBody:function(t){var e=this;document.body?t():setTimeout(function(){e.onDocumentBody(t)},0)},createJSONPRequest:function(t,e){return new Z(t,e)},createScriptRequest:function(t){return new Y(t)},getLocalStorage:function(){try{return window.localStorage}catch(t){return}},createXHR:function(){return this.getXHRAPI()?this.createXMLHttpRequest():this.createMicrosoftXHR()},createXMLHttpRequest:function(){return new(this.getXHRAPI())},createMicrosoftXHR:function(){return new ActiveXObject("Microsoft.XMLHTTP")},getNetwork:function(){return Ct},createWebSocket:function(t){return new(this.getWebSocketAPI())(t)},createSocketRequest:function(t,e){if(this.isXHRSupported())return this.HTTPFactory.createXHR(t,e);if(this.isXDRSupported(0===e.indexOf("https:")))return this.HTTPFactory.createXDR(t,e);throw"Cross-origin HTTP requests are not supported"},isXHRSupported:function(){var t=this.getXHRAPI();return Boolean(t)&&void 0!==(new t).withCredentials},isXDRSupported:function(t){var e=t?"https:":"http:",n=this.getProtocol();return Boolean(window.XDomainRequest)&&n===e},addUnloadListener:function(t){void 0!==window.addEventListener?window.addEventListener("unload",t,!1):void 0!==window.attachEvent&&window.attachEvent("onunload",t)},removeUnloadListener:function(t){void 0!==window.addEventListener?window.removeEventListener("unload",t,!1):void 0!==window.detachEvent&&window.detachEvent("onunload",t)}};!function(t){t[t.ERROR=3]="ERROR",t[t.INFO=6]="INFO",t[t.DEBUG=7]="DEBUG"}(de||(de={}));var _e=de,ke=function(){function t(t,e,n){this.key=t,this.session=e,this.events=[],this.options=n||{},this.sent=0,this.uniqueID=0}return t.prototype.log=function(t,e){t<=this.options.level&&(this.events.push(B({},e,{timestamp:q.now()})),this.options.limit&&this.events.length>this.options.limit&&this.events.shift())},t.prototype.error=function(t){this.log(_e.ERROR,t)},t.prototype.info=function(t){this.log(_e.INFO,t)},t.prototype.debug=function(t){this.log(_e.DEBUG,t)},t.prototype.isEmpty=function(){return 0===this.events.length},t.prototype.send=function(t,e){var n=this,r=B({session:this.session,bundle:this.sent+1,key:this.key,lib:"js",version:this.options.version,cluster:this.options.cluster,features:this.options.features,timeline:this.events},this.options.params);return this.events=[],t(r,function(t,r){t||n.sent++,e&&e(t,r)}),!0},t.prototype.generateUniqueID=function(){return this.uniqueID++,this.uniqueID},t}(),Se=function(){function t(t,e,n,r){this.name=t,this.priority=e,this.transport=n,this.options=r||{}}return t.prototype.isSupported=function(){return this.transport.isSupported({useTLS:this.options.useTLS})},t.prototype.connect=function(t,e){var n=this;if(!this.isSupported())return Ce(new b,e);if(this.priority<t)return Ce(new v,e);var r=!1,o=this.transport.createConnection(this.name,this.priority,this.options.key,this.options),i=null,s=function(){o.unbind("initialized",s),o.connect()},a=function(){i=$t.createHandshake(o,function(t){r=!0,l(),e(null,t)})},c=function(t){l(),e(t)},u=function(){var t;l(),t=G(o),e(new y(t))},l=function(){o.unbind("initialized",s),o.unbind("open",a),o.unbind("error",c),o.unbind("closed",u)};return o.bind("initialized",s),o.bind("open",a),o.bind("error",c),o.bind("closed",u),o.initialize(),{abort:function(){r||(l(),i?i.close():o.close())},forceMinPriority:function(t){r||n.priority<t&&(i?i.close():o.close())}}},t}();function Ce(t,e){return q.defer(function(){e(t)}),{abort:function(){},forceMinPriority:function(){}}}var xe=we.Transports,Oe=function(t,e,n,r,o,i){var s,a=xe[n];if(!a)throw new g(n);return!(t.enabledTransports&&-1===D(t.enabledTransports,e)||t.disabledTransports&&-1!==D(t.disabledTransports,e))?(o=Object.assign({ignoreNullOrigin:t.ignoreNullOrigin},o),s=new Se(e,r,i?i.getAssistant(a):a,o)):s=Te,s},Te={isSupported:function(){return!1},connect:function(t,e){var n=q.defer(function(){e(new b)});return{abort:function(){n.ensureAborted()},forceMinPriority:function(){}}}};function Pe(t){var e={activityTimeout:t.activityTimeout||s.activityTimeout,authEndpoint:t.authEndpoint||s.authEndpoint,authTransport:t.authTransport||s.authTransport,cluster:t.cluster||s.cluster,httpPath:t.httpPath||s.httpPath,httpPort:t.httpPort||s.httpPort,httpsPort:t.httpsPort||s.httpsPort,pongTimeout:t.pongTimeout||s.pongTimeout,statsHost:t.statsHost||s.stats_host,unavailableTimeout:t.unavailableTimeout||s.unavailableTimeout,wsPath:t.wsPath||s.wsPath,wsPort:t.wsPort||s.wsPort,wssPort:t.wssPort||s.wssPort,enableStats:function(t){if("enableStats"in t)return t.enableStats;if("disableStats"in t)return!t.disableStats;return!1}(t),httpHost:function(t){if(t.httpHost)return t.httpHost;if(t.cluster)return"sockjs-"+t.cluster+".pusher.com";return s.httpHost}(t),useTLS:function(t){if("https:"===we.getProtocol())return!0;if(!1===t.forceTLS)return!1;return!0}(t),wsHost:function(t){if(t.wsHost)return t.wsHost;if(t.cluster)return Ee(t.cluster);return Ee(s.cluster)}(t)};return"auth"in t&&(e.auth=t.auth),"authorizer"in t&&(e.authorizer=t.authorizer),"disabledTransports"in t&&(e.disabledTransports=t.disabledTransports),"enabledTransports"in t&&(e.enabledTransports=t.enabledTransports),"ignoreNullOrigin"in t&&(e.ignoreNullOrigin=t.ignoreNullOrigin),"timelineParams"in t&&(e.timelineParams=t.timelineParams),"nacl"in t&&(e.nacl=t.nacl),e}function Ee(t){return"ws-"+t+".pusher.com"}var Re=function(){function t(e,n){var r=this;if(function(t){if(null===t||void 0===t)throw"You must pass your app key when you instantiate Pusher."}(e),!(n=n||{}).cluster&&!n.wsHost&&!n.httpHost){var o=h.buildLogSuffix("javascriptQuickStart");Q.warn("You should always specify a cluster when connecting. "+o)}"disableStats"in n&&Q.warn("The disableStats option is deprecated in favor of enableStats"),this.key=e,this.config=Pe(n),this.channels=$t.createChannels(),this.global_emitter=new ct,this.sessionID=Math.floor(1e9*Math.random()),this.timeline=new ke(this.key,this.sessionID,{cluster:this.config.cluster,features:t.getClientFeatures(),params:this.config.timelineParams||{},limit:50,level:_e.INFO,version:s.VERSION}),this.config.enableStats&&(this.timelineSender=$t.createTimelineSender(this.timeline,{host:this.config.statsHost,path:"/timeline/v2/"+we.TimelineTransport.name}));this.connection=$t.createConnectionManager(this.key,{getStrategy:function(t){return we.getDefaultStrategy(r.config,t,Oe)},timeline:this.timeline,activityTimeout:this.config.activityTimeout,pongTimeout:this.config.pongTimeout,unavailableTimeout:this.config.unavailableTimeout,useTLS:Boolean(this.config.useTLS)}),this.connection.bind("connected",function(){r.subscribeAll(),r.timelineSender&&r.timelineSender.send(r.connection.isUsingTLS())}),this.connection.bind("message",function(t){var e=0===t.event.indexOf("pusher_internal:");if(t.channel){var n=r.channel(t.channel);n&&n.handleEvent(t)}e||r.global_emitter.emit(t.event,t.data)}),this.connection.bind("connecting",function(){r.channels.disconnect()}),this.connection.bind("disconnected",function(){r.channels.disconnect()}),this.connection.bind("error",function(t){Q.warn(t)}),t.instances.push(this),this.timeline.info({instances:t.instances.length}),t.isReady&&this.connect()}return t.ready=function(){t.isReady=!0;for(var e=0,n=t.instances.length;e<n;e++)t.instances[e].connect()},t.getClientFeatures=function(){return U(J({ws:we.Transports.ws},function(t){return t.isSupported({})}))},t.prototype.channel=function(t){return this.channels.find(t)},t.prototype.allChannels=function(){return this.channels.all()},t.prototype.connect=function(){if(this.connection.connect(),this.timelineSender&&!this.timelineSenderTimer){var t=this.connection.isUsingTLS(),e=this.timelineSender;this.timelineSenderTimer=new I(6e4,function(){e.send(t)})}},t.prototype.disconnect=function(){this.connection.disconnect(),this.timelineSenderTimer&&(this.timelineSenderTimer.ensureAborted(),this.timelineSenderTimer=null)},t.prototype.bind=function(t,e,n){return this.global_emitter.bind(t,e,n),this},t.prototype.unbind=function(t,e,n){return this.global_emitter.unbind(t,e,n),this},t.prototype.bind_global=function(t){return this.global_emitter.bind_global(t),this},t.prototype.unbind_global=function(t){return this.global_emitter.unbind_global(t),this},t.prototype.unbind_all=function(t){return this.global_emitter.unbind_all(),this},t.prototype.subscribeAll=function(){var t;for(t in this.channels.channels)this.channels.channels.hasOwnProperty(t)&&this.subscribe(t)},t.prototype.subscribe=function(t){var e=this.channels.add(t,this);return e.subscriptionPending&&e.subscriptionCancelled?e.reinstateSubscription():e.subscriptionPending||"connected"!==this.connection.state||e.subscribe(),e},t.prototype.unsubscribe=function(t){var e=this.channels.find(t);e&&e.subscriptionPending?e.cancelSubscription():(e=this.channels.remove(t))&&e.subscribed&&e.unsubscribe()},t.prototype.send_event=function(t,e,n){return this.connection.send_event(t,e,n)},t.prototype.shouldUseTLS=function(){return this.config.useTLS},t.instances=[],t.isReady=!1,t.logToConsole=!1,t.Runtime=we,t.ScriptReceivers=we.ScriptReceivers,t.DependenciesReceivers=we.DependenciesReceivers,t.auth_callbacks=we.auth_callbacks,t}(),je=e.default=Re;we.setup(Re)}])},t.exports=r()},function(t,e){}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var bind = __webpack_require__(4);
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+    && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+function isArrayBuffer(val) {
+  return toString.call(val) === '[object ArrayBuffer]';
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(val) {
+  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+}
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a plain Object
+ *
+ * @param {Object} val The value to test
+ * @return {boolean} True if value is a plain Object, otherwise false
+ */
+function isPlainObject(val) {
+  if (toString.call(val) !== '[object Object]') {
+    return false;
+  }
+
+  var prototype = Object.getPrototypeOf(val);
+  return prototype === null || prototype === Object.prototype;
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+function isDate(val) {
+  return toString.call(val) === '[object Date]';
+}
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+function isFile(val) {
+  return toString.call(val) === '[object File]';
+}
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+function isBlob(val) {
+  return toString.call(val) === '[object Blob]';
+}
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+function isURLSearchParams(val) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+                                           navigator.product === 'NativeScript' ||
+                                           navigator.product === 'NS')) {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (isPlainObject(result[key]) && isPlainObject(val)) {
+      result[key] = merge(result[key], val);
+    } else if (isPlainObject(val)) {
+      result[key] = merge({}, val);
+    } else if (isArray(val)) {
+      result[key] = val.slice();
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+/**
+ * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
+ *
+ * @param {string} content with BOM
+ * @return {string} content value without BOM
+ */
+function stripBOM(content) {
+  if (content.charCodeAt(0) === 0xFEFF) {
+    content = content.slice(1);
+  }
+  return content;
+}
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isPlainObject: isPlainObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  extend: extend,
+  trim: trim,
+  stripBOM: stripBOM
+};
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(36);
+var enhanceError = __webpack_require__(6);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(7);
+  } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(7);
+  }
+  return adapter;
+}
+
+function stringifySafely(rawValue, parser, encoder) {
+  if (utils.isString(rawValue)) {
+    try {
+      (parser || JSON.parse)(rawValue);
+      return utils.trim(rawValue);
+    } catch (e) {
+      if (e.name !== 'SyntaxError') {
+        throw e;
+      }
+    }
+  }
+
+  return (encoder || JSON.stringify)(rawValue);
+}
+
+var defaults = {
+
+  transitional: {
+    silentJSONParsing: true,
+    forcedJSONParsing: true,
+    clarifyTimeoutError: false
+  },
+
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Accept');
+    normalizeHeaderName(headers, 'Content-Type');
+
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data) || (headers && headers['Content-Type'] === 'application/json')) {
+      setContentTypeIfUnset(headers, 'application/json');
+      return stringifySafely(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    var transitional = this.transitional || defaults.transitional;
+    var silentJSONParsing = transitional && transitional.silentJSONParsing;
+    var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
+    var strictJSONParsing = !silentJSONParsing && this.responseType === 'json';
+
+    if (strictJSONParsing || (forcedJSONParsing && utils.isString(data) && data.length)) {
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        if (strictJSONParsing) {
+          if (e.name === 'SyntaxError') {
+            throw enhanceError(e, this, 'E_JSON_PARSE');
+          }
+          throw e;
+        }
+      }
+    }
+
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+  maxBodyLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  },
+
+  headers: {
+    common: {
+      'Accept': 'application/json, text/plain, */*'
+    }
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Errors = function () {
+    /**
+     * Create a new Errors instance.
+     */
+    function Errors() {
+        var errors = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, Errors);
+
+        this.record(errors);
+    }
+
+    /**
+     * Get all the errors.
+     *
+     * @return {object}
+     */
+
+
+    _createClass(Errors, [{
+        key: "all",
+        value: function all() {
+            return this.errors;
+        }
+
+        /**
+         * Determine if any errors exists for the given field or object.
+         *
+         * @param {string} field
+         */
+
+    }, {
+        key: "has",
+        value: function has(field) {
+            var hasError = this.errors.hasOwnProperty(field);
+
+            if (!hasError) {
+                var errors = Object.keys(this.errors).filter(function (e) {
+                    return e.startsWith(field + ".") || e.startsWith(field + "[");
+                });
+
+                hasError = errors.length > 0;
+            }
+
+            return hasError;
+        }
+    }, {
+        key: "first",
+        value: function first(field) {
+            return this.get(field)[0];
+        }
+    }, {
+        key: "get",
+        value: function get(field) {
+            return this.errors[field] || [];
+        }
+
+        /**
+         * Determine if we have any errors.
+         * Or return errors for the given keys.
+         *
+         * @param {array} keys
+         */
+
+    }, {
+        key: "any",
+        value: function any() {
+            var _this = this;
+
+            var keys = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+            if (keys.length === 0) {
+                return Object.keys(this.errors).length > 0;
+            }
+
+            var errors = {};
+
+            keys.forEach(function (key) {
+                return errors[key] = _this.get(key);
+            });
+
+            return errors;
+        }
+
+        /**
+         * Record the new errors.
+         *
+         * @param {object} errors
+         */
+
+    }, {
+        key: "record",
+        value: function record() {
+            var errors = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+            this.errors = errors;
+        }
+
+        /**
+         * Clear a specific field, object or all error fields.
+         *
+         * @param {string|null} field
+         */
+
+    }, {
+        key: "clear",
+        value: function clear(field) {
+            if (!field) {
+                this.errors = {};
+
+                return;
+            }
+
+            var errors = Object.assign({}, this.errors);
+
+            Object.keys(errors).filter(function (e) {
+                return e === field || e.startsWith(field + ".") || e.startsWith(field + "[");
+            }).forEach(function (e) {
+                return delete errors[e];
+            });
+
+            this.errors = errors;
+        }
+    }]);
+
+    return Errors;
+}();
+
+exports.default = Errors;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+module.exports = function buildURL(url, params, paramsSerializer) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else if (utils.isURLSearchParams(params)) {
+    serializedParams = params.toString();
+  } else {
+    var parts = [];
+
+    utils.forEach(params, function serialize(val, key) {
+      if (val === null || typeof val === 'undefined') {
+        return;
+      }
+
+      if (utils.isArray(val)) {
+        key = key + '[]';
+      } else {
+        val = [val];
+      }
+
+      utils.forEach(val, function parseValue(v) {
+        if (utils.isDate(v)) {
+          v = v.toISOString();
+        } else if (utils.isObject(v)) {
+          v = JSON.stringify(v);
+        }
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    var hashmarkIndex = url.indexOf('#');
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+};
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+module.exports = function enhanceError(error, config, code, request, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+
+  error.request = request;
+  error.response = response;
+  error.isAxiosError = true;
+
+  error.toJSON = function toJSON() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: this.config,
+      code: this.code,
+      status: this.response && this.response.status ? this.response.status : null
+    };
+  };
+  return error;
+};
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var settle = __webpack_require__(37);
+var cookies = __webpack_require__(38);
+var buildURL = __webpack_require__(5);
+var buildFullPath = __webpack_require__(39);
+var parseHeaders = __webpack_require__(42);
+var isURLSameOrigin = __webpack_require__(43);
+var createError = __webpack_require__(8);
+var defaults = __webpack_require__(1);
+var Cancel = __webpack_require__(2);
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+    var responseType = config.responseType;
+    var onCanceled;
+    function done() {
+      if (config.cancelToken) {
+        config.cancelToken.unsubscribe(onCanceled);
+      }
+
+      if (config.signal) {
+        config.signal.removeEventListener('abort', onCanceled);
+      }
+    }
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    var fullPath = buildFullPath(config.baseURL, config.url);
+    request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    function onloadend() {
+      if (!request) {
+        return;
+      }
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !responseType || responseType === 'text' ||  responseType === 'json' ?
+        request.responseText : request.response;
+      var response = {
+        data: responseData,
+        status: request.status,
+        statusText: request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(function _resolve(value) {
+        resolve(value);
+        done();
+      }, function _reject(err) {
+        reject(err);
+        done();
+      }, response);
+
+      // Clean up request
+      request = null;
+    }
+
+    if ('onloadend' in request) {
+      // Use onloadend if available
+      request.onloadend = onloadend;
+    } else {
+      // Listen for ready state to emulate onloadend
+      request.onreadystatechange = function handleLoad() {
+        if (!request || request.readyState !== 4) {
+          return;
+        }
+
+        // The request errored out and we didn't get a response, this will be
+        // handled by onerror instead
+        // With one exception: request that using file: protocol, most browsers
+        // will return status as 0 even though it's a successful request
+        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+          return;
+        }
+        // readystate handler is calling before onerror or ontimeout handlers,
+        // so we should call onloadend on the next 'tick'
+        setTimeout(onloadend);
+      };
+    }
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(createError('Request aborted', config, 'ECONNABORTED', request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      var timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
+      var transitional = config.transitional || defaults.transitional;
+      if (config.timeoutErrorMessage) {
+        timeoutErrorMessage = config.timeoutErrorMessage;
+      }
+      reject(createError(
+        timeoutErrorMessage,
+        config,
+        transitional.clarifyTimeoutError ? 'ETIMEDOUT' : 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
+        cookies.read(config.xsrfCookieName) :
+        undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (!utils.isUndefined(config.withCredentials)) {
+      request.withCredentials = !!config.withCredentials;
+    }
+
+    // Add responseType to request if needed
+    if (responseType && responseType !== 'json') {
+      request.responseType = config.responseType;
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken || config.signal) {
+      // Handle cancellation
+      // eslint-disable-next-line func-names
+      onCanceled = function(cancel) {
+        if (!request) {
+          return;
+        }
+        reject(!cancel || (cancel && cancel.type) ? new Cancel('canceled') : cancel);
+        request.abort();
+        request = null;
+      };
+
+      config.cancelToken && config.cancelToken.subscribe(onCanceled);
+      if (config.signal) {
+        config.signal.aborted ? onCanceled() : config.signal.addEventListener('abort', onCanceled);
+      }
+    }
+
+    if (!requestData) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var enhanceError = __webpack_require__(6);
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+module.exports = function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  var config = {};
+
+  function getMergedValue(target, source) {
+    if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
+      return utils.merge(target, source);
+    } else if (utils.isPlainObject(source)) {
+      return utils.merge({}, source);
+    } else if (utils.isArray(source)) {
+      return source.slice();
+    }
+    return source;
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDeepProperties(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(config1[prop], config2[prop]);
+    } else if (!utils.isUndefined(config1[prop])) {
+      return getMergedValue(undefined, config1[prop]);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function valueFromConfig2(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(undefined, config2[prop]);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function defaultToConfig2(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(undefined, config2[prop]);
+    } else if (!utils.isUndefined(config1[prop])) {
+      return getMergedValue(undefined, config1[prop]);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDirectKeys(prop) {
+    if (prop in config2) {
+      return getMergedValue(config1[prop], config2[prop]);
+    } else if (prop in config1) {
+      return getMergedValue(undefined, config1[prop]);
+    }
+  }
+
+  var mergeMap = {
+    'url': valueFromConfig2,
+    'method': valueFromConfig2,
+    'data': valueFromConfig2,
+    'baseURL': defaultToConfig2,
+    'transformRequest': defaultToConfig2,
+    'transformResponse': defaultToConfig2,
+    'paramsSerializer': defaultToConfig2,
+    'timeout': defaultToConfig2,
+    'timeoutMessage': defaultToConfig2,
+    'withCredentials': defaultToConfig2,
+    'adapter': defaultToConfig2,
+    'responseType': defaultToConfig2,
+    'xsrfCookieName': defaultToConfig2,
+    'xsrfHeaderName': defaultToConfig2,
+    'onUploadProgress': defaultToConfig2,
+    'onDownloadProgress': defaultToConfig2,
+    'decompress': defaultToConfig2,
+    'maxContentLength': defaultToConfig2,
+    'maxBodyLength': defaultToConfig2,
+    'transport': defaultToConfig2,
+    'httpAgent': defaultToConfig2,
+    'httpsAgent': defaultToConfig2,
+    'cancelToken': defaultToConfig2,
+    'socketPath': defaultToConfig2,
+    'responseEncoding': defaultToConfig2,
+    'validateStatus': mergeDirectKeys
+  };
+
+  utils.forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+    var merge = mergeMap[prop] || mergeDeepProperties;
+    var configValue = merge(prop);
+    (utils.isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
+  });
+
+  return config;
+};
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  "version": "0.23.0"
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(13);
+module.exports = __webpack_require__(50);
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(14);
+
+
+Nova.booting(function (Vue, router, store) {
+    _.each(Nova.config.instances, function (instance) {
+        router.addRoutes([{
+            name: 'oryxbot-instance',
+            path: '/instances/:resourceName',
+            component: __webpack_require__(15),
+            params: {
+                resourceName: instance.slug
+            }
+        }]);
+    });
+});
+
+window.Pusher = __webpack_require__(49);
+
+window.Echo = function () {
+    return new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */]({
+        broadcaster: 'pusher',
+        key: Nova.config.pusherAppKey,
+        wsHost: Nova.config.websocketsHost,
+        wsPort: Nova.config.websocketsPort,
+        wssPort: Nova.config.websocketsPort,
+        enabledTransports: ['ws', 'wss'],
+        forceTLS: "development" === 'production',
+        disableStats: true
+    });
+};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function () {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
+}
+
+var Connector = /*#__PURE__*/function () {
+  /**
+   * Create a new class instance.
+   */
+  function Connector(options) {
+    _classCallCheck(this, Connector);
+
+    /**
+     * Default connector options.
+     */
+    this._defaultOptions = {
+      auth: {
+        headers: {}
+      },
+      authEndpoint: '/broadcasting/auth',
+      broadcaster: 'pusher',
+      csrfToken: null,
+      host: null,
+      key: null,
+      namespace: 'App.Events'
+    };
+    this.setOptions(options);
+    this.connect();
+  }
+  /**
+   * Merge the custom options with the defaults.
+   */
+
+
+  _createClass(Connector, [{
+    key: "setOptions",
+    value: function setOptions(options) {
+      this.options = _extends(this._defaultOptions, options);
+
+      if (this.csrfToken()) {
+        this.options.auth.headers['X-CSRF-TOKEN'] = this.csrfToken();
+      }
+
+      return options;
+    }
+    /**
+     * Extract the CSRF token from the page.
+     */
+
+  }, {
+    key: "csrfToken",
+    value: function csrfToken() {
+      var selector;
+
+      if (typeof window !== 'undefined' && window['Laravel'] && window['Laravel'].csrfToken) {
+        return window['Laravel'].csrfToken;
+      } else if (this.options.csrfToken) {
+        return this.options.csrfToken;
+      } else if (typeof document !== 'undefined' && typeof document.querySelector === 'function' && (selector = document.querySelector('meta[name="csrf-token"]'))) {
+        return selector.getAttribute('content');
+      }
+
+      return null;
+    }
+  }]);
+
+  return Connector;
+}();
+
+/**
+ * This class represents a basic channel.
+ */
+var Channel = /*#__PURE__*/function () {
+  function Channel() {
+    _classCallCheck(this, Channel);
+  }
+
+  _createClass(Channel, [{
+    key: "listenForWhisper",
+
+    /**
+     * Listen for a whisper event on the channel instance.
+     */
+    value: function listenForWhisper(event, callback) {
+      return this.listen('.client-' + event, callback);
+    }
+    /**
+     * Listen for an event on the channel instance.
+     */
+
+  }, {
+    key: "notification",
+    value: function notification(callback) {
+      return this.listen('.Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', callback);
+    }
+    /**
+     * Stop listening for a whisper event on the channel instance.
+     */
+
+  }, {
+    key: "stopListeningForWhisper",
+    value: function stopListeningForWhisper(event, callback) {
+      return this.stopListening('.client-' + event, callback);
+    }
+  }]);
+
+  return Channel;
+}();
+
+/**
+ * Event name formatter
+ */
+var EventFormatter = /*#__PURE__*/function () {
+  /**
+   * Create a new class instance.
+   */
+  function EventFormatter(namespace) {
+    _classCallCheck(this, EventFormatter);
+
+    this.setNamespace(namespace);
+  }
+  /**
+   * Format the given event name.
+   */
+
+
+  _createClass(EventFormatter, [{
+    key: "format",
+    value: function format(event) {
+      if (event.charAt(0) === '.' || event.charAt(0) === '\\') {
+        return event.substr(1);
+      } else if (this.namespace) {
+        event = this.namespace + '.' + event;
+      }
+
+      return event.replace(/\./g, '\\');
+    }
+    /**
+     * Set the event namespace.
+     */
+
+  }, {
+    key: "setNamespace",
+    value: function setNamespace(value) {
+      this.namespace = value;
+    }
+  }]);
+
+  return EventFormatter;
+}();
+
+/**
+ * This class represents a Pusher channel.
+ */
+
+var PusherChannel = /*#__PURE__*/function (_Channel) {
+  _inherits(PusherChannel, _Channel);
+
+  var _super = _createSuper(PusherChannel);
+
+  /**
+   * Create a new class instance.
+   */
+  function PusherChannel(pusher, name, options) {
+    var _this;
+
+    _classCallCheck(this, PusherChannel);
+
+    _this = _super.call(this);
+    _this.name = name;
+    _this.pusher = pusher;
+    _this.options = options;
+    _this.eventFormatter = new EventFormatter(_this.options.namespace);
+
+    _this.subscribe();
+
+    return _this;
+  }
+  /**
+   * Subscribe to a Pusher channel.
+   */
+
+
+  _createClass(PusherChannel, [{
+    key: "subscribe",
+    value: function subscribe() {
+      this.subscription = this.pusher.subscribe(this.name);
+    }
+    /**
+     * Unsubscribe from a Pusher channel.
+     */
+
+  }, {
+    key: "unsubscribe",
+    value: function unsubscribe() {
+      this.pusher.unsubscribe(this.name);
+    }
+    /**
+     * Listen for an event on the channel instance.
+     */
+
+  }, {
+    key: "listen",
+    value: function listen(event, callback) {
+      this.on(this.eventFormatter.format(event), callback);
+      return this;
+    }
+    /**
+     * Listen for all events on the channel instance.
+     */
+
+  }, {
+    key: "listenToAll",
+    value: function listenToAll(callback) {
+      var _this2 = this;
+
+      this.subscription.bind_global(function (event, data) {
+        if (event.startsWith('pusher:')) {
+          return;
+        }
+
+        var namespace = _this2.options.namespace.replace(/\./g, '\\');
+
+        var formattedEvent = event.startsWith(namespace) ? event.substring(namespace.length + 1) : '.' + event;
+        callback(formattedEvent, data);
+      });
+      return this;
+    }
+    /**
+     * Stop listening for an event on the channel instance.
+     */
+
+  }, {
+    key: "stopListening",
+    value: function stopListening(event, callback) {
+      if (callback) {
+        this.subscription.unbind(this.eventFormatter.format(event), callback);
+      } else {
+        this.subscription.unbind(this.eventFormatter.format(event));
+      }
+
+      return this;
+    }
+    /**
+     * Stop listening for all events on the channel instance.
+     */
+
+  }, {
+    key: "stopListeningToAll",
+    value: function stopListeningToAll(callback) {
+      if (callback) {
+        this.subscription.unbind_global(callback);
+      } else {
+        this.subscription.unbind_global();
+      }
+
+      return this;
+    }
+    /**
+     * Register a callback to be called anytime a subscription succeeds.
+     */
+
+  }, {
+    key: "subscribed",
+    value: function subscribed(callback) {
+      this.on('pusher:subscription_succeeded', function () {
+        callback();
+      });
+      return this;
+    }
+    /**
+     * Register a callback to be called anytime a subscription error occurs.
+     */
+
+  }, {
+    key: "error",
+    value: function error(callback) {
+      this.on('pusher:subscription_error', function (status) {
+        callback(status);
+      });
+      return this;
+    }
+    /**
+     * Bind a channel to an event.
+     */
+
+  }, {
+    key: "on",
+    value: function on(event, callback) {
+      this.subscription.bind(event, callback);
+      return this;
+    }
+  }]);
+
+  return PusherChannel;
+}(Channel);
+
+/**
+ * This class represents a Pusher private channel.
+ */
+
+var PusherPrivateChannel = /*#__PURE__*/function (_PusherChannel) {
+  _inherits(PusherPrivateChannel, _PusherChannel);
+
+  var _super = _createSuper(PusherPrivateChannel);
+
+  function PusherPrivateChannel() {
+    _classCallCheck(this, PusherPrivateChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PusherPrivateChannel, [{
+    key: "whisper",
+
+    /**
+     * Trigger client event on the channel.
+     */
+    value: function whisper(eventName, data) {
+      this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
+      return this;
+    }
+  }]);
+
+  return PusherPrivateChannel;
+}(PusherChannel);
+
+/**
+ * This class represents a Pusher private channel.
+ */
+
+var PusherEncryptedPrivateChannel = /*#__PURE__*/function (_PusherChannel) {
+  _inherits(PusherEncryptedPrivateChannel, _PusherChannel);
+
+  var _super = _createSuper(PusherEncryptedPrivateChannel);
+
+  function PusherEncryptedPrivateChannel() {
+    _classCallCheck(this, PusherEncryptedPrivateChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PusherEncryptedPrivateChannel, [{
+    key: "whisper",
+
+    /**
+     * Trigger client event on the channel.
+     */
+    value: function whisper(eventName, data) {
+      this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
+      return this;
+    }
+  }]);
+
+  return PusherEncryptedPrivateChannel;
+}(PusherChannel);
+
+/**
+ * This class represents a Pusher presence channel.
+ */
+
+var PusherPresenceChannel = /*#__PURE__*/function (_PusherChannel) {
+  _inherits(PusherPresenceChannel, _PusherChannel);
+
+  var _super = _createSuper(PusherPresenceChannel);
+
+  function PusherPresenceChannel() {
+    _classCallCheck(this, PusherPresenceChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PusherPresenceChannel, [{
+    key: "here",
+
+    /**
+     * Register a callback to be called anytime the member list changes.
+     */
+    value: function here(callback) {
+      this.on('pusher:subscription_succeeded', function (data) {
+        callback(Object.keys(data.members).map(function (k) {
+          return data.members[k];
+        }));
+      });
+      return this;
+    }
+    /**
+     * Listen for someone joining the channel.
+     */
+
+  }, {
+    key: "joining",
+    value: function joining(callback) {
+      this.on('pusher:member_added', function (member) {
+        callback(member.info);
+      });
+      return this;
+    }
+    /**
+     * Listen for someone leaving the channel.
+     */
+
+  }, {
+    key: "leaving",
+    value: function leaving(callback) {
+      this.on('pusher:member_removed', function (member) {
+        callback(member.info);
+      });
+      return this;
+    }
+    /**
+     * Trigger client event on the channel.
+     */
+
+  }, {
+    key: "whisper",
+    value: function whisper(eventName, data) {
+      this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
+      return this;
+    }
+  }]);
+
+  return PusherPresenceChannel;
+}(PusherChannel);
+
+/**
+ * This class represents a Socket.io channel.
+ */
+
+var SocketIoChannel = /*#__PURE__*/function (_Channel) {
+  _inherits(SocketIoChannel, _Channel);
+
+  var _super = _createSuper(SocketIoChannel);
+
+  /**
+   * Create a new class instance.
+   */
+  function SocketIoChannel(socket, name, options) {
+    var _this;
+
+    _classCallCheck(this, SocketIoChannel);
+
+    _this = _super.call(this);
+    /**
+     * The event callbacks applied to the socket.
+     */
+
+    _this.events = {};
+    /**
+     * User supplied callbacks for events on this channel.
+     */
+
+    _this.listeners = {};
+    _this.name = name;
+    _this.socket = socket;
+    _this.options = options;
+    _this.eventFormatter = new EventFormatter(_this.options.namespace);
+
+    _this.subscribe();
+
+    return _this;
+  }
+  /**
+   * Subscribe to a Socket.io channel.
+   */
+
+
+  _createClass(SocketIoChannel, [{
+    key: "subscribe",
+    value: function subscribe() {
+      this.socket.emit('subscribe', {
+        channel: this.name,
+        auth: this.options.auth || {}
+      });
+    }
+    /**
+     * Unsubscribe from channel and ubind event callbacks.
+     */
+
+  }, {
+    key: "unsubscribe",
+    value: function unsubscribe() {
+      this.unbind();
+      this.socket.emit('unsubscribe', {
+        channel: this.name,
+        auth: this.options.auth || {}
+      });
+    }
+    /**
+     * Listen for an event on the channel instance.
+     */
+
+  }, {
+    key: "listen",
+    value: function listen(event, callback) {
+      this.on(this.eventFormatter.format(event), callback);
+      return this;
+    }
+    /**
+     * Stop listening for an event on the channel instance.
+     */
+
+  }, {
+    key: "stopListening",
+    value: function stopListening(event, callback) {
+      this.unbindEvent(this.eventFormatter.format(event), callback);
+      return this;
+    }
+    /**
+     * Register a callback to be called anytime a subscription succeeds.
+     */
+
+  }, {
+    key: "subscribed",
+    value: function subscribed(callback) {
+      this.on('connect', function (socket) {
+        callback(socket);
+      });
+      return this;
+    }
+    /**
+     * Register a callback to be called anytime an error occurs.
+     */
+
+  }, {
+    key: "error",
+    value: function error(callback) {
+      return this;
+    }
+    /**
+     * Bind the channel's socket to an event and store the callback.
+     */
+
+  }, {
+    key: "on",
+    value: function on(event, callback) {
+      var _this2 = this;
+
+      this.listeners[event] = this.listeners[event] || [];
+
+      if (!this.events[event]) {
+        this.events[event] = function (channel, data) {
+          if (_this2.name === channel && _this2.listeners[event]) {
+            _this2.listeners[event].forEach(function (cb) {
+              return cb(data);
+            });
+          }
+        };
+
+        this.socket.on(event, this.events[event]);
+      }
+
+      this.listeners[event].push(callback);
+      return this;
+    }
+    /**
+     * Unbind the channel's socket from all stored event callbacks.
+     */
+
+  }, {
+    key: "unbind",
+    value: function unbind() {
+      var _this3 = this;
+
+      Object.keys(this.events).forEach(function (event) {
+        _this3.unbindEvent(event);
+      });
+    }
+    /**
+     * Unbind the listeners for the given event.
+     */
+
+  }, {
+    key: "unbindEvent",
+    value: function unbindEvent(event, callback) {
+      this.listeners[event] = this.listeners[event] || [];
+
+      if (callback) {
+        this.listeners[event] = this.listeners[event].filter(function (cb) {
+          return cb !== callback;
+        });
+      }
+
+      if (!callback || this.listeners[event].length === 0) {
+        if (this.events[event]) {
+          this.socket.removeListener(event, this.events[event]);
+          delete this.events[event];
+        }
+
+        delete this.listeners[event];
+      }
+    }
+  }]);
+
+  return SocketIoChannel;
+}(Channel);
+
+/**
+ * This class represents a Socket.io private channel.
+ */
+
+var SocketIoPrivateChannel = /*#__PURE__*/function (_SocketIoChannel) {
+  _inherits(SocketIoPrivateChannel, _SocketIoChannel);
+
+  var _super = _createSuper(SocketIoPrivateChannel);
+
+  function SocketIoPrivateChannel() {
+    _classCallCheck(this, SocketIoPrivateChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(SocketIoPrivateChannel, [{
+    key: "whisper",
+
+    /**
+     * Trigger client event on the channel.
+     */
+    value: function whisper(eventName, data) {
+      this.socket.emit('client event', {
+        channel: this.name,
+        event: "client-".concat(eventName),
+        data: data
+      });
+      return this;
+    }
+  }]);
+
+  return SocketIoPrivateChannel;
+}(SocketIoChannel);
+
+/**
+ * This class represents a Socket.io presence channel.
+ */
+
+var SocketIoPresenceChannel = /*#__PURE__*/function (_SocketIoPrivateChann) {
+  _inherits(SocketIoPresenceChannel, _SocketIoPrivateChann);
+
+  var _super = _createSuper(SocketIoPresenceChannel);
+
+  function SocketIoPresenceChannel() {
+    _classCallCheck(this, SocketIoPresenceChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(SocketIoPresenceChannel, [{
+    key: "here",
+
+    /**
+     * Register a callback to be called anytime the member list changes.
+     */
+    value: function here(callback) {
+      this.on('presence:subscribed', function (members) {
+        callback(members.map(function (m) {
+          return m.user_info;
+        }));
+      });
+      return this;
+    }
+    /**
+     * Listen for someone joining the channel.
+     */
+
+  }, {
+    key: "joining",
+    value: function joining(callback) {
+      this.on('presence:joining', function (member) {
+        return callback(member.user_info);
+      });
+      return this;
+    }
+    /**
+     * Listen for someone leaving the channel.
+     */
+
+  }, {
+    key: "leaving",
+    value: function leaving(callback) {
+      this.on('presence:leaving', function (member) {
+        return callback(member.user_info);
+      });
+      return this;
+    }
+  }]);
+
+  return SocketIoPresenceChannel;
+}(SocketIoPrivateChannel);
+
+/**
+ * This class represents a null channel.
+ */
+
+var NullChannel = /*#__PURE__*/function (_Channel) {
+  _inherits(NullChannel, _Channel);
+
+  var _super = _createSuper(NullChannel);
+
+  function NullChannel() {
+    _classCallCheck(this, NullChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(NullChannel, [{
+    key: "subscribe",
+
+    /**
+     * Subscribe to a channel.
+     */
+    value: function subscribe() {} //
+
+    /**
+     * Unsubscribe from a channel.
+     */
+
+  }, {
+    key: "unsubscribe",
+    value: function unsubscribe() {} //
+
+    /**
+     * Listen for an event on the channel instance.
+     */
+
+  }, {
+    key: "listen",
+    value: function listen(event, callback) {
+      return this;
+    }
+    /**
+     * Stop listening for an event on the channel instance.
+     */
+
+  }, {
+    key: "stopListening",
+    value: function stopListening(event, callback) {
+      return this;
+    }
+    /**
+     * Register a callback to be called anytime a subscription succeeds.
+     */
+
+  }, {
+    key: "subscribed",
+    value: function subscribed(callback) {
+      return this;
+    }
+    /**
+     * Register a callback to be called anytime an error occurs.
+     */
+
+  }, {
+    key: "error",
+    value: function error(callback) {
+      return this;
+    }
+    /**
+     * Bind a channel to an event.
+     */
+
+  }, {
+    key: "on",
+    value: function on(event, callback) {
+      return this;
+    }
+  }]);
+
+  return NullChannel;
+}(Channel);
+
+/**
+ * This class represents a null private channel.
+ */
+
+var NullPrivateChannel = /*#__PURE__*/function (_NullChannel) {
+  _inherits(NullPrivateChannel, _NullChannel);
+
+  var _super = _createSuper(NullPrivateChannel);
+
+  function NullPrivateChannel() {
+    _classCallCheck(this, NullPrivateChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(NullPrivateChannel, [{
+    key: "whisper",
+
+    /**
+     * Trigger client event on the channel.
+     */
+    value: function whisper(eventName, data) {
+      return this;
+    }
+  }]);
+
+  return NullPrivateChannel;
+}(NullChannel);
+
+/**
+ * This class represents a null presence channel.
+ */
+
+var NullPresenceChannel = /*#__PURE__*/function (_NullChannel) {
+  _inherits(NullPresenceChannel, _NullChannel);
+
+  var _super = _createSuper(NullPresenceChannel);
+
+  function NullPresenceChannel() {
+    _classCallCheck(this, NullPresenceChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(NullPresenceChannel, [{
+    key: "here",
+
+    /**
+     * Register a callback to be called anytime the member list changes.
+     */
+    value: function here(callback) {
+      return this;
+    }
+    /**
+     * Listen for someone joining the channel.
+     */
+
+  }, {
+    key: "joining",
+    value: function joining(callback) {
+      return this;
+    }
+    /**
+     * Listen for someone leaving the channel.
+     */
+
+  }, {
+    key: "leaving",
+    value: function leaving(callback) {
+      return this;
+    }
+    /**
+     * Trigger client event on the channel.
+     */
+
+  }, {
+    key: "whisper",
+    value: function whisper(eventName, data) {
+      return this;
+    }
+  }]);
+
+  return NullPresenceChannel;
+}(NullChannel);
+
+/**
+ * This class creates a connector to Pusher.
+ */
+
+var PusherConnector = /*#__PURE__*/function (_Connector) {
+  _inherits(PusherConnector, _Connector);
+
+  var _super = _createSuper(PusherConnector);
+
+  function PusherConnector() {
+    var _this;
+
+    _classCallCheck(this, PusherConnector);
+
+    _this = _super.apply(this, arguments);
+    /**
+     * All of the subscribed channel names.
+     */
+
+    _this.channels = {};
+    return _this;
+  }
+  /**
+   * Create a fresh Pusher connection.
+   */
+
+
+  _createClass(PusherConnector, [{
+    key: "connect",
+    value: function connect() {
+      if (typeof this.options.client !== 'undefined') {
+        this.pusher = this.options.client;
+      } else {
+        this.pusher = new Pusher(this.options.key, this.options);
+      }
+    }
+    /**
+     * Listen for an event on a channel instance.
+     */
+
+  }, {
+    key: "listen",
+    value: function listen(name, event, callback) {
+      return this.channel(name).listen(event, callback);
+    }
+    /**
+     * Get a channel instance by name.
+     */
+
+  }, {
+    key: "channel",
+    value: function channel(name) {
+      if (!this.channels[name]) {
+        this.channels[name] = new PusherChannel(this.pusher, name, this.options);
+      }
+
+      return this.channels[name];
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+
+  }, {
+    key: "privateChannel",
+    value: function privateChannel(name) {
+      if (!this.channels['private-' + name]) {
+        this.channels['private-' + name] = new PusherPrivateChannel(this.pusher, 'private-' + name, this.options);
+      }
+
+      return this.channels['private-' + name];
+    }
+    /**
+     * Get a private encrypted channel instance by name.
+     */
+
+  }, {
+    key: "encryptedPrivateChannel",
+    value: function encryptedPrivateChannel(name) {
+      if (!this.channels['private-encrypted-' + name]) {
+        this.channels['private-encrypted-' + name] = new PusherEncryptedPrivateChannel(this.pusher, 'private-encrypted-' + name, this.options);
+      }
+
+      return this.channels['private-encrypted-' + name];
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+
+  }, {
+    key: "presenceChannel",
+    value: function presenceChannel(name) {
+      if (!this.channels['presence-' + name]) {
+        this.channels['presence-' + name] = new PusherPresenceChannel(this.pusher, 'presence-' + name, this.options);
+      }
+
+      return this.channels['presence-' + name];
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+
+  }, {
+    key: "leave",
+    value: function leave(name) {
+      var _this2 = this;
+
+      var channels = [name, 'private-' + name, 'presence-' + name];
+      channels.forEach(function (name, index) {
+        _this2.leaveChannel(name);
+      });
+    }
+    /**
+     * Leave the given channel.
+     */
+
+  }, {
+    key: "leaveChannel",
+    value: function leaveChannel(name) {
+      if (this.channels[name]) {
+        this.channels[name].unsubscribe();
+        delete this.channels[name];
+      }
+    }
+    /**
+     * Get the socket ID for the connection.
+     */
+
+  }, {
+    key: "socketId",
+    value: function socketId() {
+      return this.pusher.connection.socket_id;
+    }
+    /**
+     * Disconnect Pusher connection.
+     */
+
+  }, {
+    key: "disconnect",
+    value: function disconnect() {
+      this.pusher.disconnect();
+    }
+  }]);
+
+  return PusherConnector;
+}(Connector);
+
+/**
+ * This class creates a connnector to a Socket.io server.
+ */
+
+var SocketIoConnector = /*#__PURE__*/function (_Connector) {
+  _inherits(SocketIoConnector, _Connector);
+
+  var _super = _createSuper(SocketIoConnector);
+
+  function SocketIoConnector() {
+    var _this;
+
+    _classCallCheck(this, SocketIoConnector);
+
+    _this = _super.apply(this, arguments);
+    /**
+     * All of the subscribed channel names.
+     */
+
+    _this.channels = {};
+    return _this;
+  }
+  /**
+   * Create a fresh Socket.io connection.
+   */
+
+
+  _createClass(SocketIoConnector, [{
+    key: "connect",
+    value: function connect() {
+      var _this2 = this;
+
+      var io = this.getSocketIO();
+      this.socket = io(this.options.host, this.options);
+      this.socket.on('reconnect', function () {
+        Object.values(_this2.channels).forEach(function (channel) {
+          channel.subscribe();
+        });
+      });
+      return this.socket;
+    }
+    /**
+     * Get socket.io module from global scope or options.
+     */
+
+  }, {
+    key: "getSocketIO",
+    value: function getSocketIO() {
+      if (typeof this.options.client !== 'undefined') {
+        return this.options.client;
+      }
+
+      if (typeof io !== 'undefined') {
+        return io;
+      }
+
+      throw new Error('Socket.io client not found. Should be globally available or passed via options.client');
+    }
+    /**
+     * Listen for an event on a channel instance.
+     */
+
+  }, {
+    key: "listen",
+    value: function listen(name, event, callback) {
+      return this.channel(name).listen(event, callback);
+    }
+    /**
+     * Get a channel instance by name.
+     */
+
+  }, {
+    key: "channel",
+    value: function channel(name) {
+      if (!this.channels[name]) {
+        this.channels[name] = new SocketIoChannel(this.socket, name, this.options);
+      }
+
+      return this.channels[name];
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+
+  }, {
+    key: "privateChannel",
+    value: function privateChannel(name) {
+      if (!this.channels['private-' + name]) {
+        this.channels['private-' + name] = new SocketIoPrivateChannel(this.socket, 'private-' + name, this.options);
+      }
+
+      return this.channels['private-' + name];
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+
+  }, {
+    key: "presenceChannel",
+    value: function presenceChannel(name) {
+      if (!this.channels['presence-' + name]) {
+        this.channels['presence-' + name] = new SocketIoPresenceChannel(this.socket, 'presence-' + name, this.options);
+      }
+
+      return this.channels['presence-' + name];
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+
+  }, {
+    key: "leave",
+    value: function leave(name) {
+      var _this3 = this;
+
+      var channels = [name, 'private-' + name, 'presence-' + name];
+      channels.forEach(function (name) {
+        _this3.leaveChannel(name);
+      });
+    }
+    /**
+     * Leave the given channel.
+     */
+
+  }, {
+    key: "leaveChannel",
+    value: function leaveChannel(name) {
+      if (this.channels[name]) {
+        this.channels[name].unsubscribe();
+        delete this.channels[name];
+      }
+    }
+    /**
+     * Get the socket ID for the connection.
+     */
+
+  }, {
+    key: "socketId",
+    value: function socketId() {
+      return this.socket.id;
+    }
+    /**
+     * Disconnect Socketio connection.
+     */
+
+  }, {
+    key: "disconnect",
+    value: function disconnect() {
+      this.socket.disconnect();
+    }
+  }]);
+
+  return SocketIoConnector;
+}(Connector);
+
+/**
+ * This class creates a null connector.
+ */
+
+var NullConnector = /*#__PURE__*/function (_Connector) {
+  _inherits(NullConnector, _Connector);
+
+  var _super = _createSuper(NullConnector);
+
+  function NullConnector() {
+    var _this;
+
+    _classCallCheck(this, NullConnector);
+
+    _this = _super.apply(this, arguments);
+    /**
+     * All of the subscribed channel names.
+     */
+
+    _this.channels = {};
+    return _this;
+  }
+  /**
+   * Create a fresh connection.
+   */
+
+
+  _createClass(NullConnector, [{
+    key: "connect",
+    value: function connect() {} //
+
+    /**
+     * Listen for an event on a channel instance.
+     */
+
+  }, {
+    key: "listen",
+    value: function listen(name, event, callback) {
+      return new NullChannel();
+    }
+    /**
+     * Get a channel instance by name.
+     */
+
+  }, {
+    key: "channel",
+    value: function channel(name) {
+      return new NullChannel();
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+
+  }, {
+    key: "privateChannel",
+    value: function privateChannel(name) {
+      return new NullPrivateChannel();
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+
+  }, {
+    key: "presenceChannel",
+    value: function presenceChannel(name) {
+      return new NullPresenceChannel();
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+
+  }, {
+    key: "leave",
+    value: function leave(name) {} //
+
+    /**
+     * Leave the given channel.
+     */
+
+  }, {
+    key: "leaveChannel",
+    value: function leaveChannel(name) {} //
+
+    /**
+     * Get the socket ID for the connection.
+     */
+
+  }, {
+    key: "socketId",
+    value: function socketId() {
+      return 'fake-socket-id';
+    }
+    /**
+     * Disconnect the connection.
+     */
+
+  }, {
+    key: "disconnect",
+    value: function disconnect() {//
+    }
+  }]);
+
+  return NullConnector;
+}(Connector);
+
+/**
+ * This class is the primary API for interacting with broadcasting.
+ */
+
+var Echo = /*#__PURE__*/function () {
+  /**
+   * Create a new class instance.
+   */
+  function Echo(options) {
+    _classCallCheck(this, Echo);
+
+    this.options = options;
+    this.connect();
+
+    if (!this.options.withoutInterceptors) {
+      this.registerInterceptors();
+    }
+  }
+  /**
+   * Get a channel instance by name.
+   */
+
+
+  _createClass(Echo, [{
+    key: "channel",
+    value: function channel(_channel) {
+      return this.connector.channel(_channel);
+    }
+    /**
+     * Create a new connection.
+     */
+
+  }, {
+    key: "connect",
+    value: function connect() {
+      if (this.options.broadcaster == 'pusher') {
+        this.connector = new PusherConnector(this.options);
+      } else if (this.options.broadcaster == 'socket.io') {
+        this.connector = new SocketIoConnector(this.options);
+      } else if (this.options.broadcaster == 'null') {
+        this.connector = new NullConnector(this.options);
+      } else if (typeof this.options.broadcaster == 'function') {
+        this.connector = new this.options.broadcaster(this.options);
+      }
+    }
+    /**
+     * Disconnect from the Echo server.
+     */
+
+  }, {
+    key: "disconnect",
+    value: function disconnect() {
+      this.connector.disconnect();
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+
+  }, {
+    key: "join",
+    value: function join(channel) {
+      return this.connector.presenceChannel(channel);
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+
+  }, {
+    key: "leave",
+    value: function leave(channel) {
+      this.connector.leave(channel);
+    }
+    /**
+     * Leave the given channel.
+     */
+
+  }, {
+    key: "leaveChannel",
+    value: function leaveChannel(channel) {
+      this.connector.leaveChannel(channel);
+    }
+    /**
+     * Listen for an event on a channel instance.
+     */
+
+  }, {
+    key: "listen",
+    value: function listen(channel, event, callback) {
+      return this.connector.listen(channel, event, callback);
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+
+  }, {
+    key: "private",
+    value: function _private(channel) {
+      return this.connector.privateChannel(channel);
+    }
+    /**
+     * Get a private encrypted channel instance by name.
+     */
+
+  }, {
+    key: "encryptedPrivate",
+    value: function encryptedPrivate(channel) {
+      return this.connector.encryptedPrivateChannel(channel);
+    }
+    /**
+     * Get the Socket ID for the connection.
+     */
+
+  }, {
+    key: "socketId",
+    value: function socketId() {
+      return this.connector.socketId();
+    }
+    /**
+     * Register 3rd party request interceptiors. These are used to automatically
+     * send a connections socket id to a Laravel app with a X-Socket-Id header.
+     */
+
+  }, {
+    key: "registerInterceptors",
+    value: function registerInterceptors() {
+      if (typeof Vue === 'function' && Vue.http) {
+        this.registerVueRequestInterceptor();
+      }
+
+      if (typeof axios === 'function') {
+        this.registerAxiosRequestInterceptor();
+      }
+
+      if (typeof jQuery === 'function') {
+        this.registerjQueryAjaxSetup();
+      }
+    }
+    /**
+     * Register a Vue HTTP interceptor to add the X-Socket-ID header.
+     */
+
+  }, {
+    key: "registerVueRequestInterceptor",
+    value: function registerVueRequestInterceptor() {
+      var _this = this;
+
+      Vue.http.interceptors.push(function (request, next) {
+        if (_this.socketId()) {
+          request.headers.set('X-Socket-ID', _this.socketId());
+        }
+
+        next();
+      });
+    }
+    /**
+     * Register an Axios HTTP interceptor to add the X-Socket-ID header.
+     */
+
+  }, {
+    key: "registerAxiosRequestInterceptor",
+    value: function registerAxiosRequestInterceptor() {
+      var _this2 = this;
+
+      axios.interceptors.request.use(function (config) {
+        if (_this2.socketId()) {
+          config.headers['X-Socket-Id'] = _this2.socketId();
+        }
+
+        return config;
+      });
+    }
+    /**
+     * Register jQuery AjaxPrefilter to add the X-Socket-ID header.
+     */
+
+  }, {
+    key: "registerjQueryAjaxSetup",
+    value: function registerjQueryAjaxSetup() {
+      var _this3 = this;
+
+      if (typeof jQuery.ajax != 'undefined') {
+        jQuery.ajaxPrefilter(function (options, originalOptions, xhr) {
+          if (_this3.socketId()) {
+            xhr.setRequestHeader('X-Socket-Id', _this3.socketId());
+          }
+        });
+      }
+    }
+  }]);
+
+  return Echo;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Echo);
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(16)
+}
+var normalizeComponent = __webpack_require__(21)
+/* script */
+var __vue_script__ = __webpack_require__(22)
+/* template */
+var __vue_template__ = __webpack_require__(48)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Tool.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68ff5483", Component.options)
+  } else {
+    hotAPI.reload("data-v-68ff5483", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(17);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(19)("290c3e45", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(18)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(20)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_form_backend_validation__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_form_backend_validation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_form_backend_validation__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+function initBrodcasting() {
+    var _this = this;
+
+    if (typeof window.Echo === 'function') window.Echo = Echo();
+
+    var channel = Echo.private('App.Models.User.' + Nova.config.userId);
+
+    channel.listen('VpnConnectionChanged', function (e) {
+        if (e.established) {
+            Nova.success('VPN Connection has been successfully established!');
+        } else {
+            Nova.error('VPN Connection has been lost!');
+        }
+    });
+
+    channel.listen('BotRunningChanged', function (e) {
+        _this.running = e.running;
+        _this.recording = e.recordingRunning;
+        _this.requestingRunningChange = false;
+    });
+
+    channel.listen('RemoteDesktopConnectionChanged', function (e) {
+        _this.remote_connected = e.resolution;
+        _this.remote_resolution = e.resolution;
+    });
+
+    channel.listen('BotStepChanged', function (e) {
+        _this.step = e.step;
+    });
+
+    channel.listen('BotLocationChanged', function (e) {
+        _this.location = e.location;
+        _this.speed = e.speed;
+    });
+
+    channel.listen('Status', function (e) {
+        _this.requestingStatus = false;
+        _this.requestingRunningChange = false;
+
+        _this.location = e.characterLocation;
+        _this.speed = e.characterSpeed;
+        _this.running = e.botRunning;
+        _this.step = e.botStep;
+        _this.remote_connected = e.remoteDesktopConnected;
+        _this.remote_resolution = e.remoteDesktopResolution;
+        _this.vpn_connected = e.vpnEstablished;
+        //this.session= e.param;
+        //this.progress= e.param;
+        //this.status= e.param;
+        //this.remote_bandwidth= e.param;
+        _this.serverOnline = true;
+    });
+
+    channel.subscribed(function () {
+        var requestServerOnlineStatusUntilReceivedResponse = function () {
+            this.RequestStatus();
+            this.refreshTimeout = setTimeout(function () {
+                this.refreshTimeout = null;
+                if (this.requestingStatus) {
+                    if (!document.hidden) Nova.error('Failed to connect to bot. Retrying...');
+                    requestServerOnlineStatusUntilReceivedResponse();
+                }
+            }.bind(this), 5000);
+        }.bind(_this);
+
+        requestServerOnlineStatusUntilReceivedResponse();
+    });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    metaInfo: function metaInfo() {
+        return {
+            title: 'Instances'
+        };
+    },
+    mounted: function mounted() {
+        var _this2 = this;
+
+        initBrodcasting.bind(this)();
+
+        Nova.$on('field-city-change', function (value) {
+            return _this2.fieldCityValue = value;
+        });
+        Nova.$on('field-hearts-change', function (value) {
+            return _this2.fieldHeartsValue = value;
+        });
+        Nova.$on('field-destination-change', function (value) {
+            return _this2.fieldDestinationValue = value;
+        });
+        Nova.$on('field-name-change', function (value) {
+            return _this2.fieldNameValue = value;
+        });
+        Nova.$on('field-region-change', function (value) {
+            return _this2.fieldRegionValue = value;
+        });
+        Nova.$on('field-progressed-change', function (value) {
+            return _this2.fieldProgressedValue = value;
+        });
+    },
+    destroyed: function destroyed() {
+        Echo.leave('App.Models.User.' + Nova.config.userId);
+        if (this.refreshTimeout !== null) clearTimeout(this.refreshTimeout);
+    },
+
+    data: function data() {
+        return {
+            step: '-',
+            location: '-',
+            session: '-',
+            speed: '0',
+            progress: '0% complete',
+            vpn_connected: false,
+            remote_connected: false,
+            remote_resolution: '-',
+            remote_bandwidth: '-',
+            running: false,
+            recording: false,
+            serverOnline: false,
+            requestingRunningChange: false,
+            requestingStatus: false,
+            requestingServerReboot: false,
+            refreshTimeout: null,
+            showRebootServerConfirmModal: false,
+            showStartModal: false,
+            showResumeModal: false,
+            showStartRecordingModal: false,
+            cityFieldErrors: new __WEBPACK_IMPORTED_MODULE_0_form_backend_validation__["Errors"](),
+            fieldCityValue: 'fort-sterling',
+            fieldDestinationValue: 'aspenwood',
+            fieldHeartsValue: 3,
+            fieldNameValue: '',
+            fieldRegionValue: 'aspenwood',
+            fieldProgressedValue: false,
+            startBotAction: { name: 'Start Oryxbot', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [{ component: 'select-field', field: 'city', attribute: 'field-city', value: 'fort-sterling', options: [{ label: 'Thetford (broken)', value: 'thetford' }, { label: 'Fort Sterling', value: 'fort-sterling' }, { label: 'Lymhurst (broken)', value: 'lymhurst' }, { label: 'Bridgewatch (broken)', value: 'bridgewatch' }, { label: 'Martlock (broken)', value: 'martlock' }, { label: 'Caerleon (broken)', value: 'caerleon' }], name: 'Royal City', helpText: 'Please select the city you will begin running from' }, { component: 'select-field', field: 'hearts', attribute: 'field-hearts', value: 3, options: [{ label: '3', value: 3 }, { label: '7', value: 7 }, { label: '15', value: 15 }], name: 'Faction Hearts', helpText: 'Please select how many faction hearts you would like to transport' }], class: 'btn-primary' },
+            resumeBotAction: { name: 'Resume Oryxbot Run', confirmButtonText: 'Confirm', cancelButtonText: 'Cancel', fields: [{ component: 'select-field', field: 'city', attribute: 'field-city', value: 'fort-sterling', options: [{ label: 'Thetford (broken)', value: 'thetford' }, { label: 'Fort Sterling', value: 'fort-sterling' }, { label: 'Lymhurst (broken)', value: 'lymhurst' }, { label: 'Bridgewatch (broken)', value: 'bridgewatch' }, { label: 'Martlock (broken)', value: 'martlock' }, { label: 'Caerleon (broken)', value: 'caerleon' }], name: 'Royal City', helpText: 'Please select the city you will begin running from' }, { component: 'select-field', field: 'region', attribute: 'field-region', value: 'aspenwood', options: [{ label: 'Mawar Gorge', value: 'mawar-gorge' }, { label: 'Pen Kerrig', value: 'pen-kerrig' }, { label: 'Cedarcopse', value: 'cedarcopse' }, { label: 'Russerdell', value: 'russerdell' }, { label: 'Oakcopse', value: 'oakcopse' }, { label: 'Aspenwood', value: 'aspenwood' }], name: 'Current Region', helpText: 'Please select the region your character is currently located in' }, { component: 'boolean-field', field: 'progressed', attribute: 'field-progressed', value: false, name: 'Progressed', helpText: 'Check this field if you have already arrived at the faction emissary and progressed the quest' }, { component: 'select-field', field: 'hearts', attribute: 'field-hearts', value: 3, options: [{ label: '3', value: 3 }, { label: '7', value: 7 }, { label: '15', value: 15 }], name: 'Faction Hearts', helpText: 'Please select how many faction hearts you would like to transport on your next run' }], class: 'btn-primary' },
+            startRecordingBotAction: { name: 'Custom Route', confirmButtonText: 'Start Recording', cancelButtonText: 'Cancel', fields: [{ component: 'text-field', field: 'name', attribute: 'field-name', value: '', name: 'Name', helpText: 'How you would like to name your route' }, { component: 'select-field', field: 'city', attribute: 'field-city', value: 'fort-sterling', options: [{ label: 'Thetford (broken)', value: 'thetford' }, { label: 'Fort Sterling', value: 'fort-sterling' }, { label: 'Lymhurst (broken)', value: 'lymhurst' }, { label: 'Bridgewatch (broken)', value: 'bridgewatch' }, { label: 'Martlock (broken)', value: 'martlock' }, { label: 'Caerleon (broken)', value: 'caerleon' }], name: 'Royal City', helpText: 'Please select the city you will begin running from' }, { component: 'select-field', field: 'destination', attribute: 'field-destination', value: 'aspenwood', options: [{ label: 'Aspenwood', value: 'aspenwood' }], name: 'Destination', helpText: 'Please select the destination of your trade mission' }], class: 'btn-primary' }
+        };
+    },
+    methods: {
+        OnStartBot: function OnStartBot() {
+            this.showStartModal = false;
+            this.StartBot();
+        },
+        OnResumeBot: function OnResumeBot() {
+            this.showResumeModal = false;
+            this.ResumeBot();
+        },
+        StartBot: function StartBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath + '/start?city=' + this.fieldCityValue + '&hearts=' + this.fieldHeartsValue);
+        },
+        ResumeBot: function ResumeBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath + '/resume?city=' + this.fieldCityValue + '&region=' + this.fieldRegionValue + '&progressed=' + this.fieldProgressedValue + '&hearts=' + this.fieldHeartsValue);
+        },
+        StopBot: function StopBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath + '/stop');
+        },
+        RebootServer: function RebootServer() {
+            var _this3 = this;
+
+            this.requestingServerReboot = true;
+            Nova.request().post(this.$route.fullPath + '/server-reboot').then(function () {
+                return Nova.success('Server is rebooting');
+            }).catch(function (error) {
+                return Nova.error(error.response.data.message);
+            }).finally(function () {
+                return _this3.requestingServerReboot = false;
+            });
+        },
+        RequestStatus: function RequestStatus() {
+            this.requestingStatus = true;
+            Nova.request().post(this.$route.fullPath + '/status');
+        },
+        OnAttemptServerReboot: function OnAttemptServerReboot() {
+            this.showRebootServerConfirmModal = true;
+        },
+        OnConfirmServerReboot: function OnConfirmServerReboot() {
+            this.showRebootServerConfirmModal = false;
+            this.RebootServer();
+        },
+        OnCancelServerReboot: function OnCancelServerReboot() {
+            this.showRebootServerConfirmModal = false;
+        },
+        OnStartRecordingBot: function OnStartRecordingBot() {
+            this.showStartRecordingModal = false;
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath + '/start-recording?city=' + this.fieldCityValue + '&destination=' + this.fieldDestinationValue + '&name=' + this.fieldNameValue);
+        },
+        OnStopRecordingBot: function OnStopRecordingBot() {
+            this.requestingRunningChange = true;
+            Nova.request().post(this.$route.fullPath + '/stop');
+        }
+    },
+    computed: {
+        instance: function instance() {
+            return _.find(Nova.config.instances, function (instance) {
+                return this.$route.params.resourceName === instance.slug;
+            }.bind(this));
+        },
+        status: function status() {
+            return this.recording ? 'Bot is recording' : this.running ? 'Bot is running' : 'Bot is not running';
+        }
+    },
+    watch: {
+        running: function running(val) {
+            var el = document.getElementById('nav_oryxbot-instance-' + this.instance.id);
+            el = el ? el.querySelector('svg') : el;
+            if (!el) return;
+
+            if (val) {
+                el.classList.add('text-primary');
+                el.classList.remove('text-60');
+            } else {
+                el.classList.remove('text-primary');
+                el.classList.add('text-60');
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Form = __webpack_require__(24);
+
+Object.defineProperty(exports, 'default', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Form).default;
+  }
+});
+Object.defineProperty(exports, 'Form', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Form).default;
+  }
+});
+
+var _Errors = __webpack_require__(3);
+
+Object.defineProperty(exports, 'Errors', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Errors).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Errors = __webpack_require__(3);
+
+var _Errors2 = _interopRequireDefault(_Errors);
+
+var _util = __webpack_require__(25);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Form = function () {
+    /**
+     * Create a new Form instance.
+     *
+     * @param {object} data
+     * @param {object} options
+     */
+    function Form() {
+        var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, Form);
+
+        this.processing = false;
+        this.successful = false;
+
+        this.withData(data).withOptions(options).withErrors({});
+    }
+
+    _createClass(Form, [{
+        key: 'withData',
+        value: function withData(data) {
+            if ((0, _util.isArray)(data)) {
+                data = data.reduce(function (carry, element) {
+                    carry[element] = '';
+                    return carry;
+                }, {});
+            }
+
+            this.setInitialValues(data);
+
+            this.errors = new _Errors2.default();
+            this.processing = false;
+            this.successful = false;
+
+            for (var field in data) {
+                (0, _util.guardAgainstReservedFieldName)(field);
+
+                this[field] = data[field];
+            }
+
+            return this;
+        }
+    }, {
+        key: 'withErrors',
+        value: function withErrors(errors) {
+            this.errors = new _Errors2.default(errors);
+
+            return this;
+        }
+    }, {
+        key: 'withOptions',
+        value: function withOptions(options) {
+            this.__options = {
+                resetOnSuccess: true
+            };
+
+            if (options.hasOwnProperty('resetOnSuccess')) {
+                this.__options.resetOnSuccess = options.resetOnSuccess;
+            }
+
+            if (options.hasOwnProperty('onSuccess')) {
+                this.onSuccess = options.onSuccess;
+            }
+
+            if (options.hasOwnProperty('onFail')) {
+                this.onFail = options.onFail;
+            }
+
+            var windowAxios = typeof window === 'undefined' ? false : window.axios;
+
+            this.__http = options.http || windowAxios || __webpack_require__(29);
+
+            if (!this.__http) {
+                throw new Error('No http library provided. Either pass an http option, or install axios.');
+            }
+
+            return this;
+        }
+
+        /**
+         * Fetch all relevant data for the form.
+         */
+
+    }, {
+        key: 'data',
+        value: function data() {
+            var data = {};
+
+            for (var property in this.initial) {
+                data[property] = this[property];
+            }
+
+            return data;
+        }
+
+        /**
+         * Fetch specific data for the form.
+         *
+         * @param {array} fields
+         * @return {object}
+         */
+
+    }, {
+        key: 'only',
+        value: function only(fields) {
+            var _this = this;
+
+            return fields.reduce(function (filtered, field) {
+                filtered[field] = _this[field];
+                return filtered;
+            }, {});
+        }
+
+        /**
+         * Reset the form fields.
+         */
+
+    }, {
+        key: 'reset',
+        value: function reset() {
+            (0, _util.merge)(this, this.initial);
+
+            this.errors.clear();
+        }
+    }, {
+        key: 'setInitialValues',
+        value: function setInitialValues(values) {
+            this.initial = {};
+
+            (0, _util.merge)(this.initial, values);
+        }
+    }, {
+        key: 'populate',
+        value: function populate(data) {
+            var _this2 = this;
+
+            Object.keys(data).forEach(function (field) {
+                (0, _util.guardAgainstReservedFieldName)(field);
+
+                if (_this2.hasOwnProperty(field)) {
+                    (0, _util.merge)(_this2, _defineProperty({}, field, data[field]));
+                }
+            });
+
+            return this;
+        }
+
+        /**
+         * Clear the form fields.
+         */
+
+    }, {
+        key: 'clear',
+        value: function clear() {
+            for (var field in this.initial) {
+                this[field] = '';
+            }
+
+            this.errors.clear();
+        }
+
+        /**
+         * Send a POST request to the given URL.
+         *
+         * @param {string} url
+         */
+
+    }, {
+        key: 'post',
+        value: function post(url) {
+            return this.submit('post', url);
+        }
+
+        /**
+         * Send a PUT request to the given URL.
+         *
+         * @param {string} url
+         */
+
+    }, {
+        key: 'put',
+        value: function put(url) {
+            return this.submit('put', url);
+        }
+
+        /**
+         * Send a PATCH request to the given URL.
+         *
+         * @param {string} url
+         */
+
+    }, {
+        key: 'patch',
+        value: function patch(url) {
+            return this.submit('patch', url);
+        }
+
+        /**
+         * Send a DELETE request to the given URL.
+         *
+         * @param {string} url
+         */
+
+    }, {
+        key: 'delete',
+        value: function _delete(url) {
+            return this.submit('delete', url);
+        }
+
+        /**
+         * Submit the form.
+         *
+         * @param {string} requestType
+         * @param {string} url
+         */
+
+    }, {
+        key: 'submit',
+        value: function submit(requestType, url) {
+            var _this3 = this;
+
+            this.__validateRequestType(requestType);
+            this.errors.clear();
+            this.processing = true;
+            this.successful = false;
+
+            return new Promise(function (resolve, reject) {
+                _this3.__http[requestType](url, _this3.hasFiles() ? (0, _util.objectToFormData)(_this3.data()) : _this3.data()).then(function (response) {
+                    _this3.processing = false;
+                    _this3.onSuccess(response.data);
+
+                    resolve(response.data);
+                }).catch(function (error) {
+                    _this3.processing = false;
+                    _this3.onFail(error);
+
+                    reject(error);
+                });
+            });
+        }
+
+        /**
+         * @returns {boolean}
+         */
+
+    }, {
+        key: 'hasFiles',
+        value: function hasFiles() {
+            for (var property in this.initial) {
+                if (this.hasFilesDeep(this[property])) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }, {
+        key: 'hasFilesDeep',
+
+
+        /**
+         * @param {Object|Array} object
+         * @returns {boolean}
+         */
+        value: function hasFilesDeep(object) {
+            if (object === null) {
+                return false;
+            }
+
+            if ((typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object') {
+                for (var key in object) {
+                    if (object.hasOwnProperty(key)) {
+                        if (this.hasFilesDeep(object[key])) {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            if (Array.isArray(object)) {
+                for (var _key in object) {
+                    if (object.hasOwnProperty(_key)) {
+                        return this.hasFilesDeep(object[_key]);
+                    }
+                }
+            }
+
+            return (0, _util.isFile)(object);
+        }
+
+        /**
+         * Handle a successful form submission.
+         *
+         * @param {object} data
+         */
+
+    }, {
+        key: 'onSuccess',
+        value: function onSuccess(data) {
+            this.successful = true;
+
+            if (this.__options.resetOnSuccess) {
+                this.reset();
+            }
+        }
+
+        /**
+         * Handle a failed form submission.
+         *
+         * @param {object} data
+         */
+
+    }, {
+        key: 'onFail',
+        value: function onFail(error) {
+            this.successful = false;
+
+            if (error.response && error.response.data.errors) {
+                this.errors.record(error.response.data.errors);
+            }
+        }
+
+        /**
+         * Get the error message(s) for the given field.
+         *
+         * @param field
+         */
+
+    }, {
+        key: 'hasError',
+        value: function hasError(field) {
+            return this.errors.has(field);
+        }
+
+        /**
+         * Get the first error message for the given field.
+         *
+         * @param {string} field
+         * @return {string}
+         */
+
+    }, {
+        key: 'getError',
+        value: function getError(field) {
+            return this.errors.first(field);
+        }
+
+        /**
+         * Get the error messages for the given field.
+         *
+         * @param {string} field
+         * @return {array}
+         */
+
+    }, {
+        key: 'getErrors',
+        value: function getErrors(field) {
+            return this.errors.get(field);
+        }
+    }, {
+        key: '__validateRequestType',
+        value: function __validateRequestType(requestType) {
+            var requestTypes = ['get', 'delete', 'head', 'post', 'put', 'patch'];
+
+            if (requestTypes.indexOf(requestType) === -1) {
+                throw new Error('`' + requestType + '` is not a valid request type, ' + ('must be one of: `' + requestTypes.join('`, `') + '`.'));
+            }
+        }
+    }], [{
+        key: 'create',
+        value: function create() {
+            var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+            return new Form().withData(data);
+        }
+    }]);
+
+    return Form;
+}();
+
+exports.default = Form;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _objects = __webpack_require__(26);
+
+Object.keys(_objects).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _objects[key];
+    }
+  });
+});
+
+var _formData = __webpack_require__(27);
+
+Object.keys(_formData).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _formData[key];
+    }
+  });
+});
+
+var _fieldNameValidation = __webpack_require__(28);
+
+Object.keys(_fieldNameValidation).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _fieldNameValidation[key];
+    }
+  });
+});
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.isArray = isArray;
+exports.isFile = isFile;
+exports.merge = merge;
+exports.cloneDeep = cloneDeep;
+function isArray(object) {
+    return Object.prototype.toString.call(object) === '[object Array]';
+}
+
+function isFile(object) {
+    return object instanceof File || object instanceof FileList;
+}
+
+function merge(a, b) {
+    for (var key in b) {
+        a[key] = cloneDeep(b[key]);
+    }
+}
+
+function cloneDeep(object) {
+    if (object === null) {
+        return null;
+    }
+
+    if (isFile(object)) {
+        return object;
+    }
+
+    if (Array.isArray(object)) {
+        var clone = [];
+
+        for (var key in object) {
+            if (object.hasOwnProperty(key)) {
+                clone[key] = cloneDeep(object[key]);
+            }
+        }
+
+        return clone;
+    }
+
+    if ((typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object') {
+        var _clone = {};
+
+        for (var _key in object) {
+            if (object.hasOwnProperty(_key)) {
+                _clone[_key] = cloneDeep(object[_key]);
+            }
+        }
+
+        return _clone;
+    }
+
+    return object;
+}
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.objectToFormData = objectToFormData;
+function objectToFormData(object) {
+    var formData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new FormData();
+    var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    if (object === null || object === 'undefined' || object.length === 0) {
+        return formData.append(parent, object);
+    }
+
+    for (var property in object) {
+        if (object.hasOwnProperty(property)) {
+            appendToFormData(formData, getKey(parent, property), object[property]);
+        }
+    }
+
+    return formData;
+}
+
+function getKey(parent, property) {
+    return parent ? parent + '[' + property + ']' : property;
+}
+
+function appendToFormData(formData, key, value) {
+    if (value instanceof Date) {
+        return formData.append(key, value.toISOString());
+    }
+
+    if (value instanceof File) {
+        return formData.append(key, value, value.name);
+    }
+
+    if (typeof value === "boolean") {
+        return formData.append(key, value ? '1' : '0');
+    }
+
+    if (value === null) {
+        return formData.append(key, '');
+    }
+
+    if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) !== 'object') {
+        return formData.append(key, value);
+    }
+
+    objectToFormData(value, formData, key);
+}
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.guardAgainstReservedFieldName = guardAgainstReservedFieldName;
+var reservedFieldNames = exports.reservedFieldNames = ['__http', '__options', '__validateRequestType', 'clear', 'data', 'delete', 'errors', 'getError', 'getErrors', 'hasError', 'initial', 'onFail', 'only', 'onSuccess', 'patch', 'populate', 'post', 'processing', 'successful', 'put', 'reset', 'submit', 'withData', 'withErrors', 'withOptions'];
+
+function guardAgainstReservedFieldName(fieldName) {
+    if (reservedFieldNames.indexOf(fieldName) !== -1) {
+        throw new Error('Field name ' + fieldName + ' isn\'t allowed to be used in a Form or Errors instance.');
+    }
+}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(30);
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var bind = __webpack_require__(4);
+var Axios = __webpack_require__(31);
+var mergeConfig = __webpack_require__(10);
+var defaults = __webpack_require__(1);
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  // Factory for creating new instances
+  instance.create = function create(instanceConfig) {
+    return createInstance(mergeConfig(defaultConfig, instanceConfig));
+  };
+
+  return instance;
+}
+
+// Create the default instance to be exported
+var axios = createInstance(defaults);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = Axios;
+
+// Expose Cancel & CancelToken
+axios.Cancel = __webpack_require__(2);
+axios.CancelToken = __webpack_require__(45);
+axios.isCancel = __webpack_require__(9);
+axios.VERSION = __webpack_require__(11).version;
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = __webpack_require__(46);
+
+// Expose isAxiosError
+axios.isAxiosError = __webpack_require__(47);
+
+module.exports = axios;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = axios;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var buildURL = __webpack_require__(5);
+var InterceptorManager = __webpack_require__(32);
+var dispatchRequest = __webpack_require__(33);
+var mergeConfig = __webpack_require__(10);
+var validator = __webpack_require__(44);
+
+var validators = validator.validators;
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof config === 'string') {
+    config = arguments[1] || {};
+    config.url = arguments[0];
+  } else {
+    config = config || {};
+  }
+
+  config = mergeConfig(this.defaults, config);
+
+  // Set config.method
+  if (config.method) {
+    config.method = config.method.toLowerCase();
+  } else if (this.defaults.method) {
+    config.method = this.defaults.method.toLowerCase();
+  } else {
+    config.method = 'get';
+  }
+
+  var transitional = config.transitional;
+
+  if (transitional !== undefined) {
+    validator.assertOptions(transitional, {
+      silentJSONParsing: validators.transitional(validators.boolean),
+      forcedJSONParsing: validators.transitional(validators.boolean),
+      clarifyTimeoutError: validators.transitional(validators.boolean)
+    }, false);
+  }
+
+  // filter out skipped interceptors
+  var requestInterceptorChain = [];
+  var synchronousRequestInterceptors = true;
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    if (typeof interceptor.runWhen === 'function' && interceptor.runWhen(config) === false) {
+      return;
+    }
+
+    synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+
+    requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  var responseInterceptorChain = [];
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  var promise;
+
+  if (!synchronousRequestInterceptors) {
+    var chain = [dispatchRequest, undefined];
+
+    Array.prototype.unshift.apply(chain, requestInterceptorChain);
+    chain = chain.concat(responseInterceptorChain);
+
+    promise = Promise.resolve(config);
+    while (chain.length) {
+      promise = promise.then(chain.shift(), chain.shift());
+    }
+
+    return promise;
+  }
+
+
+  var newConfig = config;
+  while (requestInterceptorChain.length) {
+    var onFulfilled = requestInterceptorChain.shift();
+    var onRejected = requestInterceptorChain.shift();
+    try {
+      newConfig = onFulfilled(newConfig);
+    } catch (error) {
+      onRejected(error);
+      break;
+    }
+  }
+
+  try {
+    promise = dispatchRequest(newConfig);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+
+  while (responseInterceptorChain.length) {
+    promise = promise.then(responseInterceptorChain.shift(), responseInterceptorChain.shift());
+  }
+
+  return promise;
+};
+
+Axios.prototype.getUri = function getUri(config) {
+  config = mergeConfig(this.defaults, config);
+  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(mergeConfig(config || {}, {
+      method: method,
+      url: url,
+      data: (config || {}).data
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, data, config) {
+    return this.request(mergeConfig(config || {}, {
+      method: method,
+      url: url,
+      data: data
+    }));
+  };
+});
+
+module.exports = Axios;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected, options) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected,
+    synchronous: options ? options.synchronous : false,
+    runWhen: options ? options.runWhen : null
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var transformData = __webpack_require__(34);
+var isCancel = __webpack_require__(9);
+var defaults = __webpack_require__(1);
+var Cancel = __webpack_require__(2);
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+
+  if (config.signal && config.signal.aborted) {
+    throw new Cancel('canceled');
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData.call(
+    config,
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData.call(
+      config,
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData.call(
+          config,
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var defaults = __webpack_require__(1);
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  var context = this || defaults;
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn.call(context, data, headers);
+  });
+
+  return data;
+};
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+module.exports = function normalizeHeaderName(headers, normalizedName) {
+  utils.forEach(headers, function processHeader(value, name) {
+    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+      headers[normalizedName] = value;
+      delete headers[name];
+    }
+  });
+};
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var createError = __webpack_require__(8);
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+module.exports = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response.request,
+      response
+    ));
+  }
+};
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs support document.cookie
+    (function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + '=' + encodeURIComponent(value));
+
+          if (utils.isNumber(expires)) {
+            cookie.push('expires=' + new Date(expires).toGMTString());
+          }
+
+          if (utils.isString(path)) {
+            cookie.push('path=' + path);
+          }
+
+          if (utils.isString(domain)) {
+            cookie.push('domain=' + domain);
+          }
+
+          if (secure === true) {
+            cookie.push('secure');
+          }
+
+          document.cookie = cookie.join('; ');
+        },
+
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          return (match ? decodeURIComponent(match[3]) : null);
+        },
+
+        remove: function remove(name) {
+          this.write(name, '', Date.now() - 86400000);
+        }
+      };
+    })() :
+
+  // Non standard browser env (web workers, react-native) lack needed support.
+    (function nonStandardBrowserEnv() {
+      return {
+        write: function write() {},
+        read: function read() { return null; },
+        remove: function remove() {}
+      };
+    })()
+);
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isAbsoluteURL = __webpack_require__(40);
+var combineURLs = __webpack_require__(41);
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ * @returns {string} The combined full path
+ */
+module.exports = function buildFullPath(baseURL, requestedURL) {
+  if (baseURL && !isAbsoluteURL(requestedURL)) {
+    return combineURLs(baseURL, requestedURL);
+  }
+  return requestedURL;
+};
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+module.exports = function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+};
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+module.exports = function parseHeaders(headers) {
+  var parsed = {};
+  var key;
+  var val;
+  var i;
+
+  if (!headers) { return parsed; }
+
+  utils.forEach(headers.split('\n'), function parser(line) {
+    i = line.indexOf(':');
+    key = utils.trim(line.substr(0, i)).toLowerCase();
+    val = utils.trim(line.substr(i + 1));
+
+    if (key) {
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
+    }
+  });
+
+  return parsed;
+};
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+    (function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
+
+      /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+      function resolveURL(url) {
+        var href = url;
+
+        if (msie) {
+        // IE needs attribute set twice to normalize properties
+          urlParsingNode.setAttribute('href', href);
+          href = urlParsingNode.href;
+        }
+
+        urlParsingNode.setAttribute('href', href);
+
+        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+            urlParsingNode.pathname :
+            '/' + urlParsingNode.pathname
+        };
+      }
+
+      originURL = resolveURL(window.location.href);
+
+      /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+      return function isURLSameOrigin(requestURL) {
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        return (parsed.protocol === originURL.protocol &&
+            parsed.host === originURL.host);
+      };
+    })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+    (function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    })()
+);
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var VERSION = __webpack_require__(11).version;
+
+var validators = {};
+
+// eslint-disable-next-line func-names
+['object', 'boolean', 'number', 'function', 'string', 'symbol'].forEach(function(type, i) {
+  validators[type] = function validator(thing) {
+    return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
+  };
+});
+
+var deprecatedWarnings = {};
+
+/**
+ * Transitional option validator
+ * @param {function|boolean?} validator - set to false if the transitional option has been removed
+ * @param {string?} version - deprecated version / removed since version
+ * @param {string?} message - some message with additional info
+ * @returns {function}
+ */
+validators.transitional = function transitional(validator, version, message) {
+  function formatMessage(opt, desc) {
+    return '[Axios v' + VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+  }
+
+  // eslint-disable-next-line func-names
+  return function(value, opt, opts) {
+    if (validator === false) {
+      throw new Error(formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')));
+    }
+
+    if (version && !deprecatedWarnings[opt]) {
+      deprecatedWarnings[opt] = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        formatMessage(
+          opt,
+          ' has been deprecated since v' + version + ' and will be removed in the near future'
+        )
+      );
+    }
+
+    return validator ? validator(value, opt, opts) : true;
+  };
+};
+
+/**
+ * Assert object's properties type
+ * @param {object} options
+ * @param {object} schema
+ * @param {boolean?} allowUnknown
+ */
+
+function assertOptions(options, schema, allowUnknown) {
+  if (typeof options !== 'object') {
+    throw new TypeError('options must be an object');
+  }
+  var keys = Object.keys(options);
+  var i = keys.length;
+  while (i-- > 0) {
+    var opt = keys[i];
+    var validator = schema[opt];
+    if (validator) {
+      var value = options[opt];
+      var result = value === undefined || validator(value, opt, options);
+      if (result !== true) {
+        throw new TypeError('option ' + opt + ' must be ' + result);
+      }
+      continue;
+    }
+    if (allowUnknown !== true) {
+      throw Error('Unknown option ' + opt);
+    }
+  }
+}
+
+module.exports = {
+  assertOptions: assertOptions,
+  validators: validators
+};
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Cancel = __webpack_require__(2);
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+
+  // eslint-disable-next-line func-names
+  this.promise.then(function(cancel) {
+    if (!token._listeners) return;
+
+    var i;
+    var l = token._listeners.length;
+
+    for (i = 0; i < l; i++) {
+      token._listeners[i](cancel);
+    }
+    token._listeners = null;
+  });
+
+  // eslint-disable-next-line func-names
+  this.promise.then = function(onfulfilled) {
+    var _resolve;
+    // eslint-disable-next-line func-names
+    var promise = new Promise(function(resolve) {
+      token.subscribe(resolve);
+      _resolve = resolve;
+    }).then(onfulfilled);
+
+    promise.cancel = function reject() {
+      token.unsubscribe(_resolve);
+    };
+
+    return promise;
+  };
+
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new Cancel(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Subscribe to the cancel signal
+ */
+
+CancelToken.prototype.subscribe = function subscribe(listener) {
+  if (this.reason) {
+    listener(this.reason);
+    return;
+  }
+
+  if (this._listeners) {
+    this._listeners.push(listener);
+  } else {
+    this._listeners = [listener];
+  }
+};
+
+/**
+ * Unsubscribe from the cancel signal
+ */
+
+CancelToken.prototype.unsubscribe = function unsubscribe(listener) {
+  if (!this._listeners) {
+    return;
+  }
+  var index = this._listeners.indexOf(listener);
+  if (index !== -1) {
+    this._listeners.splice(index, 1);
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+module.exports = function isAxiosError(payload) {
+  return (typeof payload === 'object') && (payload.isAxiosError === true);
+};
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("heading", { staticClass: "mb-6" }, [
+        _vm._v("\n        " + _vm._s(_vm.instance.name) + "\n        "),
+        _c(
+          "small",
+          {
+            staticClass: "text-xs font-mono uppercase",
+            class: {
+              "opacity-50": _vm.requestingStatus,
+              "text-primary": _vm.serverOnline
+            }
+          },
+          [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.serverOnline ? "Online" : "Offline") +
+                "\n        "
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex mb-4" },
+        [
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.running,
+                  expression: "!running"
+                }
+              ],
+              staticClass: "btn btn-default btn-primary px-8",
+              class: {
+                "cursor-wait": _vm.requestingRunningChange,
+                "cursor-not-allowed": !_vm.serverOnline,
+                "hover:bg-primary-dark":
+                  !_vm.requestingRunningChange && _vm.serverOnline
+              },
+              attrs: {
+                disabled:
+                  _vm.requestingRunningChange ||
+                  _vm.recording ||
+                  !_vm.serverOnline
+              },
+              on: {
+                click: function($event) {
+                  _vm.showStartModal = true
+                }
+              }
+            },
+            [_vm._v("\n            Start\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.running,
+                  expression: "running"
+                }
+              ],
+              staticClass: "btn btn-default btn-primary px-8",
+              class: {
+                "cursor-wait": _vm.requestingRunningChange,
+                "cursor-not-allowed": !_vm.serverOnline,
+                "hover:bg-primary-dark":
+                  !_vm.requestingRunningChange && _vm.serverOnline
+              },
+              attrs: {
+                disabled: _vm.requestingRunningChange || !_vm.serverOnline
+              },
+              on: { click: _vm.StopBot }
+            },
+            [_vm._v("\n            Stop\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.running,
+                  expression: "!running"
+                }
+              ],
+              staticClass: "btn btn-default btn-primary px-8 ml-2",
+              class: {
+                "cursor-wait": _vm.requestingRunningChange,
+                "cursor-not-allowed": !_vm.serverOnline,
+                "hover:bg-primary-dark":
+                  !_vm.requestingRunningChange && _vm.serverOnline
+              },
+              attrs: {
+                disabled:
+                  _vm.requestingRunningChange ||
+                  _vm.recording ||
+                  !_vm.serverOnline
+              },
+              on: {
+                click: function($event) {
+                  _vm.showResumeModal = true
+                }
+              }
+            },
+            [_vm._v("\n            Resume\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default btn-primary px-8 ml-2",
+              class: {
+                "cursor-wait": _vm.requestingRunningChange,
+                "cursor-not-allowed": !_vm.serverOnline,
+                "hover:bg-primary-dark":
+                  !_vm.requestingRunningChange && _vm.serverOnline
+              },
+              attrs: {
+                disabled:
+                  _vm.requestingRunningChange ||
+                  _vm.running ||
+                  !_vm.serverOnline ||
+                  true
+              },
+              on: {
+                click: function($event) {
+                  _vm.showStartRecordingModal = true
+                }
+              }
+            },
+            [_vm._v("\n            Record\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default bg-30 text-90 ml-2",
+              class: {
+                "cursor-wait opacity-50": _vm.requestingServerReboot,
+                "hover:bg-primary-dark hover:text-white": !_vm.requestingServerReboot
+              },
+              staticStyle: { transition: "150ms" },
+              attrs: { disabled: _vm.requestingServerReboot },
+              on: { click: _vm.OnAttemptServerReboot }
+            },
+            [_vm._v("\n            Restart Service\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "portal",
+            { attrs: { to: "modals", transition: "fade-transition" } },
+            [
+              _vm.showRebootServerConfirmModal
+                ? _c("confirm-action-modal", {
+                    attrs: {
+                      working: false,
+                      resourceName: "oryxbot-instance",
+                      selectedResources: ["oryxbot-instance"],
+                      errors: {},
+                      action: {
+                        name: "Restart service",
+                        confirmText:
+                          "Are you sure you want to restart your server? This normally takes up to one minute.",
+                        confirmButtonText: "Confirm",
+                        cancelButtonText: "Cancel",
+                        fields: [],
+                        class: "btn-primary"
+                      }
+                    },
+                    on: {
+                      confirm: _vm.OnConfirmServerReboot,
+                      close: _vm.OnCancelServerReboot
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showStartModal
+                ? _c("confirm-action-modal", {
+                    ref: "startModal",
+                    attrs: {
+                      working: false,
+                      resourceName: "oryxbot-instance",
+                      selectedResources: ["oryxbot-instance"],
+                      errors: this.cityFieldErrors,
+                      action: this.startBotAction
+                    },
+                    on: {
+                      confirm: _vm.OnStartBot,
+                      close: function($event) {
+                        _vm.showStartModal = false
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showResumeModal
+                ? _c("confirm-action-modal", {
+                    ref: "resumeModal",
+                    attrs: {
+                      working: false,
+                      resourceName: "oryxbot-instance",
+                      selectedResources: ["oryxbot-instance"],
+                      errors: this.cityFieldErrors,
+                      action: this.resumeBotAction
+                    },
+                    on: {
+                      confirm: _vm.OnResumeBot,
+                      close: function($event) {
+                        _vm.showResumeModal = false
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showStartRecordingModal
+                ? _c("confirm-action-modal", {
+                    ref: "startRecordingModal",
+                    attrs: {
+                      working: false,
+                      resourceName: "oryxbot-instance",
+                      selectedResources: ["oryxbot-instance"],
+                      errors: this.cityFieldErrors,
+                      action: this.startRecordingBotAction
+                    },
+                    on: {
+                      confirm: _vm.OnStartRecordingBot,
+                      close: function($event) {
+                        _vm.showStartRecordingModal = false
+                      }
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex mb-8" },
+        [
+          _c(
+            "loading-card",
+            { staticClass: "px-6 py-4 w-1/4", attrs: { loading: false } },
+            [
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c(
+                  "h3",
+                  { staticClass: "mr-3 text-base text-80 font-bold uppercase" },
+                  [_vm._v("Step")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
+                _vm._v(_vm._s(_vm.step))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
+                _vm._v(_vm._s(_vm.progress))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "loading-card",
+            { staticClass: "px-6 py-4 w-1/4 mx-8", attrs: { loading: false } },
+            [
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c(
+                  "h3",
+                  { staticClass: "mr-3 text-base text-80 font-bold uppercase" },
+                  [_vm._v("Location")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
+                _vm._v(_vm._s(_vm.location))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
+                _vm._v(_vm._s(_vm.speed) + " m/s")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "loading-card",
+            { staticClass: "px-6 py-4 w-1/4", attrs: { loading: false } },
+            [
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c(
+                  "h3",
+                  { staticClass: "mr-3 text-base text-80 font-bold uppercase" },
+                  [_vm._v("Session")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-4xl mb-4" }, [
+                _vm._v(_vm._s(_vm.session))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "flex items-center text-80 font-bold" }, [
+                _vm._v(_vm._s(_vm.status))
+              ])
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("heading", { staticClass: "mb-6 text-2xl", attrs: { level: 2 } }, [
+        _vm._v("Connection")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex" }, [
+        _c(
+          "div",
+          { staticClass: "mb-4 ml-2 flex justify-start items-start w-1/4" },
+          [
+            _c(
+              "svg",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.vpn_connected || _vm.remote_connected,
+                    expression: "vpn_connected || remote_connected"
+                  }
+                ],
+                staticClass: "w-8 text-success mr-2",
+                staticStyle: { overflow: "visible" },
+                attrs: {
+                  "aria-hidden": "true",
+                  focusable: "false",
+                  "data-prefix": "far",
+                  "data-icon": "check-circle",
+                  role: "img",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 512 512"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    fill: "currentColor",
+                    d:
+                      "M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "svg",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !_vm.vpn_connected && !_vm.remote_connected,
+                    expression: "!vpn_connected && !remote_connected"
+                  }
+                ],
+                staticClass: "w-8 text-danger mr-2",
+                staticStyle: { overflow: "visible" },
+                attrs: {
+                  "aria-hidden": "true",
+                  focusable: "false",
+                  "data-prefix": "fas",
+                  "data-icon": "ban",
+                  role: "img",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 512 512"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    fill: "currentColor",
+                    d:
+                      "M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex flex-col" },
+              [
+                _c(
+                  "heading",
+                  {
+                    staticClass: "mb-4 flex items-center mt-2 text-60",
+                    attrs: { level: 3 }
+                  },
+                  [_vm._v("\n                    VPN\n                ")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.instance.server.ip_address
+                            ? _vm.instance.server.ip_address
+                            : "-"
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.instance.server.ip_address &&
+                            _vm.instance.server.vpn_username
+                            ? _vm.instance.server.vpn_username
+                            : "-"
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.instance.server.ip_address &&
+                            _vm.instance.server.vpn_password
+                            ? _vm.instance.server.vpn_password
+                            : "-"
+                        )
+                      )
+                    ])
+                  ])
+                ])
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "mb-4 ml-8 flex justify-start items-start w-1/4" },
+          [
+            _c(
+              "svg",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.remote_connected,
+                    expression: "remote_connected"
+                  }
+                ],
+                staticClass: "w-8 text-success mr-2",
+                staticStyle: { overflow: "visible" },
+                attrs: {
+                  "aria-hidden": "true",
+                  focusable: "false",
+                  "data-prefix": "far",
+                  "data-icon": "check-circle",
+                  role: "img",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 512 512"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    fill: "currentColor",
+                    d:
+                      "M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "svg",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !_vm.remote_connected,
+                    expression: "!remote_connected"
+                  }
+                ],
+                staticClass: "w-8 text-danger mr-2",
+                staticStyle: { overflow: "visible" },
+                attrs: {
+                  "aria-hidden": "true",
+                  focusable: "false",
+                  "data-prefix": "fas",
+                  "data-icon": "ban",
+                  role: "img",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 512 512"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    fill: "currentColor",
+                    d:
+                      "M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex flex-col" },
+              [
+                _c(
+                  "heading",
+                  {
+                    staticClass: "mb-4 flex items-center mt-2 text-60",
+                    attrs: { level: 3 }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Tight VNC Server\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(_vm.remote_resolution))
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(_vm.remote_bandwidth))
+                    ])
+                  ])
+                ])
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("heading", { staticClass: "mb-6 text-2xl", attrs: { level: 2 } }, [
+        _vm._v("Logs")
+      ]),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90",
+        staticStyle: { height: "200px" }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Server name:")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Username:")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Password:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Resolution:")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Bandwidth:")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
+  }
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Pusher JavaScript Library v7.0.3
+ * https://pusher.com/
+ *
+ * Copyright 2020, Pusher
+ * Released under the MIT licence.
+ */
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Pusher"] = factory();
+	else
+		root["Pusher"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// Copyright (C) 2016 Dmitry Chestnykh
+// MIT License. See LICENSE file for details.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Package base64 implements Base64 encoding and decoding.
+ */
+// Invalid character used in decoding to indicate
+// that the character to decode is out of range of
+// alphabet and cannot be decoded.
+var INVALID_BYTE = 256;
+/**
+ * Implements standard Base64 encoding.
+ *
+ * Operates in constant time.
+ */
+var Coder = /** @class */ (function () {
+    // TODO(dchest): methods to encode chunk-by-chunk.
+    function Coder(_paddingCharacter) {
+        if (_paddingCharacter === void 0) { _paddingCharacter = "="; }
+        this._paddingCharacter = _paddingCharacter;
+    }
+    Coder.prototype.encodedLength = function (length) {
+        if (!this._paddingCharacter) {
+            return (length * 8 + 5) / 6 | 0;
+        }
+        return (length + 2) / 3 * 4 | 0;
+    };
+    Coder.prototype.encode = function (data) {
+        var out = "";
+        var i = 0;
+        for (; i < data.length - 2; i += 3) {
+            var c = (data[i] << 16) | (data[i + 1] << 8) | (data[i + 2]);
+            out += this._encodeByte((c >>> 3 * 6) & 63);
+            out += this._encodeByte((c >>> 2 * 6) & 63);
+            out += this._encodeByte((c >>> 1 * 6) & 63);
+            out += this._encodeByte((c >>> 0 * 6) & 63);
+        }
+        var left = data.length - i;
+        if (left > 0) {
+            var c = (data[i] << 16) | (left === 2 ? data[i + 1] << 8 : 0);
+            out += this._encodeByte((c >>> 3 * 6) & 63);
+            out += this._encodeByte((c >>> 2 * 6) & 63);
+            if (left === 2) {
+                out += this._encodeByte((c >>> 1 * 6) & 63);
+            }
+            else {
+                out += this._paddingCharacter || "";
+            }
+            out += this._paddingCharacter || "";
+        }
+        return out;
+    };
+    Coder.prototype.maxDecodedLength = function (length) {
+        if (!this._paddingCharacter) {
+            return (length * 6 + 7) / 8 | 0;
+        }
+        return length / 4 * 3 | 0;
+    };
+    Coder.prototype.decodedLength = function (s) {
+        return this.maxDecodedLength(s.length - this._getPaddingLength(s));
+    };
+    Coder.prototype.decode = function (s) {
+        if (s.length === 0) {
+            return new Uint8Array(0);
+        }
+        var paddingLength = this._getPaddingLength(s);
+        var length = s.length - paddingLength;
+        var out = new Uint8Array(this.maxDecodedLength(length));
+        var op = 0;
+        var i = 0;
+        var haveBad = 0;
+        var v0 = 0, v1 = 0, v2 = 0, v3 = 0;
+        for (; i < length - 4; i += 4) {
+            v0 = this._decodeChar(s.charCodeAt(i + 0));
+            v1 = this._decodeChar(s.charCodeAt(i + 1));
+            v2 = this._decodeChar(s.charCodeAt(i + 2));
+            v3 = this._decodeChar(s.charCodeAt(i + 3));
+            out[op++] = (v0 << 2) | (v1 >>> 4);
+            out[op++] = (v1 << 4) | (v2 >>> 2);
+            out[op++] = (v2 << 6) | v3;
+            haveBad |= v0 & INVALID_BYTE;
+            haveBad |= v1 & INVALID_BYTE;
+            haveBad |= v2 & INVALID_BYTE;
+            haveBad |= v3 & INVALID_BYTE;
+        }
+        if (i < length - 1) {
+            v0 = this._decodeChar(s.charCodeAt(i));
+            v1 = this._decodeChar(s.charCodeAt(i + 1));
+            out[op++] = (v0 << 2) | (v1 >>> 4);
+            haveBad |= v0 & INVALID_BYTE;
+            haveBad |= v1 & INVALID_BYTE;
+        }
+        if (i < length - 2) {
+            v2 = this._decodeChar(s.charCodeAt(i + 2));
+            out[op++] = (v1 << 4) | (v2 >>> 2);
+            haveBad |= v2 & INVALID_BYTE;
+        }
+        if (i < length - 3) {
+            v3 = this._decodeChar(s.charCodeAt(i + 3));
+            out[op++] = (v2 << 6) | v3;
+            haveBad |= v3 & INVALID_BYTE;
+        }
+        if (haveBad !== 0) {
+            throw new Error("Base64Coder: incorrect characters for decoding");
+        }
+        return out;
+    };
+    // Standard encoding have the following encoded/decoded ranges,
+    // which we need to convert between.
+    //
+    // ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789  +   /
+    // Index:   0 - 25                    26 - 51              52 - 61   62  63
+    // ASCII:  65 - 90                    97 - 122             48 - 57   43  47
+    //
+    // Encode 6 bits in b into a new character.
+    Coder.prototype._encodeByte = function (b) {
+        // Encoding uses constant time operations as follows:
+        //
+        // 1. Define comparison of A with B using (A - B) >>> 8:
+        //          if A > B, then result is positive integer
+        //          if A <= B, then result is 0
+        //
+        // 2. Define selection of C or 0 using bitwise AND: X & C:
+        //          if X == 0, then result is 0
+        //          if X != 0, then result is C
+        //
+        // 3. Start with the smallest comparison (b >= 0), which is always
+        //    true, so set the result to the starting ASCII value (65).
+        //
+        // 4. Continue comparing b to higher ASCII values, and selecting
+        //    zero if comparison isn't true, otherwise selecting a value
+        //    to add to result, which:
+        //
+        //          a) undoes the previous addition
+        //          b) provides new value to add
+        //
+        var result = b;
+        // b >= 0
+        result += 65;
+        // b > 25
+        result += ((25 - b) >>> 8) & ((0 - 65) - 26 + 97);
+        // b > 51
+        result += ((51 - b) >>> 8) & ((26 - 97) - 52 + 48);
+        // b > 61
+        result += ((61 - b) >>> 8) & ((52 - 48) - 62 + 43);
+        // b > 62
+        result += ((62 - b) >>> 8) & ((62 - 43) - 63 + 47);
+        return String.fromCharCode(result);
+    };
+    // Decode a character code into a byte.
+    // Must return 256 if character is out of alphabet range.
+    Coder.prototype._decodeChar = function (c) {
+        // Decoding works similar to encoding: using the same comparison
+        // function, but now it works on ranges: result is always incremented
+        // by value, but this value becomes zero if the range is not
+        // satisfied.
+        //
+        // Decoding starts with invalid value, 256, which is then
+        // subtracted when the range is satisfied. If none of the ranges
+        // apply, the function returns 256, which is then checked by
+        // the caller to throw error.
+        var result = INVALID_BYTE; // start with invalid character
+        // c == 43 (c > 42 and c < 44)
+        result += (((42 - c) & (c - 44)) >>> 8) & (-INVALID_BYTE + c - 43 + 62);
+        // c == 47 (c > 46 and c < 48)
+        result += (((46 - c) & (c - 48)) >>> 8) & (-INVALID_BYTE + c - 47 + 63);
+        // c > 47 and c < 58
+        result += (((47 - c) & (c - 58)) >>> 8) & (-INVALID_BYTE + c - 48 + 52);
+        // c > 64 and c < 91
+        result += (((64 - c) & (c - 91)) >>> 8) & (-INVALID_BYTE + c - 65 + 0);
+        // c > 96 and c < 123
+        result += (((96 - c) & (c - 123)) >>> 8) & (-INVALID_BYTE + c - 97 + 26);
+        return result;
+    };
+    Coder.prototype._getPaddingLength = function (s) {
+        var paddingLength = 0;
+        if (this._paddingCharacter) {
+            for (var i = s.length - 1; i >= 0; i--) {
+                if (s[i] !== this._paddingCharacter) {
+                    break;
+                }
+                paddingLength++;
+            }
+            if (s.length < 4 || paddingLength > 2) {
+                throw new Error("Base64Coder: incorrect padding");
+            }
+        }
+        return paddingLength;
+    };
+    return Coder;
+}());
+exports.Coder = Coder;
+var stdCoder = new Coder();
+function encode(data) {
+    return stdCoder.encode(data);
+}
+exports.encode = encode;
+function decode(s) {
+    return stdCoder.decode(s);
+}
+exports.decode = decode;
+/**
+ * Implements URL-safe Base64 encoding.
+ * (Same as Base64, but '+' is replaced with '-', and '/' with '_').
+ *
+ * Operates in constant time.
+ */
+var URLSafeCoder = /** @class */ (function (_super) {
+    __extends(URLSafeCoder, _super);
+    function URLSafeCoder() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    // URL-safe encoding have the following encoded/decoded ranges:
+    //
+    // ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789  -   _
+    // Index:   0 - 25                    26 - 51              52 - 61   62  63
+    // ASCII:  65 - 90                    97 - 122             48 - 57   45  95
+    //
+    URLSafeCoder.prototype._encodeByte = function (b) {
+        var result = b;
+        // b >= 0
+        result += 65;
+        // b > 25
+        result += ((25 - b) >>> 8) & ((0 - 65) - 26 + 97);
+        // b > 51
+        result += ((51 - b) >>> 8) & ((26 - 97) - 52 + 48);
+        // b > 61
+        result += ((61 - b) >>> 8) & ((52 - 48) - 62 + 45);
+        // b > 62
+        result += ((62 - b) >>> 8) & ((62 - 45) - 63 + 95);
+        return String.fromCharCode(result);
+    };
+    URLSafeCoder.prototype._decodeChar = function (c) {
+        var result = INVALID_BYTE;
+        // c == 45 (c > 44 and c < 46)
+        result += (((44 - c) & (c - 46)) >>> 8) & (-INVALID_BYTE + c - 45 + 62);
+        // c == 95 (c > 94 and c < 96)
+        result += (((94 - c) & (c - 96)) >>> 8) & (-INVALID_BYTE + c - 95 + 63);
+        // c > 47 and c < 58
+        result += (((47 - c) & (c - 58)) >>> 8) & (-INVALID_BYTE + c - 48 + 52);
+        // c > 64 and c < 91
+        result += (((64 - c) & (c - 91)) >>> 8) & (-INVALID_BYTE + c - 65 + 0);
+        // c > 96 and c < 123
+        result += (((96 - c) & (c - 123)) >>> 8) & (-INVALID_BYTE + c - 97 + 26);
+        return result;
+    };
+    return URLSafeCoder;
+}(Coder));
+exports.URLSafeCoder = URLSafeCoder;
+var urlSafeCoder = new URLSafeCoder();
+function encodeURLSafe(data) {
+    return urlSafeCoder.encode(data);
+}
+exports.encodeURLSafe = encodeURLSafe;
+function decodeURLSafe(s) {
+    return urlSafeCoder.decode(s);
+}
+exports.decodeURLSafe = decodeURLSafe;
+exports.encodedLength = function (length) {
+    return stdCoder.encodedLength(length);
+};
+exports.maxDecodedLength = function (length) {
+    return stdCoder.maxDecodedLength(length);
+};
+exports.decodedLength = function (s) {
+    return stdCoder.decodedLength(s);
+};
+//# sourceMappingURL=base64.js.map
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// Copyright (C) 2016 Dmitry Chestnykh
+// MIT License. See LICENSE file for details.
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Package utf8 implements UTF-8 encoding and decoding.
+ */
+var INVALID_UTF16 = "utf8: invalid string";
+var INVALID_UTF8 = "utf8: invalid source encoding";
+/**
+ * Encodes the given string into UTF-8 byte array.
+ * Throws if the source string has invalid UTF-16 encoding.
+ */
+function encode(s) {
+    // Calculate result length and allocate output array.
+    // encodedLength() also validates string and throws errors,
+    // so we don't need repeat validation here.
+    var arr = new Uint8Array(encodedLength(s));
+    var pos = 0;
+    for (var i = 0; i < s.length; i++) {
+        var c = s.charCodeAt(i);
+        if (c < 0x80) {
+            arr[pos++] = c;
+        }
+        else if (c < 0x800) {
+            arr[pos++] = 0xc0 | c >> 6;
+            arr[pos++] = 0x80 | c & 0x3f;
+        }
+        else if (c < 0xd800) {
+            arr[pos++] = 0xe0 | c >> 12;
+            arr[pos++] = 0x80 | (c >> 6) & 0x3f;
+            arr[pos++] = 0x80 | c & 0x3f;
+        }
+        else {
+            i++; // get one more character
+            c = (c & 0x3ff) << 10;
+            c |= s.charCodeAt(i) & 0x3ff;
+            c += 0x10000;
+            arr[pos++] = 0xf0 | c >> 18;
+            arr[pos++] = 0x80 | (c >> 12) & 0x3f;
+            arr[pos++] = 0x80 | (c >> 6) & 0x3f;
+            arr[pos++] = 0x80 | c & 0x3f;
+        }
+    }
+    return arr;
+}
+exports.encode = encode;
+/**
+ * Returns the number of bytes required to encode the given string into UTF-8.
+ * Throws if the source string has invalid UTF-16 encoding.
+ */
+function encodedLength(s) {
+    var result = 0;
+    for (var i = 0; i < s.length; i++) {
+        var c = s.charCodeAt(i);
+        if (c < 0x80) {
+            result += 1;
+        }
+        else if (c < 0x800) {
+            result += 2;
+        }
+        else if (c < 0xd800) {
+            result += 3;
+        }
+        else if (c <= 0xdfff) {
+            if (i >= s.length - 1) {
+                throw new Error(INVALID_UTF16);
+            }
+            i++; // "eat" next character
+            result += 4;
+        }
+        else {
+            throw new Error(INVALID_UTF16);
+        }
+    }
+    return result;
+}
+exports.encodedLength = encodedLength;
+/**
+ * Decodes the given byte array from UTF-8 into a string.
+ * Throws if encoding is invalid.
+ */
+function decode(arr) {
+    var chars = [];
+    for (var i = 0; i < arr.length; i++) {
+        var b = arr[i];
+        if (b & 0x80) {
+            var min = void 0;
+            if (b < 0xe0) {
+                // Need 1 more byte.
+                if (i >= arr.length) {
+                    throw new Error(INVALID_UTF8);
+                }
+                var n1 = arr[++i];
+                if ((n1 & 0xc0) !== 0x80) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b = (b & 0x1f) << 6 | (n1 & 0x3f);
+                min = 0x80;
+            }
+            else if (b < 0xf0) {
+                // Need 2 more bytes.
+                if (i >= arr.length - 1) {
+                    throw new Error(INVALID_UTF8);
+                }
+                var n1 = arr[++i];
+                var n2 = arr[++i];
+                if ((n1 & 0xc0) !== 0x80 || (n2 & 0xc0) !== 0x80) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b = (b & 0x0f) << 12 | (n1 & 0x3f) << 6 | (n2 & 0x3f);
+                min = 0x800;
+            }
+            else if (b < 0xf8) {
+                // Need 3 more bytes.
+                if (i >= arr.length - 2) {
+                    throw new Error(INVALID_UTF8);
+                }
+                var n1 = arr[++i];
+                var n2 = arr[++i];
+                var n3 = arr[++i];
+                if ((n1 & 0xc0) !== 0x80 || (n2 & 0xc0) !== 0x80 || (n3 & 0xc0) !== 0x80) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b = (b & 0x0f) << 18 | (n1 & 0x3f) << 12 | (n2 & 0x3f) << 6 | (n3 & 0x3f);
+                min = 0x10000;
+            }
+            else {
+                throw new Error(INVALID_UTF8);
+            }
+            if (b < min || (b >= 0xd800 && b <= 0xdfff)) {
+                throw new Error(INVALID_UTF8);
+            }
+            if (b >= 0x10000) {
+                // Surrogate pair.
+                if (b > 0x10ffff) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b -= 0x10000;
+                chars.push(String.fromCharCode(0xd800 | (b >> 10)));
+                b = 0xdc00 | (b & 0x3ff);
+            }
+        }
+        chars.push(String.fromCharCode(b));
+    }
+    return chars.join("");
+}
+exports.decode = decode;
+//# sourceMappingURL=utf8.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// required so we don't have to do require('pusher').default etc.
+module.exports = __webpack_require__(3).default;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/script_receiver_factory.ts
+var ScriptReceiverFactory = (function () {
+    function ScriptReceiverFactory(prefix, name) {
+        this.lastId = 0;
+        this.prefix = prefix;
+        this.name = name;
+    }
+    ScriptReceiverFactory.prototype.create = function (callback) {
+        this.lastId++;
+        var number = this.lastId;
+        var id = this.prefix + number;
+        var name = this.name + '[' + number + ']';
+        var called = false;
+        var callbackWrapper = function () {
+            if (!called) {
+                callback.apply(null, arguments);
+                called = true;
+            }
+        };
+        this[number] = callbackWrapper;
+        return { number: number, id: id, name: name, callback: callbackWrapper };
+    };
+    ScriptReceiverFactory.prototype.remove = function (receiver) {
+        delete this[receiver.number];
+    };
+    return ScriptReceiverFactory;
+}());
+
+var ScriptReceivers = new ScriptReceiverFactory('_pusher_script_', 'Pusher.ScriptReceivers');
+
+// CONCATENATED MODULE: ./src/core/defaults.ts
+var Defaults = {
+    VERSION: "7.0.3",
+    PROTOCOL: 7,
+    wsPort: 80,
+    wssPort: 443,
+    wsPath: '',
+    httpHost: 'sockjs.pusher.com',
+    httpPort: 80,
+    httpsPort: 443,
+    httpPath: '/pusher',
+    stats_host: 'stats.pusher.com',
+    authEndpoint: '/pusher/auth',
+    authTransport: 'ajax',
+    activityTimeout: 120000,
+    pongTimeout: 30000,
+    unavailableTimeout: 10000,
+    cluster: 'mt1',
+    cdn_http: "http://js.pusher.com",
+    cdn_https: "https://js.pusher.com",
+    dependency_suffix: ""
+};
+/* harmony default export */ var defaults = (Defaults);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/dependency_loader.ts
+
+
+var dependency_loader_DependencyLoader = (function () {
+    function DependencyLoader(options) {
+        this.options = options;
+        this.receivers = options.receivers || ScriptReceivers;
+        this.loading = {};
+    }
+    DependencyLoader.prototype.load = function (name, options, callback) {
+        var self = this;
+        if (self.loading[name] && self.loading[name].length > 0) {
+            self.loading[name].push(callback);
+        }
+        else {
+            self.loading[name] = [callback];
+            var request = runtime.createScriptRequest(self.getPath(name, options));
+            var receiver = self.receivers.create(function (error) {
+                self.receivers.remove(receiver);
+                if (self.loading[name]) {
+                    var callbacks = self.loading[name];
+                    delete self.loading[name];
+                    var successCallback = function (wasSuccessful) {
+                        if (!wasSuccessful) {
+                            request.cleanup();
+                        }
+                    };
+                    for (var i = 0; i < callbacks.length; i++) {
+                        callbacks[i](error, successCallback);
+                    }
+                }
+            });
+            request.send(receiver);
+        }
+    };
+    DependencyLoader.prototype.getRoot = function (options) {
+        var cdn;
+        var protocol = runtime.getDocument().location.protocol;
+        if ((options && options.useTLS) || protocol === 'https:') {
+            cdn = this.options.cdn_https;
+        }
+        else {
+            cdn = this.options.cdn_http;
+        }
+        return cdn.replace(/\/*$/, '') + '/' + this.options.version;
+    };
+    DependencyLoader.prototype.getPath = function (name, options) {
+        return this.getRoot(options) + '/' + name + this.options.suffix + '.js';
+    };
+    return DependencyLoader;
+}());
+/* harmony default export */ var dependency_loader = (dependency_loader_DependencyLoader);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/dependencies.ts
+
+
+
+var DependenciesReceivers = new ScriptReceiverFactory('_pusher_dependencies', 'Pusher.DependenciesReceivers');
+var Dependencies = new dependency_loader({
+    cdn_http: defaults.cdn_http,
+    cdn_https: defaults.cdn_https,
+    version: defaults.VERSION,
+    suffix: defaults.dependency_suffix,
+    receivers: DependenciesReceivers
+});
+
+// CONCATENATED MODULE: ./src/core/utils/url_store.ts
+var urlStore = {
+    baseUrl: 'https://pusher.com',
+    urls: {
+        authenticationEndpoint: {
+            path: '/docs/authenticating_users'
+        },
+        javascriptQuickStart: {
+            path: '/docs/javascript_quick_start'
+        },
+        triggeringClientEvents: {
+            path: '/docs/client_api_guide/client_events#trigger-events'
+        },
+        encryptedChannelSupport: {
+            fullUrl: 'https://github.com/pusher/pusher-js/tree/cc491015371a4bde5743d1c87a0fbac0feb53195#encrypted-channel-support'
+        }
+    }
+};
+var buildLogSuffix = function (key) {
+    var urlPrefix = 'See:';
+    var urlObj = urlStore.urls[key];
+    if (!urlObj)
+        return '';
+    var url;
+    if (urlObj.fullUrl) {
+        url = urlObj.fullUrl;
+    }
+    else if (urlObj.path) {
+        url = urlStore.baseUrl + urlObj.path;
+    }
+    if (!url)
+        return '';
+    return urlPrefix + " " + url;
+};
+/* harmony default export */ var url_store = ({ buildLogSuffix: buildLogSuffix });
+
+// CONCATENATED MODULE: ./src/core/errors.ts
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var BadEventName = (function (_super) {
+    __extends(BadEventName, _super);
+    function BadEventName(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return BadEventName;
+}(Error));
+
+var RequestTimedOut = (function (_super) {
+    __extends(RequestTimedOut, _super);
+    function RequestTimedOut(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return RequestTimedOut;
+}(Error));
+
+var TransportPriorityTooLow = (function (_super) {
+    __extends(TransportPriorityTooLow, _super);
+    function TransportPriorityTooLow(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return TransportPriorityTooLow;
+}(Error));
+
+var TransportClosed = (function (_super) {
+    __extends(TransportClosed, _super);
+    function TransportClosed(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return TransportClosed;
+}(Error));
+
+var UnsupportedFeature = (function (_super) {
+    __extends(UnsupportedFeature, _super);
+    function UnsupportedFeature(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return UnsupportedFeature;
+}(Error));
+
+var UnsupportedTransport = (function (_super) {
+    __extends(UnsupportedTransport, _super);
+    function UnsupportedTransport(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return UnsupportedTransport;
+}(Error));
+
+var UnsupportedStrategy = (function (_super) {
+    __extends(UnsupportedStrategy, _super);
+    function UnsupportedStrategy(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return UnsupportedStrategy;
+}(Error));
+
+var HTTPAuthError = (function (_super) {
+    __extends(HTTPAuthError, _super);
+    function HTTPAuthError(status, msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        _this.status = status;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return HTTPAuthError;
+}(Error));
+
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/auth/xhr_auth.ts
+
+
+
+var ajax = function (context, socketId, callback) {
+    var self = this, xhr;
+    xhr = runtime.createXHR();
+    xhr.open('POST', self.options.authEndpoint, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    for (var headerName in this.authOptions.headers) {
+        xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
+    }
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var data = void 0;
+                var parsed = false;
+                try {
+                    data = JSON.parse(xhr.responseText);
+                    parsed = true;
+                }
+                catch (e) {
+                    callback(new HTTPAuthError(200, 'JSON returned from auth endpoint was invalid, yet status code was 200. Data was: ' +
+                        xhr.responseText), { auth: '' });
+                }
+                if (parsed) {
+                    callback(null, data);
+                }
+            }
+            else {
+                var suffix = url_store.buildLogSuffix('authenticationEndpoint');
+                callback(new HTTPAuthError(xhr.status, 'Unable to retrieve auth string from auth endpoint - ' +
+                    ("received status: " + xhr.status + " from " + self.options.authEndpoint + ". ") +
+                    ("Clients must be authenticated to join private or presence channels. " + suffix)), { auth: '' });
+            }
+        }
+    };
+    xhr.send(this.composeQuery(socketId));
+    return xhr;
+};
+/* harmony default export */ var xhr_auth = (ajax);
+
+// CONCATENATED MODULE: ./src/core/base64.ts
+function encode(s) {
+    return btoa(utob(s));
+}
+var fromCharCode = String.fromCharCode;
+var b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+var b64tab = {};
+for (var base64_i = 0, l = b64chars.length; base64_i < l; base64_i++) {
+    b64tab[b64chars.charAt(base64_i)] = base64_i;
+}
+var cb_utob = function (c) {
+    var cc = c.charCodeAt(0);
+    return cc < 0x80
+        ? c
+        : cc < 0x800
+            ? fromCharCode(0xc0 | (cc >>> 6)) + fromCharCode(0x80 | (cc & 0x3f))
+            : fromCharCode(0xe0 | ((cc >>> 12) & 0x0f)) +
+                fromCharCode(0x80 | ((cc >>> 6) & 0x3f)) +
+                fromCharCode(0x80 | (cc & 0x3f));
+};
+var utob = function (u) {
+    return u.replace(/[^\x00-\x7F]/g, cb_utob);
+};
+var cb_encode = function (ccc) {
+    var padlen = [0, 2, 1][ccc.length % 3];
+    var ord = (ccc.charCodeAt(0) << 16) |
+        ((ccc.length > 1 ? ccc.charCodeAt(1) : 0) << 8) |
+        (ccc.length > 2 ? ccc.charCodeAt(2) : 0);
+    var chars = [
+        b64chars.charAt(ord >>> 18),
+        b64chars.charAt((ord >>> 12) & 63),
+        padlen >= 2 ? '=' : b64chars.charAt((ord >>> 6) & 63),
+        padlen >= 1 ? '=' : b64chars.charAt(ord & 63)
+    ];
+    return chars.join('');
+};
+var btoa = window.btoa ||
+    function (b) {
+        return b.replace(/[\s\S]{1,3}/g, cb_encode);
+    };
+
+// CONCATENATED MODULE: ./src/core/utils/timers/abstract_timer.ts
+var Timer = (function () {
+    function Timer(set, clear, delay, callback) {
+        var _this = this;
+        this.clear = clear;
+        this.timer = set(function () {
+            if (_this.timer) {
+                _this.timer = callback(_this.timer);
+            }
+        }, delay);
+    }
+    Timer.prototype.isRunning = function () {
+        return this.timer !== null;
+    };
+    Timer.prototype.ensureAborted = function () {
+        if (this.timer) {
+            this.clear(this.timer);
+            this.timer = null;
+        }
+    };
+    return Timer;
+}());
+/* harmony default export */ var abstract_timer = (Timer);
+
+// CONCATENATED MODULE: ./src/core/utils/timers/index.ts
+var timers_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+function timers_clearTimeout(timer) {
+    window.clearTimeout(timer);
+}
+function timers_clearInterval(timer) {
+    window.clearInterval(timer);
+}
+var OneOffTimer = (function (_super) {
+    timers_extends(OneOffTimer, _super);
+    function OneOffTimer(delay, callback) {
+        return _super.call(this, setTimeout, timers_clearTimeout, delay, function (timer) {
+            callback();
+            return null;
+        }) || this;
+    }
+    return OneOffTimer;
+}(abstract_timer));
+
+var PeriodicTimer = (function (_super) {
+    timers_extends(PeriodicTimer, _super);
+    function PeriodicTimer(delay, callback) {
+        return _super.call(this, setInterval, timers_clearInterval, delay, function (timer) {
+            callback();
+            return timer;
+        }) || this;
+    }
+    return PeriodicTimer;
+}(abstract_timer));
+
+
+// CONCATENATED MODULE: ./src/core/util.ts
+
+var Util = {
+    now: function () {
+        if (Date.now) {
+            return Date.now();
+        }
+        else {
+            return new Date().valueOf();
+        }
+    },
+    defer: function (callback) {
+        return new OneOffTimer(0, callback);
+    },
+    method: function (name) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var boundArguments = Array.prototype.slice.call(arguments, 1);
+        return function (object) {
+            return object[name].apply(object, boundArguments.concat(arguments));
+        };
+    }
+};
+/* harmony default export */ var util = (Util);
+
+// CONCATENATED MODULE: ./src/core/utils/collections.ts
+
+
+function extend(target) {
+    var sources = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        sources[_i - 1] = arguments[_i];
+    }
+    for (var i = 0; i < sources.length; i++) {
+        var extensions = sources[i];
+        for (var property in extensions) {
+            if (extensions[property] &&
+                extensions[property].constructor &&
+                extensions[property].constructor === Object) {
+                target[property] = extend(target[property] || {}, extensions[property]);
+            }
+            else {
+                target[property] = extensions[property];
+            }
+        }
+    }
+    return target;
+}
+function stringify() {
+    var m = ['Pusher'];
+    for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] === 'string') {
+            m.push(arguments[i]);
+        }
+        else {
+            m.push(safeJSONStringify(arguments[i]));
+        }
+    }
+    return m.join(' : ');
+}
+function arrayIndexOf(array, item) {
+    var nativeIndexOf = Array.prototype.indexOf;
+    if (array === null) {
+        return -1;
+    }
+    if (nativeIndexOf && array.indexOf === nativeIndexOf) {
+        return array.indexOf(item);
+    }
+    for (var i = 0, l = array.length; i < l; i++) {
+        if (array[i] === item) {
+            return i;
+        }
+    }
+    return -1;
+}
+function objectApply(object, f) {
+    for (var key in object) {
+        if (Object.prototype.hasOwnProperty.call(object, key)) {
+            f(object[key], key, object);
+        }
+    }
+}
+function keys(object) {
+    var keys = [];
+    objectApply(object, function (_, key) {
+        keys.push(key);
+    });
+    return keys;
+}
+function values(object) {
+    var values = [];
+    objectApply(object, function (value) {
+        values.push(value);
+    });
+    return values;
+}
+function apply(array, f, context) {
+    for (var i = 0; i < array.length; i++) {
+        f.call(context || window, array[i], i, array);
+    }
+}
+function map(array, f) {
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        result.push(f(array[i], i, array, result));
+    }
+    return result;
+}
+function mapObject(object, f) {
+    var result = {};
+    objectApply(object, function (value, key) {
+        result[key] = f(value);
+    });
+    return result;
+}
+function filter(array, test) {
+    test =
+        test ||
+            function (value) {
+                return !!value;
+            };
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        if (test(array[i], i, array, result)) {
+            result.push(array[i]);
+        }
+    }
+    return result;
+}
+function filterObject(object, test) {
+    var result = {};
+    objectApply(object, function (value, key) {
+        if ((test && test(value, key, object, result)) || Boolean(value)) {
+            result[key] = value;
+        }
+    });
+    return result;
+}
+function flatten(object) {
+    var result = [];
+    objectApply(object, function (value, key) {
+        result.push([key, value]);
+    });
+    return result;
+}
+function any(array, test) {
+    for (var i = 0; i < array.length; i++) {
+        if (test(array[i], i, array)) {
+            return true;
+        }
+    }
+    return false;
+}
+function collections_all(array, test) {
+    for (var i = 0; i < array.length; i++) {
+        if (!test(array[i], i, array)) {
+            return false;
+        }
+    }
+    return true;
+}
+function encodeParamsObject(data) {
+    return mapObject(data, function (value) {
+        if (typeof value === 'object') {
+            value = safeJSONStringify(value);
+        }
+        return encodeURIComponent(encode(value.toString()));
+    });
+}
+function buildQueryString(data) {
+    var params = filterObject(data, function (value) {
+        return value !== undefined;
+    });
+    var query = map(flatten(encodeParamsObject(params)), util.method('join', '=')).join('&');
+    return query;
+}
+function decycleObject(object) {
+    var objects = [], paths = [];
+    return (function derez(value, path) {
+        var i, name, nu;
+        switch (typeof value) {
+            case 'object':
+                if (!value) {
+                    return null;
+                }
+                for (i = 0; i < objects.length; i += 1) {
+                    if (objects[i] === value) {
+                        return { $ref: paths[i] };
+                    }
+                }
+                objects.push(value);
+                paths.push(path);
+                if (Object.prototype.toString.apply(value) === '[object Array]') {
+                    nu = [];
+                    for (i = 0; i < value.length; i += 1) {
+                        nu[i] = derez(value[i], path + '[' + i + ']');
+                    }
+                }
+                else {
+                    nu = {};
+                    for (name in value) {
+                        if (Object.prototype.hasOwnProperty.call(value, name)) {
+                            nu[name] = derez(value[name], path + '[' + JSON.stringify(name) + ']');
+                        }
+                    }
+                }
+                return nu;
+            case 'number':
+            case 'string':
+            case 'boolean':
+                return value;
+        }
+    })(object, '$');
+}
+function safeJSONStringify(source) {
+    try {
+        return JSON.stringify(source);
+    }
+    catch (e) {
+        return JSON.stringify(decycleObject(source));
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/logger.ts
+
+
+var logger_Logger = (function () {
+    function Logger() {
+        this.globalLog = function (message) {
+            if (window.console && window.console.log) {
+                window.console.log(message);
+            }
+        };
+    }
+    Logger.prototype.debug = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.log(this.globalLog, args);
+    };
+    Logger.prototype.warn = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.log(this.globalLogWarn, args);
+    };
+    Logger.prototype.error = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.log(this.globalLogError, args);
+    };
+    Logger.prototype.globalLogWarn = function (message) {
+        if (window.console && window.console.warn) {
+            window.console.warn(message);
+        }
+        else {
+            this.globalLog(message);
+        }
+    };
+    Logger.prototype.globalLogError = function (message) {
+        if (window.console && window.console.error) {
+            window.console.error(message);
+        }
+        else {
+            this.globalLogWarn(message);
+        }
+    };
+    Logger.prototype.log = function (defaultLoggingFunction) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var message = stringify.apply(this, arguments);
+        if (core_pusher.log) {
+            core_pusher.log(message);
+        }
+        else if (core_pusher.logToConsole) {
+            var log = defaultLoggingFunction.bind(this);
+            log(message);
+        }
+    };
+    return Logger;
+}());
+/* harmony default export */ var logger = (new logger_Logger());
+
+// CONCATENATED MODULE: ./src/runtimes/web/auth/jsonp_auth.ts
+
+var jsonp = function (context, socketId, callback) {
+    if (this.authOptions.headers !== undefined) {
+        logger.warn('To send headers with the auth request, you must use AJAX, rather than JSONP.');
+    }
+    var callbackName = context.nextAuthCallbackID.toString();
+    context.nextAuthCallbackID++;
+    var document = context.getDocument();
+    var script = document.createElement('script');
+    context.auth_callbacks[callbackName] = function (data) {
+        callback(null, data);
+    };
+    var callback_name = "Pusher.auth_callbacks['" + callbackName + "']";
+    script.src =
+        this.options.authEndpoint +
+            '?callback=' +
+            encodeURIComponent(callback_name) +
+            '&' +
+            this.composeQuery(socketId);
+    var head = document.getElementsByTagName('head')[0] || document.documentElement;
+    head.insertBefore(script, head.firstChild);
+};
+/* harmony default export */ var jsonp_auth = (jsonp);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/script_request.ts
+var ScriptRequest = (function () {
+    function ScriptRequest(src) {
+        this.src = src;
+    }
+    ScriptRequest.prototype.send = function (receiver) {
+        var self = this;
+        var errorString = 'Error loading ' + self.src;
+        self.script = document.createElement('script');
+        self.script.id = receiver.id;
+        self.script.src = self.src;
+        self.script.type = 'text/javascript';
+        self.script.charset = 'UTF-8';
+        if (self.script.addEventListener) {
+            self.script.onerror = function () {
+                receiver.callback(errorString);
+            };
+            self.script.onload = function () {
+                receiver.callback(null);
+            };
+        }
+        else {
+            self.script.onreadystatechange = function () {
+                if (self.script.readyState === 'loaded' ||
+                    self.script.readyState === 'complete') {
+                    receiver.callback(null);
+                }
+            };
+        }
+        if (self.script.async === undefined &&
+            document.attachEvent &&
+            /opera/i.test(navigator.userAgent)) {
+            self.errorScript = document.createElement('script');
+            self.errorScript.id = receiver.id + '_error';
+            self.errorScript.text = receiver.name + "('" + errorString + "');";
+            self.script.async = self.errorScript.async = false;
+        }
+        else {
+            self.script.async = true;
+        }
+        var head = document.getElementsByTagName('head')[0];
+        head.insertBefore(self.script, head.firstChild);
+        if (self.errorScript) {
+            head.insertBefore(self.errorScript, self.script.nextSibling);
+        }
+    };
+    ScriptRequest.prototype.cleanup = function () {
+        if (this.script) {
+            this.script.onload = this.script.onerror = null;
+            this.script.onreadystatechange = null;
+        }
+        if (this.script && this.script.parentNode) {
+            this.script.parentNode.removeChild(this.script);
+        }
+        if (this.errorScript && this.errorScript.parentNode) {
+            this.errorScript.parentNode.removeChild(this.errorScript);
+        }
+        this.script = null;
+        this.errorScript = null;
+    };
+    return ScriptRequest;
+}());
+/* harmony default export */ var script_request = (ScriptRequest);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/jsonp_request.ts
+
+
+var jsonp_request_JSONPRequest = (function () {
+    function JSONPRequest(url, data) {
+        this.url = url;
+        this.data = data;
+    }
+    JSONPRequest.prototype.send = function (receiver) {
+        if (this.request) {
+            return;
+        }
+        var query = buildQueryString(this.data);
+        var url = this.url + '/' + receiver.number + '?' + query;
+        this.request = runtime.createScriptRequest(url);
+        this.request.send(receiver);
+    };
+    JSONPRequest.prototype.cleanup = function () {
+        if (this.request) {
+            this.request.cleanup();
+        }
+    };
+    return JSONPRequest;
+}());
+/* harmony default export */ var jsonp_request = (jsonp_request_JSONPRequest);
+
+// CONCATENATED MODULE: ./src/runtimes/web/timeline/jsonp_timeline.ts
+
+
+var getAgent = function (sender, useTLS) {
+    return function (data, callback) {
+        var scheme = 'http' + (useTLS ? 's' : '') + '://';
+        var url = scheme + (sender.host || sender.options.host) + sender.options.path;
+        var request = runtime.createJSONPRequest(url, data);
+        var receiver = runtime.ScriptReceivers.create(function (error, result) {
+            ScriptReceivers.remove(receiver);
+            request.cleanup();
+            if (result && result.host) {
+                sender.host = result.host;
+            }
+            if (callback) {
+                callback(error, result);
+            }
+        });
+        request.send(receiver);
+    };
+};
+var jsonp_timeline_jsonp = {
+    name: 'jsonp',
+    getAgent: getAgent
+};
+/* harmony default export */ var jsonp_timeline = (jsonp_timeline_jsonp);
+
+// CONCATENATED MODULE: ./src/core/transports/url_schemes.ts
+
+function getGenericURL(baseScheme, params, path) {
+    var scheme = baseScheme + (params.useTLS ? 's' : '');
+    var host = params.useTLS ? params.hostTLS : params.hostNonTLS;
+    return scheme + '://' + host + path;
+}
+function getGenericPath(key, queryString) {
+    var path = '/app/' + key;
+    var query = '?protocol=' +
+        defaults.PROTOCOL +
+        '&client=js' +
+        '&version=' +
+        defaults.VERSION +
+        (queryString ? '&' + queryString : '');
+    return path + query;
+}
+var ws = {
+    getInitial: function (key, params) {
+        var path = (params.httpPath || '') + getGenericPath(key, 'flash=false');
+        return getGenericURL('ws', params, path);
+    }
+};
+var http = {
+    getInitial: function (key, params) {
+        var path = (params.httpPath || '/pusher') + getGenericPath(key);
+        return getGenericURL('http', params, path);
+    }
+};
+var sockjs = {
+    getInitial: function (key, params) {
+        return getGenericURL('http', params, params.httpPath || '/pusher');
+    },
+    getPath: function (key, params) {
+        return getGenericPath(key);
+    }
+};
+
+// CONCATENATED MODULE: ./src/core/events/callback_registry.ts
+
+var callback_registry_CallbackRegistry = (function () {
+    function CallbackRegistry() {
+        this._callbacks = {};
+    }
+    CallbackRegistry.prototype.get = function (name) {
+        return this._callbacks[prefix(name)];
+    };
+    CallbackRegistry.prototype.add = function (name, callback, context) {
+        var prefixedEventName = prefix(name);
+        this._callbacks[prefixedEventName] =
+            this._callbacks[prefixedEventName] || [];
+        this._callbacks[prefixedEventName].push({
+            fn: callback,
+            context: context
+        });
+    };
+    CallbackRegistry.prototype.remove = function (name, callback, context) {
+        if (!name && !callback && !context) {
+            this._callbacks = {};
+            return;
+        }
+        var names = name ? [prefix(name)] : keys(this._callbacks);
+        if (callback || context) {
+            this.removeCallback(names, callback, context);
+        }
+        else {
+            this.removeAllCallbacks(names);
+        }
+    };
+    CallbackRegistry.prototype.removeCallback = function (names, callback, context) {
+        apply(names, function (name) {
+            this._callbacks[name] = filter(this._callbacks[name] || [], function (binding) {
+                return ((callback && callback !== binding.fn) ||
+                    (context && context !== binding.context));
+            });
+            if (this._callbacks[name].length === 0) {
+                delete this._callbacks[name];
+            }
+        }, this);
+    };
+    CallbackRegistry.prototype.removeAllCallbacks = function (names) {
+        apply(names, function (name) {
+            delete this._callbacks[name];
+        }, this);
+    };
+    return CallbackRegistry;
+}());
+/* harmony default export */ var callback_registry = (callback_registry_CallbackRegistry);
+function prefix(name) {
+    return '_' + name;
+}
+
+// CONCATENATED MODULE: ./src/core/events/dispatcher.ts
+
+
+var dispatcher_Dispatcher = (function () {
+    function Dispatcher(failThrough) {
+        this.callbacks = new callback_registry();
+        this.global_callbacks = [];
+        this.failThrough = failThrough;
+    }
+    Dispatcher.prototype.bind = function (eventName, callback, context) {
+        this.callbacks.add(eventName, callback, context);
+        return this;
+    };
+    Dispatcher.prototype.bind_global = function (callback) {
+        this.global_callbacks.push(callback);
+        return this;
+    };
+    Dispatcher.prototype.unbind = function (eventName, callback, context) {
+        this.callbacks.remove(eventName, callback, context);
+        return this;
+    };
+    Dispatcher.prototype.unbind_global = function (callback) {
+        if (!callback) {
+            this.global_callbacks = [];
+            return this;
+        }
+        this.global_callbacks = filter(this.global_callbacks || [], function (c) { return c !== callback; });
+        return this;
+    };
+    Dispatcher.prototype.unbind_all = function () {
+        this.unbind();
+        this.unbind_global();
+        return this;
+    };
+    Dispatcher.prototype.emit = function (eventName, data, metadata) {
+        for (var i = 0; i < this.global_callbacks.length; i++) {
+            this.global_callbacks[i](eventName, data);
+        }
+        var callbacks = this.callbacks.get(eventName);
+        var args = [];
+        if (metadata) {
+            args.push(data, metadata);
+        }
+        else if (data) {
+            args.push(data);
+        }
+        if (callbacks && callbacks.length > 0) {
+            for (var i = 0; i < callbacks.length; i++) {
+                callbacks[i].fn.apply(callbacks[i].context || window, args);
+            }
+        }
+        else if (this.failThrough) {
+            this.failThrough(eventName, data);
+        }
+        return this;
+    };
+    return Dispatcher;
+}());
+/* harmony default export */ var dispatcher = (dispatcher_Dispatcher);
+
+// CONCATENATED MODULE: ./src/core/transports/transport_connection.ts
+var transport_connection_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var transport_connection_TransportConnection = (function (_super) {
+    transport_connection_extends(TransportConnection, _super);
+    function TransportConnection(hooks, name, priority, key, options) {
+        var _this = _super.call(this) || this;
+        _this.initialize = runtime.transportConnectionInitializer;
+        _this.hooks = hooks;
+        _this.name = name;
+        _this.priority = priority;
+        _this.key = key;
+        _this.options = options;
+        _this.state = 'new';
+        _this.timeline = options.timeline;
+        _this.activityTimeout = options.activityTimeout;
+        _this.id = _this.timeline.generateUniqueID();
+        return _this;
+    }
+    TransportConnection.prototype.handlesActivityChecks = function () {
+        return Boolean(this.hooks.handlesActivityChecks);
+    };
+    TransportConnection.prototype.supportsPing = function () {
+        return Boolean(this.hooks.supportsPing);
+    };
+    TransportConnection.prototype.connect = function () {
+        var _this = this;
+        if (this.socket || this.state !== 'initialized') {
+            return false;
+        }
+        var url = this.hooks.urls.getInitial(this.key, this.options);
+        try {
+            this.socket = this.hooks.getSocket(url, this.options);
+        }
+        catch (e) {
+            util.defer(function () {
+                _this.onError(e);
+                _this.changeState('closed');
+            });
+            return false;
+        }
+        this.bindListeners();
+        logger.debug('Connecting', { transport: this.name, url: url });
+        this.changeState('connecting');
+        return true;
+    };
+    TransportConnection.prototype.close = function () {
+        if (this.socket) {
+            this.socket.close();
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    TransportConnection.prototype.send = function (data) {
+        var _this = this;
+        if (this.state === 'open') {
+            util.defer(function () {
+                if (_this.socket) {
+                    _this.socket.send(data);
+                }
+            });
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    TransportConnection.prototype.ping = function () {
+        if (this.state === 'open' && this.supportsPing()) {
+            this.socket.ping();
+        }
+    };
+    TransportConnection.prototype.onOpen = function () {
+        if (this.hooks.beforeOpen) {
+            this.hooks.beforeOpen(this.socket, this.hooks.urls.getPath(this.key, this.options));
+        }
+        this.changeState('open');
+        this.socket.onopen = undefined;
+    };
+    TransportConnection.prototype.onError = function (error) {
+        this.emit('error', { type: 'WebSocketError', error: error });
+        this.timeline.error(this.buildTimelineMessage({ error: error.toString() }));
+    };
+    TransportConnection.prototype.onClose = function (closeEvent) {
+        if (closeEvent) {
+            this.changeState('closed', {
+                code: closeEvent.code,
+                reason: closeEvent.reason,
+                wasClean: closeEvent.wasClean
+            });
+        }
+        else {
+            this.changeState('closed');
+        }
+        this.unbindListeners();
+        this.socket = undefined;
+    };
+    TransportConnection.prototype.onMessage = function (message) {
+        this.emit('message', message);
+    };
+    TransportConnection.prototype.onActivity = function () {
+        this.emit('activity');
+    };
+    TransportConnection.prototype.bindListeners = function () {
+        var _this = this;
+        this.socket.onopen = function () {
+            _this.onOpen();
+        };
+        this.socket.onerror = function (error) {
+            _this.onError(error);
+        };
+        this.socket.onclose = function (closeEvent) {
+            _this.onClose(closeEvent);
+        };
+        this.socket.onmessage = function (message) {
+            _this.onMessage(message);
+        };
+        if (this.supportsPing()) {
+            this.socket.onactivity = function () {
+                _this.onActivity();
+            };
+        }
+    };
+    TransportConnection.prototype.unbindListeners = function () {
+        if (this.socket) {
+            this.socket.onopen = undefined;
+            this.socket.onerror = undefined;
+            this.socket.onclose = undefined;
+            this.socket.onmessage = undefined;
+            if (this.supportsPing()) {
+                this.socket.onactivity = undefined;
+            }
+        }
+    };
+    TransportConnection.prototype.changeState = function (state, params) {
+        this.state = state;
+        this.timeline.info(this.buildTimelineMessage({
+            state: state,
+            params: params
+        }));
+        this.emit(state, params);
+    };
+    TransportConnection.prototype.buildTimelineMessage = function (message) {
+        return extend({ cid: this.id }, message);
+    };
+    return TransportConnection;
+}(dispatcher));
+/* harmony default export */ var transport_connection = (transport_connection_TransportConnection);
+
+// CONCATENATED MODULE: ./src/core/transports/transport.ts
+
+var transport_Transport = (function () {
+    function Transport(hooks) {
+        this.hooks = hooks;
+    }
+    Transport.prototype.isSupported = function (environment) {
+        return this.hooks.isSupported(environment);
+    };
+    Transport.prototype.createConnection = function (name, priority, key, options) {
+        return new transport_connection(this.hooks, name, priority, key, options);
+    };
+    return Transport;
+}());
+/* harmony default export */ var transports_transport = (transport_Transport);
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/transports/transports.ts
+
+
+
+
+var WSTransport = new transports_transport({
+    urls: ws,
+    handlesActivityChecks: false,
+    supportsPing: false,
+    isInitialized: function () {
+        return Boolean(runtime.getWebSocketAPI());
+    },
+    isSupported: function () {
+        return Boolean(runtime.getWebSocketAPI());
+    },
+    getSocket: function (url) {
+        return runtime.createWebSocket(url);
+    }
+});
+var httpConfiguration = {
+    urls: http,
+    handlesActivityChecks: false,
+    supportsPing: true,
+    isInitialized: function () {
+        return true;
+    }
+};
+var streamingConfiguration = extend({
+    getSocket: function (url) {
+        return runtime.HTTPFactory.createStreamingSocket(url);
+    }
+}, httpConfiguration);
+var pollingConfiguration = extend({
+    getSocket: function (url) {
+        return runtime.HTTPFactory.createPollingSocket(url);
+    }
+}, httpConfiguration);
+var xhrConfiguration = {
+    isSupported: function () {
+        return runtime.isXHRSupported();
+    }
+};
+var XHRStreamingTransport = new transports_transport((extend({}, streamingConfiguration, xhrConfiguration)));
+var XHRPollingTransport = new transports_transport(extend({}, pollingConfiguration, xhrConfiguration));
+var Transports = {
+    ws: WSTransport,
+    xhr_streaming: XHRStreamingTransport,
+    xhr_polling: XHRPollingTransport
+};
+/* harmony default export */ var transports = (Transports);
+
+// CONCATENATED MODULE: ./src/runtimes/web/transports/transports.ts
+
+
+
+
+
+
+var SockJSTransport = new transports_transport({
+    file: 'sockjs',
+    urls: sockjs,
+    handlesActivityChecks: true,
+    supportsPing: false,
+    isSupported: function () {
+        return true;
+    },
+    isInitialized: function () {
+        return window.SockJS !== undefined;
+    },
+    getSocket: function (url, options) {
+        return new window.SockJS(url, null, {
+            js_path: Dependencies.getPath('sockjs', {
+                useTLS: options.useTLS
+            }),
+            ignore_null_origin: options.ignoreNullOrigin
+        });
+    },
+    beforeOpen: function (socket, path) {
+        socket.send(JSON.stringify({
+            path: path
+        }));
+    }
+});
+var xdrConfiguration = {
+    isSupported: function (environment) {
+        var yes = runtime.isXDRSupported(environment.useTLS);
+        return yes;
+    }
+};
+var XDRStreamingTransport = new transports_transport((extend({}, streamingConfiguration, xdrConfiguration)));
+var XDRPollingTransport = new transports_transport(extend({}, pollingConfiguration, xdrConfiguration));
+transports.xdr_streaming = XDRStreamingTransport;
+transports.xdr_polling = XDRPollingTransport;
+transports.sockjs = SockJSTransport;
+/* harmony default export */ var transports_transports = (transports);
+
+// CONCATENATED MODULE: ./src/runtimes/web/net_info.ts
+var net_info_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var NetInfo = (function (_super) {
+    net_info_extends(NetInfo, _super);
+    function NetInfo() {
+        var _this = _super.call(this) || this;
+        var self = _this;
+        if (window.addEventListener !== undefined) {
+            window.addEventListener('online', function () {
+                self.emit('online');
+            }, false);
+            window.addEventListener('offline', function () {
+                self.emit('offline');
+            }, false);
+        }
+        return _this;
+    }
+    NetInfo.prototype.isOnline = function () {
+        if (window.navigator.onLine === undefined) {
+            return true;
+        }
+        else {
+            return window.navigator.onLine;
+        }
+    };
+    return NetInfo;
+}(dispatcher));
+
+var net_info_Network = new NetInfo();
+
+// CONCATENATED MODULE: ./src/core/transports/assistant_to_the_transport_manager.ts
+
+
+var assistant_to_the_transport_manager_AssistantToTheTransportManager = (function () {
+    function AssistantToTheTransportManager(manager, transport, options) {
+        this.manager = manager;
+        this.transport = transport;
+        this.minPingDelay = options.minPingDelay;
+        this.maxPingDelay = options.maxPingDelay;
+        this.pingDelay = undefined;
+    }
+    AssistantToTheTransportManager.prototype.createConnection = function (name, priority, key, options) {
+        var _this = this;
+        options = extend({}, options, {
+            activityTimeout: this.pingDelay
+        });
+        var connection = this.transport.createConnection(name, priority, key, options);
+        var openTimestamp = null;
+        var onOpen = function () {
+            connection.unbind('open', onOpen);
+            connection.bind('closed', onClosed);
+            openTimestamp = util.now();
+        };
+        var onClosed = function (closeEvent) {
+            connection.unbind('closed', onClosed);
+            if (closeEvent.code === 1002 || closeEvent.code === 1003) {
+                _this.manager.reportDeath();
+            }
+            else if (!closeEvent.wasClean && openTimestamp) {
+                var lifespan = util.now() - openTimestamp;
+                if (lifespan < 2 * _this.maxPingDelay) {
+                    _this.manager.reportDeath();
+                    _this.pingDelay = Math.max(lifespan / 2, _this.minPingDelay);
+                }
+            }
+        };
+        connection.bind('open', onOpen);
+        return connection;
+    };
+    AssistantToTheTransportManager.prototype.isSupported = function (environment) {
+        return this.manager.isAlive() && this.transport.isSupported(environment);
+    };
+    return AssistantToTheTransportManager;
+}());
+/* harmony default export */ var assistant_to_the_transport_manager = (assistant_to_the_transport_manager_AssistantToTheTransportManager);
+
+// CONCATENATED MODULE: ./src/core/connection/protocol/protocol.ts
+var Protocol = {
+    decodeMessage: function (messageEvent) {
+        try {
+            var messageData = JSON.parse(messageEvent.data);
+            var pusherEventData = messageData.data;
+            if (typeof pusherEventData === 'string') {
+                try {
+                    pusherEventData = JSON.parse(messageData.data);
+                }
+                catch (e) { }
+            }
+            var pusherEvent = {
+                event: messageData.event,
+                channel: messageData.channel,
+                data: pusherEventData
+            };
+            if (messageData.user_id) {
+                pusherEvent.user_id = messageData.user_id;
+            }
+            return pusherEvent;
+        }
+        catch (e) {
+            throw { type: 'MessageParseError', error: e, data: messageEvent.data };
+        }
+    },
+    encodeMessage: function (event) {
+        return JSON.stringify(event);
+    },
+    processHandshake: function (messageEvent) {
+        var message = Protocol.decodeMessage(messageEvent);
+        if (message.event === 'pusher:connection_established') {
+            if (!message.data.activity_timeout) {
+                throw 'No activity timeout specified in handshake';
+            }
+            return {
+                action: 'connected',
+                id: message.data.socket_id,
+                activityTimeout: message.data.activity_timeout * 1000
+            };
+        }
+        else if (message.event === 'pusher:error') {
+            return {
+                action: this.getCloseAction(message.data),
+                error: this.getCloseError(message.data)
+            };
+        }
+        else {
+            throw 'Invalid handshake';
+        }
+    },
+    getCloseAction: function (closeEvent) {
+        if (closeEvent.code < 4000) {
+            if (closeEvent.code >= 1002 && closeEvent.code <= 1004) {
+                return 'backoff';
+            }
+            else {
+                return null;
+            }
+        }
+        else if (closeEvent.code === 4000) {
+            return 'tls_only';
+        }
+        else if (closeEvent.code < 4100) {
+            return 'refused';
+        }
+        else if (closeEvent.code < 4200) {
+            return 'backoff';
+        }
+        else if (closeEvent.code < 4300) {
+            return 'retry';
+        }
+        else {
+            return 'refused';
+        }
+    },
+    getCloseError: function (closeEvent) {
+        if (closeEvent.code !== 1000 && closeEvent.code !== 1001) {
+            return {
+                type: 'PusherError',
+                data: {
+                    code: closeEvent.code,
+                    message: closeEvent.reason || closeEvent.message
+                }
+            };
+        }
+        else {
+            return null;
+        }
+    }
+};
+/* harmony default export */ var protocol_protocol = (Protocol);
+
+// CONCATENATED MODULE: ./src/core/connection/connection.ts
+var connection_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var connection_Connection = (function (_super) {
+    connection_extends(Connection, _super);
+    function Connection(id, transport) {
+        var _this = _super.call(this) || this;
+        _this.id = id;
+        _this.transport = transport;
+        _this.activityTimeout = transport.activityTimeout;
+        _this.bindListeners();
+        return _this;
+    }
+    Connection.prototype.handlesActivityChecks = function () {
+        return this.transport.handlesActivityChecks();
+    };
+    Connection.prototype.send = function (data) {
+        return this.transport.send(data);
+    };
+    Connection.prototype.send_event = function (name, data, channel) {
+        var event = { event: name, data: data };
+        if (channel) {
+            event.channel = channel;
+        }
+        logger.debug('Event sent', event);
+        return this.send(protocol_protocol.encodeMessage(event));
+    };
+    Connection.prototype.ping = function () {
+        if (this.transport.supportsPing()) {
+            this.transport.ping();
+        }
+        else {
+            this.send_event('pusher:ping', {});
+        }
+    };
+    Connection.prototype.close = function () {
+        this.transport.close();
+    };
+    Connection.prototype.bindListeners = function () {
+        var _this = this;
+        var listeners = {
+            message: function (messageEvent) {
+                var pusherEvent;
+                try {
+                    pusherEvent = protocol_protocol.decodeMessage(messageEvent);
+                }
+                catch (e) {
+                    _this.emit('error', {
+                        type: 'MessageParseError',
+                        error: e,
+                        data: messageEvent.data
+                    });
+                }
+                if (pusherEvent !== undefined) {
+                    logger.debug('Event recd', pusherEvent);
+                    switch (pusherEvent.event) {
+                        case 'pusher:error':
+                            _this.emit('error', {
+                                type: 'PusherError',
+                                data: pusherEvent.data
+                            });
+                            break;
+                        case 'pusher:ping':
+                            _this.emit('ping');
+                            break;
+                        case 'pusher:pong':
+                            _this.emit('pong');
+                            break;
+                    }
+                    _this.emit('message', pusherEvent);
+                }
+            },
+            activity: function () {
+                _this.emit('activity');
+            },
+            error: function (error) {
+                _this.emit('error', error);
+            },
+            closed: function (closeEvent) {
+                unbindListeners();
+                if (closeEvent && closeEvent.code) {
+                    _this.handleCloseEvent(closeEvent);
+                }
+                _this.transport = null;
+                _this.emit('closed');
+            }
+        };
+        var unbindListeners = function () {
+            objectApply(listeners, function (listener, event) {
+                _this.transport.unbind(event, listener);
+            });
+        };
+        objectApply(listeners, function (listener, event) {
+            _this.transport.bind(event, listener);
+        });
+    };
+    Connection.prototype.handleCloseEvent = function (closeEvent) {
+        var action = protocol_protocol.getCloseAction(closeEvent);
+        var error = protocol_protocol.getCloseError(closeEvent);
+        if (error) {
+            this.emit('error', error);
+        }
+        if (action) {
+            this.emit(action, { action: action, error: error });
+        }
+    };
+    return Connection;
+}(dispatcher));
+/* harmony default export */ var connection_connection = (connection_Connection);
+
+// CONCATENATED MODULE: ./src/core/connection/handshake/index.ts
+
+
+
+var handshake_Handshake = (function () {
+    function Handshake(transport, callback) {
+        this.transport = transport;
+        this.callback = callback;
+        this.bindListeners();
+    }
+    Handshake.prototype.close = function () {
+        this.unbindListeners();
+        this.transport.close();
+    };
+    Handshake.prototype.bindListeners = function () {
+        var _this = this;
+        this.onMessage = function (m) {
+            _this.unbindListeners();
+            var result;
+            try {
+                result = protocol_protocol.processHandshake(m);
+            }
+            catch (e) {
+                _this.finish('error', { error: e });
+                _this.transport.close();
+                return;
+            }
+            if (result.action === 'connected') {
+                _this.finish('connected', {
+                    connection: new connection_connection(result.id, _this.transport),
+                    activityTimeout: result.activityTimeout
+                });
+            }
+            else {
+                _this.finish(result.action, { error: result.error });
+                _this.transport.close();
+            }
+        };
+        this.onClosed = function (closeEvent) {
+            _this.unbindListeners();
+            var action = protocol_protocol.getCloseAction(closeEvent) || 'backoff';
+            var error = protocol_protocol.getCloseError(closeEvent);
+            _this.finish(action, { error: error });
+        };
+        this.transport.bind('message', this.onMessage);
+        this.transport.bind('closed', this.onClosed);
+    };
+    Handshake.prototype.unbindListeners = function () {
+        this.transport.unbind('message', this.onMessage);
+        this.transport.unbind('closed', this.onClosed);
+    };
+    Handshake.prototype.finish = function (action, params) {
+        this.callback(extend({ transport: this.transport, action: action }, params));
+    };
+    return Handshake;
+}());
+/* harmony default export */ var connection_handshake = (handshake_Handshake);
+
+// CONCATENATED MODULE: ./src/core/auth/pusher_authorizer.ts
+
+var pusher_authorizer_PusherAuthorizer = (function () {
+    function PusherAuthorizer(channel, options) {
+        this.channel = channel;
+        var authTransport = options.authTransport;
+        if (typeof runtime.getAuthorizers()[authTransport] === 'undefined') {
+            throw "'" + authTransport + "' is not a recognized auth transport";
+        }
+        this.type = authTransport;
+        this.options = options;
+        this.authOptions = options.auth || {};
+    }
+    PusherAuthorizer.prototype.composeQuery = function (socketId) {
+        var query = 'socket_id=' +
+            encodeURIComponent(socketId) +
+            '&channel_name=' +
+            encodeURIComponent(this.channel.name);
+        for (var i in this.authOptions.params) {
+            query +=
+                '&' +
+                    encodeURIComponent(i) +
+                    '=' +
+                    encodeURIComponent(this.authOptions.params[i]);
+        }
+        return query;
+    };
+    PusherAuthorizer.prototype.authorize = function (socketId, callback) {
+        PusherAuthorizer.authorizers =
+            PusherAuthorizer.authorizers || runtime.getAuthorizers();
+        PusherAuthorizer.authorizers[this.type].call(this, runtime, socketId, callback);
+    };
+    return PusherAuthorizer;
+}());
+/* harmony default export */ var pusher_authorizer = (pusher_authorizer_PusherAuthorizer);
+
+// CONCATENATED MODULE: ./src/core/timeline/timeline_sender.ts
+
+var timeline_sender_TimelineSender = (function () {
+    function TimelineSender(timeline, options) {
+        this.timeline = timeline;
+        this.options = options || {};
+    }
+    TimelineSender.prototype.send = function (useTLS, callback) {
+        if (this.timeline.isEmpty()) {
+            return;
+        }
+        this.timeline.send(runtime.TimelineTransport.getAgent(this, useTLS), callback);
+    };
+    return TimelineSender;
+}());
+/* harmony default export */ var timeline_sender = (timeline_sender_TimelineSender);
+
+// CONCATENATED MODULE: ./src/core/channels/channel.ts
+var channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var channel_Channel = (function (_super) {
+    channel_extends(Channel, _super);
+    function Channel(name, pusher) {
+        var _this = _super.call(this, function (event, data) {
+            logger.debug('No callbacks on ' + name + ' for ' + event);
+        }) || this;
+        _this.name = name;
+        _this.pusher = pusher;
+        _this.subscribed = false;
+        _this.subscriptionPending = false;
+        _this.subscriptionCancelled = false;
+        return _this;
+    }
+    Channel.prototype.authorize = function (socketId, callback) {
+        return callback(null, { auth: '' });
+    };
+    Channel.prototype.trigger = function (event, data) {
+        if (event.indexOf('client-') !== 0) {
+            throw new BadEventName("Event '" + event + "' does not start with 'client-'");
+        }
+        if (!this.subscribed) {
+            var suffix = url_store.buildLogSuffix('triggeringClientEvents');
+            logger.warn("Client event triggered before channel 'subscription_succeeded' event . " + suffix);
+        }
+        return this.pusher.send_event(event, data, this.name);
+    };
+    Channel.prototype.disconnect = function () {
+        this.subscribed = false;
+        this.subscriptionPending = false;
+    };
+    Channel.prototype.handleEvent = function (event) {
+        var eventName = event.event;
+        var data = event.data;
+        if (eventName === 'pusher_internal:subscription_succeeded') {
+            this.handleSubscriptionSucceededEvent(event);
+        }
+        else if (eventName.indexOf('pusher_internal:') !== 0) {
+            var metadata = {};
+            this.emit(eventName, data, metadata);
+        }
+    };
+    Channel.prototype.handleSubscriptionSucceededEvent = function (event) {
+        this.subscriptionPending = false;
+        this.subscribed = true;
+        if (this.subscriptionCancelled) {
+            this.pusher.unsubscribe(this.name);
+        }
+        else {
+            this.emit('pusher:subscription_succeeded', event.data);
+        }
+    };
+    Channel.prototype.subscribe = function () {
+        var _this = this;
+        if (this.subscribed) {
+            return;
+        }
+        this.subscriptionPending = true;
+        this.subscriptionCancelled = false;
+        this.authorize(this.pusher.connection.socket_id, function (error, data) {
+            if (error) {
+                _this.subscriptionPending = false;
+                logger.error(error.toString());
+                _this.emit('pusher:subscription_error', Object.assign({}, {
+                    type: 'AuthError',
+                    error: error.message
+                }, error instanceof HTTPAuthError ? { status: error.status } : {}));
+            }
+            else {
+                _this.pusher.send_event('pusher:subscribe', {
+                    auth: data.auth,
+                    channel_data: data.channel_data,
+                    channel: _this.name
+                });
+            }
+        });
+    };
+    Channel.prototype.unsubscribe = function () {
+        this.subscribed = false;
+        this.pusher.send_event('pusher:unsubscribe', {
+            channel: this.name
+        });
+    };
+    Channel.prototype.cancelSubscription = function () {
+        this.subscriptionCancelled = true;
+    };
+    Channel.prototype.reinstateSubscription = function () {
+        this.subscriptionCancelled = false;
+    };
+    return Channel;
+}(dispatcher));
+/* harmony default export */ var channels_channel = (channel_Channel);
+
+// CONCATENATED MODULE: ./src/core/channels/private_channel.ts
+var private_channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var private_channel_PrivateChannel = (function (_super) {
+    private_channel_extends(PrivateChannel, _super);
+    function PrivateChannel() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PrivateChannel.prototype.authorize = function (socketId, callback) {
+        var authorizer = factory.createAuthorizer(this, this.pusher.config);
+        return authorizer.authorize(socketId, callback);
+    };
+    return PrivateChannel;
+}(channels_channel));
+/* harmony default export */ var private_channel = (private_channel_PrivateChannel);
+
+// CONCATENATED MODULE: ./src/core/channels/members.ts
+
+var members_Members = (function () {
+    function Members() {
+        this.reset();
+    }
+    Members.prototype.get = function (id) {
+        if (Object.prototype.hasOwnProperty.call(this.members, id)) {
+            return {
+                id: id,
+                info: this.members[id]
+            };
+        }
+        else {
+            return null;
+        }
+    };
+    Members.prototype.each = function (callback) {
+        var _this = this;
+        objectApply(this.members, function (member, id) {
+            callback(_this.get(id));
+        });
+    };
+    Members.prototype.setMyID = function (id) {
+        this.myID = id;
+    };
+    Members.prototype.onSubscription = function (subscriptionData) {
+        this.members = subscriptionData.presence.hash;
+        this.count = subscriptionData.presence.count;
+        this.me = this.get(this.myID);
+    };
+    Members.prototype.addMember = function (memberData) {
+        if (this.get(memberData.user_id) === null) {
+            this.count++;
+        }
+        this.members[memberData.user_id] = memberData.user_info;
+        return this.get(memberData.user_id);
+    };
+    Members.prototype.removeMember = function (memberData) {
+        var member = this.get(memberData.user_id);
+        if (member) {
+            delete this.members[memberData.user_id];
+            this.count--;
+        }
+        return member;
+    };
+    Members.prototype.reset = function () {
+        this.members = {};
+        this.count = 0;
+        this.myID = null;
+        this.me = null;
+    };
+    return Members;
+}());
+/* harmony default export */ var members = (members_Members);
+
+// CONCATENATED MODULE: ./src/core/channels/presence_channel.ts
+var presence_channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var presence_channel_PresenceChannel = (function (_super) {
+    presence_channel_extends(PresenceChannel, _super);
+    function PresenceChannel(name, pusher) {
+        var _this = _super.call(this, name, pusher) || this;
+        _this.members = new members();
+        return _this;
+    }
+    PresenceChannel.prototype.authorize = function (socketId, callback) {
+        var _this = this;
+        _super.prototype.authorize.call(this, socketId, function (error, authData) {
+            if (!error) {
+                authData = authData;
+                if (authData.channel_data === undefined) {
+                    var suffix = url_store.buildLogSuffix('authenticationEndpoint');
+                    logger.error("Invalid auth response for channel '" + _this.name + "'," +
+                        ("expected 'channel_data' field. " + suffix));
+                    callback('Invalid auth response');
+                    return;
+                }
+                var channelData = JSON.parse(authData.channel_data);
+                _this.members.setMyID(channelData.user_id);
+            }
+            callback(error, authData);
+        });
+    };
+    PresenceChannel.prototype.handleEvent = function (event) {
+        var eventName = event.event;
+        if (eventName.indexOf('pusher_internal:') === 0) {
+            this.handleInternalEvent(event);
+        }
+        else {
+            var data = event.data;
+            var metadata = {};
+            if (event.user_id) {
+                metadata.user_id = event.user_id;
+            }
+            this.emit(eventName, data, metadata);
+        }
+    };
+    PresenceChannel.prototype.handleInternalEvent = function (event) {
+        var eventName = event.event;
+        var data = event.data;
+        switch (eventName) {
+            case 'pusher_internal:subscription_succeeded':
+                this.handleSubscriptionSucceededEvent(event);
+                break;
+            case 'pusher_internal:member_added':
+                var addedMember = this.members.addMember(data);
+                this.emit('pusher:member_added', addedMember);
+                break;
+            case 'pusher_internal:member_removed':
+                var removedMember = this.members.removeMember(data);
+                if (removedMember) {
+                    this.emit('pusher:member_removed', removedMember);
+                }
+                break;
+        }
+    };
+    PresenceChannel.prototype.handleSubscriptionSucceededEvent = function (event) {
+        this.subscriptionPending = false;
+        this.subscribed = true;
+        if (this.subscriptionCancelled) {
+            this.pusher.unsubscribe(this.name);
+        }
+        else {
+            this.members.onSubscription(event.data);
+            this.emit('pusher:subscription_succeeded', this.members);
+        }
+    };
+    PresenceChannel.prototype.disconnect = function () {
+        this.members.reset();
+        _super.prototype.disconnect.call(this);
+    };
+    return PresenceChannel;
+}(private_channel));
+/* harmony default export */ var presence_channel = (presence_channel_PresenceChannel);
+
+// EXTERNAL MODULE: ./node_modules/@stablelib/utf8/lib/utf8.js
+var utf8 = __webpack_require__(1);
+
+// EXTERNAL MODULE: ./node_modules/@stablelib/base64/lib/base64.js
+var base64 = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./src/core/channels/encrypted_channel.ts
+var encrypted_channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var encrypted_channel_EncryptedChannel = (function (_super) {
+    encrypted_channel_extends(EncryptedChannel, _super);
+    function EncryptedChannel(name, pusher, nacl) {
+        var _this = _super.call(this, name, pusher) || this;
+        _this.key = null;
+        _this.nacl = nacl;
+        return _this;
+    }
+    EncryptedChannel.prototype.authorize = function (socketId, callback) {
+        var _this = this;
+        _super.prototype.authorize.call(this, socketId, function (error, authData) {
+            if (error) {
+                callback(error, authData);
+                return;
+            }
+            var sharedSecret = authData['shared_secret'];
+            if (!sharedSecret) {
+                callback(new Error("No shared_secret key in auth payload for encrypted channel: " + _this.name), null);
+                return;
+            }
+            _this.key = Object(base64["decode"])(sharedSecret);
+            delete authData['shared_secret'];
+            callback(null, authData);
+        });
+    };
+    EncryptedChannel.prototype.trigger = function (event, data) {
+        throw new UnsupportedFeature('Client events are not currently supported for encrypted channels');
+    };
+    EncryptedChannel.prototype.handleEvent = function (event) {
+        var eventName = event.event;
+        var data = event.data;
+        if (eventName.indexOf('pusher_internal:') === 0 ||
+            eventName.indexOf('pusher:') === 0) {
+            _super.prototype.handleEvent.call(this, event);
+            return;
+        }
+        this.handleEncryptedEvent(eventName, data);
+    };
+    EncryptedChannel.prototype.handleEncryptedEvent = function (event, data) {
+        var _this = this;
+        if (!this.key) {
+            logger.debug('Received encrypted event before key has been retrieved from the authEndpoint');
+            return;
+        }
+        if (!data.ciphertext || !data.nonce) {
+            logger.error('Unexpected format for encrypted event, expected object with `ciphertext` and `nonce` fields, got: ' +
+                data);
+            return;
+        }
+        var cipherText = Object(base64["decode"])(data.ciphertext);
+        if (cipherText.length < this.nacl.secretbox.overheadLength) {
+            logger.error("Expected encrypted event ciphertext length to be " + this.nacl.secretbox.overheadLength + ", got: " + cipherText.length);
+            return;
+        }
+        var nonce = Object(base64["decode"])(data.nonce);
+        if (nonce.length < this.nacl.secretbox.nonceLength) {
+            logger.error("Expected encrypted event nonce length to be " + this.nacl.secretbox.nonceLength + ", got: " + nonce.length);
+            return;
+        }
+        var bytes = this.nacl.secretbox.open(cipherText, nonce, this.key);
+        if (bytes === null) {
+            logger.debug('Failed to decrypt an event, probably because it was encrypted with a different key. Fetching a new key from the authEndpoint...');
+            this.authorize(this.pusher.connection.socket_id, function (error, authData) {
+                if (error) {
+                    logger.error("Failed to make a request to the authEndpoint: " + authData + ". Unable to fetch new key, so dropping encrypted event");
+                    return;
+                }
+                bytes = _this.nacl.secretbox.open(cipherText, nonce, _this.key);
+                if (bytes === null) {
+                    logger.error("Failed to decrypt event with new key. Dropping encrypted event");
+                    return;
+                }
+                _this.emit(event, _this.getDataToEmit(bytes));
+                return;
+            });
+            return;
+        }
+        this.emit(event, this.getDataToEmit(bytes));
+    };
+    EncryptedChannel.prototype.getDataToEmit = function (bytes) {
+        var raw = Object(utf8["decode"])(bytes);
+        try {
+            return JSON.parse(raw);
+        }
+        catch (_a) {
+            return raw;
+        }
+    };
+    return EncryptedChannel;
+}(private_channel));
+/* harmony default export */ var encrypted_channel = (encrypted_channel_EncryptedChannel);
+
+// CONCATENATED MODULE: ./src/core/connection/connection_manager.ts
+var connection_manager_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var connection_manager_ConnectionManager = (function (_super) {
+    connection_manager_extends(ConnectionManager, _super);
+    function ConnectionManager(key, options) {
+        var _this = _super.call(this) || this;
+        _this.state = 'initialized';
+        _this.connection = null;
+        _this.key = key;
+        _this.options = options;
+        _this.timeline = _this.options.timeline;
+        _this.usingTLS = _this.options.useTLS;
+        _this.errorCallbacks = _this.buildErrorCallbacks();
+        _this.connectionCallbacks = _this.buildConnectionCallbacks(_this.errorCallbacks);
+        _this.handshakeCallbacks = _this.buildHandshakeCallbacks(_this.errorCallbacks);
+        var Network = runtime.getNetwork();
+        Network.bind('online', function () {
+            _this.timeline.info({ netinfo: 'online' });
+            if (_this.state === 'connecting' || _this.state === 'unavailable') {
+                _this.retryIn(0);
+            }
+        });
+        Network.bind('offline', function () {
+            _this.timeline.info({ netinfo: 'offline' });
+            if (_this.connection) {
+                _this.sendActivityCheck();
+            }
+        });
+        _this.updateStrategy();
+        return _this;
+    }
+    ConnectionManager.prototype.connect = function () {
+        if (this.connection || this.runner) {
+            return;
+        }
+        if (!this.strategy.isSupported()) {
+            this.updateState('failed');
+            return;
+        }
+        this.updateState('connecting');
+        this.startConnecting();
+        this.setUnavailableTimer();
+    };
+    ConnectionManager.prototype.send = function (data) {
+        if (this.connection) {
+            return this.connection.send(data);
+        }
+        else {
+            return false;
+        }
+    };
+    ConnectionManager.prototype.send_event = function (name, data, channel) {
+        if (this.connection) {
+            return this.connection.send_event(name, data, channel);
+        }
+        else {
+            return false;
+        }
+    };
+    ConnectionManager.prototype.disconnect = function () {
+        this.disconnectInternally();
+        this.updateState('disconnected');
+    };
+    ConnectionManager.prototype.isUsingTLS = function () {
+        return this.usingTLS;
+    };
+    ConnectionManager.prototype.startConnecting = function () {
+        var _this = this;
+        var callback = function (error, handshake) {
+            if (error) {
+                _this.runner = _this.strategy.connect(0, callback);
+            }
+            else {
+                if (handshake.action === 'error') {
+                    _this.emit('error', {
+                        type: 'HandshakeError',
+                        error: handshake.error
+                    });
+                    _this.timeline.error({ handshakeError: handshake.error });
+                }
+                else {
+                    _this.abortConnecting();
+                    _this.handshakeCallbacks[handshake.action](handshake);
+                }
+            }
+        };
+        this.runner = this.strategy.connect(0, callback);
+    };
+    ConnectionManager.prototype.abortConnecting = function () {
+        if (this.runner) {
+            this.runner.abort();
+            this.runner = null;
+        }
+    };
+    ConnectionManager.prototype.disconnectInternally = function () {
+        this.abortConnecting();
+        this.clearRetryTimer();
+        this.clearUnavailableTimer();
+        if (this.connection) {
+            var connection = this.abandonConnection();
+            connection.close();
+        }
+    };
+    ConnectionManager.prototype.updateStrategy = function () {
+        this.strategy = this.options.getStrategy({
+            key: this.key,
+            timeline: this.timeline,
+            useTLS: this.usingTLS
+        });
+    };
+    ConnectionManager.prototype.retryIn = function (delay) {
+        var _this = this;
+        this.timeline.info({ action: 'retry', delay: delay });
+        if (delay > 0) {
+            this.emit('connecting_in', Math.round(delay / 1000));
+        }
+        this.retryTimer = new OneOffTimer(delay || 0, function () {
+            _this.disconnectInternally();
+            _this.connect();
+        });
+    };
+    ConnectionManager.prototype.clearRetryTimer = function () {
+        if (this.retryTimer) {
+            this.retryTimer.ensureAborted();
+            this.retryTimer = null;
+        }
+    };
+    ConnectionManager.prototype.setUnavailableTimer = function () {
+        var _this = this;
+        this.unavailableTimer = new OneOffTimer(this.options.unavailableTimeout, function () {
+            _this.updateState('unavailable');
+        });
+    };
+    ConnectionManager.prototype.clearUnavailableTimer = function () {
+        if (this.unavailableTimer) {
+            this.unavailableTimer.ensureAborted();
+        }
+    };
+    ConnectionManager.prototype.sendActivityCheck = function () {
+        var _this = this;
+        this.stopActivityCheck();
+        this.connection.ping();
+        this.activityTimer = new OneOffTimer(this.options.pongTimeout, function () {
+            _this.timeline.error({ pong_timed_out: _this.options.pongTimeout });
+            _this.retryIn(0);
+        });
+    };
+    ConnectionManager.prototype.resetActivityCheck = function () {
+        var _this = this;
+        this.stopActivityCheck();
+        if (this.connection && !this.connection.handlesActivityChecks()) {
+            this.activityTimer = new OneOffTimer(this.activityTimeout, function () {
+                _this.sendActivityCheck();
+            });
+        }
+    };
+    ConnectionManager.prototype.stopActivityCheck = function () {
+        if (this.activityTimer) {
+            this.activityTimer.ensureAborted();
+        }
+    };
+    ConnectionManager.prototype.buildConnectionCallbacks = function (errorCallbacks) {
+        var _this = this;
+        return extend({}, errorCallbacks, {
+            message: function (message) {
+                _this.resetActivityCheck();
+                _this.emit('message', message);
+            },
+            ping: function () {
+                _this.send_event('pusher:pong', {});
+            },
+            activity: function () {
+                _this.resetActivityCheck();
+            },
+            error: function (error) {
+                _this.emit('error', error);
+            },
+            closed: function () {
+                _this.abandonConnection();
+                if (_this.shouldRetry()) {
+                    _this.retryIn(1000);
+                }
+            }
+        });
+    };
+    ConnectionManager.prototype.buildHandshakeCallbacks = function (errorCallbacks) {
+        var _this = this;
+        return extend({}, errorCallbacks, {
+            connected: function (handshake) {
+                _this.activityTimeout = Math.min(_this.options.activityTimeout, handshake.activityTimeout, handshake.connection.activityTimeout || Infinity);
+                _this.clearUnavailableTimer();
+                _this.setConnection(handshake.connection);
+                _this.socket_id = _this.connection.id;
+                _this.updateState('connected', { socket_id: _this.socket_id });
+            }
+        });
+    };
+    ConnectionManager.prototype.buildErrorCallbacks = function () {
+        var _this = this;
+        var withErrorEmitted = function (callback) {
+            return function (result) {
+                if (result.error) {
+                    _this.emit('error', { type: 'WebSocketError', error: result.error });
+                }
+                callback(result);
+            };
+        };
+        return {
+            tls_only: withErrorEmitted(function () {
+                _this.usingTLS = true;
+                _this.updateStrategy();
+                _this.retryIn(0);
+            }),
+            refused: withErrorEmitted(function () {
+                _this.disconnect();
+            }),
+            backoff: withErrorEmitted(function () {
+                _this.retryIn(1000);
+            }),
+            retry: withErrorEmitted(function () {
+                _this.retryIn(0);
+            })
+        };
+    };
+    ConnectionManager.prototype.setConnection = function (connection) {
+        this.connection = connection;
+        for (var event in this.connectionCallbacks) {
+            this.connection.bind(event, this.connectionCallbacks[event]);
+        }
+        this.resetActivityCheck();
+    };
+    ConnectionManager.prototype.abandonConnection = function () {
+        if (!this.connection) {
+            return;
+        }
+        this.stopActivityCheck();
+        for (var event in this.connectionCallbacks) {
+            this.connection.unbind(event, this.connectionCallbacks[event]);
+        }
+        var connection = this.connection;
+        this.connection = null;
+        return connection;
+    };
+    ConnectionManager.prototype.updateState = function (newState, data) {
+        var previousState = this.state;
+        this.state = newState;
+        if (previousState !== newState) {
+            var newStateDescription = newState;
+            if (newStateDescription === 'connected') {
+                newStateDescription += ' with new socket ID ' + data.socket_id;
+            }
+            logger.debug('State changed', previousState + ' -> ' + newStateDescription);
+            this.timeline.info({ state: newState, params: data });
+            this.emit('state_change', { previous: previousState, current: newState });
+            this.emit(newState, data);
+        }
+    };
+    ConnectionManager.prototype.shouldRetry = function () {
+        return this.state === 'connecting' || this.state === 'connected';
+    };
+    return ConnectionManager;
+}(dispatcher));
+/* harmony default export */ var connection_manager = (connection_manager_ConnectionManager);
+
+// CONCATENATED MODULE: ./src/core/channels/channels.ts
+
+
+
+
+var channels_Channels = (function () {
+    function Channels() {
+        this.channels = {};
+    }
+    Channels.prototype.add = function (name, pusher) {
+        if (!this.channels[name]) {
+            this.channels[name] = createChannel(name, pusher);
+        }
+        return this.channels[name];
+    };
+    Channels.prototype.all = function () {
+        return values(this.channels);
+    };
+    Channels.prototype.find = function (name) {
+        return this.channels[name];
+    };
+    Channels.prototype.remove = function (name) {
+        var channel = this.channels[name];
+        delete this.channels[name];
+        return channel;
+    };
+    Channels.prototype.disconnect = function () {
+        objectApply(this.channels, function (channel) {
+            channel.disconnect();
+        });
+    };
+    return Channels;
+}());
+/* harmony default export */ var channels = (channels_Channels);
+function createChannel(name, pusher) {
+    if (name.indexOf('private-encrypted-') === 0) {
+        if (pusher.config.nacl) {
+            return factory.createEncryptedChannel(name, pusher, pusher.config.nacl);
+        }
+        var errMsg = 'Tried to subscribe to a private-encrypted- channel but no nacl implementation available';
+        var suffix = url_store.buildLogSuffix('encryptedChannelSupport');
+        throw new UnsupportedFeature(errMsg + ". " + suffix);
+    }
+    else if (name.indexOf('private-') === 0) {
+        return factory.createPrivateChannel(name, pusher);
+    }
+    else if (name.indexOf('presence-') === 0) {
+        return factory.createPresenceChannel(name, pusher);
+    }
+    else {
+        return factory.createChannel(name, pusher);
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/utils/factory.ts
+
+
+
+
+
+
+
+
+
+
+var Factory = {
+    createChannels: function () {
+        return new channels();
+    },
+    createConnectionManager: function (key, options) {
+        return new connection_manager(key, options);
+    },
+    createChannel: function (name, pusher) {
+        return new channels_channel(name, pusher);
+    },
+    createPrivateChannel: function (name, pusher) {
+        return new private_channel(name, pusher);
+    },
+    createPresenceChannel: function (name, pusher) {
+        return new presence_channel(name, pusher);
+    },
+    createEncryptedChannel: function (name, pusher, nacl) {
+        return new encrypted_channel(name, pusher, nacl);
+    },
+    createTimelineSender: function (timeline, options) {
+        return new timeline_sender(timeline, options);
+    },
+    createAuthorizer: function (channel, options) {
+        if (options.authorizer) {
+            return options.authorizer(channel, options);
+        }
+        return new pusher_authorizer(channel, options);
+    },
+    createHandshake: function (transport, callback) {
+        return new connection_handshake(transport, callback);
+    },
+    createAssistantToTheTransportManager: function (manager, transport, options) {
+        return new assistant_to_the_transport_manager(manager, transport, options);
+    }
+};
+/* harmony default export */ var factory = (Factory);
+
+// CONCATENATED MODULE: ./src/core/transports/transport_manager.ts
+
+var transport_manager_TransportManager = (function () {
+    function TransportManager(options) {
+        this.options = options || {};
+        this.livesLeft = this.options.lives || Infinity;
+    }
+    TransportManager.prototype.getAssistant = function (transport) {
+        return factory.createAssistantToTheTransportManager(this, transport, {
+            minPingDelay: this.options.minPingDelay,
+            maxPingDelay: this.options.maxPingDelay
+        });
+    };
+    TransportManager.prototype.isAlive = function () {
+        return this.livesLeft > 0;
+    };
+    TransportManager.prototype.reportDeath = function () {
+        this.livesLeft -= 1;
+    };
+    return TransportManager;
+}());
+/* harmony default export */ var transport_manager = (transport_manager_TransportManager);
+
+// CONCATENATED MODULE: ./src/core/strategies/sequential_strategy.ts
+
+
+
+var sequential_strategy_SequentialStrategy = (function () {
+    function SequentialStrategy(strategies, options) {
+        this.strategies = strategies;
+        this.loop = Boolean(options.loop);
+        this.failFast = Boolean(options.failFast);
+        this.timeout = options.timeout;
+        this.timeoutLimit = options.timeoutLimit;
+    }
+    SequentialStrategy.prototype.isSupported = function () {
+        return any(this.strategies, util.method('isSupported'));
+    };
+    SequentialStrategy.prototype.connect = function (minPriority, callback) {
+        var _this = this;
+        var strategies = this.strategies;
+        var current = 0;
+        var timeout = this.timeout;
+        var runner = null;
+        var tryNextStrategy = function (error, handshake) {
+            if (handshake) {
+                callback(null, handshake);
+            }
+            else {
+                current = current + 1;
+                if (_this.loop) {
+                    current = current % strategies.length;
+                }
+                if (current < strategies.length) {
+                    if (timeout) {
+                        timeout = timeout * 2;
+                        if (_this.timeoutLimit) {
+                            timeout = Math.min(timeout, _this.timeoutLimit);
+                        }
+                    }
+                    runner = _this.tryStrategy(strategies[current], minPriority, { timeout: timeout, failFast: _this.failFast }, tryNextStrategy);
+                }
+                else {
+                    callback(true);
+                }
+            }
+        };
+        runner = this.tryStrategy(strategies[current], minPriority, { timeout: timeout, failFast: this.failFast }, tryNextStrategy);
+        return {
+            abort: function () {
+                runner.abort();
+            },
+            forceMinPriority: function (p) {
+                minPriority = p;
+                if (runner) {
+                    runner.forceMinPriority(p);
+                }
+            }
+        };
+    };
+    SequentialStrategy.prototype.tryStrategy = function (strategy, minPriority, options, callback) {
+        var timer = null;
+        var runner = null;
+        if (options.timeout > 0) {
+            timer = new OneOffTimer(options.timeout, function () {
+                runner.abort();
+                callback(true);
+            });
+        }
+        runner = strategy.connect(minPriority, function (error, handshake) {
+            if (error && timer && timer.isRunning() && !options.failFast) {
+                return;
+            }
+            if (timer) {
+                timer.ensureAborted();
+            }
+            callback(error, handshake);
+        });
+        return {
+            abort: function () {
+                if (timer) {
+                    timer.ensureAborted();
+                }
+                runner.abort();
+            },
+            forceMinPriority: function (p) {
+                runner.forceMinPriority(p);
+            }
+        };
+    };
+    return SequentialStrategy;
+}());
+/* harmony default export */ var sequential_strategy = (sequential_strategy_SequentialStrategy);
+
+// CONCATENATED MODULE: ./src/core/strategies/best_connected_ever_strategy.ts
+
+
+var best_connected_ever_strategy_BestConnectedEverStrategy = (function () {
+    function BestConnectedEverStrategy(strategies) {
+        this.strategies = strategies;
+    }
+    BestConnectedEverStrategy.prototype.isSupported = function () {
+        return any(this.strategies, util.method('isSupported'));
+    };
+    BestConnectedEverStrategy.prototype.connect = function (minPriority, callback) {
+        return connect(this.strategies, minPriority, function (i, runners) {
+            return function (error, handshake) {
+                runners[i].error = error;
+                if (error) {
+                    if (allRunnersFailed(runners)) {
+                        callback(true);
+                    }
+                    return;
+                }
+                apply(runners, function (runner) {
+                    runner.forceMinPriority(handshake.transport.priority);
+                });
+                callback(null, handshake);
+            };
+        });
+    };
+    return BestConnectedEverStrategy;
+}());
+/* harmony default export */ var best_connected_ever_strategy = (best_connected_ever_strategy_BestConnectedEverStrategy);
+function connect(strategies, minPriority, callbackBuilder) {
+    var runners = map(strategies, function (strategy, i, _, rs) {
+        return strategy.connect(minPriority, callbackBuilder(i, rs));
+    });
+    return {
+        abort: function () {
+            apply(runners, abortRunner);
+        },
+        forceMinPriority: function (p) {
+            apply(runners, function (runner) {
+                runner.forceMinPriority(p);
+            });
+        }
+    };
+}
+function allRunnersFailed(runners) {
+    return collections_all(runners, function (runner) {
+        return Boolean(runner.error);
+    });
+}
+function abortRunner(runner) {
+    if (!runner.error && !runner.aborted) {
+        runner.abort();
+        runner.aborted = true;
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/strategies/cached_strategy.ts
+
+
+
+
+var cached_strategy_CachedStrategy = (function () {
+    function CachedStrategy(strategy, transports, options) {
+        this.strategy = strategy;
+        this.transports = transports;
+        this.ttl = options.ttl || 1800 * 1000;
+        this.usingTLS = options.useTLS;
+        this.timeline = options.timeline;
+    }
+    CachedStrategy.prototype.isSupported = function () {
+        return this.strategy.isSupported();
+    };
+    CachedStrategy.prototype.connect = function (minPriority, callback) {
+        var usingTLS = this.usingTLS;
+        var info = fetchTransportCache(usingTLS);
+        var strategies = [this.strategy];
+        if (info && info.timestamp + this.ttl >= util.now()) {
+            var transport = this.transports[info.transport];
+            if (transport) {
+                this.timeline.info({
+                    cached: true,
+                    transport: info.transport,
+                    latency: info.latency
+                });
+                strategies.push(new sequential_strategy([transport], {
+                    timeout: info.latency * 2 + 1000,
+                    failFast: true
+                }));
+            }
+        }
+        var startTimestamp = util.now();
+        var runner = strategies
+            .pop()
+            .connect(minPriority, function cb(error, handshake) {
+            if (error) {
+                flushTransportCache(usingTLS);
+                if (strategies.length > 0) {
+                    startTimestamp = util.now();
+                    runner = strategies.pop().connect(minPriority, cb);
+                }
+                else {
+                    callback(error);
+                }
+            }
+            else {
+                storeTransportCache(usingTLS, handshake.transport.name, util.now() - startTimestamp);
+                callback(null, handshake);
+            }
+        });
+        return {
+            abort: function () {
+                runner.abort();
+            },
+            forceMinPriority: function (p) {
+                minPriority = p;
+                if (runner) {
+                    runner.forceMinPriority(p);
+                }
+            }
+        };
+    };
+    return CachedStrategy;
+}());
+/* harmony default export */ var cached_strategy = (cached_strategy_CachedStrategy);
+function getTransportCacheKey(usingTLS) {
+    return 'pusherTransport' + (usingTLS ? 'TLS' : 'NonTLS');
+}
+function fetchTransportCache(usingTLS) {
+    var storage = runtime.getLocalStorage();
+    if (storage) {
+        try {
+            var serializedCache = storage[getTransportCacheKey(usingTLS)];
+            if (serializedCache) {
+                return JSON.parse(serializedCache);
+            }
+        }
+        catch (e) {
+            flushTransportCache(usingTLS);
+        }
+    }
+    return null;
+}
+function storeTransportCache(usingTLS, transport, latency) {
+    var storage = runtime.getLocalStorage();
+    if (storage) {
+        try {
+            storage[getTransportCacheKey(usingTLS)] = safeJSONStringify({
+                timestamp: util.now(),
+                transport: transport,
+                latency: latency
+            });
+        }
+        catch (e) {
+        }
+    }
+}
+function flushTransportCache(usingTLS) {
+    var storage = runtime.getLocalStorage();
+    if (storage) {
+        try {
+            delete storage[getTransportCacheKey(usingTLS)];
+        }
+        catch (e) {
+        }
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/strategies/delayed_strategy.ts
+
+var delayed_strategy_DelayedStrategy = (function () {
+    function DelayedStrategy(strategy, _a) {
+        var number = _a.delay;
+        this.strategy = strategy;
+        this.options = { delay: number };
+    }
+    DelayedStrategy.prototype.isSupported = function () {
+        return this.strategy.isSupported();
+    };
+    DelayedStrategy.prototype.connect = function (minPriority, callback) {
+        var strategy = this.strategy;
+        var runner;
+        var timer = new OneOffTimer(this.options.delay, function () {
+            runner = strategy.connect(minPriority, callback);
+        });
+        return {
+            abort: function () {
+                timer.ensureAborted();
+                if (runner) {
+                    runner.abort();
+                }
+            },
+            forceMinPriority: function (p) {
+                minPriority = p;
+                if (runner) {
+                    runner.forceMinPriority(p);
+                }
+            }
+        };
+    };
+    return DelayedStrategy;
+}());
+/* harmony default export */ var delayed_strategy = (delayed_strategy_DelayedStrategy);
+
+// CONCATENATED MODULE: ./src/core/strategies/if_strategy.ts
+var IfStrategy = (function () {
+    function IfStrategy(test, trueBranch, falseBranch) {
+        this.test = test;
+        this.trueBranch = trueBranch;
+        this.falseBranch = falseBranch;
+    }
+    IfStrategy.prototype.isSupported = function () {
+        var branch = this.test() ? this.trueBranch : this.falseBranch;
+        return branch.isSupported();
+    };
+    IfStrategy.prototype.connect = function (minPriority, callback) {
+        var branch = this.test() ? this.trueBranch : this.falseBranch;
+        return branch.connect(minPriority, callback);
+    };
+    return IfStrategy;
+}());
+/* harmony default export */ var if_strategy = (IfStrategy);
+
+// CONCATENATED MODULE: ./src/core/strategies/first_connected_strategy.ts
+var FirstConnectedStrategy = (function () {
+    function FirstConnectedStrategy(strategy) {
+        this.strategy = strategy;
+    }
+    FirstConnectedStrategy.prototype.isSupported = function () {
+        return this.strategy.isSupported();
+    };
+    FirstConnectedStrategy.prototype.connect = function (minPriority, callback) {
+        var runner = this.strategy.connect(minPriority, function (error, handshake) {
+            if (handshake) {
+                runner.abort();
+            }
+            callback(error, handshake);
+        });
+        return runner;
+    };
+    return FirstConnectedStrategy;
+}());
+/* harmony default export */ var first_connected_strategy = (FirstConnectedStrategy);
+
+// CONCATENATED MODULE: ./src/runtimes/web/default_strategy.ts
+
+
+
+
+
+
+
+function testSupportsStrategy(strategy) {
+    return function () {
+        return strategy.isSupported();
+    };
+}
+var getDefaultStrategy = function (config, baseOptions, defineTransport) {
+    var definedTransports = {};
+    function defineTransportStrategy(name, type, priority, options, manager) {
+        var transport = defineTransport(config, name, type, priority, options, manager);
+        definedTransports[name] = transport;
+        return transport;
+    }
+    var ws_options = Object.assign({}, baseOptions, {
+        hostNonTLS: config.wsHost + ':' + config.wsPort,
+        hostTLS: config.wsHost + ':' + config.wssPort,
+        httpPath: config.wsPath
+    });
+    var wss_options = Object.assign({}, ws_options, {
+        useTLS: true
+    });
+    var sockjs_options = Object.assign({}, baseOptions, {
+        hostNonTLS: config.httpHost + ':' + config.httpPort,
+        hostTLS: config.httpHost + ':' + config.httpsPort,
+        httpPath: config.httpPath
+    });
+    var timeouts = {
+        loop: true,
+        timeout: 15000,
+        timeoutLimit: 60000
+    };
+    var ws_manager = new transport_manager({
+        lives: 2,
+        minPingDelay: 10000,
+        maxPingDelay: config.activityTimeout
+    });
+    var streaming_manager = new transport_manager({
+        lives: 2,
+        minPingDelay: 10000,
+        maxPingDelay: config.activityTimeout
+    });
+    var ws_transport = defineTransportStrategy('ws', 'ws', 3, ws_options, ws_manager);
+    var wss_transport = defineTransportStrategy('wss', 'ws', 3, wss_options, ws_manager);
+    var sockjs_transport = defineTransportStrategy('sockjs', 'sockjs', 1, sockjs_options);
+    var xhr_streaming_transport = defineTransportStrategy('xhr_streaming', 'xhr_streaming', 1, sockjs_options, streaming_manager);
+    var xdr_streaming_transport = defineTransportStrategy('xdr_streaming', 'xdr_streaming', 1, sockjs_options, streaming_manager);
+    var xhr_polling_transport = defineTransportStrategy('xhr_polling', 'xhr_polling', 1, sockjs_options);
+    var xdr_polling_transport = defineTransportStrategy('xdr_polling', 'xdr_polling', 1, sockjs_options);
+    var ws_loop = new sequential_strategy([ws_transport], timeouts);
+    var wss_loop = new sequential_strategy([wss_transport], timeouts);
+    var sockjs_loop = new sequential_strategy([sockjs_transport], timeouts);
+    var streaming_loop = new sequential_strategy([
+        new if_strategy(testSupportsStrategy(xhr_streaming_transport), xhr_streaming_transport, xdr_streaming_transport)
+    ], timeouts);
+    var polling_loop = new sequential_strategy([
+        new if_strategy(testSupportsStrategy(xhr_polling_transport), xhr_polling_transport, xdr_polling_transport)
+    ], timeouts);
+    var http_loop = new sequential_strategy([
+        new if_strategy(testSupportsStrategy(streaming_loop), new best_connected_ever_strategy([
+            streaming_loop,
+            new delayed_strategy(polling_loop, { delay: 4000 })
+        ]), polling_loop)
+    ], timeouts);
+    var http_fallback_loop = new if_strategy(testSupportsStrategy(http_loop), http_loop, sockjs_loop);
+    var wsStrategy;
+    if (baseOptions.useTLS) {
+        wsStrategy = new best_connected_ever_strategy([
+            ws_loop,
+            new delayed_strategy(http_fallback_loop, { delay: 2000 })
+        ]);
+    }
+    else {
+        wsStrategy = new best_connected_ever_strategy([
+            ws_loop,
+            new delayed_strategy(wss_loop, { delay: 2000 }),
+            new delayed_strategy(http_fallback_loop, { delay: 5000 })
+        ]);
+    }
+    return new cached_strategy(new first_connected_strategy(new if_strategy(testSupportsStrategy(ws_transport), wsStrategy, http_fallback_loop)), definedTransports, {
+        ttl: 1800000,
+        timeline: baseOptions.timeline,
+        useTLS: baseOptions.useTLS
+    });
+};
+/* harmony default export */ var default_strategy = (getDefaultStrategy);
+
+// CONCATENATED MODULE: ./src/runtimes/web/transports/transport_connection_initializer.ts
+
+/* harmony default export */ var transport_connection_initializer = (function () {
+    var self = this;
+    self.timeline.info(self.buildTimelineMessage({
+        transport: self.name + (self.options.useTLS ? 's' : '')
+    }));
+    if (self.hooks.isInitialized()) {
+        self.changeState('initialized');
+    }
+    else if (self.hooks.file) {
+        self.changeState('initializing');
+        Dependencies.load(self.hooks.file, { useTLS: self.options.useTLS }, function (error, callback) {
+            if (self.hooks.isInitialized()) {
+                self.changeState('initialized');
+                callback(true);
+            }
+            else {
+                if (error) {
+                    self.onError(error);
+                }
+                self.onClose();
+                callback(false);
+            }
+        });
+    }
+    else {
+        self.onClose();
+    }
+});
+
+// CONCATENATED MODULE: ./src/runtimes/web/http/http_xdomain_request.ts
+
+var http_xdomain_request_hooks = {
+    getRequest: function (socket) {
+        var xdr = new window.XDomainRequest();
+        xdr.ontimeout = function () {
+            socket.emit('error', new RequestTimedOut());
+            socket.close();
+        };
+        xdr.onerror = function (e) {
+            socket.emit('error', e);
+            socket.close();
+        };
+        xdr.onprogress = function () {
+            if (xdr.responseText && xdr.responseText.length > 0) {
+                socket.onChunk(200, xdr.responseText);
+            }
+        };
+        xdr.onload = function () {
+            if (xdr.responseText && xdr.responseText.length > 0) {
+                socket.onChunk(200, xdr.responseText);
+            }
+            socket.emit('finished', 200);
+            socket.close();
+        };
+        return xdr;
+    },
+    abortRequest: function (xdr) {
+        xdr.ontimeout = xdr.onerror = xdr.onprogress = xdr.onload = null;
+        xdr.abort();
+    }
+};
+/* harmony default export */ var http_xdomain_request = (http_xdomain_request_hooks);
+
+// CONCATENATED MODULE: ./src/core/http/http_request.ts
+var http_request_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var MAX_BUFFER_LENGTH = 256 * 1024;
+var http_request_HTTPRequest = (function (_super) {
+    http_request_extends(HTTPRequest, _super);
+    function HTTPRequest(hooks, method, url) {
+        var _this = _super.call(this) || this;
+        _this.hooks = hooks;
+        _this.method = method;
+        _this.url = url;
+        return _this;
+    }
+    HTTPRequest.prototype.start = function (payload) {
+        var _this = this;
+        this.position = 0;
+        this.xhr = this.hooks.getRequest(this);
+        this.unloader = function () {
+            _this.close();
+        };
+        runtime.addUnloadListener(this.unloader);
+        this.xhr.open(this.method, this.url, true);
+        if (this.xhr.setRequestHeader) {
+            this.xhr.setRequestHeader('Content-Type', 'application/json');
+        }
+        this.xhr.send(payload);
+    };
+    HTTPRequest.prototype.close = function () {
+        if (this.unloader) {
+            runtime.removeUnloadListener(this.unloader);
+            this.unloader = null;
+        }
+        if (this.xhr) {
+            this.hooks.abortRequest(this.xhr);
+            this.xhr = null;
+        }
+    };
+    HTTPRequest.prototype.onChunk = function (status, data) {
+        while (true) {
+            var chunk = this.advanceBuffer(data);
+            if (chunk) {
+                this.emit('chunk', { status: status, data: chunk });
+            }
+            else {
+                break;
+            }
+        }
+        if (this.isBufferTooLong(data)) {
+            this.emit('buffer_too_long');
+        }
+    };
+    HTTPRequest.prototype.advanceBuffer = function (buffer) {
+        var unreadData = buffer.slice(this.position);
+        var endOfLinePosition = unreadData.indexOf('\n');
+        if (endOfLinePosition !== -1) {
+            this.position += endOfLinePosition + 1;
+            return unreadData.slice(0, endOfLinePosition);
+        }
+        else {
+            return null;
+        }
+    };
+    HTTPRequest.prototype.isBufferTooLong = function (buffer) {
+        return this.position === buffer.length && buffer.length > MAX_BUFFER_LENGTH;
+    };
+    return HTTPRequest;
+}(dispatcher));
+/* harmony default export */ var http_request = (http_request_HTTPRequest);
+
+// CONCATENATED MODULE: ./src/core/http/state.ts
+var State;
+(function (State) {
+    State[State["CONNECTING"] = 0] = "CONNECTING";
+    State[State["OPEN"] = 1] = "OPEN";
+    State[State["CLOSED"] = 3] = "CLOSED";
+})(State || (State = {}));
+/* harmony default export */ var state = (State);
+
+// CONCATENATED MODULE: ./src/core/http/http_socket.ts
+
+
+
+var autoIncrement = 1;
+var http_socket_HTTPSocket = (function () {
+    function HTTPSocket(hooks, url) {
+        this.hooks = hooks;
+        this.session = randomNumber(1000) + '/' + randomString(8);
+        this.location = getLocation(url);
+        this.readyState = state.CONNECTING;
+        this.openStream();
+    }
+    HTTPSocket.prototype.send = function (payload) {
+        return this.sendRaw(JSON.stringify([payload]));
+    };
+    HTTPSocket.prototype.ping = function () {
+        this.hooks.sendHeartbeat(this);
+    };
+    HTTPSocket.prototype.close = function (code, reason) {
+        this.onClose(code, reason, true);
+    };
+    HTTPSocket.prototype.sendRaw = function (payload) {
+        if (this.readyState === state.OPEN) {
+            try {
+                runtime.createSocketRequest('POST', getUniqueURL(getSendURL(this.location, this.session))).start(payload);
+                return true;
+            }
+            catch (e) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    };
+    HTTPSocket.prototype.reconnect = function () {
+        this.closeStream();
+        this.openStream();
+    };
+    HTTPSocket.prototype.onClose = function (code, reason, wasClean) {
+        this.closeStream();
+        this.readyState = state.CLOSED;
+        if (this.onclose) {
+            this.onclose({
+                code: code,
+                reason: reason,
+                wasClean: wasClean
+            });
+        }
+    };
+    HTTPSocket.prototype.onChunk = function (chunk) {
+        if (chunk.status !== 200) {
+            return;
+        }
+        if (this.readyState === state.OPEN) {
+            this.onActivity();
+        }
+        var payload;
+        var type = chunk.data.slice(0, 1);
+        switch (type) {
+            case 'o':
+                payload = JSON.parse(chunk.data.slice(1) || '{}');
+                this.onOpen(payload);
+                break;
+            case 'a':
+                payload = JSON.parse(chunk.data.slice(1) || '[]');
+                for (var i = 0; i < payload.length; i++) {
+                    this.onEvent(payload[i]);
+                }
+                break;
+            case 'm':
+                payload = JSON.parse(chunk.data.slice(1) || 'null');
+                this.onEvent(payload);
+                break;
+            case 'h':
+                this.hooks.onHeartbeat(this);
+                break;
+            case 'c':
+                payload = JSON.parse(chunk.data.slice(1) || '[]');
+                this.onClose(payload[0], payload[1], true);
+                break;
+        }
+    };
+    HTTPSocket.prototype.onOpen = function (options) {
+        if (this.readyState === state.CONNECTING) {
+            if (options && options.hostname) {
+                this.location.base = replaceHost(this.location.base, options.hostname);
+            }
+            this.readyState = state.OPEN;
+            if (this.onopen) {
+                this.onopen();
+            }
+        }
+        else {
+            this.onClose(1006, 'Server lost session', true);
+        }
+    };
+    HTTPSocket.prototype.onEvent = function (event) {
+        if (this.readyState === state.OPEN && this.onmessage) {
+            this.onmessage({ data: event });
+        }
+    };
+    HTTPSocket.prototype.onActivity = function () {
+        if (this.onactivity) {
+            this.onactivity();
+        }
+    };
+    HTTPSocket.prototype.onError = function (error) {
+        if (this.onerror) {
+            this.onerror(error);
+        }
+    };
+    HTTPSocket.prototype.openStream = function () {
+        var _this = this;
+        this.stream = runtime.createSocketRequest('POST', getUniqueURL(this.hooks.getReceiveURL(this.location, this.session)));
+        this.stream.bind('chunk', function (chunk) {
+            _this.onChunk(chunk);
+        });
+        this.stream.bind('finished', function (status) {
+            _this.hooks.onFinished(_this, status);
+        });
+        this.stream.bind('buffer_too_long', function () {
+            _this.reconnect();
+        });
+        try {
+            this.stream.start();
+        }
+        catch (error) {
+            util.defer(function () {
+                _this.onError(error);
+                _this.onClose(1006, 'Could not start streaming', false);
+            });
+        }
+    };
+    HTTPSocket.prototype.closeStream = function () {
+        if (this.stream) {
+            this.stream.unbind_all();
+            this.stream.close();
+            this.stream = null;
+        }
+    };
+    return HTTPSocket;
+}());
+function getLocation(url) {
+    var parts = /([^\?]*)\/*(\??.*)/.exec(url);
+    return {
+        base: parts[1],
+        queryString: parts[2]
+    };
+}
+function getSendURL(url, session) {
+    return url.base + '/' + session + '/xhr_send';
+}
+function getUniqueURL(url) {
+    var separator = url.indexOf('?') === -1 ? '?' : '&';
+    return url + separator + 't=' + +new Date() + '&n=' + autoIncrement++;
+}
+function replaceHost(url, hostname) {
+    var urlParts = /(https?:\/\/)([^\/:]+)((\/|:)?.*)/.exec(url);
+    return urlParts[1] + hostname + urlParts[3];
+}
+function randomNumber(max) {
+    return Math.floor(Math.random() * max);
+}
+function randomString(length) {
+    var result = [];
+    for (var i = 0; i < length; i++) {
+        result.push(randomNumber(32).toString(32));
+    }
+    return result.join('');
+}
+/* harmony default export */ var http_socket = (http_socket_HTTPSocket);
+
+// CONCATENATED MODULE: ./src/core/http/http_streaming_socket.ts
+var http_streaming_socket_hooks = {
+    getReceiveURL: function (url, session) {
+        return url.base + '/' + session + '/xhr_streaming' + url.queryString;
+    },
+    onHeartbeat: function (socket) {
+        socket.sendRaw('[]');
+    },
+    sendHeartbeat: function (socket) {
+        socket.sendRaw('[]');
+    },
+    onFinished: function (socket, status) {
+        socket.onClose(1006, 'Connection interrupted (' + status + ')', false);
+    }
+};
+/* harmony default export */ var http_streaming_socket = (http_streaming_socket_hooks);
+
+// CONCATENATED MODULE: ./src/core/http/http_polling_socket.ts
+var http_polling_socket_hooks = {
+    getReceiveURL: function (url, session) {
+        return url.base + '/' + session + '/xhr' + url.queryString;
+    },
+    onHeartbeat: function () {
+    },
+    sendHeartbeat: function (socket) {
+        socket.sendRaw('[]');
+    },
+    onFinished: function (socket, status) {
+        if (status === 200) {
+            socket.reconnect();
+        }
+        else {
+            socket.onClose(1006, 'Connection interrupted (' + status + ')', false);
+        }
+    }
+};
+/* harmony default export */ var http_polling_socket = (http_polling_socket_hooks);
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/http/http_xhr_request.ts
+
+var http_xhr_request_hooks = {
+    getRequest: function (socket) {
+        var Constructor = runtime.getXHRAPI();
+        var xhr = new Constructor();
+        xhr.onreadystatechange = xhr.onprogress = function () {
+            switch (xhr.readyState) {
+                case 3:
+                    if (xhr.responseText && xhr.responseText.length > 0) {
+                        socket.onChunk(xhr.status, xhr.responseText);
+                    }
+                    break;
+                case 4:
+                    if (xhr.responseText && xhr.responseText.length > 0) {
+                        socket.onChunk(xhr.status, xhr.responseText);
+                    }
+                    socket.emit('finished', xhr.status);
+                    socket.close();
+                    break;
+            }
+        };
+        return xhr;
+    },
+    abortRequest: function (xhr) {
+        xhr.onreadystatechange = null;
+        xhr.abort();
+    }
+};
+/* harmony default export */ var http_xhr_request = (http_xhr_request_hooks);
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/http/http.ts
+
+
+
+
+
+var HTTP = {
+    createStreamingSocket: function (url) {
+        return this.createSocket(http_streaming_socket, url);
+    },
+    createPollingSocket: function (url) {
+        return this.createSocket(http_polling_socket, url);
+    },
+    createSocket: function (hooks, url) {
+        return new http_socket(hooks, url);
+    },
+    createXHR: function (method, url) {
+        return this.createRequest(http_xhr_request, method, url);
+    },
+    createRequest: function (hooks, method, url) {
+        return new http_request(hooks, method, url);
+    }
+};
+/* harmony default export */ var http_http = (HTTP);
+
+// CONCATENATED MODULE: ./src/runtimes/web/http/http.ts
+
+
+http_http.createXDR = function (method, url) {
+    return this.createRequest(http_xdomain_request, method, url);
+};
+/* harmony default export */ var web_http_http = (http_http);
+
+// CONCATENATED MODULE: ./src/runtimes/web/runtime.ts
+
+
+
+
+
+
+
+
+
+
+
+
+var Runtime = {
+    nextAuthCallbackID: 1,
+    auth_callbacks: {},
+    ScriptReceivers: ScriptReceivers,
+    DependenciesReceivers: DependenciesReceivers,
+    getDefaultStrategy: default_strategy,
+    Transports: transports_transports,
+    transportConnectionInitializer: transport_connection_initializer,
+    HTTPFactory: web_http_http,
+    TimelineTransport: jsonp_timeline,
+    getXHRAPI: function () {
+        return window.XMLHttpRequest;
+    },
+    getWebSocketAPI: function () {
+        return window.WebSocket || window.MozWebSocket;
+    },
+    setup: function (PusherClass) {
+        var _this = this;
+        window.Pusher = PusherClass;
+        var initializeOnDocumentBody = function () {
+            _this.onDocumentBody(PusherClass.ready);
+        };
+        if (!window.JSON) {
+            Dependencies.load('json2', {}, initializeOnDocumentBody);
+        }
+        else {
+            initializeOnDocumentBody();
+        }
+    },
+    getDocument: function () {
+        return document;
+    },
+    getProtocol: function () {
+        return this.getDocument().location.protocol;
+    },
+    getAuthorizers: function () {
+        return { ajax: xhr_auth, jsonp: jsonp_auth };
+    },
+    onDocumentBody: function (callback) {
+        var _this = this;
+        if (document.body) {
+            callback();
+        }
+        else {
+            setTimeout(function () {
+                _this.onDocumentBody(callback);
+            }, 0);
+        }
+    },
+    createJSONPRequest: function (url, data) {
+        return new jsonp_request(url, data);
+    },
+    createScriptRequest: function (src) {
+        return new script_request(src);
+    },
+    getLocalStorage: function () {
+        try {
+            return window.localStorage;
+        }
+        catch (e) {
+            return undefined;
+        }
+    },
+    createXHR: function () {
+        if (this.getXHRAPI()) {
+            return this.createXMLHttpRequest();
+        }
+        else {
+            return this.createMicrosoftXHR();
+        }
+    },
+    createXMLHttpRequest: function () {
+        var Constructor = this.getXHRAPI();
+        return new Constructor();
+    },
+    createMicrosoftXHR: function () {
+        return new ActiveXObject('Microsoft.XMLHTTP');
+    },
+    getNetwork: function () {
+        return net_info_Network;
+    },
+    createWebSocket: function (url) {
+        var Constructor = this.getWebSocketAPI();
+        return new Constructor(url);
+    },
+    createSocketRequest: function (method, url) {
+        if (this.isXHRSupported()) {
+            return this.HTTPFactory.createXHR(method, url);
+        }
+        else if (this.isXDRSupported(url.indexOf('https:') === 0)) {
+            return this.HTTPFactory.createXDR(method, url);
+        }
+        else {
+            throw 'Cross-origin HTTP requests are not supported';
+        }
+    },
+    isXHRSupported: function () {
+        var Constructor = this.getXHRAPI();
+        return (Boolean(Constructor) && new Constructor().withCredentials !== undefined);
+    },
+    isXDRSupported: function (useTLS) {
+        var protocol = useTLS ? 'https:' : 'http:';
+        var documentProtocol = this.getProtocol();
+        return (Boolean(window['XDomainRequest']) && documentProtocol === protocol);
+    },
+    addUnloadListener: function (listener) {
+        if (window.addEventListener !== undefined) {
+            window.addEventListener('unload', listener, false);
+        }
+        else if (window.attachEvent !== undefined) {
+            window.attachEvent('onunload', listener);
+        }
+    },
+    removeUnloadListener: function (listener) {
+        if (window.addEventListener !== undefined) {
+            window.removeEventListener('unload', listener, false);
+        }
+        else if (window.detachEvent !== undefined) {
+            window.detachEvent('onunload', listener);
+        }
+    }
+};
+/* harmony default export */ var runtime = (Runtime);
+
+// CONCATENATED MODULE: ./src/core/timeline/level.ts
+var TimelineLevel;
+(function (TimelineLevel) {
+    TimelineLevel[TimelineLevel["ERROR"] = 3] = "ERROR";
+    TimelineLevel[TimelineLevel["INFO"] = 6] = "INFO";
+    TimelineLevel[TimelineLevel["DEBUG"] = 7] = "DEBUG";
+})(TimelineLevel || (TimelineLevel = {}));
+/* harmony default export */ var timeline_level = (TimelineLevel);
+
+// CONCATENATED MODULE: ./src/core/timeline/timeline.ts
+
+
+
+var timeline_Timeline = (function () {
+    function Timeline(key, session, options) {
+        this.key = key;
+        this.session = session;
+        this.events = [];
+        this.options = options || {};
+        this.sent = 0;
+        this.uniqueID = 0;
+    }
+    Timeline.prototype.log = function (level, event) {
+        if (level <= this.options.level) {
+            this.events.push(extend({}, event, { timestamp: util.now() }));
+            if (this.options.limit && this.events.length > this.options.limit) {
+                this.events.shift();
+            }
+        }
+    };
+    Timeline.prototype.error = function (event) {
+        this.log(timeline_level.ERROR, event);
+    };
+    Timeline.prototype.info = function (event) {
+        this.log(timeline_level.INFO, event);
+    };
+    Timeline.prototype.debug = function (event) {
+        this.log(timeline_level.DEBUG, event);
+    };
+    Timeline.prototype.isEmpty = function () {
+        return this.events.length === 0;
+    };
+    Timeline.prototype.send = function (sendfn, callback) {
+        var _this = this;
+        var data = extend({
+            session: this.session,
+            bundle: this.sent + 1,
+            key: this.key,
+            lib: 'js',
+            version: this.options.version,
+            cluster: this.options.cluster,
+            features: this.options.features,
+            timeline: this.events
+        }, this.options.params);
+        this.events = [];
+        sendfn(data, function (error, result) {
+            if (!error) {
+                _this.sent++;
+            }
+            if (callback) {
+                callback(error, result);
+            }
+        });
+        return true;
+    };
+    Timeline.prototype.generateUniqueID = function () {
+        this.uniqueID++;
+        return this.uniqueID;
+    };
+    return Timeline;
+}());
+/* harmony default export */ var timeline_timeline = (timeline_Timeline);
+
+// CONCATENATED MODULE: ./src/core/strategies/transport_strategy.ts
+
+
+
+
+var transport_strategy_TransportStrategy = (function () {
+    function TransportStrategy(name, priority, transport, options) {
+        this.name = name;
+        this.priority = priority;
+        this.transport = transport;
+        this.options = options || {};
+    }
+    TransportStrategy.prototype.isSupported = function () {
+        return this.transport.isSupported({
+            useTLS: this.options.useTLS
+        });
+    };
+    TransportStrategy.prototype.connect = function (minPriority, callback) {
+        var _this = this;
+        if (!this.isSupported()) {
+            return failAttempt(new UnsupportedStrategy(), callback);
+        }
+        else if (this.priority < minPriority) {
+            return failAttempt(new TransportPriorityTooLow(), callback);
+        }
+        var connected = false;
+        var transport = this.transport.createConnection(this.name, this.priority, this.options.key, this.options);
+        var handshake = null;
+        var onInitialized = function () {
+            transport.unbind('initialized', onInitialized);
+            transport.connect();
+        };
+        var onOpen = function () {
+            handshake = factory.createHandshake(transport, function (result) {
+                connected = true;
+                unbindListeners();
+                callback(null, result);
+            });
+        };
+        var onError = function (error) {
+            unbindListeners();
+            callback(error);
+        };
+        var onClosed = function () {
+            unbindListeners();
+            var serializedTransport;
+            serializedTransport = safeJSONStringify(transport);
+            callback(new TransportClosed(serializedTransport));
+        };
+        var unbindListeners = function () {
+            transport.unbind('initialized', onInitialized);
+            transport.unbind('open', onOpen);
+            transport.unbind('error', onError);
+            transport.unbind('closed', onClosed);
+        };
+        transport.bind('initialized', onInitialized);
+        transport.bind('open', onOpen);
+        transport.bind('error', onError);
+        transport.bind('closed', onClosed);
+        transport.initialize();
+        return {
+            abort: function () {
+                if (connected) {
+                    return;
+                }
+                unbindListeners();
+                if (handshake) {
+                    handshake.close();
+                }
+                else {
+                    transport.close();
+                }
+            },
+            forceMinPriority: function (p) {
+                if (connected) {
+                    return;
+                }
+                if (_this.priority < p) {
+                    if (handshake) {
+                        handshake.close();
+                    }
+                    else {
+                        transport.close();
+                    }
+                }
+            }
+        };
+    };
+    return TransportStrategy;
+}());
+/* harmony default export */ var transport_strategy = (transport_strategy_TransportStrategy);
+function failAttempt(error, callback) {
+    util.defer(function () {
+        callback(error);
+    });
+    return {
+        abort: function () { },
+        forceMinPriority: function () { }
+    };
+}
+
+// CONCATENATED MODULE: ./src/core/strategies/strategy_builder.ts
+
+
+
+
+
+var strategy_builder_Transports = runtime.Transports;
+var strategy_builder_defineTransport = function (config, name, type, priority, options, manager) {
+    var transportClass = strategy_builder_Transports[type];
+    if (!transportClass) {
+        throw new UnsupportedTransport(type);
+    }
+    var enabled = (!config.enabledTransports ||
+        arrayIndexOf(config.enabledTransports, name) !== -1) &&
+        (!config.disabledTransports ||
+            arrayIndexOf(config.disabledTransports, name) === -1);
+    var transport;
+    if (enabled) {
+        options = Object.assign({ ignoreNullOrigin: config.ignoreNullOrigin }, options);
+        transport = new transport_strategy(name, priority, manager ? manager.getAssistant(transportClass) : transportClass, options);
+    }
+    else {
+        transport = strategy_builder_UnsupportedStrategy;
+    }
+    return transport;
+};
+var strategy_builder_UnsupportedStrategy = {
+    isSupported: function () {
+        return false;
+    },
+    connect: function (_, callback) {
+        var deferred = util.defer(function () {
+            callback(new UnsupportedStrategy());
+        });
+        return {
+            abort: function () {
+                deferred.ensureAborted();
+            },
+            forceMinPriority: function () { }
+        };
+    }
+};
+
+// CONCATENATED MODULE: ./src/core/config.ts
+
+
+function getConfig(opts) {
+    var config = {
+        activityTimeout: opts.activityTimeout || defaults.activityTimeout,
+        authEndpoint: opts.authEndpoint || defaults.authEndpoint,
+        authTransport: opts.authTransport || defaults.authTransport,
+        cluster: opts.cluster || defaults.cluster,
+        httpPath: opts.httpPath || defaults.httpPath,
+        httpPort: opts.httpPort || defaults.httpPort,
+        httpsPort: opts.httpsPort || defaults.httpsPort,
+        pongTimeout: opts.pongTimeout || defaults.pongTimeout,
+        statsHost: opts.statsHost || defaults.stats_host,
+        unavailableTimeout: opts.unavailableTimeout || defaults.unavailableTimeout,
+        wsPath: opts.wsPath || defaults.wsPath,
+        wsPort: opts.wsPort || defaults.wsPort,
+        wssPort: opts.wssPort || defaults.wssPort,
+        enableStats: getEnableStatsConfig(opts),
+        httpHost: getHttpHost(opts),
+        useTLS: shouldUseTLS(opts),
+        wsHost: getWebsocketHost(opts)
+    };
+    if ('auth' in opts)
+        config.auth = opts.auth;
+    if ('authorizer' in opts)
+        config.authorizer = opts.authorizer;
+    if ('disabledTransports' in opts)
+        config.disabledTransports = opts.disabledTransports;
+    if ('enabledTransports' in opts)
+        config.enabledTransports = opts.enabledTransports;
+    if ('ignoreNullOrigin' in opts)
+        config.ignoreNullOrigin = opts.ignoreNullOrigin;
+    if ('timelineParams' in opts)
+        config.timelineParams = opts.timelineParams;
+    if ('nacl' in opts) {
+        config.nacl = opts.nacl;
+    }
+    return config;
+}
+function getHttpHost(opts) {
+    if (opts.httpHost) {
+        return opts.httpHost;
+    }
+    if (opts.cluster) {
+        return "sockjs-" + opts.cluster + ".pusher.com";
+    }
+    return defaults.httpHost;
+}
+function getWebsocketHost(opts) {
+    if (opts.wsHost) {
+        return opts.wsHost;
+    }
+    if (opts.cluster) {
+        return getWebsocketHostFromCluster(opts.cluster);
+    }
+    return getWebsocketHostFromCluster(defaults.cluster);
+}
+function getWebsocketHostFromCluster(cluster) {
+    return "ws-" + cluster + ".pusher.com";
+}
+function shouldUseTLS(opts) {
+    if (runtime.getProtocol() === 'https:') {
+        return true;
+    }
+    else if (opts.forceTLS === false) {
+        return false;
+    }
+    return true;
+}
+function getEnableStatsConfig(opts) {
+    if ('enableStats' in opts) {
+        return opts.enableStats;
+    }
+    if ('disableStats' in opts) {
+        return !opts.disableStats;
+    }
+    return false;
+}
+
+// CONCATENATED MODULE: ./src/core/pusher.ts
+
+
+
+
+
+
+
+
+
+
+
+
+var pusher_Pusher = (function () {
+    function Pusher(app_key, options) {
+        var _this = this;
+        checkAppKey(app_key);
+        options = options || {};
+        if (!options.cluster && !(options.wsHost || options.httpHost)) {
+            var suffix = url_store.buildLogSuffix('javascriptQuickStart');
+            logger.warn("You should always specify a cluster when connecting. " + suffix);
+        }
+        if ('disableStats' in options) {
+            logger.warn('The disableStats option is deprecated in favor of enableStats');
+        }
+        this.key = app_key;
+        this.config = getConfig(options);
+        this.channels = factory.createChannels();
+        this.global_emitter = new dispatcher();
+        this.sessionID = Math.floor(Math.random() * 1000000000);
+        this.timeline = new timeline_timeline(this.key, this.sessionID, {
+            cluster: this.config.cluster,
+            features: Pusher.getClientFeatures(),
+            params: this.config.timelineParams || {},
+            limit: 50,
+            level: timeline_level.INFO,
+            version: defaults.VERSION
+        });
+        if (this.config.enableStats) {
+            this.timelineSender = factory.createTimelineSender(this.timeline, {
+                host: this.config.statsHost,
+                path: '/timeline/v2/' + runtime.TimelineTransport.name
+            });
+        }
+        var getStrategy = function (options) {
+            return runtime.getDefaultStrategy(_this.config, options, strategy_builder_defineTransport);
+        };
+        this.connection = factory.createConnectionManager(this.key, {
+            getStrategy: getStrategy,
+            timeline: this.timeline,
+            activityTimeout: this.config.activityTimeout,
+            pongTimeout: this.config.pongTimeout,
+            unavailableTimeout: this.config.unavailableTimeout,
+            useTLS: Boolean(this.config.useTLS)
+        });
+        this.connection.bind('connected', function () {
+            _this.subscribeAll();
+            if (_this.timelineSender) {
+                _this.timelineSender.send(_this.connection.isUsingTLS());
+            }
+        });
+        this.connection.bind('message', function (event) {
+            var eventName = event.event;
+            var internal = eventName.indexOf('pusher_internal:') === 0;
+            if (event.channel) {
+                var channel = _this.channel(event.channel);
+                if (channel) {
+                    channel.handleEvent(event);
+                }
+            }
+            if (!internal) {
+                _this.global_emitter.emit(event.event, event.data);
+            }
+        });
+        this.connection.bind('connecting', function () {
+            _this.channels.disconnect();
+        });
+        this.connection.bind('disconnected', function () {
+            _this.channels.disconnect();
+        });
+        this.connection.bind('error', function (err) {
+            logger.warn(err);
+        });
+        Pusher.instances.push(this);
+        this.timeline.info({ instances: Pusher.instances.length });
+        if (Pusher.isReady) {
+            this.connect();
+        }
+    }
+    Pusher.ready = function () {
+        Pusher.isReady = true;
+        for (var i = 0, l = Pusher.instances.length; i < l; i++) {
+            Pusher.instances[i].connect();
+        }
+    };
+    Pusher.getClientFeatures = function () {
+        return keys(filterObject({ ws: runtime.Transports.ws }, function (t) {
+            return t.isSupported({});
+        }));
+    };
+    Pusher.prototype.channel = function (name) {
+        return this.channels.find(name);
+    };
+    Pusher.prototype.allChannels = function () {
+        return this.channels.all();
+    };
+    Pusher.prototype.connect = function () {
+        this.connection.connect();
+        if (this.timelineSender) {
+            if (!this.timelineSenderTimer) {
+                var usingTLS = this.connection.isUsingTLS();
+                var timelineSender = this.timelineSender;
+                this.timelineSenderTimer = new PeriodicTimer(60000, function () {
+                    timelineSender.send(usingTLS);
+                });
+            }
+        }
+    };
+    Pusher.prototype.disconnect = function () {
+        this.connection.disconnect();
+        if (this.timelineSenderTimer) {
+            this.timelineSenderTimer.ensureAborted();
+            this.timelineSenderTimer = null;
+        }
+    };
+    Pusher.prototype.bind = function (event_name, callback, context) {
+        this.global_emitter.bind(event_name, callback, context);
+        return this;
+    };
+    Pusher.prototype.unbind = function (event_name, callback, context) {
+        this.global_emitter.unbind(event_name, callback, context);
+        return this;
+    };
+    Pusher.prototype.bind_global = function (callback) {
+        this.global_emitter.bind_global(callback);
+        return this;
+    };
+    Pusher.prototype.unbind_global = function (callback) {
+        this.global_emitter.unbind_global(callback);
+        return this;
+    };
+    Pusher.prototype.unbind_all = function (callback) {
+        this.global_emitter.unbind_all();
+        return this;
+    };
+    Pusher.prototype.subscribeAll = function () {
+        var channelName;
+        for (channelName in this.channels.channels) {
+            if (this.channels.channels.hasOwnProperty(channelName)) {
+                this.subscribe(channelName);
+            }
+        }
+    };
+    Pusher.prototype.subscribe = function (channel_name) {
+        var channel = this.channels.add(channel_name, this);
+        if (channel.subscriptionPending && channel.subscriptionCancelled) {
+            channel.reinstateSubscription();
+        }
+        else if (!channel.subscriptionPending &&
+            this.connection.state === 'connected') {
+            channel.subscribe();
+        }
+        return channel;
+    };
+    Pusher.prototype.unsubscribe = function (channel_name) {
+        var channel = this.channels.find(channel_name);
+        if (channel && channel.subscriptionPending) {
+            channel.cancelSubscription();
+        }
+        else {
+            channel = this.channels.remove(channel_name);
+            if (channel && channel.subscribed) {
+                channel.unsubscribe();
+            }
+        }
+    };
+    Pusher.prototype.send_event = function (event_name, data, channel) {
+        return this.connection.send_event(event_name, data, channel);
+    };
+    Pusher.prototype.shouldUseTLS = function () {
+        return this.config.useTLS;
+    };
+    Pusher.instances = [];
+    Pusher.isReady = false;
+    Pusher.logToConsole = false;
+    Pusher.Runtime = runtime;
+    Pusher.ScriptReceivers = runtime.ScriptReceivers;
+    Pusher.DependenciesReceivers = runtime.DependenciesReceivers;
+    Pusher.auth_callbacks = runtime.auth_callbacks;
+    return Pusher;
+}());
+/* harmony default export */ var core_pusher = __webpack_exports__["default"] = (pusher_Pusher);
+function checkAppKey(key) {
+    if (key === null || key === undefined) {
+        throw 'You must pass your app key when you instantiate Pusher.';
+    }
+}
+runtime.setup(pusher_Pusher);
+
+
+/***/ })
+/******/ ]);
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ })
+/******/ ]);
