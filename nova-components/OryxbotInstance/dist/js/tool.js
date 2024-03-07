@@ -2954,7 +2954,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
 
 // exports
 
@@ -3647,6 +3647,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3663,6 +3676,10 @@ function initBrodcasting() {
         } else {
             Nova.error('VPN Connection has been lost!');
         }
+    });
+
+    channel.listenForWhisper('LogEntry', function (e) {
+        _this.logEntries.push(e);
     });
 
     channel.listen('BotRunningChanged', function (e) {
@@ -3816,6 +3833,10 @@ function initBrodcasting() {
             showResumeModal: false,
             showStartRecordingModal: false,
             websocketServerConnected: false,
+            allowAutoScrollLogs: true,
+            isHoveringLogs: false,
+            logsHasScrollbar: false,
+            logEntries: [],
             cityFieldErrors: new __WEBPACK_IMPORTED_MODULE_0_form_backend_validation__["Errors"](),
             fieldCityValue: 'fort-sterling',
             fieldDestinationValue: 'aspenwood',
@@ -3896,6 +3917,14 @@ function initBrodcasting() {
         }
     },
     watch: {
+        logEntries: function logEntries() {
+            if (!this.allowAutoScrollLogs || this.isHoveringLogs) return;
+            this.logsHasScrollbar = this.$refs.logs.scrollHeight >= 200;
+            this.$nextTick(function () {
+                var container = this.$refs.logs;
+                container.scrollTop = container.scrollHeight + 120;
+            });
+        },
         running: function running(val) {
             var el = document.getElementById('nav_oryxbot-instance-' + this.instance.id);
             el = el ? el.querySelector('svg') : el;
@@ -6308,41 +6337,91 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("heading", { staticClass: "mb-6 text-2xl", attrs: { level: 2 } }, [
-        _vm._v("Logs")
+        _vm._v("Live Logs")
       ]),
       _vm._v(" "),
       _c(
         "div",
         {
-          staticClass:
-            "flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90 relative justify-center items-center text-60",
-          staticStyle: { height: "200px" }
+          staticClass: "relative",
+          on: {
+            mouseenter: function($event) {
+              _vm.isHoveringLogs = true
+            },
+            mouseleave: function($event) {
+              _vm.isHoveringLogs = false
+            },
+            mousedown: function($event) {
+              _vm.allowAutoScrollLogs = false
+              _vm.$refs.logs.scrollTop = _vm.$refs.logs.scrollHeight + 120
+            }
+          }
         },
         [
-          _c(
-            "svg",
-            {
-              staticClass: "fill-current",
-              attrs: {
-                xmlns: "http://www.w3.org/2000/svg",
-                width: "32",
-                height: "32",
-                viewBox: "0 0 576 512"
-              }
-            },
-            [
-              _c("path", {
-                attrs: {
-                  d:
-                    "M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"
+          _c("div", { staticClass: "flex justify-center z-10" }, [
+            _c(
+              "a",
+              {
+                staticClass:
+                  " text-20 absolute bg-90 rounded-full flex justify-center items-center m-3 z-10",
+                class: {
+                  "opacity-0": !_vm.logsHasScrollbar,
+                  "opacity-75": _vm.logsHasScrollbar
+                },
+                staticStyle: { height: "40px", width: "40px" },
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.allowAutoScrollLogs = true
+                  }
                 }
-              })
-            ]
-          ),
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "fill-current",
+                    staticStyle: { height: "28px", width: "28px" },
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 384 512"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                      }
+                    })
+                  ]
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _c("span", { staticClass: "text-80 font-bold ml-4" }, [
-            _vm._v("Work in progress")
-          ])
+          _c(
+            "div",
+            {
+              ref: "logs",
+              staticClass:
+                "mb-4 bg-white rounded px-2 pb-4 pt-3 text-90 relative text-60 overflow-scroll",
+              staticStyle: { height: "200px" }
+            },
+            _vm._l(this.logEntries, function(item) {
+              return _c("p", [
+                _vm._v(
+                  _vm._s(item.Timestamp) +
+                    " | " +
+                    _vm._s(item.Level) +
+                    " | " +
+                    _vm._s(item.Message)
+                )
+              ])
+            }),
+            0
+          )
         ]
       )
     ],

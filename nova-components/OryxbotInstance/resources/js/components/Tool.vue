@@ -218,10 +218,23 @@
             </div>
         </div>
 
-        <heading :level="2" class="mb-6 text-2xl">Logs</heading>
-        <div class="flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90 relative justify-center items-center text-60" style="height: 200px">
-            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/></svg>
-            <span class="text-80 font-bold ml-4">Work in progress</span>
+        <heading :level="2" class="mb-6 text-2xl">Live Logs</heading>
+
+        <div class="relative"
+             @mouseenter="isHoveringLogs = true"
+             @mouseleave="isHoveringLogs = false"
+             @mousedown="allowAutoScrollLogs = false;$refs.logs.scrollTop = $refs.logs.scrollHeight + 120">
+            <div class="flex justify-center z-10">
+                <a href="#"
+                   @click.prevent="allowAutoScrollLogs = true"
+                   :class="{ 'opacity-0': !logsHasScrollbar, 'opacity-75': logsHasScrollbar}"
+                   class=" text-20 absolute bg-90 rounded-full flex justify-center items-center m-3 z-10"  style="height: 40px;width: 40px">
+                    <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" style="height: 28px;width: 28px;" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+                </a>
+            </div>
+            <div class="mb-4 bg-white rounded px-2 pb-4 pt-3 text-90 relative text-60 overflow-scroll" style="height: 200px" ref="logs">
+                <p v-for="item in this.logEntries">{{ item.Timestamp }} | {{ item.Level }} | {{ item.Message }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -241,6 +254,10 @@ function initBrodcasting() {
         } else {
             Nova.error('VPN Connection has been lost!')
         }
+    });
+
+    channel.listenForWhisper('LogEntry', (e) => {
+        this.logEntries.push(e)
     });
 
     channel.listen('BotRunningChanged', (e) => {
@@ -379,6 +396,10 @@ export default {
         showResumeModal: false,
         showStartRecordingModal: false,
         websocketServerConnected: false,
+        allowAutoScrollLogs: true,
+        isHoveringLogs: false,
+        logsHasScrollbar: false,
+        logEntries: [],
         cityFieldErrors: new Errors(),
         fieldCityValue: 'fort-sterling',
         fieldDestinationValue: 'aspenwood',
@@ -511,6 +532,15 @@ export default {
         }
     },
     watch: {
+        logEntries: function() {
+            if (!this.allowAutoScrollLogs || this.isHoveringLogs)
+                return;
+            this.logsHasScrollbar = this.$refs.logs.scrollHeight >= 200;
+            this.$nextTick(function() {
+                var container = this.$refs.logs;
+                container.scrollTop = container.scrollHeight + 120;
+            });
+        },
         running(val) {
             let el = document.getElementById(`nav_oryxbot-instance-${this.instance.id}`);
             el = el ? el.querySelector('svg') : el;
