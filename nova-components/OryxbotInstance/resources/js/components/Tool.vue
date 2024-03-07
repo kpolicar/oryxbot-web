@@ -223,7 +223,7 @@
         <div class="relative"
              @mouseenter="isHoveringLogs = true"
              @mouseleave="isHoveringLogs = false"
-             @mousedown="allowAutoScrollLogs = false;$refs.logs.scrollTop = $refs.logs.scrollHeight + 120">
+             @mousedown="allowAutoScrollLogs = false;">
             <div class="flex justify-center z-10">
                 <a href="#"
                    @click.prevent="allowAutoScrollLogs = true"

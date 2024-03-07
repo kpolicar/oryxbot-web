@@ -6353,7 +6353,6 @@ var render = function() {
             },
             mousedown: function($event) {
               _vm.allowAutoScrollLogs = false
-              _vm.$refs.logs.scrollTop = _vm.$refs.logs.scrollHeight + 120
             }
           }
         },
