@@ -2954,7 +2954,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
 
 // exports
 
@@ -3660,6 +3660,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -3735,15 +3737,15 @@ function initBrodcasting() {
         requestServerOnlineStatusUntilReceivedResponse();
     });
 
-    var websocketConnectionAlert = function websocketConnectionAlert() {
-        return setTimeout(function () {
+    var websocketConnectionAlertCallback = function websocketConnectionAlertCallback() {
+        return _this.websocketConnectionAlert = setTimeout(function () {
             if (!document.hidden && !_this.websocketServerConnected) {
                 Nova.error('Failed to connect to Oryxbot messaging server. Retrying...');
             }
-            websocketConnectionAlert();
+            websocketConnectionAlertCallback();
         }, 5000);
     };
-    websocketConnectionAlert();
+    websocketConnectionAlertCallback();
 
     window.Echo.connector.pusher.connection.bind('state_change', function (stateInfo) {
         _this.websocketServerConnected = window.Echo.connector.pusher.connection.state === 'connected';
@@ -3758,6 +3760,9 @@ function initBrodcasting() {
         return {
             title: 'Instances'
         };
+    },
+    unmounted: function unmounted() {
+        clearTimeout(this.websocketConnectionAlert);
     },
     mounted: function mounted() {
         var _this2 = this;
@@ -3786,6 +3791,7 @@ function initBrodcasting() {
         function timeout() {
             setTimeout(function () {
                 refreshVncServiceStatus();
+                refreshVpnServiceStatus();
                 timeout();
             }, 5000);
         }
@@ -3800,9 +3806,21 @@ function initBrodcasting() {
                 console.log('Failed to ping local TightVNC server');
             });
         };
+        var refreshVpnServiceStatus = function refreshVpnServiceStatus() {
+            return fetch("http://127.0.0.1:5558", { mode: 'no-cors' }).then(function (r) {
+                if (_this2.vpn_status !== 'Online') {
+                    console.log('Successfully pinged VPN discoverability server');
+                }
+                _this2.vpn_status = 'Online';
+            }).catch(function (reason) {
+                _this2.vpn_status = 'Unknown';
+                console.log('Failed to ping VPN discoverability server');
+            });
+        };
 
         timeout();
         refreshVncServiceStatus();
+        refreshVpnServiceStatus();
     },
     destroyed: function destroyed() {
         Echo.leave('App.Models.User.' + Nova.config.userId);
@@ -3819,6 +3837,7 @@ function initBrodcasting() {
             vpn_connected: false,
             remote_connected: false,
             vnc_status: 'Unknown',
+            vpn_status: 'Unknown',
             remote_resolution: '-',
             remote_bandwidth: '-',
             running: false,
@@ -3836,6 +3855,7 @@ function initBrodcasting() {
             allowAutoScrollLogs: true,
             isHoveringLogs: false,
             logsHasScrollbar: false,
+            websocketConnectionAlert: null,
             logEntries: [],
             cityFieldErrors: new __WEBPACK_IMPORTED_MODULE_0_form_backend_validation__["Errors"](),
             fieldCityValue: 'fort-sterling',
@@ -6110,8 +6130,12 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: _vm.vpn_connected || _vm.remote_connected,
-                    expression: "vpn_connected || remote_connected"
+                    value:
+                      _vm.vpn_connected ||
+                      _vm.remote_connected ||
+                      _vm.vpn_status === "Online",
+                    expression:
+                      "vpn_connected || remote_connected || vpn_status === 'Online'"
                   }
                 ],
                 staticClass: "w-8 text-success mr-2",
@@ -6144,8 +6168,12 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: !_vm.vpn_connected && !_vm.remote_connected,
-                    expression: "!vpn_connected && !remote_connected"
+                    value:
+                      !_vm.vpn_connected &&
+                      !_vm.remote_connected &&
+                      _vm.vpn_status !== "Online",
+                    expression:
+                      "!vpn_connected && !remote_connected && vpn_status !== 'Online'"
                   }
                 ],
                 staticClass: "w-8 text-danger mr-2",
@@ -6188,6 +6216,10 @@ var render = function() {
                   _vm._m(0),
                   _vm._v(" "),
                   _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(_vm.vpn_status))
+                    ]),
+                    _vm._v(" "),
                     _c("li", { staticClass: "mb-2" }, [
                       _vm._v(
                         _vm._s(
@@ -6433,6 +6465,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Service Status:")]),
+      _vm._v(" "),
       _c("li", { staticClass: "mb-2" }, [_vm._v("Server:")]),
       _vm._v(" "),
       _c("li", { staticClass: "mb-2" }, [_vm._v("Username:")]),

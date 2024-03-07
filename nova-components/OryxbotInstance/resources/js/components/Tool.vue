@@ -124,7 +124,7 @@
 
             <div class="mb-4 ml-2 flex justify-start items-start w-1/4">
 
-                <svg v-show="vpn_connected || remote_connected"
+                <svg v-show="vpn_connected || remote_connected || vpn_status === 'Online'"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="far"
@@ -136,7 +136,7 @@
                      viewBox="0 0 512 512">
                     <path fill="currentColor" d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"></path>
                 </svg>
-                <svg v-show="!vpn_connected && !remote_connected"
+                <svg v-show="!vpn_connected && !remote_connected && vpn_status !== 'Online'"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="fas"
@@ -156,11 +156,13 @@
 
                     <div class="flex">
                         <ul class="text-80 list-reset mr-4">
+                            <li class="mb-2">Service Status:</li>
                             <li class="mb-2">Server:</li>
                             <li class="mb-2">Username:</li>
                             <li class="mb-2">Password:</li>
                         </ul>
                         <ul class="text-60 list-reset font-bold">
+                            <li class="mb-2">{{ vpn_status }}</li>
                             <li class="mb-2">{{ instance.server.ip_address ? instance.server.ip_address : '-' }}</li>
                             <li class="mb-2">{{ instance.server.ip_address && instance.server.vpn_username ? instance.server.vpn_username : '-' }}</li>
                             <li class="mb-2">{{ instance.server.ip_address && instance.server.vpn_password ? instance.server.vpn_password : '-' }}</li>
@@ -314,13 +316,13 @@ function initBrodcasting() {
         requestServerOnlineStatusUntilReceivedResponse();
     });
 
-    let websocketConnectionAlert = () => setTimeout(() => {
+    let websocketConnectionAlertCallback = () => this.websocketConnectionAlert = setTimeout(() => {
         if (!document.hidden && !this.websocketServerConnected) {
             Nova.error('Failed to connect to Oryxbot messaging server. Retrying...');
         }
-        websocketConnectionAlert();
+        websocketConnectionAlertCallback();
     }, 5000);
-    websocketConnectionAlert();
+    websocketConnectionAlertCallback();
 
     window.Echo.connector.pusher.connection.bind('state_change', (stateInfo) => {
         this.websocketServerConnected = window.Echo.connector.pusher.connection.state === 'connected';
@@ -336,6 +338,9 @@ export default {
           title: 'Instances',
         }
     },
+    unmounted() {
+        clearTimeout(this.websocketConnectionAlert)
+    },
     mounted() {
         initBrodcasting.bind(this)();
 
@@ -349,6 +354,7 @@ export default {
         function timeout() {
             setTimeout( () => {
                 refreshVncServiceStatus();
+                refreshVpnServiceStatus();
                 timeout();
             }, 5000);
         }
@@ -364,9 +370,22 @@ export default {
                     this.vnc_status = 'Unknown';
                     console.log('Failed to ping local TightVNC server');
                 });
+        let refreshVpnServiceStatus =
+            () => fetch("http://127.0.0.1:5558", { mode: 'no-cors'})
+                .then(r => {
+                    if (this.vpn_status !== 'Online') {
+                        console.log('Successfully pinged VPN discoverability server');
+                    }
+                    this.vpn_status = 'Online'
+                })
+                .catch(reason => {
+                    this.vpn_status = 'Unknown';
+                    console.log('Failed to ping VPN discoverability server');
+                });
 
         timeout();
         refreshVncServiceStatus();
+        refreshVpnServiceStatus();
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
@@ -382,6 +401,7 @@ export default {
         vpn_connected: false,
         remote_connected: false,
         vnc_status: 'Unknown',
+        vpn_status: 'Unknown',
         remote_resolution: '-',
         remote_bandwidth: '-',
         running: false,
@@ -399,6 +419,7 @@ export default {
         allowAutoScrollLogs: true,
         isHoveringLogs: false,
         logsHasScrollbar: false,
+        websocketConnectionAlert: null,
         logEntries: [],
         cityFieldErrors: new Errors(),
         fieldCityValue: 'fort-sterling',
