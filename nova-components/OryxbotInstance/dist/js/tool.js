@@ -2954,7 +2954,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
 
 // exports
 
@@ -3643,6 +3643,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3705,13 +3709,30 @@ function initBrodcasting() {
             this.refreshTimeout = setTimeout(function () {
                 this.refreshTimeout = null;
                 if (this.requestingStatus) {
-                    if (!document.hidden) Nova.error('Failed to connect to bot. Retrying...');
+                    if (!document.hidden && this.websocketServerConnected) Nova.error('Failed to connect to bot. Retrying...');
                     requestServerOnlineStatusUntilReceivedResponse();
                 }
             }.bind(this), 5000);
         }.bind(_this);
 
         requestServerOnlineStatusUntilReceivedResponse();
+    });
+
+    var websocketConnectionAlert = function websocketConnectionAlert() {
+        return setTimeout(function () {
+            if (!document.hidden && !_this.websocketServerConnected) {
+                Nova.error('Failed to connect to Oryxbot messaging server. Retrying...');
+            }
+            websocketConnectionAlert();
+        }, 5000);
+    };
+    websocketConnectionAlert();
+
+    window.Echo.connector.pusher.connection.bind('state_change', function (stateInfo) {
+        _this.websocketServerConnected = window.Echo.connector.pusher.connection.state === 'connected';
+        if (stateInfo.previous !== 'connected' && stateInfo.current === 'connected') {
+            Nova.success('Connection to Oryxbot messaging server established.');
+        }
     });
 }
 
@@ -3744,6 +3765,27 @@ function initBrodcasting() {
         Nova.$on('field-progressed-change', function (value) {
             return _this2.fieldProgressedValue = value;
         });
+
+        function timeout() {
+            setTimeout(function () {
+                refreshVncServiceStatus();
+                timeout();
+            }, 5000);
+        }
+        var refreshVncServiceStatus = function refreshVncServiceStatus() {
+            return fetch("http://127.0.0.1:5801", { mode: 'no-cors' }).then(function (r) {
+                if (_this2.vnc_status !== 'Online') {
+                    console.log('Successfully pinged local TightVNC server');
+                }
+                _this2.vnc_status = 'Online';
+            }).catch(function (reason) {
+                _this2.vnc_status = 'Unknown';
+                console.log('Failed to ping local TightVNC server');
+            });
+        };
+
+        timeout();
+        refreshVncServiceStatus();
     },
     destroyed: function destroyed() {
         Echo.leave('App.Models.User.' + Nova.config.userId);
@@ -3759,6 +3801,7 @@ function initBrodcasting() {
             progress: '0% complete',
             vpn_connected: false,
             remote_connected: false,
+            vnc_status: 'Unknown',
             remote_resolution: '-',
             remote_bandwidth: '-',
             running: false,
@@ -3772,6 +3815,7 @@ function initBrodcasting() {
             showStartModal: false,
             showResumeModal: false,
             showStartRecordingModal: false,
+            websocketServerConnected: false,
             cityFieldErrors: new __WEBPACK_IMPORTED_MODULE_0_form_backend_validation__["Errors"](),
             fieldCityValue: 'fort-sterling',
             fieldDestinationValue: 'aspenwood',
@@ -6165,8 +6209,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: _vm.remote_connected,
-                    expression: "remote_connected"
+                    value: _vm.remote_connected || _vm.vnc_status === "Online",
+                    expression: "remote_connected || vnc_status === 'Online'"
                   }
                 ],
                 staticClass: "w-8 text-success mr-2",
@@ -6199,8 +6243,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: !_vm.remote_connected,
-                    expression: "!remote_connected"
+                    value: !_vm.remote_connected && _vm.vnc_status !== "Online",
+                    expression: "!remote_connected && vnc_status !== 'Online'"
                   }
                 ],
                 staticClass: "w-8 text-danger mr-2",
@@ -6236,17 +6280,17 @@ var render = function() {
                     staticClass: "mb-4 flex items-center mt-2 text-60",
                     attrs: { level: 3 }
                   },
-                  [
-                    _vm._v(
-                      "\n                    Tight VNC Server\n                "
-                    )
-                  ]
+                  [_vm._v("\n                    VNC Server\n                ")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "flex" }, [
                   _vm._m(1),
                   _vm._v(" "),
                   _c("ul", { staticClass: "text-60 list-reset font-bold" }, [
+                    _c("li", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(_vm.vnc_status))
+                    ]),
+                    _vm._v(" "),
                     _c("li", { staticClass: "mb-2" }, [
                       _vm._v(_vm._s(_vm.remote_resolution))
                     ]),
@@ -6267,10 +6311,40 @@ var render = function() {
         _vm._v("Logs")
       ]),
       _vm._v(" "),
-      _c("div", {
-        staticClass: "flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90",
-        staticStyle: { height: "200px" }
-      })
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90 relative justify-center items-center text-60",
+          staticStyle: { height: "200px" }
+        },
+        [
+          _c(
+            "svg",
+            {
+              staticClass: "fill-current",
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                width: "32",
+                height: "32",
+                viewBox: "0 0 576 512"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  d:
+                    "M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-80 font-bold ml-4" }, [
+            _vm._v("Work in progress")
+          ])
+        ]
+      )
     ],
     1
   )
@@ -6281,7 +6355,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
-      _c("li", { staticClass: "mb-2" }, [_vm._v("Server name:")]),
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Server:")]),
       _vm._v(" "),
       _c("li", { staticClass: "mb-2" }, [_vm._v("Username:")]),
       _vm._v(" "),
@@ -6293,6 +6367,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "text-80 list-reset mr-4" }, [
+      _c("li", { staticClass: "mb-2" }, [_vm._v("Service Status:")]),
+      _vm._v(" "),
       _c("li", { staticClass: "mb-2" }, [_vm._v("Resolution:")]),
       _vm._v(" "),
       _c("li", { staticClass: "mb-2" }, [_vm._v("Bandwidth:")])

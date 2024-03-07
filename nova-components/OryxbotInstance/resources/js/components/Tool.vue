@@ -156,7 +156,7 @@
 
                     <div class="flex">
                         <ul class="text-80 list-reset mr-4">
-                            <li class="mb-2">Server name:</li>
+                            <li class="mb-2">Server:</li>
                             <li class="mb-2">Username:</li>
                             <li class="mb-2">Password:</li>
                         </ul>
@@ -171,7 +171,7 @@
             </div>
             <div class="mb-4 ml-8 flex justify-start items-start w-1/4">
 
-                <svg v-show="remote_connected"
+                <svg v-show="remote_connected || vnc_status === 'Online'"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="far"
@@ -183,7 +183,7 @@
                      viewBox="0 0 512 512">
                     <path fill="currentColor" d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"></path>
                 </svg>
-                <svg v-show="!remote_connected"
+                <svg v-show="!remote_connected && vnc_status !== 'Online'"
                      aria-hidden="true"
                      focusable="false"
                      data-prefix="fas"
@@ -198,15 +198,17 @@
                 <div class="flex flex-col">
 
                     <heading :level="3" class="mb-4 flex items-center mt-2 text-60">
-                        Tight VNC Server
+                        VNC Server
                     </heading>
 
                     <div class="flex">
                         <ul class="text-80 list-reset mr-4">
+                            <li class="mb-2">Service Status:</li>
                             <li class="mb-2">Resolution:</li>
                             <li class="mb-2">Bandwidth:</li>
                         </ul>
                         <ul class="text-60 list-reset font-bold">
+                            <li class="mb-2">{{ vnc_status }}</li>
                             <li class="mb-2">{{ remote_resolution }}</li>
                             <li class="mb-2">{{ remote_bandwidth}}</li>
                         </ul>
@@ -217,7 +219,9 @@
         </div>
 
         <heading :level="2" class="mb-6 text-2xl">Logs</heading>
-        <div class="flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90" style="height: 200px">
+        <div class="flex mb-4 bg-white rounded px-2 pb-4 pt-3 text-90 relative justify-center items-center text-60" style="height: 200px">
+            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/></svg>
+            <span class="text-80 font-bold ml-4">Work in progress</span>
         </div>
     </div>
 </template>
@@ -283,7 +287,7 @@ function initBrodcasting() {
             this.refreshTimeout = setTimeout(function () {
                 this.refreshTimeout = null;
                 if (this.requestingStatus) {
-                    if (!document.hidden)
+                    if (!document.hidden && this.websocketServerConnected)
                         Nova.error('Failed to connect to bot. Retrying...');
                     requestServerOnlineStatusUntilReceivedResponse();
                 }
@@ -291,6 +295,21 @@ function initBrodcasting() {
         }.bind(this);
 
         requestServerOnlineStatusUntilReceivedResponse();
+    });
+
+    let websocketConnectionAlert = () => setTimeout(() => {
+        if (!document.hidden && !this.websocketServerConnected) {
+            Nova.error('Failed to connect to Oryxbot messaging server. Retrying...');
+        }
+        websocketConnectionAlert();
+    }, 5000);
+    websocketConnectionAlert();
+
+    window.Echo.connector.pusher.connection.bind('state_change', (stateInfo) => {
+        this.websocketServerConnected = window.Echo.connector.pusher.connection.state === 'connected';
+        if (stateInfo.previous !== 'connected' && stateInfo.current === 'connected') {
+            Nova.success('Connection to Oryxbot messaging server established.');
+        }
     });
 }
 
@@ -309,6 +328,28 @@ export default {
         Nova.$on('field-name-change', value => this.fieldNameValue = value);
         Nova.$on('field-region-change', value => this.fieldRegionValue = value);
         Nova.$on('field-progressed-change', value => this.fieldProgressedValue = value);
+
+        function timeout() {
+            setTimeout( () => {
+                refreshVncServiceStatus();
+                timeout();
+            }, 5000);
+        }
+        let refreshVncServiceStatus =
+            () => fetch("http://127.0.0.1:5801", { mode: 'no-cors'})
+                .then(r => {
+                    if (this.vnc_status !== 'Online') {
+                        console.log('Successfully pinged local TightVNC server');
+                    }
+                    this.vnc_status = 'Online'
+                })
+                .catch(reason => {
+                    this.vnc_status = 'Unknown';
+                    console.log('Failed to ping local TightVNC server');
+                });
+
+        timeout();
+        refreshVncServiceStatus();
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
@@ -323,6 +364,7 @@ export default {
         progress: '0% complete',
         vpn_connected: false,
         remote_connected: false,
+        vnc_status: 'Unknown',
         remote_resolution: '-',
         remote_bandwidth: '-',
         running: false,
@@ -336,6 +378,7 @@ export default {
         showStartModal: false,
         showResumeModal: false,
         showStartRecordingModal: false,
+        websocketServerConnected: false,
         cityFieldErrors: new Errors(),
         fieldCityValue: 'fort-sterling',
         fieldDestinationValue: 'aspenwood',

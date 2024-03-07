@@ -53,4 +53,4 @@ apt install supervisor
 #https://www.unixtutorial.org/disable-sleep-on-ubuntu-server/
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 
-echo -e "[program:oryxbot]\ncommand=dotnet /home/oryxbot/apps/Oryxbot/OryxBot.dll\nnumprocs=1\nautostart=false\nautorestart=true\nuser=oryxbot\nstdout_logfile=/home/oryxbot/apps/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/oryxbot/apps/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB" > /etc/supervisor/conf.d/oryxbot.conf
+echo -e "[program:oryxbot]\ncommand=dotnet /home/oryxbot/apps/Oryxbot/OryxBot.dll\nnumprocs=1\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/home/oryxbot/apps/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/oryxbot/apps/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB" > /etc/supervisor/conf.d/oryxbot.conf
