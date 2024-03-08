@@ -9,38 +9,45 @@
 
 
 <style>
-    /* Tab content - closed */
-    .tab-content {
-        max-height: 0;
-        -webkit-transition: max-height .35s;
-        -o-transition: max-height .35s;
-        transition: max-height .35s;
-    }
-    /* :checked - resize to full height */
-    .tab input:checked ~ .tab-content {
+    /* :hover - resize to full height */
+    .tab:hover ~ .tab-content {
         max-height: 100vh;
         border-color: var(--80);
     }
-    /* Label formatting when open */
-    .tab input + label {
+    a.tab {
+        text-decoration:none;
+    }
+    /* p formatting when open */
+    .tab p {
         border-left-width: 1px; /*.border-l*/
     }
-    /* Label formatting when open */
-    .tab input:checked + label{
+    /* p formatting when open */
+    .tab:hover p{
         border-left-width: 1px;
         color: var(--90); /*.text-indigo*/
         font-weight: 600;
     }
-    /* Label formatting when open */
-    .tab input:checked + label{
+    /* p formatting when open */
+    .tab:hover p{
         border-color: var(--80);
     }
-    /* Label formatting when open */
-    .tab input + label{
+
+    /* p formatting when open */
+    .tab.success p{
+        border-left-width: 1px;
+        color: var(--primary-50); /*.text-indigo*/
+        font-weight: 600;
+    }
+    /* p formatting when open */
+    .tab.success p{
+        border-color: var(--primary-50);
+    }
+    /* p formatting when open */
+    .tab p{
         color: var(--60); /*.text-indigo*/
     }
     /* Icon */
-    .tab label::after {
+    .tab p::after {
         float:right;
         right: 0;
         top: 0;
@@ -65,84 +72,38 @@
     @endcomponent
 
     <p class="px-4 pb-8">
-        Before you can begin botting, you need to complete this setup process.
+        Oryxbot uses an unconventional method of bypassing anticheat.
+    </p>
+    <p class="px-4 pb-8">
+        Before you begin botting, you must complete this setup process.
     </p>
 
-    <div class="tab w-full overflow-hidden">
-        <input class="absolute opacity-0" id="tab-single-one" type="radio" name="tabs2" checked>
-        <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-one">
-            <span class="mr-3">1</span>Sign up on Digital Ocean
-        </label>
-        <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
-            <p class="p-4 pb-1">
-                For your safety, Oryxbot runs on an external server. Due to the low price and ease of use,
-                we have chosen Digital Ocean as our cloud service provider.
-            </p>
-            <p class="p-4 pt-0">
-                To run Oryxbot, you will need to register an account with Digital Ocean.
-            </p>
-
-            <div class="p-4 pt-0">
-                <a href="{{ route('setup.digitalocean') }}" target="_blank" class="text-center w-1/2 btn btn-default btn-primary hover:bg-primary-dark">
-                    {{ __('Sign me up') }}
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="tab w-full overflow-hidden">
-        <input class="absolute opacity-0" id="tab-single-two" type="radio" name="tabs2">
-        <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-two">
-            <span class="mr-3">2</span>Add Payment Method
-        </label>
-        <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
-            <p class="p-4 pb-0">
-                To use Digital Ocean you'll need to add a payment method.<br>
-                Server costs will run you approximately <strong>$5 per month</strong>.<br>
-            </p>
-            <p class="p-4 text-80 italic">
-                If you registered through our
-                <a href="{{ route('setup.digitalocean') }}" class="no-underline text-primary hover:primary-dark hover:underline">
-                    referral link</a>,
-                you will have been given $100 in credit to your Digital Ocean account.
-            </p>
-
-            <div class="p-4 pt-0">
-                <a href="https://cloud.digitalocean.com/account/billing" target="_blank" class="text-center w-1/2 btn btn-default btn-primary hover:bg-primary-dark">
-                    {{ __('Manage Billing Settings') }}
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="tab w-full overflow-hidden">
-        <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2">
-        <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-three">
-            <span class="mr-3">3</span>Create Personal Access Token
-        </label>
-        <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
-            <p class="p-4">
-                Oryxbot will use your personal access token to launch a server on your behalf
-                running the Oryxbot software. Once up and running, you will be able to connect
-                to your server and begin running trade missions.
-            </p>
-
-            <div class="p-4 mb-6 {{ $errors->has('email') ? ' has-error' : '' }}">
-                <label class="block font-bold mb-2" for="email">{{ __('Token') }}</label>
-                <div class="flex">
-                    <input class="form-control form-input form-input-bordered w-full" id="digitalocean_token" type="text" name="digitalocean_token" value="{{ old('email') }}" required autofocus
-                           placeholder="{{ __('Paste your token here') }}">
-
-                    <a href="https://cloud.digitalocean.com/account/billing" target="_blank" class="text-center btn btn-default btn-primary hover:bg-primary-dark ml-1">
-                        {{ __('Save') }}
-                    </a>
-                </div>
-            </div>
-            <div class="p-4 pt-0 pb-1">
-                <a href="https://cloud.digitalocean.com/account/api/tokens/new" target="_blank" class="text-center w-1/2 btn btn-default btn-primary hover:bg-primary-dark">
-                    {{ __('Create New Token') }}
-                </a>
-            </div>
-        </div>
-    </div>
+    <a href="{{ route('setup.digitalocean')  }}" class="tab w-full overflow-hidden success">
+        <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-one">
+            <span class="mr-3">1</span>
+            <span class="primary-50 relative mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="fill-current" style="height: 20px;width: 20px;"
+                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+            </span>
+            <span>Setup your Digital Ocean</span>
+        </p>
+    </a>
+    <a href="#" class="tab w-full overflow-hidden">
+        <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-two">
+            <span class="mr-3">2</span>Deploy an Oryxbot Instance Server
+        </p>
+    </a>
+    <a href="#" class="tab w-full overflow-hidden">
+        <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
+            <span class="mr-3">3</span>Setup TightVNC client
+        </p>
+    </a>
+    <a href="#" class="tab w-full overflow-hidden">
+        <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
+            <span class="mr-3">4</span>Establish connection to the Oryxbot Service
+        </p>
+    </a>
 </div>
 
 <div class="mx-auto py-8 max-w-sm text-center text-90">
