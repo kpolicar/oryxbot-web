@@ -107,14 +107,19 @@
             <span>Deploy an Oryxbot Server</span>
         </p>
     </a>
-    <a href="#" class="tab w-full overflow-hidden">
+    <a href="{{ route('setup.vncserver.tightvnc') }}" class="tab w-full overflow-hidden">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
             <span class="mr-3">3</span>Setup TightVNC server
         </p>
     </a>
+    <a href="{{ route('setup.vpn') }}" class="tab w-full overflow-hidden">
+        <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
+            <span class="mr-3">4</span>Setup VPN connection
+        </p>
+    </a>
     <a href="#" class="tab w-full overflow-hidden">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
-            <span class="mr-3">4</span>Establish connection to the Oryxbot Service
+            <span class="mr-3">5</span>Establish connection to the Oryxbot Service
         </p>
     </a>
 </div>

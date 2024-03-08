@@ -20,4 +20,14 @@ class SetupController extends Controller
     {
         return view('nova::setup-deploy');
     }
+
+    public function vncServer()
+    {
+        return view('nova::setup-vncserver');
+    }
+
+    public function vpn()
+    {
+        return view('nova::setup-vpn');
+    }
 }

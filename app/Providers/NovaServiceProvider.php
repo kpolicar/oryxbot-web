@@ -99,6 +99,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         'setup.digitalocean.validate',
         'setup.digitalocean.deploy',
         'setup.deploy',
+        'setup.vncserver.tightvnc',
+        'setup.vpn',
     ];
 
     /**

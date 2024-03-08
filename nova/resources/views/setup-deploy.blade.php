@@ -63,9 +63,9 @@
     style="max-width: 35rem"
 >
     <div class="mb-4 bookmarks">
-        <a href="{{ route('setup') }}" class="hover:underline">Setup</a>
+        <a href="{{ route('setup') }}" class="hover:underline text-primary">Setup</a>
         /
-        <a href="{{ route('setup.deploy') }}" class="hover:underline">Deploy Server</a>
+        <a href="{{ route('setup.deploy') }}" class="hover:underline text-primary">Deploy Server</a>
     </div>
 
     @component('nova::auth.partials.heading')

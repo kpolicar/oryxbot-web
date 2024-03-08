@@ -51,8 +51,14 @@ Route::middleware(config('nova.middleware', []))
             ->name('setup.digitalocean.validate');
 
         Route::post('/setup/digitalocean/deploy', [DigitalOceanController::class, 'deployServer'])
-//            ->middleware(['throttle:2,1'])
+            ->middleware(['throttle:2,1'])
             ->name('setup.digitalocean.deploy');
+
+        Route::get('/setup/vncserver/tightvnc', [SetupController::class, 'vncServer'])
+            ->name('setup.vncserver.tightvnc');
+
+        Route::get('/setup/vpn', [SetupController::class, 'vpn'])
+            ->name('setup.vpn');
 
         Route::redirect('/setup/digitalocean/referral', 'https://www.digitalocean.com/?refcode=a7974130a08b&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge')
             ->name('setup.digitalocean.referral');

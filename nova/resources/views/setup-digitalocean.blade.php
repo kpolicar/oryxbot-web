@@ -63,9 +63,9 @@
     style="max-width: 35rem"
 >
     <div class="mb-4 bookmarks">
-        <a href="{{ route('setup') }}" class="hover:underline">Setup</a>
+        <a href="{{ route('setup') }}" class="hover:underline text-primary">Setup</a>
         /
-        <a href="{{ route('setup.digitalocean') }}" class="hover:underline">Digital Ocean</a>
+        <a href="{{ route('setup.digitalocean') }}" class="hover:underline text-primary">Digital Ocean</a>
     </div>
 
     @component('nova::auth.partials.heading')
@@ -102,14 +102,19 @@
         </label>
         <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
             <p class="p-4 pb-0">
-                To use Digital Ocean you'll need to add a payment method.<br>
+                To use Digital Ocean, you'll need to add a payment method.<br>
                 Server costs will run you approximately <strong>$4 per month</strong>.<br>
             </p>
-            <p class="p-4 text-80 italic">
+            <p class="m-4 p-4 px-8 bg-primary text-sm rounded flex">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-1/6 mr-2 fill-current"
+                     viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                <span class="ml-2">
                 If you registered through our
-                <a href="{{ route('setup.digitalocean.referral') }}" class="no-underline text-primary hover:primary-dark hover:underline">
+                <a href="{{ route('setup.digitalocean.referral') }}" class="no-underline text-90 hover:underline">
                     referral link</a>,
                 you will have been given $200 in credit to your Digital Ocean account.
+                </span>
             </p>
 
             <div class="p-4 pt-0">
@@ -158,8 +163,13 @@
                 @enderror
             </div>
 
-            <p class="px-4 font-bold mb-4 uppercase">
-                Your personal access token is never stored on Oryxbot servers
+            <p class="m-4 p-4 px-8 bg-primary text-sm rounded flex">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="mr-2 fill-current w-1/6"
+                     viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                <span class="ml-2 font-bold uppercase">
+                        Your personal access token is never stored on Oryxbot servers
+                    </span>
             </p>
         </div>
     </div>
