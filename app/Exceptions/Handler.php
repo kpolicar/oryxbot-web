@@ -25,6 +25,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontFlash = [
+        'digitalocean_token',
         'password',
         'password_confirmation',
     ];

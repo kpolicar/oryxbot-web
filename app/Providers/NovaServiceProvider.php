@@ -100,7 +100,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         Nova::serving(function (ServingNova $serving) {
-            if (!$serving->request->routeIs(['setup', 'setup.digitalocean', 'setup.digitalocean.referral'])) {
+            if (!$serving->request->routeIs(['setup', 'setup.digitalocean', 'setup.digitalocean.referral', 'setup.digitalocean.validate'])) {
                 throw new HttpResponseException(redirect()->to(route('setup')));
             }
         });

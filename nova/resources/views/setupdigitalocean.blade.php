@@ -7,7 +7,6 @@
 
 @include('nova::auth.partials.header')
 
-
 <style>
     /* Tab content - closed */
     .tab-content {
@@ -54,28 +53,35 @@
         -o-transition: all .35s;
         transition: all .35s;
     }
+    .bookmarks a {
+        text-decoration: none;
+    }
 </style>
 
 <div
     class="bg-white shadow rounded-lg p-8 mx-auto"
     style="max-width: 35rem"
 >
+    <div class="mb-4 bookmarks">
+        <a href="{{ route('setup') }}" class="hover:underline">Setup</a>
+        /
+        <a href="{{ route('setup.digitalocean') }}" class="hover:underline">DigitalOcean</a>
+    </div>
+
     @component('nova::auth.partials.heading')
         {{ __('Setup Digital Ocean!') }}
     @endcomponent
-
-    <p class="px-4 pb-8">
-        Before you can begin botting, you need to complete this setup process.
-    </p>
-
+        @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     <div class="tab w-full overflow-hidden">
-        <input class="absolute opacity-0" id="tab-single-one" type="radio" name="tabs2" checked>
+        <input class="absolute opacity-0" id="tab-single-one" type="radio" name="tabs2"@if (!$errors->any()) checked @endif>
         <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-one">
             <span class="mr-3">1</span>Sign up on Digital Ocean
         </label>
         <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
             <p class="p-4 pb-1">
-                For your safety, Oryxbot software runs on an external server. Due to the low price and ease of use,
+                For your safety, Oryxbot software runs on an external server. Due to the low and transparent pricing,
                 we have chosen Digital Ocean as our cloud service provider.
             </p>
             <p class="p-4 pt-0">
@@ -97,13 +103,13 @@
         <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
             <p class="p-4 pb-0">
                 To use Digital Ocean you'll need to add a payment method.<br>
-                Server costs will run you approximately <strong>$5 per month</strong>.<br>
+                Server costs will run you approximately <strong>$4 per month</strong>.<br>
             </p>
             <p class="p-4 text-80 italic">
                 If you registered through our
                 <a href="{{ route('setup.digitalocean.referral') }}" class="no-underline text-primary hover:primary-dark hover:underline">
                     referral link</a>,
-                you will have been given $100 in credit to your Digital Ocean account.
+                you will have been given $200 in credit to your Digital Ocean account.
             </p>
 
             <div class="p-4 pt-0">
@@ -114,31 +120,18 @@
         </div>
     </div>
     <div class="tab w-full overflow-hidden">
-        <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2">
+        <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2"@error('digitalocean_token') checked @endif>
         <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-three">
             <span class="mr-3">3</span>Create Personal Access Token
         </label>
         <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
             <p class="p-4">
-                Oryxbot will use your personal access token to launch a server on your behalf
-                running the Oryxbot software. Once up and running, you will be able to connect
-                to your server and begin running trade missions.
+                Oryxbot uses your personal access token to launch a server on your behalf.
+                This server will be configured to run the Oryxbot software.
             </p>
-
-            <div class="p-4 {{ $errors->has('email') ? ' has-error' : '' }}">
-                <label class="block font-bold mb-2" for="email">{{ __('Token') }}</label>
-                <div class="flex">
-                    <input class="form-control form-input form-input-bordered w-full" id="digitalocean_token" type="text" name="digitalocean_token" value="{{ old('email') }}" required autofocus
-                           placeholder="{{ __('Paste your token here') }}">
-
-                    <a href="https://cloud.digitalocean.com/account/billing" target="_blank" class="text-center btn btn-default btn-primary hover:bg-primary-dark ml-1">
-                        {{ __('Save') }}
-                    </a>
-                </div>
-            </div>
-
-            <p class="px-4 font-bold mb-4 uppercase">
-                Your personal access token is never stored on Oryxbot servers
+            <p class="p-4 font-bold">
+                On this step, Oryxbot will only validate your access token. No resources will be created.
+                Store your token in a secure location.
             </p>
 
             <div class="p-4 pt-0 pb-1">
@@ -146,6 +139,28 @@
                     {{ __('Create New Token') }}
                 </a>
             </div>
+
+            <div class="p-4 {{ $errors->has('digitalocean_token') ? ' has-error' : '' }}">
+                <label class="block font-bold mb-2" for="email">{{ __('Token') }}</label>
+                <form class="flex" action="{{ route('setup.digitalocean.validate') }}" method="POST">
+                    @csrf
+                    <input class="form-control form-input form-input-bordered w-full" id="digitalocean_token" type="text" name="digitalocean_token" value="{{ old('email') }}" required autofocus
+                           placeholder="{{ __('Paste your token here') }}">
+
+                    <button type="submit" class="text-center btn btn-default btn-primary hover:bg-primary-dark ml-1">
+                        {{ __('Validate') }}
+                    </button>
+                </form>
+                @error('digitalocean_token')
+                <p class="text-center font-semibold text-danger my-3">
+                    {{ $message }}
+                </p>
+                @enderror
+            </div>
+
+            <p class="px-4 font-bold mb-4 uppercase">
+                Your personal access token is never stored on Oryxbot servers
+            </p>
         </div>
     </div>
 </div>

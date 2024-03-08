@@ -3,12 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Server;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use DigitalOceanV2\Client as DigitalOcean;
+use DigitalOceanV2\Exception\RuntimeException;
 use Illuminate\Http\Request;
-use Laravel\Cashier\Http\Controllers\WebhookController;
 
 class DigitalOceanController extends Controller
 {
+    public function setup()
+    {
+        return view('nova::setupdigitalocean');
+    }
+    public function validateToken(Request $request)
+    {
+        $accessToken = $request->post('digitalocean_token');
+
+        try {
+            $client = new DigitalOcean();
+            $client->authenticate($accessToken);
+            $userInformation = $client->account()->getUserInformation();
+
+            $request->session()->put('setup.digitalocean.token_validated', true);
+            $request->session()->put('setup.digitalocean.user_status', $userInformation->status);
+        } catch (RuntimeException $exception) {
+            return redirect()->back()->withErrors([
+                'digitalocean_token' => 'Could not connect to Digital Ocean with the provided access token.'
+            ]);
+        } catch (\Throwable $exception) {
+            return redirect()->back()->withErrors([
+                'digitalocean_token' => 'There was an error sending the request to Digital Ocean.'
+            ]);
+        }
+
+        return redirect(route('setup'));
+    }
+
     public function handleWebhook(Request $request)
     {
         $server = Server::findOrFailByDropletId($request->json('droplet_id'));

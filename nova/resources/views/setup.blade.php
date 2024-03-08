@@ -78,14 +78,17 @@
         Before you begin botting, you must complete this setup process.
     </p>
 
-    <a href="{{ route('setup.digitalocean')  }}" class="tab w-full overflow-hidden success">
+    @php($step1Complete = session()->get('setup.digitalocean.token_validated', false))
+    <a href="{{ route('setup.digitalocean')  }}" class="tab w-full overflow-hidden @if($step1Complete) success @endif">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-one">
             <span class="mr-3">1</span>
-            <span class="primary-50 relative mr-2">
+            @if($step1Complete)
+                <span class="primary-50 relative mr-2">
                 <svg xmlns="http://www.w3.org/2000/svg"
                      class="fill-current" style="height: 20px;width: 20px;"
                      viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
             </span>
+            @endif
             <span>Setup your Digital Ocean</span>
         </p>
     </a>

@@ -40,8 +40,12 @@ Route::middleware(config('nova.middleware', []))
         Route::get('/setup', [SetupController::class, 'index'])
             ->name('setup');
 
-        Route::get('/setup/digitalocean', [SetupController::class, 'digitalOcean'])
+        Route::get('/setup/digitalocean', [DigitalOceanController::class, 'setup'])
             ->name('setup.digitalocean');
+
+        Route::post('/setup/digitalocean', [DigitalOceanController::class, 'validateToken'])
+            ->middleware(['throttle:3,1'])
+            ->name('setup.digitalocean.validate');
 
         Route::redirect('/setup/digitalocean/referral', 'https://www.digitalocean.com/?refcode=a7974130a08b&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge')
             ->name('setup.digitalocean.referral');
