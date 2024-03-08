@@ -9,11 +9,31 @@ use Illuminate\Http\Request;
 
 class DigitalOceanController extends Controller
 {
-    public function setup()
-    {
-        return view('nova::setupdigitalocean');
-    }
     public function validateToken(Request $request)
+    {
+        $client = $this->digitalOceanClientOrRedirect($request);
+        if (!($client instanceof DigitalOcean)) {
+            return $client;
+        }
+
+        return redirect(route('setup'));
+    }
+
+    public function deployServer(Request $request)
+    {
+        $request->validate([
+            'terms' => 'accepted',
+        ]);
+        $client = $this->digitalOceanClientOrRedirect($request);
+        if (!($client instanceof DigitalOcean)) {
+            return $client;
+        }
+        dd($client->key()->getAll());
+
+        return redirect(route('setup'));
+    }
+
+    protected function digitalOceanClientOrRedirect(Request $request)
     {
         $accessToken = $request->post('digitalocean_token');
 
@@ -34,7 +54,7 @@ class DigitalOceanController extends Controller
             ]);
         }
 
-        return redirect(route('setup'));
+        return $client;
     }
 
     public function handleWebhook(Request $request)

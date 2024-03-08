@@ -92,14 +92,14 @@
             <span>Setup your Digital Ocean</span>
         </p>
     </a>
-    <a href="#" class="tab w-full overflow-hidden">
+    <a href="{{ route('setup.deploy') }}" class="tab w-full overflow-hidden">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-two">
             <span class="mr-3">2</span>Deploy an Oryxbot Instance Server
         </p>
     </a>
     <a href="#" class="tab w-full overflow-hidden">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
-            <span class="mr-3">3</span>Setup TightVNC client
+            <span class="mr-3">3</span>Setup TightVNC server
         </p>
     </a>
     <a href="#" class="tab w-full overflow-hidden">

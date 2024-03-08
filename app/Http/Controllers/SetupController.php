@@ -10,4 +10,14 @@ class SetupController extends Controller
     {
         return view('nova::setup');
     }
+
+    public function setup()
+    {
+        return view('nova::setup-digitalocean');
+    }
+
+    public function deploy()
+    {
+        return view('nova::setup-deploy');
+    }
 }

@@ -92,6 +92,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         ];
     }
 
+    private $setupRoutes=[
+        'setup',
+        'setup.digitalocean',
+        'setup.digitalocean.referral',
+        'setup.digitalocean.validate',
+        'setup.digitalocean.deploy',
+        'setup.deploy',
+    ];
+
     /**
      * Register any application services.
      *
@@ -100,7 +109,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         Nova::serving(function (ServingNova $serving) {
-            if (!$serving->request->routeIs(['setup', 'setup.digitalocean', 'setup.digitalocean.referral', 'setup.digitalocean.validate'])) {
+            if (!$serving->request->routeIs($this->setupRoutes)) {
                 throw new HttpResponseException(redirect()->to(route('setup')));
             }
         });
