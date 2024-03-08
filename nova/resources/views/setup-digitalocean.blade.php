@@ -120,7 +120,7 @@
         </div>
     </div>
     <div class="tab w-full overflow-hidden">
-        <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2"@error('digitalocean_token') checked @endif>
+        <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2"@error('digitalocean') checked @endif>
         <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-three">
             <span class="mr-3">3</span>Create Personal Access Token
         </label>
@@ -140,7 +140,7 @@
                 </a>
             </div>
 
-            <div class="p-4 {{ $errors->has('digitalocean_token') ? ' has-error' : '' }}">
+            <div class="p-4 {{ $errors->has('digitalocean') ? ' has-error' : '' }}">
                 <label class="block font-bold mb-2" for="email">{{ __('Token') }}</label>
                 <form class="flex" action="{{ route('setup.digitalocean.validate') }}" method="POST">
                     @csrf
@@ -151,7 +151,7 @@
                         {{ __('Validate') }}
                     </button>
                 </form>
-                @error('digitalocean_token')
+                @error('digitalocean')
                 <p class="text-center font-semibold text-danger my-3">
                     {{ $message }}
                 </p>

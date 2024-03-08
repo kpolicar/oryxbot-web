@@ -24,11 +24,59 @@ class DigitalOceanController extends Controller
         $request->validate([
             'terms' => 'accepted',
         ]);
+
+        $instance = $request->user()->subscription()->instances->first();
+        $server = $instance->server;
+
         $client = $this->digitalOceanClientOrRedirect($request);
         if (!($client instanceof DigitalOcean)) {
             return $client;
         }
-        dd($client->key()->getAll());
+        try {
+            $existingSshKey = collect($client->key()->getAll())->firstWhere('publicKey', config('digitalocean.ssh_key_public'));
+
+            $key = $existingSshKey
+                ?: $client->key()->create('oryxbot.com', config('digitalocean.ssh_key_public'));
+
+            $server->ssh_key_id = $key->id;
+            $server->save();
+        } catch (\Throwable $exception) {
+            report($exception);
+            return redirect()->back()->withErrors([
+                'digitalocean' => 'Failed to add our SSH key to your Digital Ocean account.'
+            ]);
+        }
+
+
+        $droplet = $client->droplet()->create(
+            $server->name,
+            $server->droplet_region = $request->post('region'),
+            $server->droplet_size = 's-1vcpu-512mb-10gb',
+            config('digitalocean.bot_snapshot_id'),
+            false,
+            false,
+            false,
+            [$server->ssh_key_id],
+            '#!/bin/bash'."\n\n".'echo "'.$server->accessToken.'" > /etc/oryxbot.apikey',
+            true,
+            [],
+            ['bot']);
+
+        $server->ip_address = optional(collect($droplet->networks)->firstWhere('type', 'public'))->ipAddress;
+        $server->private_ip_address = optional(collect($droplet->networks)->firstWhere('type', 'private'))->ipAddress;
+        $server->save();
+
+        dd($droplet);
+
+        try {
+            $key = $client->key()->create('oryxbot.com', config('digitalocean.ssh_key_public'));
+            dd($key);
+        } catch (\Throwable $exception) {
+            report($exception);
+            return redirect()->back()->withErrors([
+                'digitalocean' => 'Failed to add our SSH key to your Digital Ocean account.'
+            ]);
+        }
 
         return redirect(route('setup'));
     }
@@ -45,13 +93,16 @@ class DigitalOceanController extends Controller
             $request->session()->put('setup.digitalocean.token_validated', true);
             $request->session()->put('setup.digitalocean.user_status', $userInformation->status);
         } catch (RuntimeException $exception) {
+            report($exception);
             return redirect()->back()->withErrors([
-                'digitalocean_token' => 'Could not connect to Digital Ocean with the provided access token.'
+                'digitalocean' => 'Could not connect to Digital Ocean with the provided access token.'
             ]);
         } catch (\Throwable $exception) {
+            report($exception);
             return redirect()->back()->withErrors([
-                'digitalocean_token' => 'There was an error sending the request to Digital Ocean.'
+                'digitalocean' => 'There was an error sending the request to Digital Ocean.'
             ]);
+
         }
 
         return $client;

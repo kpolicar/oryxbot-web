@@ -46,7 +46,7 @@ return [
 
     ],
 
-    'bot_snapshot_id'   => env('DIGITALOCEAN_BOT_SNAPSHOT_ID'),
-    'bot_ssh_key_id'   => env('DIGITALOCEAN_BOT_SSH_KEY_ID'),
+    'bot_snapshot_id'   => '151635041',
 
+    'ssh_key_public' => 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhOpROxNu2P2jQpeYlDbaSiPq3Oa+p7I58eCYpBNutd admin@oryxbot.com',
 ];

@@ -56,10 +56,10 @@ class UpdateSubscriptionInstances implements ShouldQueue
             for ($i=$originalQuantity;$i < $this->subscription->quantity; $i++) {
                 if (!$this->subscription->instances->has($i)) {
                     $instance = $this->subscription->instances()->make([
-                        'name' => 'Bot #'.($i+1),
+                        'name' => 'Oryxbot #'.($i+1),
                         'slug' => 'bot-'.($i+1),
                     ]);
-                    $instance->serverToCreate = $server = Server::makeWithName($i, $this->subscription->user_id);
+                    $instance->serverToCreate = $server = $instance->server()->make();
                     $server->setToken(
                         $this->subscription->user->createToken($server->getPersonalAccessTokenName()));
                     $instance->save();

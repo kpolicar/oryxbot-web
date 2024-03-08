@@ -1,7 +1,7 @@
 @extends('nova::layout_basic')
 
 
-@section('title', 'Deploy Server - Setup - '.\Laravel\Nova\Nova::name())
+@section('title', 'TightVNC - Setup - '.\Laravel\Nova\Nova::name())
 
 @section('content')
 

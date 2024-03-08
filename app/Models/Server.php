@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Laravel\Passport\Token;
+use PHPUnit\Util\Exception;
 
 class Server extends Model
 {
@@ -18,9 +19,8 @@ class Server extends Model
 
     use HasFactory;
 
-    protected $name = 'user-x-bot-x--s-1vcpu-1gb-fra1';
-    protected $size = 's-1vcpu-1gb';
-    protected $region = 'fra1';
+//    protected $size = 's-1vcpu-1gb';
+//    protected $region = 'fra1';
     protected $accessToken;
 
     protected $visible = [
@@ -35,26 +35,11 @@ class Server extends Model
     {
         parent::boot();
         static::creating(function (Server $server) {
-            $remoteServer = DigitalOcean::droplet()->create(
-                $server->name,
-                $server->region,
-                $server->size,
-                config('digitalocean.bot_snapshot_id'),
-                false,
-                false,
-                false,
-                [config('digitalocean.bot_ssh_key_id')],
-                '#!/bin/bash'."\n\n".'echo "'.$server->accessToken.'" > /etc/oryxbot.apikey',
-                true,
-                [],
-                ['bot']);
             $server->vpn_username = optional($server->user)->username ?: static::FALLBACK_USERNAME;
             $server->vpn_password = Str::random(16);
-            $server->droplet_id = $remoteServer->id;
-            $server->ip_address = optional(collect($remoteServer->networks)->firstWhere('type', 'public'))->ipAddress;
-            $server->private_ip_address = optional(collect($remoteServer->networks)->firstWhere('type', 'private'))->ipAddress;
         });
         static::deleting(function () {
+            throw new Exception("Servers cannot be deleted.");
             DB::beginTransaction();
         });
 
@@ -72,6 +57,11 @@ class Server extends Model
         });
     }
 
+    public function getNameAttribute()
+    {
+        return 'oryxbot--s-1vcpu-1gb-fra1';
+    }
+
     public static function findOrFailByDropletId($id)
     {
         return static::where('droplet_id', $id)->firstOrFail();
@@ -79,9 +69,10 @@ class Server extends Model
 
     public static function makeWithName($iteration, $userId)
     {
+        // deprecated
         $iteration++;
         $self = static::make();
-        $self->name = "user-$userId-bot-$iteration"."--{$self->size}-{$self->region}";
+        $self->droplet_name = "user-$userId-bot-$iteration"."--{$self->size}-{$self->region}";
         return $self;
     }
 
