@@ -2,8 +2,8 @@
 
 return [
     'category' => 'The Albion Online Trade Mission Bot',
-    'heading' => 'Plan your routes.<br>Make silver effortlessly.',
-    'subheading' => 'Your time is worth more. Run a faction heart trade mission once and allow Oryxbot to repeat.',
+    'heading' => 'The most undetectable bot for Albion Online<br>Period.',
+    'subheading' => 'Make silver effortlessly. Run a faction heart trade mission once and allow Oryxbot to repeat.',
     'install_instructions' => 'Installation instructions',
 
     'copyright' => 'Copyright © :year Oryxbot',
