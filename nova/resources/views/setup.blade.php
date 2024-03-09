@@ -80,7 +80,8 @@
         Before you begin botting, you must complete this setup process.
     </p>
 
-    @php($step1Complete = session()->get('setup.digitalocean.token_validated', false))
+    @php($step2Complete = Auth::user()->subscription()->instances->first()->server->droplet_id)
+    @php($step1Complete = $step2Complete || session()->get('setup.digitalocean.token_validated', false))
     <a href="{{ route('setup.digitalocean')  }}" class="tab w-full overflow-hidden @if($step1Complete) success @endif">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-one">
             <span class="mr-3">1</span>
@@ -95,7 +96,6 @@
         </p>
     </a>
 
-    @php($step2Complete = Auth::user()->subscription()->instances->first()->server->droplet_id)
     <a href="{{ route('setup.deploy') }}" class="tab w-full overflow-hidden @if($step2Complete) success @endif">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-two">
             <span class="mr-3">2</span>
