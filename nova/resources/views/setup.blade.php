@@ -67,7 +67,7 @@
     class="bg-white shadow rounded-lg p-8 mx-auto"
     style="max-width: 35rem"
 >
-    <script>var vnc_status = 'Offline';</script>
+    <script>var vnc_status = 'Offline';var vpn_status = 'Offline';</script>
 
     @component('nova::auth.partials.heading')
         {{ __('Get Started!') }}
@@ -109,7 +109,7 @@
             <span>Deploy an Oryxbot Server</span>
         </p>
     </a>
-    <a href="{{ route('setup.vncserver.tightvnc') }}" class="tab w-full overflow-hidden" data-online-success>
+    <a href="{{ route('setup.vncserver.tightvnc') }}" class="tab w-full overflow-hidden" data-vnc-online-success>
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
             <span class="mr-3">3</span>
             <span class="primary-50 relative mr-2">
@@ -123,9 +123,18 @@
             </span>
         </p>
     </a>
-    <a href="{{ route('setup.vpn') }}" class="tab w-full overflow-hidden">
+    <a href="{{ route('setup.vpn') }}" class="tab w-full overflow-hidden" data-vpn-online-success>
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
-            <span class="mr-3">4</span>Setup VPN connection
+            <span class="mr-3">3</span>
+            <span class="primary-50 relative mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     data-vpn-online
+                     class="fill-current" style="height: 20px;width: 20px;display:none"
+                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+            </span>
+            <span>
+            Setup VPN Connection
+            </span>
         </p>
     </a>
     <a href="#" class="tab w-full overflow-hidden">
@@ -145,16 +154,35 @@
                         vnc_status = 'Online'
                         document.querySelectorAll('[data-vnc-online]').forEach(el => el.style.display = 'block');
                         document.querySelectorAll('[data-vnc-offline]').forEach(el => el.style.display = 'none');
-                        document.querySelectorAll('[data-online-success]').forEach(el => el.classList.add('success'));
+                        document.querySelectorAll('[data-vnc-online-success]').forEach(el => el.classList.add('success'));
                     })
                     .catch(reason => {
                         vnc_status = 'Unknown';
                         console.log('Failed to ping local TightVNC server');
                         document.querySelectorAll('[data-vnc-online]').forEach(el => el.style.display = 'none');
                         document.querySelectorAll('[data-vnc-offline]').forEach(el => el.style.display = 'block');
-                        document.querySelectorAll('[data-online-success]').forEach(el => el.classList.remove('success'));
+                        document.querySelectorAll('[data-vnc-online-success]').forEach(el => el.classList.remove('success'));
+                    });
+            let refreshVpnServiceStatus =
+                () => fetch("http://127.0.0.1:5558", { mode: 'no-cors'})
+                    .then(r => {
+                        if (vpn_status !== 'Online') {
+                            console.log('Successfully pinged VPN discoverability server');
+                            document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'block');
+                            document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'none');
+                            document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.add('success'));
+                        }
+                        vpn_status = 'Online'
+                    })
+                    .catch(reason => {
+                        vpn_status = 'Unknown';
+                        console.log('Failed to ping VPN discoverability server');
+                        document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'none');
+                        document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'block');
+                        document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.remove('success'));
                     });
             refreshVncServiceStatus();
+            refreshVpnServiceStatus();
         </script>
 </div>
 
