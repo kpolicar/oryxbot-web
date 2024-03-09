@@ -111,6 +111,16 @@
             -o-transition: all .35s;
             transition: all .35s;
         }
+
+        ul li {
+            border-bottom: 1px solid var(--primary-30);
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 0 5px;
+        }
+        ul li:last-child {
+            border: none;
+        }
     </style>
 
     <div
@@ -136,18 +146,67 @@
         </p>
 
         <div class="tab w-full overflow-hidden">
-            <input class="absolute opacity-0" id="tab-single-two" type="radio" name="tabs1">
-            <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-two">
+            <input class="absolute opacity-0" id="tab-single-one" type="radio" name="tabs2" checked>
+            <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-one">
                 <span class="mr-3">1</span>Add Windows built-in VPN connection
             </label>
             <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
                 <p class="p-4 pb-0">
-                    After starting the VNC service, you may find the TightVNC options menu in the system tray.
-                    The following configuration options need to be assigned.
+                    Follow the instructions to
+                    <a
+                        target="_blank"
+                        href="https://support.microsoft.com/en-us/windows/connect-to-a-vpn-in-windows-3d29aeb1-f497-f6b7-7633-115722c1009c">
+                        setup a VPN connection in Windows</a>.
+                    Use the following settings to configure the connection:
                 </p>
-                <span class="flex justify-center my-4">
-                    <img src="{{ asset('images/vnc_settings.png') }}" class="w-3/4" alt="">
-                </span>
+                <div class="flex m-4 p-4 px-8 bg-primary text-sm rounded">
+                    <ul style="list-style: none; line-height: 2rem" class="p-0 w-full">
+                        <li style="border-bottom: 1px solid var(--primary-30)">
+                            VPN Provider:
+                        </li>
+                        <li>
+                            Connection name:
+                        </li>
+                        <li>
+                            Server name or address:
+                        </li>
+                        <li>
+                            VPN type:
+                        </li>
+                        <li>
+                            Type of sign-in info:
+                        </li>
+                        <li>
+                            User name:
+                        </li>
+                        <li>
+                            Password:
+                        </li>
+                    </ul>
+                    <ul style="list-style: none; text-align: right; line-height: 2rem" class="font-bold p-0 w-full">
+                        <li style="border-bottom: 1px solid var(--primary-30)">
+                            Windows Built-in
+                        </li>
+                        <li>
+                            Oryxbot
+                        </li>
+                        <li>
+                            {{ Auth::user()->subscription()->instances->first()->server->ip_address }}
+                        </li>
+                        <li>
+                            Automatic
+                        </li>
+                        <li>
+                            User name and password
+                        </li>
+                        <li>
+                            {{ Auth::user()->subscription()->instances->first()->server->vpn_username }}
+                        </li>
+                        <li>
+                            {{ Auth::user()->subscription()->instances->first()->server->vpn_password }}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -162,7 +221,7 @@
                     The following configuration options need to be assigned.
                 </p>
                 <span class="flex justify-center my-4">
-                    <img src="{{ asset('images/vnc_settings.png') }}" class="w-3/4" alt="">
+                    <img src="{{ asset('images/install/vpn_settings.png') }}" class="w-3/4" alt="">
                 </span>
             </div>
         </div>

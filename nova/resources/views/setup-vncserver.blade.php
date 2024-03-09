@@ -136,7 +136,7 @@
         </p>
 
         <a href="https://www.tightvnc.com/download.php" target="_blank" class="tab w-full overflow-hidden">
-            <p class="block p-4 leading-normal cursor-pointer border-60 flex item" for="tab-single-three">
+            <p class="block p-4 leading-normal cursor-pointer border-60 flex item">
                 <span class="mr-3">1</span>Install TightVNC
             </p>
         </a>
@@ -156,13 +156,13 @@
             </div>
         </div>
         <div class="tab w-full overflow-hidden">
-            <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2" checked @error('digitalocean') checked @endif>
+            <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2" @error('digitalocean') checked @endif>
             <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-three">
                 <span class="mr-3">3</span>Verify the connection
             </label>
             <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
                 <p class="p-4">
-                    Your browser will now attempt to discover whether the TightVNC server.
+                    Your browser will now attempt to discover whether the TightVNC server is running on your machine.
                 </p>
 
                 <div class="flex justify-center items-center">
