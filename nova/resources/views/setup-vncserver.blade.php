@@ -166,8 +166,10 @@
                 </p>
 
                 <div class="flex justify-center items-center">
+                    <script>var vnc_status = 'Offline';</script>
                     <span class="mx-2">Tight VNC status:</span>
-                    <svg v-show="!remote_connected && vnc_status !== 'Online'"
+                    <svg
+                         data-vnc-offline
                          aria-hidden="true"
                          focusable="false"
                          data-prefix="fas"
@@ -179,12 +181,13 @@
                          viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path>
                     </svg>
                     <svg
+                         data-vnc-online
                          aria-hidden="true"
                          focusable="false"
                          data-prefix="far"
                          data-icon="check-circle"
-                         class="w-8 text-success hidden mx-2"
-                         style="overflow: visible"
+                         class="w-8 text-success mx-2 my-4"
+                         style="overflow: visible; display: none;"
                          role="img"
                          xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 512 512">
@@ -192,15 +195,46 @@
                     </svg>
                 </div>
 
-                <p class="m-4 p-4 px-8 bg-primary text-sm rounded flex">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         class="mr-2 fill-current w-1/6"
-                         viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
-                    <span class="ml-2">
+                <div
+                    data-vnc-offline>
+                    <p class="m-4 p-4 px-8 bg-primary text-sm rounded flex">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="mr-2 fill-current w-1/6"
+                             viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                        <span class="ml-2">
                         This status is unrealiable and might not successfully discover the server
                         depending on your browser and system settings.
                     </span>
-                </p>
+
+                    </p>
+                </div>
+
+                <script>
+                    function timeout() {
+                        setTimeout( () => {
+                            refreshVncServiceStatus();
+                            timeout();
+                        }, 5000);
+                    }
+                    let refreshVncServiceStatus =
+                        () => fetch("http://127.0.0.1:5801", { mode: 'no-cors'})
+                            .then(r => {
+                                if (vnc_status !== 'Online') {
+                                    console.log('Successfully pinged local TightVNC server');
+                                }
+                                vnc_status = 'Online'
+                                document.querySelectorAll('[data-vnc-online]').forEach(el => el.style.display = 'block');
+                                document.querySelectorAll('[data-vnc-offline]').forEach(el => el.style.display = 'none');
+                            })
+                            .catch(reason => {
+                                vnc_status = 'Unknown';
+                                console.log('Failed to ping local TightVNC server');
+                                document.querySelectorAll('[data-vnc-online]').forEach(el => el.style.display = 'none');
+                                document.querySelectorAll('[data-vnc-offline]').forEach(el => el.style.display = 'block');
+                            });
+                    timeout();
+                    refreshVncServiceStatus();
+                </script>
             </div>
         </div>
     </div>
