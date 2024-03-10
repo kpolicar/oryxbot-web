@@ -72,28 +72,43 @@
             border-left-width: 1px; /*.border-l*/
         }
         /* p formatting when open */
-        .tab:hover .item{
+        .tab:not(.success):hover .item{
             border-left-width: 1px;
             color: var(--90); /*.text-indigo*/
             font-weight: 600;
         }
+        .tab.success:hover .item, .tab.success:hover label {
+            border-left-width: 1px;
+            color: var(--primary-70); /*.text-indigo*/
+            font-weight: 600;
+        }
         /* p formatting when open */
-        .tab:hover .item{
+        .tab:not(.success):hover .item {
             border-color: var(--80);
         }
 
         /* p formatting when open */
-        .tab.success .item{
+        .tab.success label, a.tab.success p {
             border-left-width: 1px;
             color: var(--primary-50); /*.text-indigo*/
             font-weight: 600;
         }
         /* p formatting when open */
-        .tab.success .item{
+        .tab.success label, a.tab.success p {
             border-color: var(--primary-50);
         }
         /* p formatting when open */
-        .tab .item{
+        .tab.success input:checked + label {
+            border-left-width: 1px;
+            color: var(--primary-50); /*.text-indigo*/
+            font-weight: 600;
+        }
+        /* p formatting when open */
+        .tab.success input:checked + label {
+            border-color: var(--primary-50);
+        }
+        /* p formatting when open */
+        .tab input + label {
             color: var(--60); /*.text-indigo*/
         }
         /* Icon */
@@ -145,10 +160,19 @@
             from your Albion client and take control of your mouse and keyboard.
         </p>
 
-        <div class="tab w-full overflow-hidden">
+        <div class="tab w-full overflow-hidden"  data-vpn-online-success>
             <input class="absolute opacity-0" id="tab-single-one" type="radio" name="tabs2" checked>
-            <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-one">
-                <span class="mr-3">1</span>Add Windows built-in VPN connection
+            <label class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-one">
+                <span class="mr-3">1</span>
+
+                <span class="primary-50 relative mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         data-vpn-online
+                         class="fill-current" style="height: 20px;width: 20px;display:none"
+                         viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+                </span>
+
+                <span>Add Windows built-in VPN connection</span>
             </label>
             <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
                 <p class="p-4 pb-0">
@@ -216,10 +240,19 @@
             </div>
         </div>
 
-        <div class="tab w-full overflow-hidden">
+        <div class="tab w-full overflow-hidden" data-vpn-online-success>
             <input class="absolute opacity-0" id="tab-single-two" type="radio" name="tabs2">
-            <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-two">
-                <span class="mr-3">2</span>Verify the connection
+            <label class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-two">
+                <span class="mr-3">2</span>
+
+                <span class="primary-50 relative mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         data-vpn-online
+                         class="fill-current" style="height: 20px;width: 20px;display:none"
+                         viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+                </span>
+
+                <span>Verify the connection</span>
             </label>
 
             <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
@@ -287,12 +320,14 @@
                                 vpn_status = 'Online'
                                 document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'block');
                                 document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'none');
+                                document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.add('success'));
                             })
                             .catch(reason => {
                                 vpn_status = 'Unknown';
                                 console.log('Failed to ping VPN discoverability server');
                                 document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'none');
                                 document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'block');
+                                document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.remove('success'));
                             });
                     timeout();
                     refreshVpnServiceStatus();
