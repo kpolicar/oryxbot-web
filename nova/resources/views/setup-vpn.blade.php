@@ -299,6 +299,15 @@
                 </script>
         </div>
         </div>
+
+        <div class="p-4 pt-0 flex justify-between mt-6 pt-4">
+            <a href="{{ route('setup.vncserver.tightvnc', compact('instance')) }}" class="text-center px-10 btn btn-default btn-primary hover:bg-primary-dark">
+                {{ __('Previous step') }}
+            </a>
+            <a href="{{ route('setup', compact('instance')) }}" class="text-center px-10 btn btn-default btn-primary hover:bg-primary-dark">
+                {{ __('Next step') }}
+            </a>
+        </div>
     </div>
 
     <div class="mx-auto py-8 max-w-sm text-center text-90">

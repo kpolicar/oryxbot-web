@@ -72,24 +72,29 @@
             border-left-width: 1px; /*.border-l*/
         }
         /* p formatting when open */
-        .tab:hover .item{
+        .tab:not(.success):hover .item{
             border-left-width: 1px;
             color: var(--90); /*.text-indigo*/
             font-weight: 600;
         }
+        .tab.success:hover .item, .tab.success:hover label {
+            border-left-width: 1px;
+            color: var(--primary-70); /*.text-indigo*/
+            font-weight: 600;
+        }
         /* p formatting when open */
-        .tab:hover .item{
+        .tab:not(.success):hover .item {
             border-color: var(--80);
         }
 
         /* p formatting when open */
-        .tab.success label {
+        .tab.success label, a.tab.success p {
             border-left-width: 1px;
             color: var(--primary-50); /*.text-indigo*/
             font-weight: 600;
         }
         /* p formatting when open */
-        .tab.success label {
+        .tab.success label, a.tab.success p {
             border-color: var(--primary-50);
         }
         /* p formatting when open */
@@ -145,15 +150,29 @@
             This is how we will control the Albion Client while remaining stealthy from the anticheat.
         </p>
 
-        <a href="https://www.tightvnc.com/download.php" target="_blank" class="tab w-full overflow-hidden">
+        <a href="https://www.tightvnc.com/download.php" target="_blank" class="tab w-full overflow-hidden" data-vnc-online-success>
             <p class="block p-4 leading-normal cursor-pointer border-60 flex item">
-                <span class="mr-3">1</span>Install TightVNC
+                <span class="mr-3">1</span>
+                <span class="primary-50 relative mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     data-vnc-online
+                     class="fill-current" style="height: 20px;width: 20px;display:none"
+                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+            </span>
+                <span>Install TightVNC</span>
             </p>
         </a>
-        <div class="tab w-full overflow-hidden">
+        <div class="tab w-full overflow-hidden" data-vnc-online-success>
             <input class="absolute opacity-0" id="tab-single-two" type="radio" name="tabs2">
-            <label class="block p-4 leading-normal cursor-pointer border-60" for="tab-single-two">
-                <span class="mr-3">2</span>Configure TightVNC Server
+            <label class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-two">
+                <span class="mr-3">2</span>
+                <span class="primary-50 relative mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     data-vnc-online
+                     class="fill-current" style="height: 20px;width: 20px;display:none"
+                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+            </span>
+                <span>Configure TightVNC Server</span>
             </label>
             <div class="tab-content overflow-hidden border-l bg-gray-100 border-60 leading-normal">
                 <p class="p-4 pb-0">
@@ -169,13 +188,13 @@
             <input class="absolute opacity-0" id="tab-single-three" type="radio" name="tabs2" @error('digitalocean') checked @endif>
             <label class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
                 <span class="mr-3">3</span>
-                <span class="primary-50 relative mr-2">
+            <span class="primary-50 relative mr-2">
                 <svg xmlns="http://www.w3.org/2000/svg"
                      data-vnc-online
                      class="fill-current" style="height: 20px;width: 20px;display:none"
                      viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
             </span>
-                <span>
+            <span>
             Verify the connection
             </span>
 
@@ -258,6 +277,15 @@
                     refreshVncServiceStatus();
                 </script>
             </div>
+        </div>
+
+        <div class="p-4 pt-0 flex justify-between mt-6 pt-4">
+            <a href="{{ route('setup.deploy', compact('instance')) }}" class="text-center px-10 btn btn-default btn-primary hover:bg-primary-dark">
+                {{ __('Previous step') }}
+            </a>
+            <a href="{{ route('setup.vpn', compact('instance')) }}" class="text-center px-10 btn btn-default btn-primary hover:bg-primary-dark">
+                {{ __('Next step') }}
+            </a>
         </div>
     </div>
 

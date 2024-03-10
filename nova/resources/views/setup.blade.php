@@ -61,6 +61,12 @@
         -o-transition: all .35s;
         transition: all .35s;
     }
+
+    .tab.success:hover p {
+        border-left-width: 1px;
+        color: var(--primary-70); /*.text-indigo*/
+        font-weight: 600;
+    }
 </style>
 
 <div
