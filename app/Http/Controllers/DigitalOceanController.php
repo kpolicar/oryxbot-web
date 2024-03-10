@@ -26,7 +26,7 @@ class DigitalOceanController extends Controller
             'terms' => 'accepted',
         ]);
 
-        $server = $instance->server;
+        $server = $instance->server()->make();
 
         $client = $this->digitalOceanClientOrRedirect($request, $instance);
         if (!($client instanceof DigitalOcean)) {
@@ -40,7 +40,6 @@ class DigitalOceanController extends Controller
                 ?: $client->key()->create('oryxbot.com', config('digitalocean.ssh_key_public'));
 
             $server->ssh_key_id = $key->id;
-            $server->save();
         } catch (\Throwable $exception) {
             report($exception);
             return redirect()->back()->withErrors([

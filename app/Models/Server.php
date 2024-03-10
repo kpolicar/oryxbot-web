@@ -35,6 +35,7 @@ class Server extends Model
     {
         parent::boot();
         static::creating(function (Server $server) {
+            $server->name = $server->name ?: $server->instance->name;
             $server->vpn_username = optional($server->user)->username ?: static::FALLBACK_USERNAME;
             $server->vpn_password = Str::random(16);
         });
@@ -55,11 +56,6 @@ class Server extends Model
             }
             DB::commit();
         });
-    }
-
-    public function getNameAttribute()
-    {
-        return 'oryxbot--s-1vcpu-1gb-fra1';
     }
 
     public static function findOrFailByDropletId($id)

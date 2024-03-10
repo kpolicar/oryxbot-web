@@ -33,8 +33,6 @@ class Instance extends Model
     ];
 
 
-    public $serverToCreate;
-
 
     public function getRouteKeyName()
     {
@@ -44,12 +42,6 @@ class Instance extends Model
     protected static function booting()
     {
         parent::booting();
-        static::created(function (Instance $instance) {
-            if (!$instance->serverToCreate->exists) {
-                $instance->serverToCreate->instance_id = $instance->id;
-                $instance->serverToCreate->save();
-            }
-        });
         static::deleting(function (Instance $instance) {
             optional($instance->server)->delete();
         });
