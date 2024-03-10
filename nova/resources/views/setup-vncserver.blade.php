@@ -163,7 +163,7 @@
             </p>
         </a>
         <div class="tab w-full overflow-hidden" data-vnc-online-success>
-            <input class="absolute opacity-0" id="tab-single-two" type="radio" name="tabs2">
+            <input class="absolute opacity-0" id="tab-single-two" type="radio" name="tabs2" checked>
             <label class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-two">
                 <span class="mr-3">2</span>
                 <span class="primary-50 relative mr-2">
@@ -179,9 +179,23 @@
                     After starting the VNC service, you may find the TightVNC options menu in the system tray.
                     The following configuration options need to be assigned.
                 </p>
-                <span class="flex justify-center my-4">
-                    <img src="{{ asset('images/vnc_settings.png') }}" class="w-3/4" alt="">
+                <div style="max-height: 400px;" class="overflow-scroll overflow-x-hidden">
+                    <span class="flex justify-center my-4">
+                    <img src="{{ asset('images/install/tightvnc_server_settings.png') }}" class="w-3/4 border border-70" alt="">
                 </span>
+                    <span class="flex justify-center my-4">
+                    <img src="{{ asset('images/install/tightvnc_second.png') }}" class="w-3/4 border border-70" alt="">
+                </span>
+                    <span class="flex justify-center my-4">
+                    <img src="{{ asset('images/install/tightvnc_third.png') }}" class="w-3/4 border border-70" alt="">
+                </span>
+                    <p class="p-4 pb-0">
+                        Set the primary password option
+                    </p>
+                    <span class="flex justify-center my-4">
+                    <img src="{{ asset('images/install/tightvnc_change_password.png') }}" class="w-2/5 border border-70" alt="">
+                </span>
+                </div>
             </div>
         </div>
         <div class="tab w-full overflow-hidden" data-vnc-online-success>
