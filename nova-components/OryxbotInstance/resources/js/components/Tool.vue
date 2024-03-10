@@ -320,6 +320,9 @@ function initBrodcasting() {
         let requestServerOnlineStatusUntilReceivedResponse = function () {
             this.RequestStatus();
             this.refreshTimeout = setTimeout(function () {
+                if (this.refreshTimeout != null) {
+                    clearTimeout(this.refreshTimeout);
+                }
                 this.refreshTimeout = null;
                 if (this.requestingStatus) {
                     if (!document.hidden && this.websocketServerConnected)
@@ -341,6 +344,7 @@ function initBrodcasting() {
     websocketConnectionAlertCallback();
 
     window.Echo.connector.pusher.connection.bind('state_change', this.pusherConnectionSuccessCallback);
+    this.websocketServerConnected = window.Echo.connector.pusher.connection.state === 'connected'
 }
 
 export default {
@@ -350,7 +354,6 @@ export default {
         }
     },
     mounted() {
-        console.log('mounted');
         initBrodcasting.bind(this)();
 
         Nova.$on('field-city-change', value => this.fieldCityValue = value);
