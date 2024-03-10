@@ -354,10 +354,8 @@ export default {
           title: 'Instances',
         }
     },
-    unmounted() {
-        clearTimeout(this.websocketConnectionAlert)
-    },
     mounted() {
+        console.log('mounted');
         initBrodcasting.bind(this)();
 
         Nova.$on('field-city-change', value => this.fieldCityValue = value);
@@ -367,13 +365,14 @@ export default {
         Nova.$on('field-region-change', value => this.fieldRegionValue = value);
         Nova.$on('field-progressed-change', value => this.fieldProgressedValue = value);
 
-        function timeout() {
-            setTimeout( () => {
+        let timeout = () => {
+            this.servicesStatusTimeouts = setTimeout( () => {
                 refreshVncServiceStatus();
                 refreshVpnServiceStatus();
                 timeout();
             }, 5000);
-        }
+        };
+
         let refreshVncServiceStatus =
             () => fetch("http://127.0.0.1:5801", { mode: 'no-cors'})
                 .then(r => {
@@ -407,10 +406,18 @@ export default {
             this.setupWizardConfirmModal = !this.instance.is_active
         }, 500);
     },
-    destroyed() {
-        Echo.leave(`App.Models.User.${Nova.config.userId}`);
+    beforeDestroy() {
+        if (this.websocketConnectionAlert !== null)
+            clearTimeout(this.websocketConnectionAlert);
+
+        if (this.servicesStatusTimeouts !== null)
+            clearTimeout(this.servicesStatusTimeouts);
+
         if (this.refreshTimeout !== null)
             clearTimeout(this.refreshTimeout)
+    },
+    destroyed() {
+        Echo.leave(`App.Models.User.${Nova.config.userId}`);
     },
     data: () => ({
         step: '-',
@@ -441,6 +448,7 @@ export default {
         isHoveringLogs: false,
         logsHasScrollbar: false,
         websocketConnectionAlert: null,
+        servicesStatusTimeouts: null,
         logEntries: [],
         cityFieldErrors: new Errors(),
         fieldCityValue: 'fort-sterling',
