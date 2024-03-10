@@ -403,7 +403,9 @@ export default {
         refreshVncServiceStatus();
         refreshVpnServiceStatus();
 
-        this.setupWizardConfirmModal = !this.instance.is_active;
+        setTimeout( () => {
+            this.setupWizardConfirmModal = !this.instance.is_active
+        }, 500);
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
