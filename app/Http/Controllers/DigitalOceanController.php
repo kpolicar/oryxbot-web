@@ -17,7 +17,7 @@ class DigitalOceanController extends Controller
             return $client;
         }
 
-        return redirect(route('setup'));
+        return redirect(route('setup', compact('instance')));
     }
 
     public function deployServer(Request $request, Instance $instance)
@@ -75,7 +75,7 @@ class DigitalOceanController extends Controller
             ]);
         }
 
-        return redirect(route('setup'));
+        return redirect(route('setup', compact('instance')));
     }
 
     protected function digitalOceanClientOrRedirect(Request $request, Instance $instance)
