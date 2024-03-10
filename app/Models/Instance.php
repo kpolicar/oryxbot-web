@@ -21,6 +21,10 @@ class Instance extends Model
         'server',
     ];
 
+    protected $with = [
+        'server',
+    ];
+
     public $serverToCreate;
 
 

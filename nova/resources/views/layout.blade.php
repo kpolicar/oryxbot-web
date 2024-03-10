@@ -37,7 +37,7 @@
             <div class="flex-none pt-header min-h-screen w-sidebar bg-grad-sidebar px-6">
                 <canvas id="gradient-canvas">
                 </canvas>
-                <a href="{{ \Illuminate\Support\Facades\Config::get('nova.url') }}">
+                <a href="{{ route('home') }}">
                     <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-black">
                        @include('nova::partials.logo')
                     </div>

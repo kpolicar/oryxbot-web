@@ -115,4 +115,9 @@ class User extends Authenticatable implements MustVerifyEmail
             'discord_id' => $id
         ])->save();
     }
+
+    public function hasOneActiveInstance()
+    {
+        return !!$this->subscription()->instances->firstWhere('server.ip_address', '!=', null);
+    }
 }

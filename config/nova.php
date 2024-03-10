@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'url' => env('NOVA_DOMAIN_NAME', env('APP_URL', 'http://localhost')),
+    'url' => env('NOVA_URL', env('APP_URL', 'http://localhost')),
 
     /*
     |--------------------------------------------------------------------------

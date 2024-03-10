@@ -111,7 +111,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         Nova::serving(function (ServingNova $serving) {
-            if (!$serving->request->routeIs($this->setupRoutes)) {
+            $referrer = parse_url($serving->request->headers->get('referer'));
+
+            if (data_get($referrer, 'host') == config('app.domain')
+                && !$serving->request->user()->hasOneActiveInstance()) {
                 throw new HttpResponseException(redirect()->to(route('setup')));
             }
         });

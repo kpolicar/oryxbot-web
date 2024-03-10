@@ -69,6 +69,10 @@
 >
     <script>var vnc_status = 'Offline';var vpn_status = 'Offline';</script>
 
+    <div class="mb-4 bookmarks">
+        <a href="{{ config('nova.url') }}" class="hover:underline text-primary">Home</a>
+    </div>
+
     @component('nova::auth.partials.heading')
         {{ __('Get Started!') }}
     @endcomponent
