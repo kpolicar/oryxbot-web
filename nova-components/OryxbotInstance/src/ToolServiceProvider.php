@@ -2,6 +2,7 @@
 
 namespace Kpolicar\OryxbotInstance;
 
+use App\Models\Server;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;

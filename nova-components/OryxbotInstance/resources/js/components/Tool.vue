@@ -4,7 +4,7 @@
             {{ instance.name }}
             <small :class="{'opacity-50': requestingStatus, 'text-primary': serverOnline}"
                    class="text-xs font-mono uppercase">
-                {{ serverOnline ? 'Online' : 'Offline' }}
+                {{ serverOnline ? 'Online' : (instance.server ? 'Offline' : 'Requires setup') }}
             </small>
         </heading>
 
@@ -38,8 +38,8 @@
             </button>
 
             <button class="btn btn-default bg-30 text-90 ml-2" style="transition: 150ms"
-                    :disabled="requestingServerReboot"
-                    v-bind:class="{'cursor-wait opacity-50': requestingServerReboot, 'hover:bg-primary-dark hover:text-white': !requestingServerReboot}"
+                    :disabled="requestingServerReboot || !instance.server"
+                    v-bind:class="{'cursor-wait opacity-50': requestingServerReboot, 'hover:bg-primary-dark hover:text-white': !requestingServerReboot && instance.server}"
                     v-on:click="OnAttemptServerReboot">
                 Restart Service
             </button>
@@ -179,9 +179,9 @@
                         </ul>
                         <ul class="text-60 list-reset font-bold">
                             <li class="mb-2">{{ vpn_status }}</li>
-                            <li class="mb-2">{{ instance.server.ip_address ? instance.server.ip_address : '-' }}</li>
-                            <li class="mb-2">{{ instance.server.ip_address && instance.server.vpn_username ? instance.server.vpn_username : '-' }}</li>
-                            <li class="mb-2">{{ instance.server.ip_address && instance.server.vpn_password ? instance.server.vpn_password : '-' }}</li>
+                            <li class="mb-2">{{ instance.server && instance.server.ip_address ? instance.server.ip_address : '-' }}</li>
+                            <li class="mb-2">{{ instance.server && instance.server.ip_address && instance.server.vpn_username ? instance.server.vpn_username : '-' }}</li>
+                            <li class="mb-2">{{ instance.server && instance.server.ip_address && instance.server.vpn_password ? instance.server.vpn_password : '-' }}</li>
                         </ul>
                     </div>
                 </div>

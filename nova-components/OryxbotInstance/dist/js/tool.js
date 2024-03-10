@@ -5839,7 +5839,13 @@ var render = function() {
           [
             _vm._v(
               "\n            " +
-                _vm._s(_vm.serverOnline ? "Online" : "Offline") +
+                _vm._s(
+                  _vm.serverOnline
+                    ? "Online"
+                    : _vm.instance.server
+                    ? "Offline"
+                    : "Requires setup"
+                ) +
                 "\n        "
             )
           ]
@@ -5974,10 +5980,13 @@ var render = function() {
               staticClass: "btn btn-default bg-30 text-90 ml-2",
               class: {
                 "cursor-wait opacity-50": _vm.requestingServerReboot,
-                "hover:bg-primary-dark hover:text-white": !_vm.requestingServerReboot
+                "hover:bg-primary-dark hover:text-white":
+                  !_vm.requestingServerReboot && _vm.instance.server
               },
               staticStyle: { transition: "150ms" },
-              attrs: { disabled: _vm.requestingServerReboot },
+              attrs: {
+                disabled: _vm.requestingServerReboot || !_vm.instance.server
+              },
               on: { click: _vm.OnAttemptServerReboot }
             },
             [_vm._v("\n            Restart Service\n        ")]
@@ -6293,7 +6302,7 @@ var render = function() {
                     _c("li", { staticClass: "mb-2" }, [
                       _vm._v(
                         _vm._s(
-                          _vm.instance.server.ip_address
+                          _vm.instance.server && _vm.instance.server.ip_address
                             ? _vm.instance.server.ip_address
                             : "-"
                         )
@@ -6303,7 +6312,8 @@ var render = function() {
                     _c("li", { staticClass: "mb-2" }, [
                       _vm._v(
                         _vm._s(
-                          _vm.instance.server.ip_address &&
+                          _vm.instance.server &&
+                            _vm.instance.server.ip_address &&
                             _vm.instance.server.vpn_username
                             ? _vm.instance.server.vpn_username
                             : "-"
@@ -6314,7 +6324,8 @@ var render = function() {
                     _c("li", { staticClass: "mb-2" }, [
                       _vm._v(
                         _vm._s(
-                          _vm.instance.server.ip_address &&
+                          _vm.instance.server &&
+                            _vm.instance.server.ip_address &&
                             _vm.instance.server.vpn_password
                             ? _vm.instance.server.vpn_password
                             : "-"

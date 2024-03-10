@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Contracts\ApiEncrypter as ApiEncrypterContract;
 use App\Models\Subscription;
+use App\Models\User;
 use CoinbaseCommerce\ApiClient as CoinbaseClient;
 use Illuminate\Encryption\Encrypter;
 use Laravel\Cashier\Cashier;
@@ -29,8 +30,9 @@ class AppServiceProvider extends ServiceProvider
             }
             return new Encrypter($key, config('app.cipher'));
         });
-        if ($key=config('services.coinbase.key'))
+        if ($key=config('services.coinbase.key')) {
             CoinbaseClient::init($key);
+        }
         Cashier::useSubscriptionModel(Subscription::class);
     }
 
