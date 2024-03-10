@@ -19,10 +19,17 @@ class Instance extends Model
         'name',
         'slug',
         'server',
+        'setup_route',
+        'is_active',
     ];
 
     protected $with = [
         'server',
+    ];
+
+    protected $appends = [
+        'setup_route',
+        'is_active',
     ];
 
 
@@ -66,5 +73,15 @@ class Instance extends Model
     public function subscription()
     {
         return $this->belongsTo(Subscription::class);
+    }
+
+    public function getSetupRouteAttribute()
+    {
+        return route('setup', ['instance' => $this]);
+    }
+
+    public function getIsActiveAttribute()
+    {
+        return !!optional($this->server)->ip_address;
     }
 }

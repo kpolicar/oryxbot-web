@@ -118,6 +118,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function hasOneActiveInstance()
     {
-        return !!$this->subscription()->instances->firstWhere('server.ip_address', '!=', null);
+        return !!$this->subscription()->instances->firstWhere('is_active');
     }
 }

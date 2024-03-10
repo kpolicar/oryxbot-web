@@ -129,7 +129,7 @@
     </a>
     <a href="{{ route('setup.vpn', compact('instance')) }}" class="tab w-full overflow-hidden" data-vpn-online-success>
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
-            <span class="mr-3">3</span>
+            <span class="mr-3">4</span>
             <span class="primary-50 relative mr-2">
                 <svg xmlns="http://www.w3.org/2000/svg"
                      data-vpn-online

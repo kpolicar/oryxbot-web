@@ -43,7 +43,23 @@
                     v-on:click="OnAttemptServerReboot">
                 Restart Service
             </button>
+
+            <button class="btn btn-default bg-30 text-90 ml-2 hover:bg-primary-dark hover:text-white" style="transition: 150ms"
+                    v-on:click="OnConfirmSetupWizard">
+                Setup
+            </button>
             <portal to="modals" transition="fade-transition">
+                <confirm-action-modal
+                    v-if="setupWizardConfirmModal"
+                    @confirm="OnConfirmSetupWizard"
+                    @close="setupWizardConfirmModal = false"
+                    :working="false"
+                    resourceName="oryxbot-instance"
+                    :selectedResources="['oryxbot-instance']"
+                    :errors="{}"
+                    :action="{name: 'Setup Instance', confirmText: 'It seems you have not completed the setup process for this instance. Would you like to complete it now?', confirmButtonText: 'Begin Setup', cancelButtonText: 'Cancel', fields: [], class: 'btn-primary'}">
+                </confirm-action-modal>
+
                 <confirm-action-modal
                     v-if="showRebootServerConfirmModal"
                     @confirm="OnConfirmServerReboot"
@@ -386,6 +402,8 @@ export default {
         timeout();
         refreshVncServiceStatus();
         refreshVpnServiceStatus();
+
+        this.setupWizardConfirmModal = !this.instance.is_active;
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
@@ -412,6 +430,7 @@ export default {
         requestingServerReboot: false,
         refreshTimeout: null,
         showRebootServerConfirmModal: false,
+        setupWizardConfirmModal: false,
         showStartModal: false,
         showResumeModal: false,
         showStartRecordingModal: false,
@@ -497,26 +516,26 @@ export default {
         },
         StartBot() {
             this.requestingRunningChange = true;
-            Nova.request().post(this.$route.fullPath+'/start?city='+this.fieldCityValue+'&hearts='+this.fieldHeartsValue);
+            Nova.request().post(this.$route.fullPath + '/start?city=' + this.fieldCityValue + '&hearts=' + this.fieldHeartsValue);
         },
         ResumeBot() {
             this.requestingRunningChange = true;
-            Nova.request().post(this.$route.fullPath+'/resume?city='+this.fieldCityValue+'&region='+this.fieldRegionValue+'&progressed='+this.fieldProgressedValue+'&hearts='+this.fieldHeartsValue);
+            Nova.request().post(this.$route.fullPath + '/resume?city=' + this.fieldCityValue + '&region=' + this.fieldRegionValue + '&progressed=' + this.fieldProgressedValue + '&hearts=' + this.fieldHeartsValue);
         },
         StopBot() {
             this.requestingRunningChange = true;
-            Nova.request().post(this.$route.fullPath+'/stop');
+            Nova.request().post(this.$route.fullPath + '/stop');
         },
         RebootServer() {
             this.requestingServerReboot = true;
-            Nova.request().post(this.$route.fullPath+'/server-reboot')
+            Nova.request().post(this.$route.fullPath + '/server-reboot')
                 .then(() => Nova.success('Server is rebooting'))
                 .catch(error => Nova.error(error.response.data.message))
                 .finally(() => this.requestingServerReboot = false);
         },
         RequestStatus() {
             this.requestingStatus = true;
-            Nova.request().post(this.$route.fullPath+'/status');
+            Nova.request().post(this.$route.fullPath + '/status');
         },
         OnAttemptServerReboot() {
             this.showRebootServerConfirmModal = true;
@@ -525,17 +544,20 @@ export default {
             this.showRebootServerConfirmModal = false;
             this.RebootServer();
         },
+        OnConfirmSetupWizard() {
+            window.location.href = this.instance.setup_route;
+        },
         OnCancelServerReboot() {
             this.showRebootServerConfirmModal = false;
         },
         OnStartRecordingBot() {
             this.showStartRecordingModal = false;
             this.requestingRunningChange = true;
-            Nova.request().post(this.$route.fullPath+'/start-recording?city='+this.fieldCityValue+'&destination='+this.fieldDestinationValue+'&name='+this.fieldNameValue);
+            Nova.request().post(this.$route.fullPath + '/start-recording?city=' + this.fieldCityValue + '&destination=' + this.fieldDestinationValue + '&name=' + this.fieldNameValue);
         },
         OnStopRecordingBot() {
             this.requestingRunningChange = true;
-            Nova.request().post(this.$route.fullPath+'/stop');
+            Nova.request().post(this.$route.fullPath + '/stop');
         },
     },
     computed: {
