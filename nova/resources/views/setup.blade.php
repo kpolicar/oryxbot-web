@@ -147,9 +147,9 @@
             </span>
         </p>
     </a>
-    <a href="#" class="tab w-full overflow-hidden">
+    <a href="/instances/{{ $instance->slug  }}" class="tab w-full overflow-hidden">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
-            <span class="mr-3">5</span>Establish connection to the Oryxbot Service
+            <span class="mr-3">5</span>Begin botting
         </p>
     </a>
 
