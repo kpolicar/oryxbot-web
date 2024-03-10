@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instance;
 use App\Models\Server;
 use DigitalOceanV2\Client as DigitalOcean;
 use DigitalOceanV2\Exception\RuntimeException;
@@ -9,9 +10,9 @@ use Illuminate\Http\Request;
 
 class DigitalOceanController extends Controller
 {
-    public function validateToken(Request $request)
+    public function validateToken(Request $request, Instance $instance)
     {
-        $client = $this->digitalOceanClientOrRedirect($request);
+        $client = $this->digitalOceanClientOrRedirect($request, $instance);
         if (!($client instanceof DigitalOcean)) {
             return $client;
         }
@@ -19,19 +20,19 @@ class DigitalOceanController extends Controller
         return redirect(route('setup'));
     }
 
-    public function deployServer(Request $request)
+    public function deployServer(Request $request, Instance $instance)
     {
         $request->validate([
             'terms' => 'accepted',
         ]);
 
-        $instance = $request->user()->subscription()->instances->first();
         $server = $instance->server;
 
-        $client = $this->digitalOceanClientOrRedirect($request);
+        $client = $this->digitalOceanClientOrRedirect($request, $instance);
         if (!($client instanceof DigitalOcean)) {
             return $client;
         }
+
         try {
             $existingSshKey = collect($client->key()->getAll())->firstWhere('publicKey', config('digitalocean.ssh_key_public'));
 
@@ -66,11 +67,8 @@ class DigitalOceanController extends Controller
         $server->private_ip_address = optional(collect($droplet->networks)->firstWhere('type', 'private'))->ipAddress;
         $server->save();
 
-        dd($droplet);
-
         try {
             $key = $client->key()->create('oryxbot.com', config('digitalocean.ssh_key_public'));
-            dd($key);
         } catch (\Throwable $exception) {
             report($exception);
             return redirect()->back()->withErrors([
@@ -81,7 +79,7 @@ class DigitalOceanController extends Controller
         return redirect(route('setup'));
     }
 
-    protected function digitalOceanClientOrRedirect(Request $request)
+    protected function digitalOceanClientOrRedirect(Request $request, Instance $instance)
     {
         $accessToken = $request->post('digitalocean_token');
 
@@ -90,8 +88,8 @@ class DigitalOceanController extends Controller
             $client->authenticate($accessToken);
             $userInformation = $client->account()->getUserInformation();
 
-            $request->session()->put('setup.digitalocean.token_validated', true);
-            $request->session()->put('setup.digitalocean.user_status', $userInformation->status);
+            $request->session()->put("instance-{$instance->id}.setup.digitalocean.token_validated", true);
+            $request->session()->put("instance-{$instance->id}.setup.digitalocean.user_status", $userInformation->status);
         } catch (RuntimeException $exception) {
             report($exception);
             return redirect()->back()->withErrors([

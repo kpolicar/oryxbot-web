@@ -84,9 +84,9 @@
         Before you begin botting, you must complete this setup process.
     </p>
 
-    @php($step2Complete = Auth::user()->subscription()->instances->first()->server->droplet_id)
-    @php($step1Complete = $step2Complete || session()->get('setup.digitalocean.token_validated', false))
-    <a href="{{ route('setup.digitalocean')  }}" class="tab w-full overflow-hidden @if($step1Complete) success @endif">
+    @php($step2Complete = !!data_get($instance, 'server.droplet_id'))
+    @php($step1Complete = $step2Complete || session()->get("instance-{$instance->id}.setup.digitalocean.token_validated", false))
+    <a href="{{ route('setup.digitalocean', compact('instance'))  }}" class="tab w-full overflow-hidden @if($step1Complete) success @endif">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-one">
             <span class="mr-3">1</span>
             @if($step1Complete)
@@ -100,7 +100,7 @@
         </p>
     </a>
 
-    <a href="{{ route('setup.deploy') }}" class="tab w-full overflow-hidden @if($step2Complete) success @endif">
+    <a href="{{ route('setup.deploy', compact('instance')) }}" class="tab w-full overflow-hidden @if($step2Complete) success @endif">
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-two">
             <span class="mr-3">2</span>
             @if($step2Complete)
@@ -113,7 +113,7 @@
             <span>Deploy an Oryxbot Server</span>
         </p>
     </a>
-    <a href="{{ route('setup.vncserver.tightvnc') }}" class="tab w-full overflow-hidden" data-vnc-online-success>
+    <a href="{{ route('setup.vncserver.tightvnc', compact('instance')) }}" class="tab w-full overflow-hidden" data-vnc-online-success>
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
             <span class="mr-3">3</span>
             <span class="primary-50 relative mr-2">
@@ -127,7 +127,7 @@
             </span>
         </p>
     </a>
-    <a href="{{ route('setup.vpn') }}" class="tab w-full overflow-hidden" data-vpn-online-success>
+    <a href="{{ route('setup.vpn', compact('instance')) }}" class="tab w-full overflow-hidden" data-vpn-online-success>
         <p class="block p-4 leading-normal cursor-pointer border-60 flex" for="tab-single-three">
             <span class="mr-3">3</span>
             <span class="primary-50 relative mr-2">

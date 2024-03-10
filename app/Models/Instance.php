@@ -25,9 +25,14 @@ class Instance extends Model
         'server',
     ];
 
+
     public $serverToCreate;
 
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     protected static function booting()
     {

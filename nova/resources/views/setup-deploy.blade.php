@@ -63,9 +63,9 @@
     style="max-width: 35rem"
 >
     <div class="mb-4 bookmarks">
-        <a href="{{ route('setup') }}" class="hover:underline text-primary">Setup</a>
+        <a href="{{ route('setup', compact('instance')) }}" class="hover:underline text-primary">Setup</a>
         /
-        <a href="{{ route('setup.deploy') }}" class="hover:underline text-primary">Deploy Server</a>
+        <a href="{{ route('setup.deploy', compact('instance')) }}" class="hover:underline text-primary">Deploy Server</a>
     </div>
 
     @component('nova::auth.partials.heading')
@@ -91,7 +91,7 @@
 
 
             <div class="p-4 pt-0 {{ $errors->has('digitalocean_token') ? ' has-error' : '' }}">
-                <form action="{{ route('setup.digitalocean.deploy') }}" method="POST">
+                <form action="{{ route('setup.digitalocean.deploy', compact('instance')) }}" method="POST">
                     @csrf
 
                     <div class="mb-4">

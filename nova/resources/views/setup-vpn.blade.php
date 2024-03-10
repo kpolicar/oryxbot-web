@@ -128,9 +128,9 @@
         style="max-width: 35rem"
     >
         <div class="mb-4 bookmarks">
-            <a href="{{ route('setup') }}" class="hover:underline text-primary">Setup</a>
+            <a href="{{ route('setup', compact('instance')) }}" class="hover:underline text-primary">Setup</a>
             /
-            <a href="{{ route('setup.digitalocean') }}" class="hover:underline text-primary">VPN</a>
+            <a href="{{ route('setup.digitalocean', compact('instance')) }}" class="hover:underline text-primary">VPN</a>
         </div>
 
         @component('nova::auth.partials.heading')
@@ -193,10 +193,10 @@
                                 Windows Built-in
                             </li>
                             <li>
-                                Oryxbot
+                                {{ $instance->name }}
                             </li>
                             <li>
-                                {{ Auth::user()->subscription()->instances->first()->server->ip_address }}
+                                {{ $instance->server->ip_address }}
                             </li>
                             <li>
                                 Automatic
@@ -205,10 +205,10 @@
                                 User name and password
                             </li>
                             <li>
-                                {{ Auth::user()->subscription()->instances->first()->server->vpn_username }}
+                                {{ $instance->server->vpn_username }}
                             </li>
                             <li>
-                                {{ Auth::user()->subscription()->instances->first()->server->vpn_password }}
+                                {{ $instance->server->vpn_password }}
                             </li>
                         </ul>
                     </div>

@@ -128,9 +128,9 @@
         style="max-width: 35rem"
     >
         <div class="mb-4 bookmarks">
-            <a href="{{ route('setup') }}" class="hover:underline text-primary">Setup</a>
+            <a href="{{ route('setup', compact('instance')) }}" class="hover:underline text-primary">Setup</a>
             /
-            <a href="{{ route('setup.digitalocean') }}" class="hover:underline text-primary">TightVNC</a>
+            <a href="{{ route('setup.digitalocean', compact('instance')) }}" class="hover:underline text-primary">TightVNC</a>
         </div>
 
         @component('nova::auth.partials.heading')

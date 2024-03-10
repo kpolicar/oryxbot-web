@@ -63,9 +63,9 @@
     style="max-width: 35rem"
 >
     <div class="mb-4 bookmarks">
-        <a href="{{ route('setup') }}" class="hover:underline text-primary">Setup</a>
+        <a href="{{ route('setup', compact('instance')) }}" class="hover:underline text-primary">Setup</a>
         /
-        <a href="{{ route('setup.digitalocean') }}" class="hover:underline text-primary">Digital Ocean</a>
+        <a href="{{ route('setup.digitalocean', compact('instance')) }}" class="hover:underline text-primary">Digital Ocean</a>
     </div>
 
     @component('nova::auth.partials.heading')
@@ -147,7 +147,7 @@
 
             <div class="p-4 {{ $errors->has('digitalocean') ? ' has-error' : '' }}">
                 <label class="block font-bold mb-2" for="email">{{ __('Token') }}</label>
-                <form class="flex" action="{{ route('setup.digitalocean.validate') }}" method="POST">
+                <form class="flex" action="{{ route('setup.digitalocean.validate', compact('instance')) }}" method="POST">
                     @csrf
                     <input class="form-control form-input form-input-bordered w-full" id="digitalocean_token" type="text" name="digitalocean_token" required autofocus
                            placeholder="{{ __('Paste your access token here') }}">

@@ -2,32 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instance;
 use Illuminate\Http\Request;
 
 class SetupController extends Controller
 {
-    public function index()
+    public function index(Instance $instance)
     {
-        return view('nova::setup');
+        return view('nova::setup', compact('instance'));
     }
 
-    public function setup()
+    public function setup(Instance $instance)
     {
-        return view('nova::setup-digitalocean');
+        return view('nova::setup-digitalocean', compact('instance'));
     }
 
-    public function deploy()
+    public function deploy(Instance $instance)
     {
-        return view('nova::setup-deploy');
+        return view('nova::setup-deploy', compact('instance'));
     }
 
-    public function vncServer()
+    public function vncServer(Instance $instance)
     {
-        return view('nova::setup-vncserver');
+        return view('nova::setup-vncserver', compact('instance'));
     }
 
-    public function vpn()
+    public function vpn(Instance $instance)
     {
-        return view('nova::setup-vpn');
+        return view('nova::setup-vpn', compact('instance'));
     }
 }
