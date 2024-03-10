@@ -340,12 +340,7 @@ function initBrodcasting() {
     }, 5000);
     websocketConnectionAlertCallback();
 
-    window.Echo.connector.pusher.connection.bind('state_change', (stateInfo) => {
-        this.websocketServerConnected = window.Echo.connector.pusher.connection.state === 'connected';
-        if (stateInfo.previous !== 'connected' && stateInfo.current === 'connected') {
-            Nova.success('Connection to Oryxbot messaging server established.');
-        }
-    });
+    window.Echo.connector.pusher.connection.bind('state_change', this.pusherConnectionSuccessCallback);
 }
 
 export default {
@@ -415,6 +410,8 @@ export default {
 
         if (this.refreshTimeout !== null)
             clearTimeout(this.refreshTimeout)
+
+        window.Echo.connector.pusher.connection.unbind('state_change', this.pusherConnectionSuccessCallback);
     },
     destroyed() {
         Echo.leave(`App.Models.User.${Nova.config.userId}`);
@@ -559,6 +556,12 @@ export default {
         },
         OnCancelServerReboot() {
             this.showRebootServerConfirmModal = false;
+        },
+        pusherConnectionSuccessCallback(stateInfo) {
+            this.websocketServerConnected = window.Echo.connector.pusher.connection.state === 'connected';
+            if (stateInfo.previous !== 'connected' && stateInfo.current === 'connected') {
+                Nova.success('Connection to Oryxbot messaging server established.');
+            }
         },
         OnStartRecordingBot() {
             this.showStartRecordingModal = false;
