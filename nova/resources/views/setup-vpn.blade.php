@@ -193,10 +193,10 @@
                                 Windows Built-in
                             </li>
                             <li>
-                                {{ $instance->name }}
+                                {{ $instance->name ?? 'Oryxbot' }}
                             </li>
                             <li>
-                                {{ $instance->server->ip_address }}
+                                {{ $instance->server->ip_address ?? '?' }}
                             </li>
                             <li>
                                 Automatic
@@ -205,10 +205,10 @@
                                 User name and password
                             </li>
                             <li>
-                                {{ $instance->server->vpn_username }}
+                                {{ $instance->server->vpn_username ?? '?' }}
                             </li>
                             <li>
-                                {{ $instance->server->vpn_password }}
+                                {{ $instance->server->vpn_password ?? '?' }}
                             </li>
                         </ul>
                     </div>
