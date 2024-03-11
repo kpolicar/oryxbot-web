@@ -40,11 +40,17 @@ Route::middleware(config('nova.middleware', []))
         Route::get('/setup/{instance}', [SetupController::class, 'index'])
             ->name('setup');
 
+        Route::get('/setup/{instance}/reset', [SetupController::class, 'reset'])
+            ->name('setup.reset');
+
         Route::get('/setup/{instance}/digitalocean', [SetupController::class, 'setup'])
             ->name('setup.digitalocean');
 
         Route::get('/setup/{instance}/deploy', [SetupController::class, 'deploy'])
             ->name('setup.deploy');
+
+        Route::post('/setup/{instance}/reset', [DigitalOceanController::class, 'reset'])
+            ->name('setup.reset.submit');
 
         Route::post('/setup/{instance}/digitalocean/validate', [DigitalOceanController::class, 'validateToken'])
             ->middleware(['throttle:3,1'])

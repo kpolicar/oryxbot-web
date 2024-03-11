@@ -13,9 +13,4 @@ export PRIVATE_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/priv
 curl "https://oryxbot.com/digitalocean/vpn?droplet_id="$ID > /etc/ppp/chap-secrets
 curl -X POST "https://oryxbot.com/digitalocean/webhook" -d '{"droplet_id": "'"$ID"'", "ip_address": "'"$PUBLIC_IPV4"'", "private_ip_address": "'"$PRIVATE_IPV4"'"}' -H "Content-Type: application/json"
 
-until [[ $(who) =~ user.*\(:0\) ]]
-do
-    sleep 0.3
-done
-
 supervisorctl start oryxbot

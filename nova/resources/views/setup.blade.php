@@ -75,8 +75,9 @@
 >
     <script>var vnc_status = 'Offline';var vpn_status = 'Offline';</script>
 
-    <div class="mb-4 bookmarks">
+    <div class="mb-4 bookmarks flex justify-between">
         <a href="{{ config('nova.url') }}" class="hover:underline text-primary">Home</a>
+        <a href="{{ route('setup.reset', compact('instance')) }}" class="hover:underline text-primary">Restart Process</a>
     </div>
 
     @component('nova::auth.partials.heading')

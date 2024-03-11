@@ -6,7 +6,6 @@ use App\Events\CoinbaseWebhookReceived;
 use App\Events\PaymentSucceeded;
 use App\Events\UserPurchasedSubscription;
 use App\Events\UserSyncedWithDiscord;
-use App\Listeners\EnforceUniqueUserAccessToken;
 use App\Listeners\SaveCoinbaseWebhook;
 use App\Listeners\SendUserSubscriptionStatusToDiscord;
 use App\Listeners\StorePayment;
@@ -28,9 +27,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
-        AccessTokenCreated::class => [
-            EnforceUniqueUserAccessToken::class,
         ],
         UserPurchasedSubscription::class => [
             SendUserSubscriptionStatusToDiscord::class,

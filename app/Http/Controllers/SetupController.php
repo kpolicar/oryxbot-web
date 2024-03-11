@@ -11,6 +11,10 @@ class SetupController extends Controller
     {
         return view('nova::setup', compact('instance'));
     }
+    public function reset(Instance $instance)
+    {
+        return view('nova::setup-reset', compact('instance'));
+    }
 
     public function setup(Instance $instance)
     {

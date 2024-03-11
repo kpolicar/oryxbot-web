@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use DB;
 use App\Models\Instance;
 use App\Models\Server;
@@ -36,10 +37,38 @@ class DigitalOceanController extends Controller
             $script .= 'echo "10.0.0.100 '.config('nova.domain') . "\" >> /etc/hosts\n\n";
         }
 
-        $script .= \File::get(base_path('server-setup-new.sh'))."\n\n";
+        $script .= File::get(base_path('server-setup.sh'))."\n\n";
 
 
         return $script;
+    }
+
+    public function reset(Request $request, Instance $instance) {
+        $request->validate([
+            'terms' => 'accepted',
+        ]);
+
+        $client = $this->digitalOceanClientOrRedirect($request, $instance);
+        if (!($client instanceof DigitalOcean)) {
+            return $client;
+        }
+
+        if ($instance->server) {
+            try {
+                $client->droplet()->remove($instance->server->droplet_id);
+            } catch (\Throwable $exception) {
+                // If the droplet wasn't found, user may have already deleted it previously. If not, throw error
+                if (optional($exception)->getCode() != 404) {
+                    report($exception);
+                    return redirect()->back()->withErrors([
+                        'digitalocean' => 'Failed to delete the server from your Digital Ocean account.'
+                    ]);
+                }
+            }
+        }
+        optional($instance->server)->delete();
+        $request->session()->forget("instance-$instance->id");
+        return redirect(route('setup', compact('instance')));
     }
 
     public function deployServer(Request $request, Instance $instance)
@@ -47,6 +76,11 @@ class DigitalOceanController extends Controller
         $request->validate([
             'terms' => 'accepted',
         ]);
+        if ($instance->server) {
+            return redirect(route('setup.reset', compact('instance')))->withErrors([
+                'digitalocean' => 'You must first delete any existing resources!'
+            ]);
+        }
         $user = $instance->subscription->user;
 
 
@@ -152,6 +186,9 @@ class DigitalOceanController extends Controller
     public function handleWebhook(Request $request)
     {
         $server = Server::findOrFailByDropletId($request->json('droplet_id'));
+        if (!$request->user()->is(optional($server)->user)) {
+            abort(404);
+        }
         $server->ip_address = $request->json('ip_address');
         $server->private_ip_address = $request->json('private_ip_address');
         $server->save();
@@ -160,6 +197,9 @@ class DigitalOceanController extends Controller
     public function vpnCredentials(Request $request)
     {
         $server = Server::findOrFailByDropletId($request->input('droplet_id'));
+        if (!$request->user()->is(optional($server)->user)) {
+            abort(404);
+        }
         return $server->vpn_username."\t*\t".$server->vpn_password."\t\t*";
     }
 }
