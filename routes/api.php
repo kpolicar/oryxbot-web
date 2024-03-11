@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\BotDataApiController;
+use App\Http\Controllers\DigitalOceanController;
 use App\Http\Controllers\DiscordController;
 use App\Http\Middleware\Subscribed;
 use Illuminate\Support\Facades\Broadcast;
@@ -27,6 +28,18 @@ Route::prefix('/discord')->group(function () {
         ->name('discord.send');
 });
 
+Route::middleware(['auth:api'])->prefix('digitalocean')->group(function () {
+    Route::post(
+        'webhook',
+        [DigitalOceanController::class, 'handleWebhook']
+    )->name('digitalocean.webhook');
+
+    Route::get(
+        'vpn',
+        [DigitalOceanController::class, 'vpnCredentials']
+    )->name('digitalocean.vpn');
+
+});
 
 Route::middleware(['auth:api', 'throttle:notification_rate_limit_per_minute,1,notification'])
     ->prefix('/notify')

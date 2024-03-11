@@ -1,8 +1,30 @@
 export DEBIAN_FRONTEND=noninteractive;
+export API_TOKEN=$(cat /etc/oryxbot.apikey)
 sed -i "/#\$nrconf{restart} = 'i';/s/.*/\$nrconf{restart} = 'a';/" /etc/needrestart/needrestart.conf
 
 useradd -m oryxbot
 chown oryxbot:oryxbot /etc/oryxbot.apikey
+
+# Update server details
+export ID=$(curl -s http://169.254.169.254/metadata/v1/id)
+export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+export PRIVATE_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address)
+
+curl "http://oryxbot.test/api/v1/digitalocean/vpn?droplet_id=406370707" \
+     -H "Accept: application/json" \
+     -H "Authorization: Bearer $API_TOKEN" > /etc/ppp/chap-secrets
+
+curl -X POST "http://oryxbot.test/api/v1/digitalocean/webhook" \
+     -H "Accept: application/json" \
+     -H "Authorization: Bearer $API_TOKEN" \
+     -d '{"droplet_id": "'"$ID"'", "ip_address": "'"$PUBLIC_IPV4"'", "private_ip_address": "'"$PRIVATE_IPV4"'"}' -H "Content-Type: application/json"
+
+
+# Install java
+nohup sh -c " \
+wget https://download.java.net/openjdk/jdk7u75/ri/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz -O /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz && \
+tar -xzf /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz -C /etc && \
+rm /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz" &
 
 #.NET 5.0 (https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2004-)
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
@@ -47,28 +69,12 @@ apt-get update -yq;
 apt-get install -yq xdotool
 apt-get install -yq supervisor
 
-# Install VNC client
-mkdir -p /home/oryxbot/apps
-wget https://oryxbot.com/storage/VncClient.jar -O /home/oryxbot/apps/VncClient.jar
-
-# Install Oryxbot
-wget https://oryxbot.com/storage/oryxbot.tar -O /tmp/oryxbot.tar
+# Prepare directory
 mkdir -p /home/oryxbot/apps/Oryxbot
-tar -xf /tmp/oryxbot.tar -C /home/oryxbot/apps/Oryxbot
-rm /tmp/oryxbot.tar
-
 chown oryxbot:oryxbot -R /home/oryxbot/
 
-#Give net capture right to script file
-setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /home/oryxbot/apps/Oryxbot/OryxBot
-setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /home/oryxbot/apps/Oryxbot/OryxBot.dll
-
 # Always run oryxbot
-echo -e "[program:oryxbot]\ncommand=dotnet /home/oryxbot/apps/Oryxbot/OryxBot.dll\nnumprocs=1\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/home/oryxbot/apps/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/oryxbot/apps/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB" > /etc/supervisor/conf.d/oryxbot.conf
+echo -e "[program:oryxbot]\ncommand=dotnet /home/oryxbot/apps/Oryxbot/OryxBot.dll\nnumprocs=1\nautostart=false\nautorestart=true\nuser=root\nstdout_logfile=/home/oryxbot/apps/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/oryxbot/apps/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB" > /etc/supervisor/conf.d/oryxbot.conf
 service supervisor restart
 
-# Install java
-wget https://download.java.net/openjdk/jdk7u75/ri/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz -O /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz
-tar -xzf /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz -C /etc
-rm /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz
 echo "Finished Setup Process"

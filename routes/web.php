@@ -93,6 +93,14 @@ Route::domain(config('app.domain'))->group(function () {
             Route::get(LaravelLocalization::transRoute('routes.download'), function (ClientVersion $version) {
                     return redirect()->home();
                 })->name('download');
+
+            Route::get('/storage/releases/latest', function () {
+                return response()->download(storage_path('app/subscribed/oryxbot.tar'));
+            })->name('releases.latest');
+
+            Route::get('/storage/vnc-releases/latest', function () {
+                return response()->download(storage_path('app/subscribed/VncClient.jar'));
+            })->name('vnc-releases.latest');
         });
 
         Route::middleware('can:purchase-subscription')->group(function () {
@@ -178,18 +186,4 @@ Route::domain(config('app.domain'))->group(function () {
         [CashierWebhookController::class, 'handleWebhook']
     );
     Route::post('coinbase/webhook', [CoinbaseWebhookController::class, 'handleWebhook']);
-
-    Route::prefix('digitalocean')->group(function () {
-        Route::post(
-            'webhook',
-            [DigitalOceanController::class, 'handleWebhook']
-        )->name('digitalocean.webhook');
-
-        Route::get(
-            'vpn',
-            [DigitalOceanController::class, 'vpnCredentials']
-        )->name('digitalocean.vpn');
-
-    });
-
 });

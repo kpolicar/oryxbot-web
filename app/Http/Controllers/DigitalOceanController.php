@@ -39,6 +39,12 @@ class DigitalOceanController extends Controller
 
         $script .= File::get(base_path('server-setup.sh'))."\n\n";
 
+        $script = Str::replace("{{ app_url }}", config('app.url'), $script);
+
+        $scriptStartup = File::get(base_path('server-startup.sh'))."\n\n";
+        $scriptStartup = Str::replace("{{ app_url }}", config('app.url'), $scriptStartup);
+        $scriptStartup = base64_encode($scriptStartup);
+        $script .= "base64 -d <<< \"$scriptStartup\" > /etc/oryxbot.startup.sh";
 
         return $script;
     }
