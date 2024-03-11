@@ -2,10 +2,12 @@
 
 export API_TOKEN=$(cat /etc/oryxbot.apikey)
 
+supervisorctl stop oryxbot
+
 # Install Oryxbot
 mkdir -p /home/oryxbot/apps/Oryxbot
 curl -s "{{ app_url }}/storage/releases/latest" \
-     -H "Authorization: Bearer $API_TOKEN" | tar -xzf - -C /home/oryxbot/apps/Oryxbot
+     -H "Authorization: Bearer $API_TOKEN" | tar -xf -C /home/oryxbot/apps/Oryxbot
 chmod -R ug+x /home/user/Applications/Oryxbot/OryxBot
 
 # Install VPC client
