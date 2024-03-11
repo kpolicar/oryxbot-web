@@ -14,14 +14,12 @@ use PHPUnit\Util\Exception;
 
 class Server extends Model
 {
-    const FALLBACK_USERNAME = 'user';
-    const IMAGE = 'ubuntu-20-04-x64';
+    const IMAGE = 'ubuntu-23-10-x64';
 
     use HasFactory;
 
 //    protected $size = 's-1vcpu-1gb';
 //    protected $region = 'fra1';
-    protected $accessToken;
 
     protected $visible = [
         'ip_address',
@@ -34,53 +32,14 @@ class Server extends Model
     protected static function boot()
     {
         parent::boot();
-        static::creating(function (Server $server) {
-            $server->name = $server->name ?: $server->instance->name;
-            $server->vpn_username = optional($server->user)->username ?: static::FALLBACK_USERNAME;
-            $server->vpn_password = Str::random(16);
-        });
         static::deleting(function () {
             throw new Exception("Servers cannot be deleted.");
-            DB::beginTransaction();
-        });
-
-        static::deleted(function (Server $server) {
-            try {
-                $server->token()->delete();
-                DigitalOcean::droplet()->remove($server->droplet_id);
-            } catch (RuntimeException $exception) {
-                if ($exception->getCode() != 404) {
-                    DB::rollback();
-                    throw $exception;
-                }
-            }
-            DB::commit();
         });
     }
 
     public static function findOrFailByDropletId($id)
     {
         return static::where('droplet_id', $id)->firstOrFail();
-    }
-
-    public static function makeWithName($iteration, $userId)
-    {
-        // deprecated
-        $iteration++;
-        $self = static::make();
-        $self->droplet_name = "user-$userId-bot-$iteration"."--{$self->size}-{$self->region}";
-        return $self;
-    }
-
-    public function getPersonalAccessTokenName()
-    {
-        return $this->name;
-    }
-
-    public function setToken($personalAccessToken)
-    {
-        $this->accessToken = $personalAccessToken->accessToken;
-        $this->token_id = $personalAccessToken->token->id;
     }
 
     public function token()

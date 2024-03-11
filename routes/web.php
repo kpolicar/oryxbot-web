@@ -51,7 +51,7 @@ Route::middleware(config('nova.middleware', []))
             ->name('setup.digitalocean.validate');
 
         Route::post('/setup/{instance}/digitalocean/deploy', [DigitalOceanController::class, 'deployServer'])
-            ->middleware(['throttle:2,1'])
+//            ->middleware(['throttle:2,1'])
             ->name('setup.digitalocean.deploy');
 
         Route::get('/setup/{instance}/vncserver/tightvnc', [SetupController::class, 'vncServer'])

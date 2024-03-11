@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Instance;
 use App\Models\Server;
 use DigitalOceanV2\Client as DigitalOcean;
+use DigitalOceanV2\Exception\ExceptionInterface;
 use DigitalOceanV2\Exception\RuntimeException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DigitalOceanController extends Controller
 {
@@ -20,18 +23,48 @@ class DigitalOceanController extends Controller
         return redirect(route('setup', compact('instance')));
     }
 
+    protected function generateServerSetupScript(Server $server, $accessToken)
+    {
+        $script = '';
+        $script .= '#!/bin/bash'."\n\n";
+        $script .= "echo $accessToken > /etc/oryxbot.apikey;"."\n\n";
+        $script .= "export VPN_USERNAME=$server->vpn_username;"."\n\n";
+        $script .= "export VPN_PASSWORD=$server->vpn_password;"."\n\n";
+
+        if (Str::endsWith(config('app.domain'), '.test')) {
+            $script .= 'echo "10.0.0.100 '.config('app.domain') ."\" >> /etc/hosts\n\n";
+            $script .= 'echo "10.0.0.100 '.config('nova.domain') . "\" >> /etc/hosts\n\n";
+        }
+
+        $script .= \File::get(base_path('server-setup-new.sh'))."\n\n";
+
+
+        return $script;
+    }
+
     public function deployServer(Request $request, Instance $instance)
     {
         $request->validate([
             'terms' => 'accepted',
         ]);
+        $user = $instance->subscription->user;
 
-        $server = $instance->server()->make();
 
         $client = $this->digitalOceanClientOrRedirect($request, $instance);
         if (!($client instanceof DigitalOcean)) {
             return $client;
         }
+
+        DB::beginTransaction();
+        $server = $instance->server()->make();
+        $accessToken = $user->createToken($instance->name);
+        $server->vpn_username = Str::before($user->email, '@');
+        $server->vpn_password = Str::random(16);
+        $server->droplet_region = $request->post('region');
+        $server->droplet_size = 's-1vcpu-512mb-10gb';
+        $server->token_id = $accessToken->token->id;
+        $server->droplet_image = Server::IMAGE;
+        $server->droplet_name = $instance->slug . "--$server->droplet_size-$server->droplet_region";
 
         try {
             $existingSshKey = collect($client->key()->getAll())->firstWhere('publicKey', config('digitalocean.ssh_key_public'));
@@ -41,39 +74,50 @@ class DigitalOceanController extends Controller
 
             $server->ssh_key_id = $key->id;
         } catch (\Throwable $exception) {
+            DB::rollBack();
             report($exception);
             return redirect()->back()->withErrors([
                 'digitalocean' => 'Failed to add our SSH key to your Digital Ocean account.'
             ]);
         }
 
+        try {
+            $startupScript = $this->generateServerSetupScript($server, $accessToken->accessToken);
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            report($exception);
+            return redirect()->back()->withErrors([
+                'digitalocean' => 'Failed to generate startup script for your deployment.'
+            ]);
+        }
 
-        $droplet = $client->droplet()->create(
-            $server->name,
-            $server->droplet_region = $request->post('region'),
-            $server->droplet_size = 's-1vcpu-512mb-10gb',
-            config('digitalocean.bot_snapshot_id'),
-            false,
-            false,
-            false,
-            [$server->ssh_key_id],
-            '#!/bin/bash'."\n\n".'echo "'.$server->accessToken.'" > /etc/oryxbot.apikey',
-            true,
-            [],
-            ['bot']);
+        try {
+            $droplet = $client->droplet()->create(
+                $server->droplet_name,
+                $server->droplet_region,
+                $server->droplet_size,
+                $server->droplet_image,
+                false,
+                false,
+                false,
+                [$server->ssh_key_id],
+                $startupScript,
+                true,
+                [],
+                ['bot']);
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            report($exception);
+            return redirect()->back()->withErrors([
+                'digitalocean' => 'Failed to deploy new droplet on your Digital Ocean account.'
+            ]);
+        }
 
+        $server->droplet_id = optional($droplet)->id;
         $server->ip_address = optional(collect($droplet->networks)->firstWhere('type', 'public'))->ipAddress;
         $server->private_ip_address = optional(collect($droplet->networks)->firstWhere('type', 'private'))->ipAddress;
         $server->save();
-
-        try {
-            $key = $client->key()->create('oryxbot.com', config('digitalocean.ssh_key_public'));
-        } catch (\Throwable $exception) {
-            report($exception);
-            return redirect()->back()->withErrors([
-                'digitalocean' => 'Failed to add our SSH key to your Digital Ocean account.'
-            ]);
-        }
+        DB::commit();
 
         return redirect(route('setup', compact('instance')));
     }
