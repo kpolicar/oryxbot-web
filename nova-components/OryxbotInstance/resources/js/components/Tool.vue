@@ -48,6 +48,9 @@
                     v-on:click="OnConfirmSetupWizard">
                 Setup
             </button>
+            <button class="btn btn-default bg-30 text-90 ml-2" title="This feature is still in development" disabled style="transition: 150ms">
+                Savings Mode
+            </button>
             <portal to="modals" transition="fade-transition">
                 <confirm-action-modal
                     v-if="setupWizardConfirmModal"
