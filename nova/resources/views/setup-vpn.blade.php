@@ -136,6 +136,25 @@
         ul li:last-child {
             border: none;
         }
+        .loader {
+            width: 16px;
+            height: 16px;
+            border: 3px solid var(--primary-10);
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 
     <div
@@ -220,7 +239,11 @@
                                 {{ $instance->name ?? 'Oryxbot' }}
                             </li>
                             <li>
-                                {{ $instance->server->ip_address ?? '?' }}
+                                @if (!optional($instance->server)->ip_address && optional($instance->server)->vpn_username )
+                                <span class="loader"></span>
+                                @else
+                                    {{ $instance->server->ip_address ?? '?' }}
+                                @endif
                             </li>
                             <li>
                                 Automatic
