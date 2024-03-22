@@ -3823,7 +3823,7 @@ function initBrodcasting() {
             });
         };
         var refreshVpnServiceStatus = function refreshVpnServiceStatus() {
-            return fetch("http://127.0.0.1:5558", { mode: 'no-cors' }).then(function (r) {
+            return fetch("http://10.0.0.100:5558", { mode: 'no-cors' }).then(function (r) {
                 if (_this2.vpn_status !== 'Online') {
                     console.log('Successfully pinged VPN discoverability server');
                 }

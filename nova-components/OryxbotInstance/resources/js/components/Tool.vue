@@ -387,7 +387,7 @@ export default {
                     console.log('Failed to ping local TightVNC server');
                 });
         let refreshVpnServiceStatus =
-            () => fetch("http://127.0.0.1:5558", { mode: 'no-cors'})
+            () => fetch("http://10.0.0.100:5558", { mode: 'no-cors'})
                 .then(r => {
                     if (this.vpn_status !== 'Online') {
                         console.log('Successfully pinged VPN discoverability server');
