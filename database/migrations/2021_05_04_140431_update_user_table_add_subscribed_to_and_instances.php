@@ -15,7 +15,7 @@ class UpdateUserTableAddSubscribedToAndInstances extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->timestamp('subscribed_to')->nullable();
-            $table->integer('subscription_instances')->default(1);
+            $table->integer('subscription_instances')->default(0);
         });
     }
 
