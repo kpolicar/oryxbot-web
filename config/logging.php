@@ -57,6 +57,8 @@ return [
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
+            'channels' => ['stdout'],
+            'ignore_exceptions' => false,
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
             'level' => 'critical',
@@ -69,6 +71,15 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
+            ],
+        ],
+
+        'stdout' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'formatter' => env('LOG_STDOUT_FORMATTER'),
+            'with' => [
+                'stream' => 'php://stdout',
             ],
         ],
 
