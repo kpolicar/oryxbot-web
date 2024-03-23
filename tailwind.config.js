@@ -5,7 +5,7 @@ module.exports = {
         // defaultLineHeights: true,
         // standardFontWeights: true
     },
-    purge: [],
+    purge: false,
     variants: {
         display: ['responsive', 'group-hover', 'group-focus'],
         translate: ['responsive', 'hover', 'focus', 'group-hover'],

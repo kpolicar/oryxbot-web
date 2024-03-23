@@ -4,7 +4,7 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/stripe.js') }}"></script>
+    <script src="{{ asset('js/stripe.js') }}"></script>
 @endsection
 
 @section('content')

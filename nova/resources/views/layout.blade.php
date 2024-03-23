@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('app.css', 'vendor/nova') }}">
+    <link rel="stylesheet" href="{{ asset('app.css', 'vendor/nova') }}">
 
     <!-- Tool Styles -->
     @foreach(\Laravel\Nova\Nova::availableStyles(request()) as $name => $path)
@@ -78,9 +78,9 @@
     </script>
 
     <!-- Scripts -->
-    <script src="{{ mix('manifest.js', 'vendor/nova') }}"></script>
-    <script src="{{ mix('vendor.js', 'vendor/nova') }}"></script>
-    <script src="{{ mix('app.js', 'vendor/nova') }}"></script>
+    <script src="{{ asset('manifest.js', 'vendor/nova') }}"></script>
+    <script src="{{ asset('vendor.js', 'vendor/nova') }}"></script>
+    <script src="{{ asset('app.js', 'vendor/nova') }}"></script>
 
     <!-- Build Nova Instance -->
     <script>
@@ -100,6 +100,6 @@
     <script>
         Nova.liftOff()
     </script>
-    <script src="{{ mix('js/noise.js') }}"></script>
+    <script src="{{ asset('js/noise.js') }}"></script>
 </body>
 </html>
