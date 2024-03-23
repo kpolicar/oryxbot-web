@@ -57,6 +57,6 @@
 @section('scripts')
     @parent
     @auth
-        <script src="{{ asset('js/stripe.js') }}"></script>
+        <script src="{{ mix('js/stripe.js') }}"></script>
     @endauth
 @endsection

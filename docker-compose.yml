@@ -5,41 +5,9 @@ services:
       context: .
       dockerfile: ./docker/nginx.Dockerfile
     restart: always
-    depends_on:
-      - php
     labels:
       caddy: temp.oryxbot.com, dashboard.oryxbot.com
       caddy.reverse_proxy: "{{upstreams 80}}"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    networks:
-      - reverse-proxy
-      - default
-
-  php:
-    build:
-      context: .
-      dockerfile: ./docker/php.Dockerfile
-    working_dir: /app
-    env_file: .env
-    restart: always
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    expose:
-      - "9000"
-
-  phpmyadmin:
-    image: phpmyadmin:5.2.1-fpm-alpine
-    restart: always
-    labels:
-      caddy: db.oryxbot.com
-      caddy.reverse_proxy: "{{upstreams 80}}"
-    environment:
-      - PMA_HOST=host.docker.internal
-      - PMA_PORT=3306
-      - APACHE_HTTP_PORT_NUMBER=9010
-    expose:
-      - "9010"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
@@ -64,7 +32,6 @@ services:
       - DEFAULT_APP_ENABLE_CLIENT_MESSAGES=${DEFAULT_APP_ENABLE_CLIENT_MESSAGES:-false}
     networks:
       - default
-
 
 networks:
   reverse-proxy:

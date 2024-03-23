@@ -39,7 +39,7 @@
         @endforeach
     @show
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
 
     @stack('head')
@@ -73,7 +73,7 @@
 @include('partials.notification-download')
 
 @section('scripts')
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 @show
 @include('partials.analytics')
 </body>
