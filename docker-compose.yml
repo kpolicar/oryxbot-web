@@ -10,7 +10,7 @@ services:
     ports:
       - '8080:80'
     labels:
-      caddy: temp.oryxbot.com
+      caddy: temp.oryxbot.com, dashboard.oryxbot.com
       caddy.reverse_proxy: "{{upstreams 80}}"
     networks:
       - reverse-proxy
@@ -25,6 +25,15 @@ services:
     restart: always
     expose:
       - "9000"
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-fpm-alpine
+    restart: unless-stopped
+    labels:
+      caddy: db.oryxbot.com
+      caddy.reverse_proxy: "{{upstreams 80}}"
+    environment:
+      - PMA_HOST=127.0.0.1
 
   soketi:
     image: 'quay.io/soketi/soketi:latest-16-alpine'
