@@ -66,4 +66,5 @@ COPY --from=build /app/vendor/ /app/vendor/
 
 RUN chmod -R 777 /app/storage
 
+RUN php artisan telescope:install
 RUN php artisan cache:clear
