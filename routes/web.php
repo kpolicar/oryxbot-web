@@ -108,8 +108,6 @@ Route::domain(config('app.domain'))->group(function () {
         Route::middleware('can:purchase-subscription')->group(function () {
 
             Route::get(LaravelLocalization::transRoute('routes.subscribe'), function (Request $request) {
-                // todo: Temporary
-                return redirect('disabled');
                 return view('subscribe');
             })->name('subscribe')->middleware('auth');
 
@@ -117,11 +115,6 @@ Route::domain(config('app.domain'))->group(function () {
                 ->name('subscribe.coinbase.checkout');
 
         });
-
-        Route::get('disabled', function (Request $request) {
-            return view('disabled');
-        })->name('disabled');
-
 
         Route::get('/release/{version?}', function (ClientVersion $versions, $version) {
             $versionDetails = $version == "latest" ?

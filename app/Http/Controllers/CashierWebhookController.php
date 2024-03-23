@@ -47,6 +47,7 @@ class CashierWebhookController extends WebhookController
             $user->stripe_balance = (int)$payload['data']['object']['balance'];
             $user->save();
         }
+        dd('nmo');
 
         return $response;
     }
