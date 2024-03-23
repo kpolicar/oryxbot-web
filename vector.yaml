@@ -1,0 +1,23 @@
+sources:
+  oryxbot_client_logs:
+    type: "file"
+    include:
+      - "/home/oryxbot/apps/Oryxbot/*.log"
+
+sinks:
+  oryxbot_server_logs:
+    type: "http"
+    inputs:
+      - oryxbot_client_logs
+    uri: "http://logs.oryxbot.com:5080/api/default/default/_json"
+    method: "post"
+    auth:
+      strategy: "basic"
+      user: "root@example.com"
+      password: "***REMOVED***"
+    compression: "gzip"
+    encoding:
+      codec: "json"
+      timestamp_format: "rfc3339"
+    healthcheck:
+      enabled: false

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ImageVersion;
 use File;
 use DB;
 use App\Models\Instance;
@@ -24,6 +25,7 @@ class DigitalOceanController extends Controller
         return redirect(route('setup', compact('instance')));
     }
 
+    // todo: memoize the str replacements
     protected function generateServerSetupScript(Server $server, $accessToken)
     {
         $script = '';
@@ -44,6 +46,12 @@ class DigitalOceanController extends Controller
         $scriptStartup = File::get(base_path('server-startup.sh'))."\n\n";
         $scriptStartup = Str::replace("{{ app_url }}", config('app.url'), $scriptStartup);
         $scriptStartup = base64_encode($scriptStartup);
+
+        $vectorConfigFile = File::get(base_path('vector.yaml'))."\n\n";
+        $vectorConfigFile = base64_encode($vectorConfigFile);
+
+        $script = Str::replace("{{ vector_config_base64 }}", $vectorConfigFile, $script);
+
         $script .= "base64 -d <<< \"$scriptStartup\" > /etc/oryxbot.startup.sh\n";
         $script .= "chown oryxbot:oryxbot /etc/oryxbot.startup.sh\n";
         $script .= "chmod -R ug+x /etc/oryxbot.startup.sh\n";
@@ -79,7 +87,7 @@ class DigitalOceanController extends Controller
         return redirect(route('setup', compact('instance')));
     }
 
-    public function deployServer(Request $request, Instance $instance)
+    public function deployServer(Request $request, Instance $instance, ImageVersion $imageVersion)
     {
         $request->validate([
             'terms' => 'accepted',
@@ -107,6 +115,7 @@ class DigitalOceanController extends Controller
         $server->token_id = $accessToken->token->id;
         $server->droplet_image = Server::IMAGE;
         $server->droplet_name = $instance->slug . "--$server->droplet_size-$server->droplet_region";
+        $server->image_version = $imageVersion->latest()['name'];
 
         try {
             $existingSshKey = collect($client->key()->getAll())->firstWhere('publicKey', config('digitalocean.ssh_key_public'));

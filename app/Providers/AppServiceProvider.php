@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\ApiEncrypter as ApiEncrypterContract;
+use App\ImageVersion;
 use App\Models\Subscription;
 use App\Models\User;
 use CoinbaseCommerce\ApiClient as CoinbaseClient;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->instance(ClientVersion::class, new ClientVersion);
+        $this->app->instance(ImageVersion::class, new ImageVersion);
         $this->app->bind(ApiEncrypterContract::class, function () {
             $key = config('app.api_key');
             if (Str::startsWith($key, 'base64:')) {
