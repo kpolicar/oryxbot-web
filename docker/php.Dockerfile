@@ -16,6 +16,8 @@ WORKDIR /app
 
 COPY composer.* ./
 COPY database/ database/
+COPY nova/ nova/
+COPY nova-components/ nova-components/
 
 RUN composer install \
     --ignore-platform-reqs \
@@ -31,7 +33,7 @@ FROM node:10.24.1-alpine as node
 
 WORKDIR /app
 
-COPY *.json *.mix.js /app/
+COPY *.json *.mix.js *.config.js /app/
 COPY resources /app/resources
 
 RUN mkdir -p /app/public \

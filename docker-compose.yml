@@ -7,9 +7,11 @@ services:
     restart: always
     depends_on:
       - php
-    ports:
-      - "8080:80"
+    labels:
+      caddy: temp.oryxbot.com
+      caddy.reverse_proxy: "{{upstreams 80}}"
     networks:
+      - reverse-proxy
       - default
 
   php:
@@ -21,3 +23,7 @@ services:
     restart: always
     expose:
       - "9000"
+
+networks:
+  reverse-proxy:
+    external: true
