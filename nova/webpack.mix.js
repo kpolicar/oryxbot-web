@@ -12,8 +12,8 @@ let tailwindcss = require('tailwindcss')
  |
  */
 
-mix
-    .js('resources/js/app.js', 'public')
+mix.setPublicPath(path.resolve('.'))
+    .js('resources/js/app.js')
     .extract([
         'axios',
         'chartist-plugin-tooltips',
@@ -39,8 +39,7 @@ mix
         'vue-toasted',
         'vue',
     ])
-    .setPublicPath('public')
-    .postCss('resources/css/app.css', 'public', [tailwindcss('tailwind.js')])
+    .postCss('resources/css/app.css', '.', [tailwindcss('tailwind.js')])
     .copy('public', '../public/vendor/nova')
     .webpackConfig({
         resolve: {

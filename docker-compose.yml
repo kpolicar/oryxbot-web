@@ -7,6 +7,8 @@ services:
     restart: always
     depends_on:
       - php
+    ports:
+      - '8080:80'
     labels:
       caddy: temp.oryxbot.com
       caddy.reverse_proxy: "{{upstreams 80}}"
@@ -24,6 +26,28 @@ services:
     expose:
       - "9000"
 
+  soketi:
+    image: 'quay.io/soketi/soketi:latest-16-alpine'
+    restart: unless-stopped
+    ports:
+      - '${SOKETI_PORT:-6001}:6001'
+      - '${SOKETI_METRICS_SERVER_PORT:-9601}:9601'
+    environment:
+      - SOKETI_DEBUG=1
+      - DEFAULT_APP_ID='${PUSHER_APP_ID:-some-id}'
+      - DEFAULT_APP_KEY='${PUSHER_APP_KEY:-app-key}'
+      - DEFAULT_APP_SECRET='${PUSHER_APP_SECRET:-some-app-secret}'
+      - PUSHER_HOST='${PUSHER_HOST:-127.0.0.1}'
+      - PUSHER_PORT= '${PUSHER_PORT:-6001}'
+      - PUSHER_SCHEME='${PUSHER_SCHEME:-http}' # or https
+      - METRICS_SERVER_PORT=${SOKETI_METRICS_SERVER_PORT:-9601}
+      - DEFAULT_APP_ENABLE_CLIENT_MESSAGES=${DEFAULT_APP_ENABLE_CLIENT_MESSAGES:-false}
+    networks:
+      - soketi_network
+
+
 networks:
   reverse-proxy:
     external: true
+  soketi_network:
+    driver: bridge

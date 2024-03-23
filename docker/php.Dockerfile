@@ -39,6 +39,15 @@ COPY resources /app/resources
 RUN mkdir -p /app/public \
     && npm install && npm run production
 
+
+WORKDIR /app/nova
+
+COPY *.json *.mix.js *.config.js /app/nova/
+COPY resources /app/nova/resources
+
+RUN mkdir -p /app/nova/public \
+    && npm install && npm run production
+
 # ----------------------
 # The FPM production container
 # ----------------------
@@ -47,8 +56,12 @@ FROM dev
 COPY ./docker/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY . /app
 COPY --from=build /app/vendor/ /app/vendor/
-COPY --from=node /app/public/js/ /app/public/js/
-COPY --from=node /app/public/css/ /app/public/css/
+COPY --from=node /app/public/ /app/public/
 COPY --from=node /app/mix-manifest.json /app/public/mix-manifest.json
 
+COPY --from=node /app/nova/public/ /app/nova/public/
+COPY --from=node /app/nova/mix-manifest.json /app/nova/public/mix-manifest.json
+
 RUN chmod -R 777 /app/storage
+
+RUN php artisan cache:clear
