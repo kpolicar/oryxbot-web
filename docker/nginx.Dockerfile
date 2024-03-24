@@ -1,6 +1,6 @@
 FROM webdevops/php-nginx:7.4-alpine
 # Install Laravel framework system requirements (https://laravel.com/docs/8.x/deployment#optimizing-configuration-loading)
-RUN apk add oniguruma-dev postgresql-dev libxml2-dev
+RUN apk add oniguruma-dev postgresql-dev libxml2-dev supervisor
 RUN docker-php-ext-install \
         bcmath \
         ctype \
@@ -17,6 +17,11 @@ ENV APP_ENV local
 WORKDIR /app
 COPY . .
 RUN composer install --no-interaction --optimize-autoloader --no-dev
+
+RUN mkdir -p "/etc/supervisor/logs"
+COPY docker/supervisord.conf /etc/supervisor/supervisord.conf
+
+
 # Optimizing Configuration loading
 RUN php artisan config:cache
 # Optimizing View loading
@@ -27,4 +32,5 @@ RUN php artisan storage:link
 
 RUN chown -R application:application .
 
-CMD ["php", '/app/discordapp/index.php']
+CMD ["php", "/app/discordapp/index.php"]
+CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisor/supervisord.conf"]
