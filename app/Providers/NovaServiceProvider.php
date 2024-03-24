@@ -115,7 +115,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
             if (data_get($referrer, 'host') == config('app.domain')
                 && !$serving->request->user()->hasOneActiveInstance()
-                && !$serving->request->routeIs('setup')) {
+                && !$serving->request->routeIs(['setup', 'billing'])) {
                 $instance = $serving->request->user()->instances->first();
                 throw new HttpResponseException(redirect()->to(route('setup', compact('instance'))));
             }

@@ -60,6 +60,14 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
                     <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2"
                        href="#pricing">Pricing</a>
                 </li>
+                @if (Auth::check() && Auth::user()->subscribedToTradeMissionBot())
+                    <li class="xl:mr-3 m-1">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" style="outline: none" class="inline-block no-underline hover:text-gray-700 hover:text-underline xl:py-2 xl:px-4 p-2">{{ __('common.logout') }}</button>
+                        </form>
+                    </li>
+                @endauth
                 @if (Auth::check() && !Auth::user()->subscribedToTradeMissionBot())
                 <li class="xl:mr-3 m-1">
                     <form action="{{ route('logout') }}" method="POST">

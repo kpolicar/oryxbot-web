@@ -30,11 +30,11 @@ export ID=$(curl -s http://169.254.169.254/metadata/v1/id)
 export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
 export PRIVATE_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address)
 
-curl "http://oryxbot.test/api/v1/digitalocean/vpn?droplet_id=406370707" \
+curl "{{ app_url }}/api/v1/digitalocean/vpn?droplet_id=406370707" \
      -H "Accept: application/json" \
      -H "Authorization: Bearer $API_TOKEN" > /etc/ppp/chap-secrets
 
-curl -X POST "http://oryxbot.test/api/v1/digitalocean/webhook" \
+curl -X POST "{{ app_url }}/api/v1/digitalocean/webhook" \
      -H "Accept: application/json" \
      -H "Authorization: Bearer $API_TOKEN" \
      -d '{"droplet_id": "'"$ID"'", "ip_address": "'"$PUBLIC_IPV4"'", "private_ip_address": "'"$PRIVATE_IPV4"'"}' -H "Content-Type: application/json"

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'logout' => 'Sign out',
     'menu' => 'Menu',
     'home' => 'Home',
     'dashboard' => 'Dashboard',
