@@ -3,11 +3,11 @@
 return [
     'category' => 'The Albion Online Trade Mission Bot',
     'heading' => 'The most undetectable bot for Albion Online<br>Period.',
-    'subheading' => 'Make silver effortlessly. Run a faction heart trade mission once and allow Oryxbot to repeat.',
+    'subheading' => 'Make silver effortlessly.',
     'install_instructions' => 'Installation instructions',
 
     'copyright' => 'Copyright © :year Oryxbot',
-    'albion_trademark' => 'Albion Online® is a trademark of Sandbox Interactive © 2022',
+    'albion_trademark' => 'Albion Online® is a trademark of Sandbox Interactive © 2024',
     'affiliation' => 'Oryxbot is not in any way affiliated with Sandbox Interactive GmbH.',
 
     'download_started' => 'Your download has started. You will need to unzip the compressed file using the password :password',

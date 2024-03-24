@@ -104,6 +104,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->subscribed() || !!optional($this->subscribed_to)->isAfter($this->freshTimestamp());
     }
 
+    public function getSubscriptionInstancesAttribute()
+    {
+        return $this->instances()->count();
+    }
+
     public function getOnFreeTrialAttribute()
     {
         return $this->onTrial();

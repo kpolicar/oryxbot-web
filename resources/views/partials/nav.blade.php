@@ -37,7 +37,7 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
 2 -97 10 -176 88 -214 211 -20 67 -37 209 -26 226 7 11 58 -15 140 -70z"></path>
                         </g>
                     </svg> ORYXBOT
-                    {{--<small class="text-sm text-red-800 uppercase">Work in progress</small>--}}
+                    <span style="bottom: 5px" class="absolute inline-block bg-green-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2">NEW</span>
                 </a>
             </div>
 
@@ -50,12 +50,6 @@ l43 -47 -6 -81 c-6 -71 -4 -87 14 -122 11 -21 20 -41 20 -44 0 -2 -25 -1 -55
 
         <div class="flex-grow lg:flex justify-end lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent lg:text-gray-900 text-gray-900 p-4 lg:p-0 z-20" id="nav-content">
             <ul class="list-reset lg:flex justify-end items-center">
-                <li class="xl:mr-3 m-1">
-                    <a class="inline-block no-underline hover:text-gray-700 hover:text-underline xl:py-2 xl:px-4 p-2" href="{{ route('install') }}">{{ __('common.installation') }}</a>
-                </li>
-                <li class="xl:mr-3 m-1">
-                    <a class="inline-block no-underline hover:text-gray-700 hover:text-underline xl:py-2 xl:px-4 p-2" href="{{ route('usage') }}">{{ __('common.usage') }}</a>
-                </li>
                 <li class="xl:mr-3 m-1">
                     <a class="inline-block no-underline hover:text-gray-800 hover:text-underline xl:py-2 xl:px-4 p-2" href="{{ route('release', ['version' => 'latest']) }}">{{ __('common.whats_new') }}</a>
                 </li>

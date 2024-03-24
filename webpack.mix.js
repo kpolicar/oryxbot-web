@@ -13,15 +13,15 @@ const tailwindcss = require('tailwindcss');
  */
 
 mix.setPublicPath(path.resolve('.'))
-    .js('resources/js/app.js', 'public')
+    .js('resources/js/app.js', 'public/js')
     .version()
-    .js('resources/js/noise.js', 'public')
+    .js('resources/js/noise.js', 'public/js')
     .version()
-    .js('resources/js/stripe.js', 'public')
+    .js('resources/js/stripe.js', 'public/js')
     .version()
-    .sass('resources/sass/app.scss', 'public')
+    .sass('resources/sass/app.scss', 'public/css')
     .version()
-    .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public')
+    .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts')
     .options({
         processCssUrls: false,
         postCss: [tailwindcss('./tailwind.config.js')],

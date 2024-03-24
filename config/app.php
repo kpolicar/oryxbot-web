@@ -179,6 +179,7 @@ return [
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         GrahamCampbell\DigitalOcean\DigitalOceanServiceProvider::class,
+        \Laravel\Cashier\CashierServiceProvider::class,
 
         /*
          * Application Service Providers...

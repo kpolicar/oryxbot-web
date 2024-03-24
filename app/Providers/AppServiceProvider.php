@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Contracts\ApiEncrypter as ApiEncrypterContract;
+use App\Http\Controllers\CashierWebhookController;
 use App\ImageVersion;
 use App\Models\Subscription;
 use App\Models\User;
 use CoinbaseCommerce\ApiClient as CoinbaseClient;
 use Illuminate\Encryption\Encrypter;
 use Laravel\Cashier\Cashier;
+use Laravel\Cashier\Http\Controllers\WebhookController;
 use Str;
 use App\ClientVersion;
 use Illuminate\Support\Facades\Blade;
@@ -36,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
             CoinbaseClient::init($key);
         }
         Cashier::useSubscriptionModel(Subscription::class);
+        $this->app->bind(WebhookController::class, CashierWebhookController::class);
     }
 
     /**

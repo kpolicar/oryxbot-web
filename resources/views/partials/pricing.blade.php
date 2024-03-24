@@ -18,6 +18,8 @@
 
         <div class="flex flex-col sm:flex-row justify-center pt-12 my-12 sm:my-4">
 
+            {{-- todo: this is here temporarily --}}
+            @if ((($newPrice = config('pricing.trade_mission_bot.price')-config('pricing.trade_mission_bot.discount_price'))/100) != 0)
             <div class="flex flex-col w-5/6 lg:w-1/3 xl:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
                 <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
                     <div class="w-full p-8 text-3xl font-bold text-center border-b-4 border-gray-500">
@@ -50,6 +52,7 @@
                     </a>
                 </div>
             </div>
+            @endif
             <div class="flex flex-col w-5/6 lg:w-1/3 xl:w-1/4 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10 text-gray-800">
                 <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                     <div class="w-full p-8 text-3xl font-bold text-center">{{ __('pricing.package_subscription') }}</div>
@@ -68,7 +71,11 @@
                             €{{ config('pricing.trade_mission_bot.price')/100 }}
                         </div>
                         <div class="mb-2 text-4xl">
-                            €{{ (config('pricing.trade_mission_bot.price')-config('pricing.trade_mission_bot.discount_price'))/100 }}
+                            @if ((($newPrice = config('pricing.trade_mission_bot.price')-config('pricing.trade_mission_bot.discount_price'))/100) == 0)
+                                FREE
+                            @else
+                                €{{ $newPrice }}
+                            @endif
                         </div>
                         <div class="text-sm">first {{ __('common.month') }}</div>
                         @else

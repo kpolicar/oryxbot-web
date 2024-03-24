@@ -1597,7 +1597,7 @@ gradient.initGradient("#gradient-canvas");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /app/resources/js/noise.js */"./resources/js/noise.js");
+module.exports = __webpack_require__(/*! A:\Projects\PhpstormProjects\oryxbot\resources\js\noise.js */"./resources/js/noise.js");
 
 
 /***/ })

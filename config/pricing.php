@@ -6,9 +6,9 @@ return [
         'promo_code_stripe_id' => env('STRIPE_PROMO_CODE_ID'),
         'price' => 2000,
         'currency' => 'eur',
-        'discount_price' => 500,
+        'discount_price' => 2000,
         'trial_period_days' => 3,
-        'promo' => 'ORYXBOTV1',
+        'promo' => 'RELEASE2024',
     ]
 
 ];

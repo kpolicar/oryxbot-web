@@ -12,8 +12,8 @@ use Stripe\Exception\InvalidRequestException;
 class StripeController extends Controller
 {
     public function __construct() {
-        //$this->middleware('throttle:stripe')
-        //    ->except('cancelTrial');
+        $this->middleware('throttle:stripe')
+            ->except('cancelTrial');
         $this->middleware(['auth', 'verified']);
         $this->middleware('customer');
     }
