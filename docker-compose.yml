@@ -50,4 +50,5 @@ networks:
     external: true
 
 volumes:
-  laravel_storage:
+  storage:
+  openobserve:
