@@ -11,7 +11,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - laravel_storage:/app/storage
+      - storage:/app/storage
     networks:
       - reverse-proxy
       - default
@@ -32,8 +32,18 @@ services:
       - PUSHER_SCHEME='${PUSHER_SCHEME:-http}' # or https
       - METRICS_SERVER_PORT=${SOKETI_METRICS_SERVER_PORT:-9601}
       - DEFAULT_APP_ENABLE_CLIENT_MESSAGES=${DEFAULT_APP_ENABLE_CLIENT_MESSAGES:-false}
-    networks:
-      - default
+
+  openobserve:
+    image: 'public.ecr.aws/zinclabs/openobserve:v0.9.1'
+    restart: unless-stopped
+    ports:
+      - '5080:5080'
+    volumes:
+      - openobserve:/app/openobserve
+    environment:
+      - ZO_ROOT_USER_EMAIL=root@example.com
+      - ZO_ROOT_USER_PASSWORD=Complexpass#123
+      - ZO_DATA_DIR=/app/openobserve/data
 
 networks:
   reverse-proxy:
