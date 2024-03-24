@@ -19,7 +19,7 @@ COPY . .
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 RUN mkdir -p "/etc/supervisor/logs"
-COPY docker/supervisord.conf /etc/supervisor/supervisord.conf
+COPY docker/supervisord.conf /opt/docker/etc/supervisor.d/laravel_supervisord.conf
 
 
 # Optimizing Configuration loading

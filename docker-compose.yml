@@ -36,14 +36,18 @@ services:
   openobserve:
     image: 'public.ecr.aws/zinclabs/openobserve:v0.9.1'
     restart: unless-stopped
-    ports:
-      - '5080:5080'
+    labels:
+      caddy: logs.oryxbot.com
+      caddy.reverse_proxy: "{{upstreams 5080}}"
     volumes:
       - openobserve:/app/openobserve
     environment:
       - ZO_ROOT_USER_EMAIL=root@example.com
       - ZO_ROOT_USER_PASSWORD=Complexpass#123
       - ZO_DATA_DIR=/app/openobserve/data
+    networks:
+      - reverse-proxy
+      - default
 
 networks:
   reverse-proxy:
