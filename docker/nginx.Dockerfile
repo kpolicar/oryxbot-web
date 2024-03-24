@@ -26,3 +26,5 @@ RUN php artisan telescope:install
 RUN php artisan storage:link
 
 RUN chown -R application:application .
+
+CMD ["php", '/app/discordapp/index.php']
