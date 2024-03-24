@@ -10,6 +10,8 @@ services:
       caddy.reverse_proxy: "{{upstreams 80}}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    volumes:
+      - laravel_storage:/app/storage
     networks:
       - reverse-proxy
       - default
@@ -36,3 +38,6 @@ services:
 networks:
   reverse-proxy:
     external: true
+
+volumes:
+  laravel_storage:
