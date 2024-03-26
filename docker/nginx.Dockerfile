@@ -29,5 +29,6 @@ RUN php artisan view:cache
 
 RUN php artisan telescope:install
 RUN php artisan storage:link
+RUN php artisan migrate --force
 
 RUN chown -R application:application .

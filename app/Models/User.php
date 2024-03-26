@@ -36,6 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'card_brand',
         'card_last_four',
         'open_observe_password',
+        'open_observe_password_added',
     ];
 
     protected $appends = [

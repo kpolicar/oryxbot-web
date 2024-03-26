@@ -15,6 +15,7 @@ class UpdateUsersTableAddOpenObservePassword extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('open_observe_password');
+            $table->boolean('open_observe_password_added')->default(false);
         });
     }
 
@@ -27,6 +28,7 @@ class UpdateUsersTableAddOpenObservePassword extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('open_observe_password');
+            $table->dropColumn('open_observe_password_added');
         });
     }
 }
