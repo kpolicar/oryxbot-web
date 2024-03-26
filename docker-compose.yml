@@ -35,6 +35,9 @@ services:
       - PUSHER_SCHEME='${PUSHER_SCHEME:-http}' # or https
       - METRICS_SERVER_PORT=${SOKETI_METRICS_SERVER_PORT:-9601}
       - DEFAULT_APP_ENABLE_CLIENT_MESSAGES=${DEFAULT_APP_ENABLE_CLIENT_MESSAGES:-false}
+    networks:
+      - reverse-proxy
+      - default
 
   openobserve:
     image: 'public.ecr.aws/zinclabs/openobserve:v0.9.1'
