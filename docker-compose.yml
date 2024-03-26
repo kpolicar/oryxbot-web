@@ -21,7 +21,8 @@ services:
     restart: unless-stopped
     labels:
       caddy: socket.oryxbot.com
-      caddy.reverse_proxy: "{{upstreams 6001}}"
+      caddy.0_reverse_proxy: "@ws {{upstreams 6001}}"
+      caddy.1_reverse_proxy: "{{upstreams 9601}}"
     ports:
       - '${SOKETI_PORT:-6001}:6001'
       - '${SOKETI_METRICS_SERVER_PORT:-9601}:9601'
