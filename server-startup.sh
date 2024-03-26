@@ -13,7 +13,7 @@ chmod -R ug+x /home/oryxbot/apps/Oryxbot/OryxBot.dll
 
 # Install VPC client
 mkdir -p /home/oryxbot/apps
-curl -s "{{ app_url }}/storage/vpc-releases/latest" \
+curl -s "{{ app_url }}/storage/vnc-releases/latest" \
      -H "Authorization: Bearer $API_TOKEN" -o /home/oryxbot/apps/VncClient.jar
 
 # Oryxbot folder permissions

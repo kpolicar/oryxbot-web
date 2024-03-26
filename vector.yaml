@@ -9,7 +9,7 @@ sinks:
     type: "http"
     inputs:
       - oryxbot_client_logs
-    uri: "http://logs.oryxbot.com:5080/api/default/default/_json"
+    uri: "https://logs.oryxbot.com/api/default/default/_json"
     method: "post"
     auth:
       strategy: "basic"

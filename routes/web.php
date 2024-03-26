@@ -95,9 +95,9 @@ Route::domain(config('app.domain'))->group(function () {
                 })->name('download');
         });
 
-        Route::middleware(['auth:api', Subscribed::class])->group(function () {//todo: move this to API
+        Route::middleware(['auth:api', /*Subscribed::class*/])->group(function () {//todo: move this to API
             Route::get('/storage/releases/latest', function () {
-                return response()->download(storage_path('app/subscribed/oryxbot.tar'));
+                return response()->download(storage_path('app/subscribed/oryxbot.tar.gz'));
             })->name('releases.latest');
 
             Route::get('/storage/vnc-releases/latest', function () {

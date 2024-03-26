@@ -6,20 +6,22 @@ useradd -m oryxbot
 chown oryxbot:oryxbot /etc/oryxbot.apikey
 
 # Update server details
-export ID=$(curl -s http://169.254.169.254/metadata/v1/id)
-export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
-export PRIVATE_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address)
+{
+    export ID=$(curl -s http://169.254.169.254/metadata/v1/id)
+    export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+    export PRIVATE_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address)
 
-curl "{{ app_url }}/api/v1/digitalocean/vpn?droplet_id=406370707" \
-     -connect-timeout 5 \
-     -H "Accept: application/json" \
-     -H "Authorization: Bearer $API_TOKEN" > /etc/ppp/chap-secrets
+    curl "{{ app_url }}/api/v1/digitalocean/vpn?droplet_id=406370707" \
+         -connect-timeout 5 \
+         -H "Accept: application/json" \
+         -H "Authorization: Bearer $API_TOKEN" > /etc/ppp/chap-secrets
 
-curl -X POST "{{ app_url }}/api/v1/digitalocean/webhook" \
-     -connect-timeout 5 \
-     -H "Accept: application/json" \
-     -H "Authorization: Bearer $API_TOKEN" \
-     -d '{"droplet_id": "'"$ID"'", "ip_address": "'"$PUBLIC_IPV4"'", "private_ip_address": "'"$PRIVATE_IPV4"'"}' -H "Content-Type: application/json"
+    curl -X POST "{{ app_url }}/api/v1/digitalocean/webhook" \
+         -connect-timeout 5 \
+         -H "Accept: application/json" \
+         -H "Authorization: Bearer $API_TOKEN" \
+         -d '{"droplet_id": "'"$ID"'", "ip_address": "'"$PUBLIC_IPV4"'", "private_ip_address": "'"$PRIVATE_IPV4"'"}' -H "Content-Type: application/json"
+} &
 
 
 # Install java

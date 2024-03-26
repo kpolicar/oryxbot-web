@@ -6,6 +6,7 @@ use App\Events\CoinbaseWebhookReceived;
 use App\Events\PaymentSucceeded;
 use App\Events\UserPurchasedSubscription;
 use App\Events\UserSyncedWithDiscord;
+use App\Jobs\RegisterOpenSearchUser;
 use App\Listeners\SaveCoinbaseWebhook;
 use App\Listeners\SendUserSubscriptionStatusToDiscord;
 use App\Listeners\StorePayment;
@@ -50,5 +51,8 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+        User::created(function ($user) {
+            RegisterOpenSearchUser::dispatch($user);
+        });
     }
 }

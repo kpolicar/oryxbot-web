@@ -35,6 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'card_brand',
         'card_last_four',
+        'open_observe_password',
     ];
 
     protected $appends = [
@@ -58,6 +59,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         parent::creating(function ($user) {
             $user->GenerateReferralCode();
+            $user->GenerateOpenObservePassword();
 
             if ($referredBy = \Cookie::get('referral')) {
                 $user->referred_by = static::FindByReferral($referredBy)->id;
@@ -83,6 +85,10 @@ class User extends Authenticatable implements MustVerifyEmail
         do {
             $this->referral_code = $referralCode = \Str::random(10);
         } while (static::FindByReferral($referralCode)->exists);
+    }
+
+    protected function GenerateOpenObservePassword() {
+        $this->open_observe_password = \Str::random(16);
     }
 
     public static function FindByReferral($code) {
