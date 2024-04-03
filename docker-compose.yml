@@ -47,7 +47,7 @@ services:
       caddy: logs.oryxbot.com
       caddy.reverse_proxy: "{{upstreams 5080}}"
     volumes:
-      - openobserve:/app/openobserve
+      - ${OPEN_OBSERVE_PATH:-openobserve}:/app/openobserve
     environment:
       - ZO_ROOT_USER_EMAIL='${OPEN_OBSERVE_ROOT_USER:-root@oryxbot.com}'
       - ZO_ROOT_USER_PASSWORD='${OPEN_OBSERVE_ROOT_PASSWORD:-***REMOVED***}'
