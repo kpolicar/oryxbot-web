@@ -13,8 +13,8 @@ sinks:
     method: "post"
     auth:
       strategy: "basic"
-      user: "root@example.com"
-      password: "***REMOVED***"
+      user: "{{ open_observe_user }}"
+      password: "{{ open_observe_password }}"
     compression: "gzip"
     encoding:
       codec: "json"
