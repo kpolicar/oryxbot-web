@@ -49,9 +49,9 @@ services:
     volumes:
       - ${OPEN_OBSERVE_PATH:-openobserve}:/app/openobserve
     environment:
-      - ZO_ROOT_USER_EMAIL='${OPEN_OBSERVE_ROOT_USER:-root@oryxbot.com}'
-      - ZO_ROOT_USER_PASSWORD='${OPEN_OBSERVE_ROOT_PASSWORD:-***REMOVED***}'
-      - ZO_DATA_DIR=/app/openobserve/data
+      ZO_ROOT_USER_EMAIL: ${OPEN_OBSERVE_ROOT_USER:-root@oryxbot.com}
+      ZO_ROOT_USER_PASSWORD: ${OPEN_OBSERVE_ROOT_PASSWORD:-***REMOVED***}
+      ZO_DATA_DIR: /app/openobserve/data
     networks:
       - reverse-proxy
       - default
