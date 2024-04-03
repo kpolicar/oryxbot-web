@@ -48,8 +48,8 @@ class DigitalOceanController extends Controller
         $scriptStartup = base64_encode($scriptStartup);
 
         $vectorConfigFile = File::get(base_path('vector.yaml'))."\n\n";
-        $scriptStartup = Str::replace("{{ open_observe_user }}", $server->user->email, $scriptStartup);
-        $scriptStartup = Str::replace("{{ open_observe_password }}", $server->user->open_observe_password, $scriptStartup);
+        $vectorConfigFile = Str::replace("{{ open_observe_user }}", $server->user->email, $vectorConfigFile);
+        $vectorConfigFile = Str::replace("{{ open_observe_password }}", $server->user->open_observe_password, $vectorConfigFile);
         $vectorConfigFile = base64_encode($vectorConfigFile);
 
         $script = Str::replace("{{ vector_config_base64 }}", $vectorConfigFile, $script);

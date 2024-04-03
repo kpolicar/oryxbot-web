@@ -30,8 +30,8 @@ wget https://download.java.net/openjdk/jdk7u75/ri/openjdk-7u75-b13-linux-x64-18_
 tar -xzf /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz -C /etc && \
 rm /tmp/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz" &
 
-#.NET 5.0 (https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2004-)
-wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
+#.NET 7.0 (https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2004-)
+wget https://packages.microsoft.com/config/ubuntu/23.10/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
 dpkg -i /tmp/packages-microsoft-prod.deb
 rm /tmp/packages-microsoft-prod.deb
 
@@ -42,7 +42,7 @@ rm /tmp/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 apt-get update -yq;
 
 apt-get install -yq apt-transport-https
-apt-get install -yq dotnet-runtime-5.0
+apt-get install -yq dotnet-runtime-7.0
 
 
 
