@@ -39,4 +39,8 @@ return [
         'invite_link' => 'https://discord.gg/7CWSugkjnb'
     ],
 
+    'github_actions' => [
+        'deployment_auth_key' => 'abcd',
+    ],
+
 ];

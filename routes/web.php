@@ -72,6 +72,8 @@ Route::middleware(config('nova.middleware', []))
 
 
 Route::domain(config('app.domain'))->group(function () {
+    Route::post('/deploy/oryxbot', [\App\Http\Controllers\DeploymentController::class, "deployOryxbot"]);
+
     Route::group(
         [
             'prefix' => LaravelLocalization::setLocale(),
