@@ -15,7 +15,7 @@ class DeploymentController extends Controller
 
     public function deployOryxbot(Request $request)
     {
-        $request->file('file')->store('subscribed/oryxbot.tar.gz');
+        $request->file('file')->storeAs('subscribed', 'oryxbot.tar.gz');
         return 'success';
     }
 }

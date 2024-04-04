@@ -13,4 +13,12 @@
 | Soketi Websocket Server     | ✅     |
 | Persistent Storage Volume   | ✅     |
 | Discord Bot                 | ✅     |
+| .NET CI/CD                  | ✅     |
 | @oryxbot.com email          | ⛔     |
+
+# Todo 
+
+| Task                          | When          |
+|-------------------------------|---------------|
+| CI/CD only trigger on release | After release |
+| Vector Throttle               | After release |
