@@ -17,11 +17,11 @@ class DeploymentAuth
     public function handle(Request $request, Closure $next)
     {
         if ($request->hasHeader('authorization') === false) {
-            abort(403);
+            abort(401);
         }
 
-        $header = $request->getHeader('authorization');
-        $jwt = \trim((string) \preg_replace('/^\s*Bearer\s/', '', $header[0]));
+        $header = $request->header('authorization');
+        $jwt = \trim((string) \preg_replace('/^\s*Bearer\s/', '', $header));
 
         if ($jwt !== config('services.github_actions.deployment_auth_key'))  {
             abort(403);

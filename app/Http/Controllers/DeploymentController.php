@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\DeploymentAuth;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 
 class DeploymentController extends Controller
@@ -12,8 +13,9 @@ class DeploymentController extends Controller
         $this->middleware(DeploymentAuth::class);
     }
 
-    public function deployOryxbot()
+    public function deployOryxbot(Request $request)
     {
-
+        $request->file('file')->store('subscribed/oryxbot.tar.gz');
+        return 'success';
     }
 }

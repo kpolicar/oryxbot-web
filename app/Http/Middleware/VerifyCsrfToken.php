@@ -15,5 +15,6 @@ class VerifyCsrfToken extends Middleware
         'stripe/*',
         'coinbase/*',
         'digitalocean/*',
+        'deploy/*',
     ];
 }
