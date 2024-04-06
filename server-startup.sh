@@ -24,6 +24,7 @@ setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /home/oryxbot/apps/Oryxbot/OryxBot
 setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /home/oryxbot/apps/Oryxbot/OryxBot.dll
 
 supervisorctl start oryxbot
+supervisorctl restart vector
 
 # Update server details
 export ID=$(curl -s http://169.254.169.254/metadata/v1/id)

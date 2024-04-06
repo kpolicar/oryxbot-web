@@ -77,12 +77,15 @@ mkdir -p /home/oryxbot/apps/Oryxbot
 chown oryxbot:oryxbot -R /home/oryxbot/
 
 # Always run oryxbot
-echo -e "[program:oryxbot]\ncommand=dotnet /home/oryxbot/apps/Oryxbot/OryxBot.dll\nnumprocs=1\nautostart=false\nautorestart=true\nuser=root\nstdout_logfile=/home/oryxbot/apps/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/oryxbot/apps/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB" > /etc/supervisor/conf.d/oryxbot.conf
+echo -e "[program:oryxbot]\ncommand=dotnet /home/oryxbot/apps/Oryxbot/OryxBot.dll\nnumprocs=1\nautostart=false\nautorestart=true\nuser=root\nstdout_logfile=/home/oryxbot/apps/Oryxbot/output.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/home/oryxbot/apps/Oryxbot/error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB\n" > /etc/supervisor/conf.d/oryxbot.conf
 service supervisor restart
 
 bash -c "$(curl -L https://setup.vector.dev)"
 apt-get install vector
 base64 -d <<< "{{ vector_config_base64 }}" > /etc/vector/vector.yaml
 systemctl enable vector.service
+
+echo -e "[program:vector]\ncommand=vector\nnumprocs=1\nautostart=false\nautorestart=true\nuser=root\nstdout_logfile=/var/log/vector.log\nstdout_logfile_maxbytes=1MB\nstdout_logfile_backups=10\nstdout_capture_maxbytes=1MB\nstderr_logfile=/var/log/vector.error.log\nstderr_logfile_maxbytes=1MB\nstderr_logfile_backups=10\nstderr_capture_maxbytes=1MB\n" >> /etc/supervisor/conf.d/oryxbot.conf
+service supervisor restart
 
 echo "Finished Setup Process"

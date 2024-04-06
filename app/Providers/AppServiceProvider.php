@@ -9,6 +9,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use CoinbaseCommerce\ApiClient as CoinbaseClient;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Facades\Request;
 use Laravel\Cashier\Cashier;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 use Str;

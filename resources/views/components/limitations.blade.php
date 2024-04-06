@@ -15,7 +15,7 @@
     @endif
 
     @if(in_array('in_foreground', $restrictions))
-    <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-mouse-pointer text-3xl mr-3 text-gray-200"></i> Runs in foreground</h2>
+    <h2 class="text-gray-300 text-xl font-bold"><i class="fas fa-mouse-pointer text-3xl mr-3 text-gray-200"></i> Takes control of your computer</h2>
     <p class="text-gray-500 my-3">
         Oryxbot does not inject keyboard and mouse events directly into the Albion client application.<br>
         Instead, it takes complete control of your cursor and keyboard, meaning you cannot do anything else with your computer while it is running.

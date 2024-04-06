@@ -29,6 +29,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+Route::bind('instance', function ($value, \Illuminate\Routing\Route $route) {
+    return request()->user()->instances()->where('slug', $value)->first();
+});
+
 Route::middleware(config('nova.middleware', []))
     ->domain(config('nova.domain', null))
     ->prefix(Nova::path())

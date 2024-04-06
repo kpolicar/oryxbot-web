@@ -57,6 +57,7 @@ class DigitalOceanController extends Controller
         $script .= "base64 -d <<< \"$scriptStartup\" > /etc/oryxbot.startup.sh\n";
         $script .= "chown oryxbot:oryxbot /etc/oryxbot.startup.sh\n";
         $script .= "chmod -R ug+x /etc/oryxbot.startup.sh\n";
+        $script .= "/etc/oryxbot.startup.sh\n";
 
         return $script;
     }

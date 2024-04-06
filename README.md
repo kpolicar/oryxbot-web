@@ -18,7 +18,9 @@
 
 # Todo 
 
-| Task                          | When          |
-|-------------------------------|---------------|
-| CI/CD only trigger on release | After release |
-| Vector Throttle               | After release |
+| Task                                                                    | When          |
+|-------------------------------------------------------------------------|---------------|
+| CI/CD only trigger on release                                           | After release |
+| Vector Throttle                                                         | After release |
+| Check openobserve user log permissions - can they read other users logs | After release |
+| Ship laravel logs to openobserve                                        | After release |
