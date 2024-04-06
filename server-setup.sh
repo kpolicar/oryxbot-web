@@ -50,7 +50,7 @@ apt-get install -yq dotnet-runtime-7.0
 
 apt-get install pptpd -yq
 
-echo -e "$VPN_USERNAME\t*\t$VPN_PASSWORD\t\t*" > /etc/ppp/chap-secrets
+echo -e "{{ vpn_username }}\t*\t{{ vpn_password }}\t\t*" > /etc/ppp/chap-secrets
 echo -e "localip 10.0.0.1\nremoteip 10.0.0.100-200\nconnections 1" >> /etc/pptpd.conf
 echo -e "ms-dns 8.8.8.8\nms-dns 8.8.4.4" >> /etc/ppp/pptpd-options
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
@@ -65,6 +65,7 @@ systemctl enable pptpd
 apt-get install -yq --allow-unauthenticated \
         libc6-dev \
         libgdiplus \
+        libxi6 \
         libx11-dev \
      && rm -rf /var/lib/apt/lists/*
 

@@ -31,7 +31,7 @@ export ID=$(curl -s http://169.254.169.254/metadata/v1/id)
 export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
 export PRIVATE_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address)
 
-curl "{{ app_url }}/api/v1/digitalocean/vpn?droplet_id=406370707" \
+curl "{{ app_url }}/api/v1/digitalocean/vpn?droplet_id=$ID" \
      -H "Accept: application/json" \
      -H "Authorization: Bearer $API_TOKEN" > /etc/ppp/chap-secrets
 

@@ -335,23 +335,26 @@
                         }, 5000);
                     }
                     let refreshVpnServiceStatus =
-                        () => fetch("http://127.0.0.1:5558", { mode: 'no-cors'})
-                            .then(r => {
-                                if (vpn_status !== 'Online') {
-                                    console.log('Successfully pinged VPN discoverability server');
-                                }
-                                vpn_status = 'Online'
-                                document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'block');
-                                document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'none');
-                                document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.add('success'));
-                            })
-                            .catch(reason => {
-                                vpn_status = 'Unknown';
-                                console.log('Failed to ping VPN discoverability server');
-                                document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'none');
-                                document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'block');
-                                document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.remove('success'));
-                            });
+                        () => {
+                            fetch("http://10.0.0.1:5558", {mode: 'no-cors'})
+                                .then(() => {
+                                    if (vpn_status !== 'Online') {
+                                        console.log('Successfully pinged VPN discoverability server');
+                                    }
+                                    vpn_status = 'Online'
+                                    document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'block');
+                                    document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'none');
+                                    document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.add('success'));
+                                })
+                                .catch((reason) => {
+                                    vpn_status = 'Unknown';
+                                    console.log('Failed to ping VPN discoverability server');
+                                    console.log(reason.message);
+                                    document.querySelectorAll('[data-vpn-online]').forEach(el => el.style.display = 'none');
+                                    document.querySelectorAll('[data-vpn-offline]').forEach(el => el.style.display = 'block');
+                                    document.querySelectorAll('[data-vpn-online-success]').forEach(el => el.classList.remove('success'));
+                                });
+                        }
                     timeout();
                     refreshVpnServiceStatus();
                 </script>

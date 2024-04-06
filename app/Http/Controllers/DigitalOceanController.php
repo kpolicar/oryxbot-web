@@ -31,8 +31,6 @@ class DigitalOceanController extends Controller
         $script = '';
         $script .= '#!/bin/bash'."\n\n";
         $script .= "echo $accessToken > /etc/oryxbot.apikey;"."\n\n";
-        $script .= "export VPN_USERNAME=$server->vpn_username;"."\n\n";
-        $script .= "export VPN_PASSWORD=$server->vpn_password;"."\n\n";
 
         if (Str::endsWith(config('app.domain'), '.test')) {
             $script .= 'echo "10.0.0.100 '.config('app.domain') ."\" >> /etc/hosts\n\n";
@@ -40,6 +38,8 @@ class DigitalOceanController extends Controller
         }
 
         $script .= File::get(base_path('server-setup.sh'))."\n\n";
+        $script = Str::replace("{{ vpn_username }}", $server->vpn_username, $script);
+        $script = Str::replace("{{ vpn_password }}", $server->vpn_password, $script);
 
         $script = Str::replace("{{ app_url }}", config('app.url'), $script);
 
