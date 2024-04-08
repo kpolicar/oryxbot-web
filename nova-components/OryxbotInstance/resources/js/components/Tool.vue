@@ -375,7 +375,7 @@ export default {
         };
 
         let refreshVncServiceStatus =
-            () => fetch("http://127.0.0.1:5801", { mode: 'no-cors'})
+            () => fetch("http://127.0.0.1:5800", { mode: 'no-cors'})
                 .then(r => {
                     if (this.vnc_status !== 'Online') {
                         console.log('Successfully pinged local TightVNC server');

@@ -48,5 +48,5 @@ return [
 
     'bot_snapshot_id'   => '151635041',
 
-    'ssh_key_public' => 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhOpROxNu2P2jQpeYlDbaSiPq3Oa+p7I58eCYpBNutd admin@oryxbot.com',
+    'ssh_key_public' => file_get_contents(base_path('id_oryxbot_admin.pub')),
 ];
