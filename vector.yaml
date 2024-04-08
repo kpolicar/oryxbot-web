@@ -11,6 +11,8 @@ transforms:
     source: >-
       .|= parse_regex!(.message, r'^(?<timestamp>\d+-\d+-\d+ \d+:\d+:\d+\.\d+)\|(?<severity>\w+)\|(?<logger>\w+)\|(?<message>.*)$')
 
+      .timestamp = parse_timestamp!(.timestamp, format: "%Y-%m-%d %H:%M:%S.%f")
+
       additional = {"user": "{{ open_observe_user }}"}
 
       . = merge(., additional)
