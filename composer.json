@@ -36,7 +36,8 @@
         "pusher/pusher-php-server": "~3.0",
         "symfony/http-client": "^5.4",
         "symfony/postmark-mailer": "^5.4",
-        "team-reflex/discord-php": "^5.1"
+        "team-reflex/discord-php": "^5.1",
+        "wildbit/swiftmailer-postmark": "^3.4"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

@@ -39,7 +39,7 @@ class RegisterOpenSearchUser implements ShouldQueue
             "email" => $this->user->email,
             "first_name" => $this->user->name,
             "last_name" => "",
-            "password" => $this->user->open_search_password,
+            "password" => $this->user->open_observe_password,
             "role" => "member"
         ];
         $response = Http::withBasicAuth(config('openobserve.root_user'), config('openobserve.root_password'))
