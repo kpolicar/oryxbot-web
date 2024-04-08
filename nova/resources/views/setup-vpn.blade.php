@@ -240,7 +240,13 @@
                             </li>
                             <li>
                                 @if (!optional($instance->server)->ip_address && optional($instance->server)->vpn_username )
-                                <span class="loader"></span>
+                                <span class="loader" id="loader1"></span>
+                                <script src="https://unpkg.com/@popperjs/core@2"></script>
+                                <script src="https://unpkg.com/tippy.js@6"></script>
+                                <script>tippy('#loader1', {
+                                        content: 'It may take a minute or two before the IP address is assigned. Please refresh the page.',
+                                    })[0].show();
+                                </script>
                                 @else
                                     {{ $instance->server->ip_address ?? '?' }}
                                 @endif
