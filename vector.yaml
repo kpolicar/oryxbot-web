@@ -4,6 +4,17 @@ sources:
     include:
       - "/home/oryxbot/apps/Oryxbot/*.log"
 
+transforms:
+  modify:
+    type: "remap"
+    inputs: ["oryxbot_client_logs"]
+    source: >-
+      .|= parse_regex!(.message, r'^(?<timestamp>\d+-\d+-\d+ \d+:\d+:\d+\.\d+)\|(?<severity>\w+)\|(?<logger>\w+)\|(?<message>.*)$')
+
+      additional = {"user": "{{ open_observe_user }}"}
+
+      . = merge(., additional)
+
 sinks:
   oryxbot_server_logs:
     type: "http"

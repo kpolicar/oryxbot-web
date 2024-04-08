@@ -49,4 +49,4 @@ Route::post('{instance}/status', function (Request $request, $instance) {
     \App\Events\RequestStatus::dispatch($request->user(), 0);
 });
 
-Route::post('{instance}/server-reboot', [\App\Http\Controllers\SshController::class, "reboot"])/*->middleware(['throttle:1,1'])*/;
+Route::post('{instance}/server-reboot', [\App\Http\Controllers\SshController::class, "reboot"])->middleware(['throttle:3,1']);
