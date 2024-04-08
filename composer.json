@@ -34,6 +34,8 @@
         "phpseclib/bcmath_compat": "1.0.4",
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "~3.0",
+        "symfony/http-client": "^5.4",
+        "symfony/postmark-mailer": "^5.4",
         "team-reflex/discord-php": "^5.1"
     },
     "require-dev": {
