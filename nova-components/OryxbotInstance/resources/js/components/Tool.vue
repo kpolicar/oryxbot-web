@@ -542,7 +542,7 @@ export default {
         RebootServer() {
             this.requestingServerReboot = true;
             Nova.request().post(this.$route.fullPath + '/server-reboot')
-                .then(() => Nova.success('Server is rebooting'))
+                .then(() => Nova.success('Service has successfully restarted'))
                 .catch(error => Nova.error(error.response.data.message))
                 .finally(() => this.requestingServerReboot = false);
         },
