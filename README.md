@@ -14,8 +14,9 @@
 | Persistent Storage Volume   | ✅     |
 | Discord Bot                 | ✅     |
 | .NET CI/CD                  | ✅     |
-| Email sending (postmark)    | ⛔     |
+| Email sending (postmark)    | ✅     |
 | @oryxbot.com email          | ⛔     |
+| Cloudflare CDN              | ⛔     |
 
 # Todo 
 
