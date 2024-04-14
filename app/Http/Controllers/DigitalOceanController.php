@@ -134,7 +134,7 @@ class DigitalOceanController extends Controller
             $existingSshKey = collect($client->key()->getAll())->firstWhere('publicKey', config('digitalocean.ssh_key_public'));
 
             $key = $existingSshKey
-                ?: $client->key()->create('oryxbot.com', config('digitalocean.ssh_key_public'));
+                ?: $client->key()->create(config('app.domain'), config('digitalocean.ssh_key_public'));
 
             $server->ssh_key_id = $key->id;
         } catch (\Throwable $exception) {

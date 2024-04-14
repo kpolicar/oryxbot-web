@@ -26,6 +26,7 @@ class Server extends Model
         'vpn_username',
         'vpn_password',
         'online',
+        'client_version',
     ];
 
 

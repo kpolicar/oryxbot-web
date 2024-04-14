@@ -21,7 +21,6 @@ class Instance extends Model
         'server',
         'setup_route',
         'is_active',
-        'client_version',
     ];
 
     protected $with = [
@@ -76,5 +75,10 @@ class Instance extends Model
     public function getIsActiveAttribute()
     {
         return !!optional($this->server)->ip_address;
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return request()->user()->subscription()->instances()->where('slug', $value)->orderByDesc('created_at')->first();
     }
 }

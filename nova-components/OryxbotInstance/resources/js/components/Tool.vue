@@ -1,13 +1,13 @@
 <template>
     <div>
-        <heading class="mb-6">
-            {{ instance.name }}a
+        <heading>
+            {{ instance.name }}
             <small :class="{'opacity-50': requestingStatus, 'text-primary': serverOnline}"
                    class="text-xs font-mono uppercase">
                 {{ serverOnline ? 'Online' : (instance.server ? 'Offline' : 'Requires setup') }}
             </small>
         </heading>
-        <div>{{ instance.client_version }}</div>
+        <div class="mb-6 text-xs text-primary">{{ instance.server.client_version }}</div>
 
         <div class="flex mb-4">
             <button class="btn btn-default btn-primary px-8"

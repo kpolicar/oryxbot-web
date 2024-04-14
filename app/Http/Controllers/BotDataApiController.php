@@ -25,9 +25,9 @@ class BotDataApiController extends Controller
         $this->middleware(DecryptApiRequest::class);
     }
 
-    public function UpdateClientVersion(Request $request, Instance $instance) {
-        $instance->client_version = e($request->post('version'));
-        $instance->save();
+    public function UpdateClientVersion(Request $request, $version, Instance $instance) {
+        $instance->server->client_version = e($request->post('version'));
+        $instance->server->save();
     }
 
     public function BroadcastStepChanged(Request $request) {

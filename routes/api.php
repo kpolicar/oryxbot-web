@@ -19,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::bind('instance', function ($value, \Illuminate\Routing\Route $route) {
-    return request()->user()->instances()->where('slug', $value)->orderByDesc('created_at')->first();
-});
-
 Broadcast::routes(['middleware' => 'auth:api']);
 
 Route::prefix('/discord')->group(function () {
@@ -57,7 +53,7 @@ Route::prefix('/instance/{instance}')->group(function () {
             });
         });
 
-    Route::middleware(['auth:api', Subscribed::class])
+    Route::middleware(['auth:api', Subscribed::class, \Illuminate\Routing\Middleware\SubstituteBindings::class])
         ->prefix('/data')
         ->group(function () {
             Route::post('stepchanged', [BotDataApiController::class, "BroadcastStepChanged"]);
