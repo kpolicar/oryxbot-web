@@ -21,6 +21,7 @@ class Instance extends Model
         'server',
         'setup_route',
         'is_active',
+        'client_version',
     ];
 
     protected $with = [

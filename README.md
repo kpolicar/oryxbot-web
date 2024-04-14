@@ -30,3 +30,4 @@
 | Fix VPN discoverability server (https issue)                                                   | After release  |
 | Mouse positions for starting trade mission dont work                                           | Before release  |
 | Resuming trade mission dont work                                                               | Before release |
+| Authentication for openobserve API (now it's only on the /web)                                 | After release |

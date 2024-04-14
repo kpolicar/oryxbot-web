@@ -7,11 +7,11 @@
 @section('hero')
     <x-main-hero>
 
-        <h2 class="tracking-loose text-xl w-full font">v1.0</h2>
+        <h2 class="tracking-loose text-xl w-full font">v2.0</h2>
         <h1 class="mb-0 text-5xl font-bold leading-tight">Release notes</h1>
-        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">8th November 2021</h2>
+        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">14th April 2023</h2>
         <p class="leading-normal text-lg mb-2">
-            Welcome to the official release of Oryxbot!
+            Welcome to the official rework of Oryxbot!
         </p>
         <p class="leading-normal text-lg mb-2">
             Below you will find important information regarding this version of the bot client.
@@ -41,8 +41,14 @@
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span>
-                                Fully reworked client to run on
-                                <strong class="text-gray-300">external Oryxbot Server</strong>
+                                Reworked <strong class="text-gray-300">Oryxbot client</strong>: it is now hosted on the
+                                user's Digital Ocean
+                            </span>
+                        </li>
+                        <li class="py-3 flex">
+                            <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
+                            <span>
+                                Created a new <strong class="text-gray-300">installation wizard</strong> for setting up an Oryxbot-managed Digital Ocean droplet
                             </span>
                         </li>
                         <li class="py-3 flex">
@@ -54,8 +60,7 @@
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span>
-                                Added <strong class="text-gray-300">dashboard</strong> - an online interface
-                                for interacting with Oryxbot
+                                Added <strong class="text-gray-300">live logs</strong> to the dashboard
                             </span>
                         </li>
                     </ul>
@@ -68,6 +73,18 @@
                     <ul class="text-gray-500 p-6 px-4 -mx-2 rounded-lg">
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
+                            <span class="pt-1">Improve the <strong class="text-gray-300">dashboard controls</strong>, more consistent functionality</span>
+                        </li>
+                        <li class="py-3 flex">
+                            <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
+                            <span class="pt-1">Add more <strong class="text-gray-300">live data</strong> about the game to the dashboard</span>
+                        </li>
+                        <li class="py-3 flex">
+                            <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
+                            <span class="pt-1">Fix the <strong class="text-gray-300">VPN and VNC status indicators</strong></span>
+                        </li>
+                        <li class="py-3 flex">
+                            <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
                             <span class="pt-1">Re-add the feature for recording <strong class="text-gray-300">custom trade mission routes</strong></span>
                         </li>
                         <li class="py-3 flex">
@@ -76,11 +93,11 @@
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                            <span class="pt-1">Further improve behavior for when the <strong class="text-gray-300">bot is stuck</strong></span>
+                            <span class="pt-1">Improve behavior for when the <strong class="text-gray-300">bot is stuck</strong></span>
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                            <span class="pt-1">Restart the bot <strong class="text-gray-300">on character death</strong></span>
+                            <span class="pt-1">Recover the trade mission <strong class="text-gray-300">when the character dies</strong></span>
                         </li>
                     </ul>
 

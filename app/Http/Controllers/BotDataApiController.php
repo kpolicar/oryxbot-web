@@ -3,6 +3,7 @@
 
 use App\Http\Middleware\DecryptApiRequest;
 use App\Http\Middleware\EncryptApiResponse;
+use App\Models\Instance;
 use Illuminate\Http\Request;
 
 class BotDataApiController extends Controller
@@ -22,6 +23,11 @@ class BotDataApiController extends Controller
     {
         $this->middleware(EncryptApiResponse::class);
         $this->middleware(DecryptApiRequest::class);
+    }
+
+    public function UpdateClientVersion(Request $request, Instance $instance) {
+        $instance->client_version = e($request->post('version'));
+        $instance->save();
     }
 
     public function BroadcastStepChanged(Request $request) {

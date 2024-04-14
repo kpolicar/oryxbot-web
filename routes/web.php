@@ -30,7 +30,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 Route::bind('instance', function ($value, \Illuminate\Routing\Route $route) {
-    return request()->user()->instances()->where('slug', $value)->first();
+    return request()->user()->instances()->where('slug', $value)->orderByDesc('created_at')->first();
 });
 
 Route::middleware(config('nova.middleware', []))

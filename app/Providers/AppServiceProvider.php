@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Contracts\ApiEncrypter as ApiEncrypterContract;
 use App\Http\Controllers\CashierWebhookController;
 use App\ImageVersion;
+use App\InfrastructureVersion;
 use App\Models\Subscription;
 use App\Models\User;
 use CoinbaseCommerce\ApiClient as CoinbaseClient;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->instance(ClientVersion::class, new ClientVersion);
         $this->app->instance(ImageVersion::class, new ImageVersion);
+        $this->app->instance(InfrastructureVersion::class, new InfrastructureVersion);
         $this->app->bind(ApiEncrypterContract::class, function () {
             $key = config('app.api_key');
             if (Str::startsWith($key, 'base64:')) {

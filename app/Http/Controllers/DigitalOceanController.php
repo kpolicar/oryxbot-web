@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ClientVersion;
 use App\ImageVersion;
+use App\InfrastructureVersion;
 use File;
 use DB;
 use App\Models\Instance;
@@ -31,6 +33,7 @@ class DigitalOceanController extends Controller
         $script = '';
         $script .= '#!/bin/bash'."\n\n";
         $script .= "echo $accessToken > /etc/oryxbot.apikey;"."\n\n";
+        $script .= "echo {$server->instance->slug} > /etc/oryxbot.instance_endpoint;"."\n\n";
 
         if (Str::endsWith(config('app.domain'), '.test')) {
             $script .= 'echo "10.0.0.100 '.config('app.domain') ."\" >> /etc/hosts\n\n";
@@ -90,7 +93,11 @@ class DigitalOceanController extends Controller
         return redirect(route('setup', compact('instance')));
     }
 
-    public function deployServer(Request $request, Instance $instance, ImageVersion $imageVersion)
+    public function deployServer(Request $request,
+                                 Instance $instance,
+                                 ImageVersion $imageVersion,
+                                 InfrastructureVersion $infrastructureVersion,
+                                 ClientVersion $clientVersion)
     {
         $request->validate([
             'terms' => 'accepted',
@@ -118,7 +125,10 @@ class DigitalOceanController extends Controller
         $server->token_id = $accessToken->token->id;
         $server->droplet_image = Server::IMAGE;
         $server->droplet_name = $instance->slug . "--$server->droplet_size-$server->droplet_region";
+
         $server->image_version = $imageVersion->latest()['name'];
+        $server->infrastructure_version = $infrastructureVersion->latest()['name'];
+        $server->client_version = $clientVersion->latest()['name'];
 
         try {
             $existingSshKey = collect($client->key()->getAll())->firstWhere('publicKey', config('digitalocean.ssh_key_public'));
@@ -158,7 +168,7 @@ class DigitalOceanController extends Controller
                 $startupScript,
                 true,
                 [],
-                ['bot']);
+                ['oryxbot', 'instance']);
         } catch (\Throwable $exception) {
             DB::rollBack();
             report($exception);
