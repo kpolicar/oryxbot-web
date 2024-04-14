@@ -47,7 +47,7 @@ services:
       caddy: logs.oryxbot.com
       caddy.reverse_proxy: "{{upstreams 5080}}"
       caddy.@web.path: /web/*
-      caddy.basicauth: "@match kpolicar ***REMOVED***"
+      caddy.basicauth: "@web kpolicar ***REMOVED***"
     volumes:
       - ${OPEN_OBSERVE_PATH:-openobserve}:/app/openobserve
     environment:
