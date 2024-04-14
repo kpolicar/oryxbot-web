@@ -40,7 +40,7 @@ return [
     ],
 
     'github_actions' => [
-        'deployment_auth_key' => 'abcd',
+        'deployment_auth_key' => env('DEPLOYMENT_PASSWORD'),
     ],
 
 ];
