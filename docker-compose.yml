@@ -6,7 +6,7 @@ services:
       dockerfile: ./docker/nginx.Dockerfile
     restart: always
     labels:
-      caddy: temp.oryxbot.com, dashboard.oryxbot.com
+      caddy: oryxbot.com, dashboard.oryxbot.com
       caddy.reverse_proxy: "{{upstreams 80}}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
