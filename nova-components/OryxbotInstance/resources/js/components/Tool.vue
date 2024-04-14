@@ -7,7 +7,7 @@
                 {{ serverOnline ? 'Online' : (instance.server ? 'Offline' : 'Requires setup') }}
             </small>
         </heading>
-        <div class="mb-6 text-xs text-primary">{{ instance.server.client_version }}</div>
+        <div class="mb-6 text-xs text-primary">{{ instance.server ? instance.server.client_version : '' }}</div>
 
         <div class="flex mb-4">
             <button class="btn btn-default btn-primary px-8"

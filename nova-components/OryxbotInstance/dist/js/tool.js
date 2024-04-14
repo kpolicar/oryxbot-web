@@ -4,6 +4,7 @@
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
@@ -5859,7 +5860,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mb-6 text-xs text-primary" }, [
-        _vm._v(_vm._s(_vm.instance.server.client_version))
+        _vm._v(
+          _vm._s(_vm.instance.server ? _vm.instance.server.client_version : "")
+        )
       ]),
       _vm._v(" "),
       _c(
