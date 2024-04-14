@@ -9,9 +9,9 @@ transforms:
     type: "remap"
     inputs: ["oryxbot_client_logs"]
     source: >-
-      .|= parse_regex!(.message, r'^(?<timestamp>\d+-\d+-\d+ \d+:\d+:\d+\.\d+)\|(?<severity>\w+)\|(?<logger>\w+)\|(?<message>.*)$')
+      .|= parse_regex!(.message, r'^(?<_timestamp>\d+-\d+-\d+ \d+:\d+:\d+\.\d+)\|(?<severity>\w+)\|(?<logger>\w+)\|(?<message>.*)$')
 
-      .timestamp = parse_timestamp!(.timestamp, format: "%Y-%m-%d %H:%M:%S.%f")
+      ._timestamp = parse_timestamp!(._timestamp, format: "%Y-%m-%d %H:%M:%S%.f")
 
       additional = {"user": "{{ open_observe_user }}"}
 
@@ -21,7 +21,7 @@ sinks:
   oryxbot_server_logs:
     type: "http"
     inputs:
-      - oryxbot_client_logs
+      - modify
     uri: "https://logs.oryxbot.com/api/default/default/_json"
     method: "post"
     auth:
@@ -34,3 +34,7 @@ sinks:
       timestamp_format: "rfc3339"
     healthcheck:
       enabled: false
+
+log_schema:
+  timezone: "Europe/Paris"
+  timestamp_key: "_timestamp"
