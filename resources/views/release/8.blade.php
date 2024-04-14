@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'v1.0 - Release Notes')
+@section('title', 'v2.0 - Release Notes')
 @section('meta:description', __('meta.news_description'))
 
 
@@ -9,7 +9,7 @@
 
         <h2 class="tracking-loose text-xl w-full font">v2.0</h2>
         <h1 class="mb-0 text-5xl font-bold leading-tight">Release notes</h1>
-        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">14th April 2023</h2>
+        <h2 class="mb-4 font-bold tracking-loose text-lg w-full font">14th April 2024</h2>
         <p class="leading-normal text-lg mb-2">
             Welcome to the official rework of Oryxbot!
         </p>
@@ -41,14 +41,14 @@
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span>
-                                Reworked <strong class="text-gray-300">Oryxbot client</strong>: it is now hosted on the
-                                user's Digital Ocean
+                                Reworked <strong class="text-gray-300">Oryxbot service</strong>: it is now hosted on the
+                                user's virtual machine
                             </span>
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-plus text-3xl mr-3 text-gray-200"></i>
                             <span>
-                                Created a new <strong class="text-gray-300">installation wizard</strong> for setting up an Oryxbot-managed Digital Ocean droplet
+                                Created a new <strong class="text-gray-300">installation wizard</strong> for setting up an Oryxbot-managed virtual machine
                             </span>
                         </li>
                         <li class="py-3 flex">
@@ -81,7 +81,7 @@
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
-                            <span class="pt-1">Fix the <strong class="text-gray-300">VPN and VNC status indicators</strong></span>
+                            <span class="pt-1">Fix the <strong class="text-gray-300">connectivity status indicators</strong></span>
                         </li>
                         <li class="py-3 flex">
                             <i class="fas fa-clock text-3xl mr-3 text-gray-200"></i>
@@ -105,7 +105,7 @@
                 <x-limitations :restrictions="['in_foreground', 'full_screen', 'needs_assistance']" />
             </div>
 
-            <a href="{{ route('release', ['version' => 'v0.6beta']) }}" class="flex items-center group" style="width: fit-content">
+            <a href="{{ route('release', ['version' => 'v1']) }}" class="flex items-center group" style="width: fit-content">
                 <i class="fas fa-backward text-3xl pr-4 transform group-hover:-translate-x-2 duration-100"></i>
                 <span class="group-hover:underline">
                 Check out the <strong class="text-gray-300">previous release notes</strong>

@@ -49,7 +49,7 @@ class ClientVersion
                 'name' => 'v1.0',
             ],
             8 => [
-                'number' => 7,
+                'number' => 8,
                 'code' => 'v2',
                 'name' => 'v2.0',
             ],

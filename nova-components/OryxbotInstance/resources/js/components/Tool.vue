@@ -1,7 +1,7 @@
 <template>
     <div>
         <heading class="mb-6">
-            {{ instance.name }}
+            {{ instance.name }}a
             <small :class="{'opacity-50': requestingStatus, 'text-primary': serverOnline}"
                    class="text-xs font-mono uppercase">
                 {{ serverOnline ? 'Online' : (instance.server ? 'Offline' : 'Requires setup') }}

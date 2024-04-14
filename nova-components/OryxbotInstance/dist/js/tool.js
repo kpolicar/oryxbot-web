@@ -5833,7 +5833,7 @@ var render = function() {
     "div",
     [
       _c("heading", { staticClass: "mb-6" }, [
-        _vm._v("\n        " + _vm._s(_vm.instance.name) + "\n        "),
+        _vm._v("\n        " + _vm._s(_vm.instance.name) + "a\n        "),
         _c(
           "small",
           {
