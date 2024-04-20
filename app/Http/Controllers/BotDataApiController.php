@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class BotDataApiController extends Controller
 {
     private const REQUEST_PARAM_BOT_STEP = 'bot_step';
+    private const REQUEST_PARAM_BOT_STEP_PERCENT_COMPLETE = 'bot_step_percent_complete';
     private const REQUEST_PARAM_CHARACTER_SPEED = 'character_speed';
     private const REQUEST_PARAM_CHARACTER_POSITION_X = 'character_x';
     private const REQUEST_PARAM_CHARACTER_POSITION_Y = 'character_y';
@@ -67,6 +68,7 @@ class BotDataApiController extends Controller
             $request->boolean(static::REQUEST_PARAM_BOT_RUNNING),
             $request->boolean(static::REQUEST_PARAM_BOT_RECORDING_RUNNING),
             $this->formatBotStepFromRequest($request),
+            $request->input(static::REQUEST_PARAM_BOT_STEP_PERCENT_COMPLETE),
             $request->boolean(static::REQUEST_PARAM_REMOTE_DESKTOP_CONNECTED),
             $this->formatRemoteDesktopResolutionFromRequest($request),
             false

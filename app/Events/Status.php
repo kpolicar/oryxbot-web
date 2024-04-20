@@ -17,6 +17,7 @@ class Status extends BotEvent
     public $botRunning;
     public $botRecordingRunning;
     public $botStep;
+    public $botStepPercentComplete;
     public $remoteDesktopConnected;
     public $remoteDesktopResolution;
     public $vpnEstablished;
@@ -29,6 +30,7 @@ class Status extends BotEvent
         bool $botRunning,
         bool $botRecordingRunning,
         string $botStep,
+        int $botStepPercentComplete,
         bool $remoteDesktopConnected,
         string $remoteDesktopResolution,
         bool $vpnEstablished)
@@ -39,6 +41,7 @@ class Status extends BotEvent
         $this->botRunning = $botRunning;
         $this->botRecordingRunning = $botRecordingRunning;
         $this->botStep = $botStep;
+        $this->botStepPercentComplete = $botStepPercentComplete;
         $this->remoteDesktopConnected = $remoteDesktopConnected;
         $this->remoteDesktopResolution = $remoteDesktopResolution;
         $this->vpnEstablished = $vpnEstablished;

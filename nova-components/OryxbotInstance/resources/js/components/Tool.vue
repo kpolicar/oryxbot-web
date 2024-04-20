@@ -121,7 +121,7 @@
                     <h3 class="mr-3 text-base text-80 font-bold uppercase">Step</h3>
                 </div>
                 <p class="flex items-center text-4xl mb-4">{{ step }}</p>
-                <p class="flex items-center text-80 font-bold">{{ progress }}</p>
+                <p class="flex items-center text-80 font-bold">{{ stepPercentComplete }}% complete</p>
             </loading-card>
             <loading-card :loading="false" class="px-6 py-4 w-1/4 mx-8">
                 <div class="flex mb-4">
@@ -310,6 +310,7 @@ function initBrodcasting() {
         this.speed= e.characterSpeed;
         this.running= e.botRunning;
         this.step= e.botStep;
+        this.stepPercentComplete= e.botStepPercentComplete;
         this.remote_connected= e.remoteDesktopConnected;
         this.remote_resolution= e.remoteDesktopResolution;
         this.vpn_connected= e.vpnEstablished;
@@ -425,10 +426,10 @@ export default {
     },
     data: () => ({
         step: '-',
+        stepPercentComplete: 0,
         location: '-',
         session: '-',
         speed: '0',
-        progress: '0% complete',
         vpn_connected: false,
         remote_connected: false,
         vnc_status: 'Unknown',
