@@ -14,7 +14,7 @@ class StripeController extends Controller
     public function __construct() {
         $this->middleware('throttle:stripe')
             ->except('cancelTrial');
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', /*'verified'todo*/]);
         $this->middleware('customer');
     }
 

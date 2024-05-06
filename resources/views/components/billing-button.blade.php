@@ -12,6 +12,7 @@
     </button>
 @else
     @php($purchaseNotPossible = !Auth::user()->hasVerifiedEmail())
+    @php($purchaseNotPossible = false /*todo*/)
     @php($class = $purchaseNotPossible ? "cursor-not-allowed hover:no-underline ".$class : $class)
 
     <a @if($class != "")class="{{ $class }}@endif"

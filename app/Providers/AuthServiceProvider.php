@@ -45,8 +45,8 @@ class AuthServiceProvider extends ServiceProvider
 
 
         Gate::define('purchase-subscription', function (User $user) {
-            return $user->hasVerifiedEmail()
-                && (!$user->hasStripeId() || !$user->subscribed())
+            return /*$user->hasVerifiedEmail() todo
+                && */(!$user->hasStripeId() || !$user->subscribed())
                 && !$user->hasIncompletePayment();
         });
     }
