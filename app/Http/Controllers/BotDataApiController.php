@@ -68,7 +68,7 @@ class BotDataApiController extends Controller
             $request->boolean(static::REQUEST_PARAM_BOT_RUNNING),
             $request->boolean(static::REQUEST_PARAM_BOT_RECORDING_RUNNING),
             $this->formatBotStepFromRequest($request),
-            $request->input(static::REQUEST_PARAM_BOT_STEP_PERCENT_COMPLETE),
+            $request->input(static::REQUEST_PARAM_BOT_STEP_PERCENT_COMPLETE) ?? 0,
             $request->boolean(static::REQUEST_PARAM_REMOTE_DESKTOP_CONNECTED),
             $this->formatRemoteDesktopResolutionFromRequest($request),
             false
