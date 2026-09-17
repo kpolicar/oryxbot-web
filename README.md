@@ -5,7 +5,7 @@ Laravel platform behind oryxbot.com: accounts, subscriptions, one-click bot serv
 ## What it is
 
 - The web side of [oryxbot](https://github.com/kpolicar/oryxbot): marketing site, sign-up and billing, plus a Laravel Nova dashboard where each subscriber sets up and remote-controls their own bot instance.
-- It provisions the bot's infrastructure for the user: a DigitalOcean droplet in their own account, pre-configured with the bot, a VNC client, a VPN server and log shipping.
+- It provisions the bot's server for the user: a DigitalOcean droplet in their own account, pre-configured with the bot, a VNC client, a PPTP VPN server and log shipping. The player's own Windows PC keeps running the game; the setup wizard walks them through installing a TightVNC server and adding a Windows VPN connection to the droplet.
 - It is the message bus between bot and browser: the bot reports position, current step and status over an encrypted API; the dashboard streams that live and sends start, stop and resume commands back over WebSockets.
 
 ## Background
@@ -17,18 +17,27 @@ Laravel platform behind oryxbot.com: accounts, subscriptions, one-click bot serv
 
 ```mermaid
 flowchart LR
-    U["Subscriber's browser"] <-- "live status via Soketi" --> W["Laravel + Nova dashboard<br/>oryxbot.com"]
+    subgraph PC["Player's PC (Windows)"]
+        Game["Albion Online<br/>+ TightVNC server"]
+    end
+    subgraph Cloud["Bot server (subscriber's DigitalOcean droplet)"]
+        VPN["PPTP VPN server"]
+        Bot["OryxBot client<br/>+ packet sniffer"]
+        VNCC["VncClient.jar"]
+    end
+    U["Subscriber's browser"] <-->|"live status, start / stop<br/>(Soketi WebSocket)"| W["oryxbot.com<br/>Laravel + Nova dashboard"]
     CI["GitHub Actions<br/>(oryxbot repo)"] -- "oryxbot.tar.gz" --> W
-    W -- "Stripe / Coinbase" --> S[("Subscription")]
-    W -- "DigitalOcean API<br/>+ setup script" --> D["Droplet: bot, VNC client,<br/>PPTP VPN, Vector"]
-    D -- "fetch latest build,<br/>post status" --> W
-    W -- "start / stop / resume" --> D
-    D -- "logs" --> O["OpenObserve"]
-    W --> N["Discord bot, web push"]
+    W -- "DigitalOcean API +<br/>injected setup script" --> Bot
+    Game -- "VPN tunnel:<br/>game traffic" --> VPN
+    VPN -.-> Bot
+    VNCC -- "VNC input, back<br/>through the tunnel" --> Game
+    Bot -- "encrypted status API,<br/>Pusher commands" --> W
+    Bot -- "Vector" --> O["OpenObserve logs"]
 ```
 
 - **Accounts and billing.** Laravel Fortify auth with email verification, Stripe subscriptions via Cashier (free trial, promo code), Coinbase Commerce for crypto, referral codes, localised routes.
 - **Instance setup.** A wizard validates the user's DigitalOcean token, creates a small Ubuntu droplet and injects a generated script (`server-setup.sh`) that installs the .NET runtime, Java for the VNC client, a PPTP VPN server, `xdotool`, supervisor and Vector. `server-startup.sh` then pulls the latest bot build and `VncClient.jar` from this app with a Passport token and starts the bot under supervisor.
+- **Two machines, one tunnel.** The PC's built-in Windows VPN dials the droplet, which forwards all of its traffic, so the bot can sniff the game's UDP packets on the droplet. `VncClient.jar` on the droplet connects back to the PC's TightVNC server over the tunnel to move the cursor; the dashboard pings both services to show their status.
 - **Live control loop.** The bot POSTs to `/api/v2/instance/{slug}/data/*` (moved, step changed, status, remote desktop, client version). Laravel rebroadcasts these as private-channel events through Soketi to the browser; dashboard actions (start with city and heart count, stop, resume, record a route) go back the same way, and a service restart runs over SSH.
 - **Notifications and logs.** Run started, completed or stuck fans out to Discord and OneSignal web push. A Discord bot links Discord accounts (`!login email`) and grants roles. Each droplet ships bot logs via Vector to a shared OpenObserve instance with per-user credentials.
 - **Releases.** `POST /deploy/oryxbot` (bearer-protected) receives the tarball from the oryxbot repo's CI; `/storage/releases/latest` serves it to droplets; release-notes pages track v0.1 beta through v2.0.
