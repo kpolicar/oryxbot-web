@@ -1,66 +1,71 @@
 # oryxbot-web
 
-Laravel platform behind oryxbot.com: accounts, subscriptions, one-click bot servers and a live dashboard for the OryxBot Albion Online bot.
+The web platform that sold subscriptions to OryxBot, a bot for the online role-playing game Albion Online, and provisioned and remote-controlled each subscriber's bot server.
 
 ## What it is
 
-- The web side of [oryxbot](https://github.com/kpolicar/oryxbot): marketing site, sign-up and billing, plus a Laravel Nova dashboard where each subscriber sets up and remote-controls their own bot instance.
-- It provisions the bot's server for the user: a DigitalOcean droplet in their own account, pre-configured with the bot, a VNC client, a PPTP VPN server and log shipping. The player's own Windows PC keeps running the game; the setup wizard walks them through installing a TightVNC server and adding a Windows VPN connection to the droplet.
-- It is the message bus between bot and browser: the bot reports position, current step and status over an encrypted API; the dashboard streams that live and sends start, stop and resume commands back over WebSockets.
+- The product around the bot: sign up, pay by card or crypto, click once to get your own bot server, then watch the bot live and steer it from a dashboard.
+- One-click infrastructure in the customer's own cloud account: the app creates a DigitalOcean VM with an injected setup script, and the VM pulls the bot from the app and reports back. The player's PC keeps running the game and tunnels to that VM.
+- 8 release-note pages from v0.1 beta (March 2021) to v2.0 (April 2024): v1.0 moved the bot off the player's PC onto a server, v2.0 gave each subscriber their own VM. Laravel 8 with a Laravel Nova dashboard, built for the sibling repo's `prod` client.
 
 ## Background
 
-- Albion Online (Sandbox Interactive, 2017) is a free-to-play sandbox MMORPG with a player-driven economy and full-loot PvP zones.
-- Faction "transport missions" haul cargo between the game's cities for faction hearts and silver: profitable, but slow and repetitive. OryxBot automated them; this repo (2020–2024) is the product built around that bot.
+- Albion Online (Sandbox Interactive, 2017) is a free-to-play sandbox MMORPG built around a player-driven economy and open-world PvP.
+- Its in-game delivery quests (haul cargo from city to city for currency) are profitable but slow and repetitive; the bot ran them on a loop, and this platform put a human back in the loop when it got stuck.
 
 ## How it works
 
 ```mermaid
-flowchart LR
-    subgraph PC["Player's PC (Windows)"]
-        Game["Albion Online<br/>+ TightVNC server"]
-    end
-    subgraph Cloud["Bot server (subscriber's DigitalOcean droplet)"]
-        VPN["PPTP VPN server"]
-        Bot["OryxBot client<br/>+ packet sniffer"]
-        VNCC["VncClient.jar"]
-    end
-    U["Subscriber's browser"] <-->|"live status, start / stop<br/>(Soketi WebSocket)"| W["oryxbot.com<br/>Laravel + Nova dashboard"]
-    CI["GitHub Actions<br/>(oryxbot repo)"] -- "oryxbot.tar.gz" --> W
-    W -- "DigitalOcean API +<br/>injected setup script" --> Bot
-    Game -- "VPN tunnel:<br/>game traffic" --> VPN
-    VPN -.-> Bot
-    VNCC -- "VNC input, back<br/>through the tunnel" --> Game
-    Bot -- "encrypted status API,<br/>Pusher commands" --> W
-    Bot -- "Vector" --> O["OpenObserve logs"]
+sequenceDiagram
+    participant S as Subscriber (browser)
+    participant W as oryxbot.com
+    participant D as DigitalOcean
+    participant B as Bot VM
+    S->>W: sign up, pay (Stripe or Coinbase webhook), enter DigitalOcean token
+    W->>D: create VM with injected setup script
+    D-->>B: boots and runs the script
+    B->>W: pulls latest bot build, registers its address
+    Note over B: also holds the VPN and VNC link to the player's PC (see oryxbot)
+    S->>W: Start (city, cargo size)
+    W-->>B: command over the WebSocket the bot opened
+    B->>W: position, current step, status (API)
+    W-->>S: live view over WebSocket
+    B->>W: stuck after 5 tries, paused
+    Note over W,S: push and Discord alert
+    S->>W: Resume (region, cargo delivered or not)
+    W-->>B: command, bot skips to that point of its route
+    Note over W,B: restart or update on request, over SSH
 ```
 
-- **Accounts and billing.** Laravel Fortify auth with email verification, Stripe subscriptions via Cashier (free trial, promo code), Coinbase Commerce for crypto, referral codes, localised routes.
-- **Instance setup.** A wizard validates the user's DigitalOcean token, creates a small Ubuntu droplet and injects a generated script (`server-setup.sh`) that installs the .NET runtime, Java for the VNC client, a PPTP VPN server, `xdotool`, supervisor and Vector. `server-startup.sh` then pulls the latest bot build and `VncClient.jar` from this app with a Passport token and starts the bot under supervisor.
-- **Two machines, one tunnel.** The PC's built-in Windows VPN dials the droplet, which forwards all of its traffic, so the bot can sniff the game's UDP packets on the droplet. `VncClient.jar` on the droplet connects back to the PC's TightVNC server over the tunnel to move the cursor; the dashboard pings both services to show their status.
-- **Live control loop.** The bot POSTs to `/api/v2/instance/{slug}/data/*` (moved, step changed, status, remote desktop, client version). Laravel rebroadcasts these as private-channel events through Soketi to the browser; dashboard actions (start with city and heart count, stop, resume, record a route) go back the same way, and a service restart runs over SSH.
-- **Notifications and logs.** Run started, completed or stuck fans out to Discord and OneSignal web push. A Discord bot links Discord accounts (`!login email`) and grants roles. Each droplet ships bot logs via Vector to a shared OpenObserve instance with per-user credentials.
-- **Releases.** `POST /deploy/oryxbot` (bearer-protected) receives the tarball from the oryxbot repo's CI; `/storage/releases/latest` serves it to droplets; release-notes pages track v0.1 beta through v2.0.
+- **Accounts and billing.** Email sign-up, Stripe subscriptions with a free trial and promo codes, Coinbase Commerce for crypto, referral codes.
+- **One-click bot server.** The setup script installs the bot, a VPN server and a VNC client; the VM then pulls builds from this app, and the only inbound path is SSH, used by the restart button to update and relaunch. The player's PC needs a VNC server and a Windows VPN connection, checked from their browser.
+- **Live relay.** The bot posts to an authenticated API (bodies also AES-wrapped); Laravel rebroadcasts to the browser over WebSockets. Commands go the other way on a channel the bot opens itself, which also carries its log lines back.
+- **Human in the loop.** Routes were recorded per city and cargo size picks the quest contract, so Start needs both. When the bot gives up (five stuck attempts in thirty seconds) it pauses and alerts; Resume asks which region it is in and whether cargo was delivered, then skips to that point of the route.
+- **Releases and logs.** The oryxbot repo's CI posts each build to a bearer-protected endpoint here and VMs download it from the app. Each VM also ships bot logs to a shared OpenObserve instance; Discord and web push carry started / completed / stuck alerts.
 
 ## Tech stack
 
-- PHP 7.4, Laravel 8, Laravel Nova (custom theme and tools), Passport, Cashier, Fortify, Telescope, Blade with Tailwind, Vue 2 for Nova tools, Laravel Mix.
-- PostgreSQL, Soketi (Pusher protocol) with Laravel Echo, OpenObserve and Vector, Postmark mail, OneSignal, discord-php, DigitalOcean API, phpseclib SSH.
-- Docker Compose (php-nginx image with supervisor for the queue worker and Discord bot, Soketi, OpenObserve) behind a Caddy reverse proxy; earlier Travis CI deploys over SSH.
+- PHP 7.4, Laravel 8, Laravel Nova (custom theme and tools), Passport, Cashier, Fortify, Telescope; Blade with Tailwind, Vue 2 for the Nova tools, Laravel Mix.
+- Soketi (Pusher protocol) with Laravel Echo, PostgreSQL on the host, OpenObserve and Vector for logs, Postmark, OneSignal, discord-php, DigitalOcean API, phpseclib SSH.
+- Docker Compose (php-nginx with supervisor for the queue worker and Discord bot, Soketi, OpenObserve) behind a Caddy reverse proxy; earlier Travis CI deploys over SSH.
 
 ## Repository layout
 
-- `app/` — models (`User`, `Subscription`, `Instance`, `Server`), controllers (Stripe, Coinbase, DigitalOcean, BotDataApi, Deployment, Ssh), broadcast events.
-- `nova-components/` — dashboard tools: `OryxbotInstance` (control panel), `OryxbotHelp`, a custom theme, and `OryxbotLogs` / `OryxbotInsights` placeholders.
-- `discordapp/` — standalone Discord bot process.
-- `server-setup.sh`, `server-startup.sh`, `vector.yaml` — templates injected into each droplet.
-- `docker-compose.yml`, `docker/` — production stack.
+- `app/Http/Controllers/DigitalOceanController.php` with `server-setup.sh`, `server-startup.sh`, `vector.yaml` — provisioning and the scripts injected into each VM.
+- `app/Http/Controllers/BotDataApiController.php`, `app/Events/` — the bot-to-browser relay.
+- `nova-components/OryxbotInstance/` — the dashboard control panel (Vue); `OryxbotLogs` and `OryxbotInsights` are placeholders.
+- `discordapp/` — the Discord bot process (account linking, alerts).
+- `docker-compose.yml`, `docker/` — the production stack.
 
 ## Running it
 
-Standard Laravel 8 app: `composer install`, copy `.env.example` to `.env`, `php artisan migrate`, `npm run dev`. Production runs from `docker-compose.yml`.
+Standard Laravel 8 app: `composer install`, copy `.env.example` to `.env`, `php artisan migrate`, `npm run dev`. Production runs from `docker-compose.yml` with PostgreSQL on the host.
 
-## Status and related
+## Related
 
-- Last commit May 2024. Built for the legacy bot client on the `prod` branch of [oryxbot](https://github.com/kpolicar/oryxbot); the 2026 rebuild there ships its own static site and does not use this backend.
-- Personal project by Klemen Poličar; proprietary license (see `LICENSE`). Not affiliated with Sandbox Interactive; Albion Online is their trademark.
+- [oryxbot](https://github.com/kpolicar/oryxbot) — the bot this platform deployed (its `prod` branch); that README shows the VPN and VNC internals between the VM and the player's PC.
+
+## Status
+
+Last commit May 2024; the 2026 oryxbot.com site is a static SPA that does not use this backend.
+Personal project by Klemen Poličar; proprietary licence (see `LICENSE`). Not affiliated with Sandbox Interactive; Albion Online is their trademark.
